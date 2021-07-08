@@ -1,20 +1,12 @@
 package com.koreait.shoesfly.command.notice;
 
-import javax.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.stereotype.Component;
-import org.springframework.ui.Model;
+import com.koreait.shoesfly.command.BaseCommand;
 
-public class NoticeCommand {
-	
-	public void execute(SqlSession sqlSession, Model model) {
-		
-		
-		// 작업 수행
-		
-		
-		
-	}
+public interface NoticeCommand extends BaseCommand {
+
+	public Logger logger = LoggerFactory.getLogger(NoticeCommand.class);	
 
 }

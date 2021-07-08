@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.koreait</groupId>
 	<artifactId>shoesfly</artifactId>
-	<name>SHOESFLY</name>
+	<name>shoesfly</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<!-- SRPING : 5.1.4.RELEASE > properties -->
