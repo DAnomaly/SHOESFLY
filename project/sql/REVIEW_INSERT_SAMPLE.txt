@@ -1,0 +1,150 @@
+CREATE TABLE REVIEW
+(
+    REVIEW_NO     NUMBER            NOT NULL, 
+    MEMBER_ID     VARCHAR2(30)      NOT NULL, 
+    PRODUCT_NAME  VARCHAR2(100)     NOT NULL,   -- PRODUCT_NO를 PRODUCT_NAME 으로 변경
+    TITLE         VARCHAR2(1000)    NOT NULL, 
+    CONTENT       VARCHAR2(4000)    NOT NULL, 
+    IMAGE         VARCHAR2(1000)    NULL, 
+    POSTDATE      DATE              NOT NULL, 
+    MODIFYDATE    DATE              NULL, 
+    IP            VARCHAR2(25)      NOT NULL, 
+    STATE         NUMBER(1)         NOT NULL, 
+    CONSTRAINT PK_REVIEW PRIMARY KEY (REVIEW_NO)
+);
+
+CREATE SEQUENCE REVIEW_SEQ
+START WITH 1
+INCREMENT BY 1
+NOCACHE
+NOCYCLE;
+
+ALTER TABLE REVIEW
+    ADD CONSTRAINT FK_REVIEW_MEMBER_ID_MEMBER_MEM FOREIGN KEY (MEMBER_ID)
+        REFERENCES MEMBER (MEMBER_ID);
+
+-- PRODUCT 테이블의 PRODUCT_NAME 참조        
+ALTER TABLE REVIEW
+   ADD CONSTRAINT FK_REVUEW_PRODUCT_NAME FOREIGN KEY (PRODUCT_NAME)  
+       REFERENCES PRODUCE (PRODUCE_NAME);
+
+-- REVIEW INSERT SAMPLE
+       
+INSERT 
+  INTO REVIEW
+VALUES (REVIEW_SEQ.NEXTVAL,
+        'USER1',
+        'Jordan 1 Retro High OG University Blue',
+        'TITLE_1',
+        'CONTENT_1',
+        '555088-134.jpg',
+        SYSDATE,
+        SYSDATE,
+        '127.0.0.1',
+        0);
+    
+INSERT 
+  INTO REVIEW
+VALUES (REVIEW_SEQ.NEXTVAL,
+        'USER2',
+        'Jordan 1 Retro High OG Black Mocha',
+        'TITLE_2',
+        'CONTENT_2',
+        '555088-105.jpg',
+        SYSDATE,
+        SYSDATE,
+        '127.0.0.1',
+        0);
+        
+INSERT 
+  INTO REVIEW
+VALUES (REVIEW_SEQ.NEXTVAL,
+        'USER3',
+        'Nike x Sacai Blazer Low Magma Orange',
+        'TITLE_3',
+        'CONTENT_3',
+        'DD1877-100.jpg',
+        SYSDATE,
+        SYSDATE,
+        '127.0.0.1',
+        0);
+        
+INSERT 
+  INTO REVIEW
+VALUES (REVIEW_SEQ.NEXTVAL,
+        'ID_1',
+        'Jordan 1 Retro High OG University Blue',
+        'TITLE_4',
+        'CONTENT_4',
+        '555088-134.jpg',
+        SYSDATE,
+        SYSDATE,
+        '127.0.0.1',
+        0);
+        
+INSERT 
+  INTO REVIEW
+VALUES (REVIEW_SEQ.NEXTVAL,
+        'USER4',
+        'Nike Dunk Low SP Veneer',
+        'TITLE_4',
+        'CONTENT_4',
+        'DA1469-200.jpg',
+        SYSDATE,
+        SYSDATE,
+        '127.0.0.1',
+        0);
+        
+INSERT 
+  INTO REVIEW
+VALUES (REVIEW_SEQ.NEXTVAL,
+        'USER5',
+        'New Balance 992 Made in USA Grey',
+        'TITLE_5',
+        'CONTENT_5',
+        'M992GR.jsp',
+        SYSDATE,
+        SYSDATE,
+        '127.0.0.1',
+        0);
+        
+INSERT 
+  INTO REVIEW
+VALUES (REVIEW_SEQ.NEXTVAL,
+        'USER6',
+        'New Balance 327 White Black',
+        'TITLE_6',
+        'CONTENT_6',
+        'MS327FE.jsp',
+        SYSDATE,
+        SYSDATE,
+        '127.0.0.1',
+        0);
+        
+INSERT 
+  INTO REVIEW
+VALUES (REVIEW_SEQ.NEXTVAL,
+        'USER7',
+        'Adidas Yeezy Boost 350 V2 Zebra',
+        'TITLE_7',
+        'CONTENT_7',
+        'CP9654.jsp',
+        SYSDATE,
+        SYSDATE,
+        '127.0.0.1',
+        0);
+        
+INSERT 
+  INTO REVIEW
+VALUES (REVIEW_SEQ.NEXTVAL,
+        'USER8',
+        'Adidas Yeezy Boost 700 V2 Cream',
+        'TITLE_1',
+        'CONTENT_1',
+        'GY7924.jsp',
+        SYSDATE,
+        SYSDATE,
+        '127.0.0.1',
+        0);
+
+        
