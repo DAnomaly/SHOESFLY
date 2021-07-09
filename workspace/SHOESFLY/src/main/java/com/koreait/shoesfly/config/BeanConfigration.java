@@ -19,7 +19,7 @@ public class BeanConfigration {
 		HikariConfig config = new HikariConfig();
 		config.setDriverClassName("oracle.jdbc.OracleDriver");
 		config.setJdbcUrl("jdbc:oracle:thin:@127.0.0.1:1521:xe");
-		config.setUsername("spring");
+		config.setUsername("SHOESFLY");
 		config.setPassword("1111");
 		return config;
 	}
@@ -33,7 +33,7 @@ public class BeanConfigration {
 	@Bean
 	public SqlSessionFactory sqlSessionFactory() throws Exception {
 		SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
-		sqlSessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:com/koreait/mygallery/dao/*.xml"));
+		sqlSessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:com/koreait/shoesfly/dao/*.xml"));
 		sqlSessionFactory.setDataSource(hikariDataSource());
 		return sqlSessionFactory.getObject();
 	}
