@@ -1,0 +1,74 @@
+@charset "UTF-8";
+
+/* 모든 파일 */
+@font-face {
+	font-family: '푸른전남체R';
+	src: url("../../font/PureunJeonnam.ttf");
+}
+@font-face {
+	font-family: '푸른전남체M';
+	src: url("../../font/PureunJeonnam-Medium.ttf")
+}
+* {
+	font-family: '푸른전남체M', sans-serif;
+}
+body {
+	padding: 0;
+	margin: 0;
+}
+input[type="text"], textarea, pre {
+	font-family: '푸른전남체R', sans-serif;
+}
+input[type="password"] {
+	font-family: sans-serif;
+}
+
+/* header */
+body {
+	margin: 0;
+	padding: 0;
+}
+
+header {
+	background-color: #303030;
+	position: relative;
+}
+header a {
+	color: #ffffff;
+}
+header a:first-of-type {
+	display: inline-block;
+	height: 40px;
+	margin: 5px 10px;
+}
+header a:last-of-type {
+	position: absolute;
+	right: 10px;
+	bottom: 5px;
+}
+
+nav {
+	background-color: #909090;
+	display: inline-block;
+	height: 100vw;
+	padding-top: 30px;
+}
+nav a {
+	color: black;
+	cursor: pointer;
+	text-decoration: none;
+	font-size: 18px;
+}
+nav a span {
+	display: inline-block;
+	margin: 0 20px;
+}
+nav ul {
+	margin: 0;
+	padding: 25px;
+	padding-left: 85px;
+	list-style: none;
+}
+nav ul li {
+	padding: 5px;
+}
