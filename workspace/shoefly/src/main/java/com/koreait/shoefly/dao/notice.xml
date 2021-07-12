@@ -64,7 +64,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	           ) B
 		 WHERE RN BETWEEN #{beginRecord} AND #{endRecord}
 	</select>
-	
-
 
 </mapper>
