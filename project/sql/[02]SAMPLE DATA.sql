@@ -236,6 +236,7 @@ VALUES (REVIEW_SEQ.NEXTVAL,
         '555088-134.jpg',
         SYSDATE,
         SYSDATE,
+        0,
         '127.0.0.1',
         0);
     
@@ -249,6 +250,7 @@ VALUES (REVIEW_SEQ.NEXTVAL,
         '555088-105.jpg',
         SYSDATE,
         SYSDATE,
+        0,
         '127.0.0.1',
         0);
         
@@ -262,6 +264,7 @@ VALUES (REVIEW_SEQ.NEXTVAL,
         'DD1877-100.jpg',
         SYSDATE,
         SYSDATE,
+        0,
         '127.0.0.1',
         0);
         
@@ -275,6 +278,7 @@ VALUES (REVIEW_SEQ.NEXTVAL,
         '555088-134.jpg',
         SYSDATE,
         SYSDATE,
+        0,
         '127.0.0.1',
         0);
         
@@ -288,6 +292,7 @@ VALUES (REVIEW_SEQ.NEXTVAL,
         'DA1469-200.jpg',
         SYSDATE,
         SYSDATE,
+        0,
         '127.0.0.1',
         0);
         
@@ -301,6 +306,7 @@ VALUES (REVIEW_SEQ.NEXTVAL,
         'M992GR.jsp',
         SYSDATE,
         SYSDATE,
+        0,
         '127.0.0.1',
         0);
         
@@ -314,6 +320,7 @@ VALUES (REVIEW_SEQ.NEXTVAL,
         'MS327FE.jsp',
         SYSDATE,
         SYSDATE,
+        0,
         '127.0.0.1',
         0);
         
@@ -327,6 +334,7 @@ VALUES (REVIEW_SEQ.NEXTVAL,
         'CP9654.jsp',
         SYSDATE,
         SYSDATE,
+        0,
         '127.0.0.1',
         0);
         
@@ -340,6 +348,7 @@ VALUES (REVIEW_SEQ.NEXTVAL,
         'GY7924.jsp',
         SYSDATE,
         SYSDATE,
+        0,
         '127.0.0.1',
         0);
 
