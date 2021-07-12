@@ -5,5 +5,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.koreait.shoefly.dao.MemberDAO">
 
+	<select id="login" resultType="com.koreait.shoefly.dto.Member">
+		SELECT MEMBER_NO AS MEMBERNO, MEMBER_ID AS MEMBERID, PW, NAME, EMAIL, REGDATE, MANAGER, STATE
+		  FROM MEMBER
+		 WHERE MEMBER_ID = #{memberId} 
+		   AND PW = #{pw}  
+	</select>
+	
+
+	<select id="idCheck" resultType="int">
+		SELECT COUNT(MEMBER_ID)
+		  FROM MEMBER
+		 WHERE MEMBER_ID = #{memberId}  
+	</select>
 
 </mapper>
