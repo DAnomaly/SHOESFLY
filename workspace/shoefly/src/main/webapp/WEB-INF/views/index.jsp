@@ -13,7 +13,7 @@
 <body>
 	<jsp:include page="/resources/asset/jsp/header.jsp"/>
 	<section>
-	
+	index
 	
 	</section>
 	<jsp:include page="/resources/asset/jsp/footer.jsp"/>
