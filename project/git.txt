@@ -1,0 +1,10 @@
+
+
+git clone https://github.com/DAnomaly/SHOESFLY.git
+
+git status
+
+git checkout kitae // 브랜치 바꾸기
+
+git pull origin kiate
+
