@@ -11,16 +11,16 @@ import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
 import com.koreait.shoefly.dao.ManagerDAO;
+import com.koreait.shoefly.dto.Faq;
 import com.koreait.shoefly.dto.Member;
-import com.koreait.shoefly.dto.Notice;
 
 /**
- * 공지사항 작성 및 수정 커맨드
+ * FAQ 작성 및 수정 커맨드
  * 
  * @author 박세환
  */
 @Component
-public class InsertOrUpdateNoticeManagerCommand implements ManagerCommand {
+public class InsertOrUpdateFaqManagerCommand implements ManagerCommand {
 
 	private Map<String, Object> resultMap;
 	private HttpServletRequest request;
@@ -36,8 +36,8 @@ public class InsertOrUpdateNoticeManagerCommand implements ManagerCommand {
 		// TODO : Member 작업 완료시 삭제할 것
 		loginManager();
 		
-		String strNoticeNo = request.getParameter("noticeNo");
-		if(strNoticeNo == null || strNoticeNo.isEmpty()) {
+		String strFaqNo = request.getParameter("faqNo");
+		if(strFaqNo == null || strFaqNo.isEmpty()) {
 			insertNotice();  // strNoticeNo값이 없으면
 		} else {
 			updateNotice();  // strNoticeNo값이 있으면
@@ -47,22 +47,22 @@ public class InsertOrUpdateNoticeManagerCommand implements ManagerCommand {
 	}
 
 	/**
-	 * strNoticeNo값이 없으면 새글 추가
+	 * strFaqNo값이 없으면 새글 추가
 	 */
 	private void insertNotice() {
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
+		String question = request.getParameter("question");
+		String answer = request.getParameter("answer");
 		
 		HttpSession session = request.getSession();
 		Member loginMember = (Member)session.getAttribute("loginMember");
 		String id = loginMember.getMemberId();
 		
-		Notice notice = new Notice();
-		notice.setTitle(title);
-		notice.setContent(content);
-		notice.setMemberId(id);
+		Faq faq = new Faq();
+		faq.setMemberId(id);
+		faq.setQuestion(question);
+		faq.setAnswer(answer);
 		
-		int result = dao.insertNotice(notice);
+		int result = dao.insertFaq(faq);
 		
 		resultMap.put("result", result > 0);
 		resultMap.put("message", "정상적으로 새글이 추가되었습니다.");
@@ -72,17 +72,17 @@ public class InsertOrUpdateNoticeManagerCommand implements ManagerCommand {
 	 * strNoticeNo값이 있으면 수정 
 	 */
 	private void updateNotice() {
-		String strNoticeNo = request.getParameter("noticeNo");
-		Long noticeNo = Long.parseLong(strNoticeNo);
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
+		String strFaqNo = request.getParameter("faqNo");
+		Long faqNo = Long.parseLong(strFaqNo);
+		String question = request.getParameter("question");
+		String answer = request.getParameter("answer");
+
+		Faq faq = new Faq();
+		faq.setFaqNo(faqNo);
+		faq.setQuestion(question);
+		faq.setAnswer(answer);
 		
-		Notice notice = new Notice();
-		notice.setNoticeNo(noticeNo);
-		notice.setTitle(title);
-		notice.setContent(content);
-		
-		int result = dao.updateNotice(notice);
+		int result = dao.updateFaq(faq);
 		
 		resultMap.put("result", result > 0);
 		resultMap.put("message", "정상적으로 수정되었습니다.");

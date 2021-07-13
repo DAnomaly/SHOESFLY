@@ -1,5 +1,6 @@
 package com.koreait.shoefly.command.manager;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,10 +10,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
 import com.koreait.shoefly.dao.ManagerDAO;
-import com.koreait.shoefly.dto.Notice;
 
 @Component
-public class SelectOneNoticeManagerCommand implements ManagerCommand {
+public class DeleteFaqManagerCommand implements ManagerCommand {
 
 	@Override
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {
@@ -20,14 +20,14 @@ public class SelectOneNoticeManagerCommand implements ManagerCommand {
 		Map<String, Object> modelMap = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)modelMap.get("request");
 		
-		String strNo = request.getParameter("no");
-		if(strNo != null && !strNo.isEmpty()) {
-			long no = Long.parseLong(strNo);
-			Notice notice = dao.selectOneNotice(no);
-			model.addAttribute("notice", notice);
-		}
+		long faqNo = Long.parseLong(request.getParameter("faqNo"));
+		int result = dao.deleteFaq(faqNo);
+
+		Map<String, Object> resultMap = new HashMap<>();
+		resultMap.put("result", result > 0);
+		resultMap.put("message", "글이 정상적으로 삭제되었습니다.");
 		
-		return null;
+		return resultMap;
 	}
 	
 }

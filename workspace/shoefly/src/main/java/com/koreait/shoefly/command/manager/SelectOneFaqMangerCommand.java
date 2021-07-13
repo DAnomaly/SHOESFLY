@@ -9,10 +9,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
 import com.koreait.shoefly.dao.ManagerDAO;
-import com.koreait.shoefly.dto.Notice;
+import com.koreait.shoefly.dto.Faq;
 
 @Component
-public class SelectOneNoticeManagerCommand implements ManagerCommand {
+public class SelectOneFaqMangerCommand implements ManagerCommand {
 
 	@Override
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {
@@ -23,11 +23,11 @@ public class SelectOneNoticeManagerCommand implements ManagerCommand {
 		String strNo = request.getParameter("no");
 		if(strNo != null && !strNo.isEmpty()) {
 			long no = Long.parseLong(strNo);
-			Notice notice = dao.selectOneNotice(no);
-			model.addAttribute("notice", notice);
+			Faq faq = dao.selectOneFaq(no);
+			model.addAttribute("faq", faq);
 		}
 		
 		return null;
 	}
-	
+
 }

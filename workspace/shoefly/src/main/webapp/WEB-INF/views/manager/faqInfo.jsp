@@ -11,7 +11,7 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script>
 		function preview_btn() {
-			$('#preview').html($('#content').val());
+			$('#preview').html($('#answer').val());
 			$('.content').toggle();
 			$('.preview').toggle();
 		}
@@ -27,9 +27,9 @@
 				return;
 			}
 			$.ajax({
-				url: 'insertNotice.do',
+				url: 'insertFaq.do',
 				type: 'POST',
-				data: 'noticeNo=' + $('#noticeNo').val() + '&title=' + $('#title').val() + '&content=' + $('#content').val(),
+				data: 'faqNo=' + $('#faqNo').val() + '&question=' + $('#question').val() + '&answer=' + $('#answer').val(),
 				dataType: 'json',
 				success: function(data) {
 					console.log("yes");
@@ -47,9 +47,9 @@
 				return;
 			}
 			$.ajax({
-				url: 'deleteNotice.do',
+				url: 'deleteFaq.do',
 				type: 'POST',
-				data: 'noticeNo=' + $('#noticeNo').val(),
+				data: 'faqNo=' + $('#faqNo').val(),
 				dataType: 'json',
 				success: function(data) {
 					console.log("yes");
@@ -66,29 +66,29 @@
 </head>
 <body>
 	<form id="f" method="post">
-		<c:if test="${empty notice}">
-		<h3>공지사항 작성</h3>
+		<c:if test="${empty faq}">
+		<h3>FAQ 작성</h3>
 		</c:if>
-		<c:if test="${not empty notice}">
-		<h3>공지사항 수정</h3>
+		<c:if test="${not empty faq}">
+		<h3>FAQ 수정</h3>
 		</c:if>
 		<div class="title">
 			<input type="text" hidden="hidden"/>
-			<input type="hidden" id="noticeNo" name="noticeNo" value="${notice.noticeNo}"/>
-			<input type="text" id="title" name="title" value="${notice.title}" placeholder="제목"/>
+			<input type="hidden" id="faqNo" name="faqNo" value="${faq.faqNo}"/>
+			<input type="text" id="question" name="question" value="${faq.question}" placeholder="질문"/>
 		</div>
 		<div class="content">
-			<textarea id="content" name="content">${notice.content}</textarea>
+			<textarea id="answer" name="answer">${faq.answer}</textarea>
 		</div>
 		<div class="preview" style="display: none;">
 			<div id="preview"></div>
 		</div>
 		<div>
 			<input type="button" value="미리보기" onclick="preview_btn();"/>
-			<c:if test="${empty notice}">
+			<c:if test="${empty faq}">
 			<input type="button" value="등록하기" onclick="edit_btn();"/>
 			</c:if>
-			<c:if test="${not empty notice}">
+			<c:if test="${not empty faq}">
 			<input type="button" value="수정하기" onclick="edit_btn();"/>
 			<input type="button" value="삭제하기" onclick="del_btn();"/>
 			</c:if>
