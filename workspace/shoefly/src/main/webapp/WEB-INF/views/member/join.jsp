@@ -8,7 +8,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/header.css">
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/footer.css">
-	<title>리스트</title>
+	<title>회원가입</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script>
 		$(document).ready(function(){
@@ -16,6 +16,7 @@
 			fn_pwCheck();
 			fn_pwCheck2();
 			fn_emailCheck();
+			fn_join();
 		})
 		
 		// 아이디 검사 (정규식검사/중복검사)
@@ -38,7 +39,7 @@
 							idPass = true;
 						} else {
 							$('#memberId_result').text('이미 사용중인 아이디입니다.').css('color', 'red');
-							idPass = true;
+							idPass = false;
 						}
 					},
 					error: function(xhr, textStatus, errorThrown) {
@@ -78,33 +79,66 @@
 		}
 		
 		// 이메일 검사 (정규식검사/인증코드발송)
+		var emailPass = false;
 		function fn_emailCheck(){
 			$('#verify_code_btn').click(function(){
 				var regEMAIL = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;
 				if($('#email').val() == '') {
-					alert('이메일을 입력하세요.');
+					$('#email_result').text('이메일을 입력하세요.').css('color', 'red');
+					//alert('이메일을 입력하세요.');
 					$('#email').focus();
-					return false;
-				} else if(!regEMAIL.test($('#email').val())) {
-					alert('이메일을 형식에 맞춰 입력해주세요.');
+					emailPass = false;
+				} 
+				if(!regEMAIL.test($('#email').val())) {
+					$('#email_result').text('이메일을 형식에 맞춰 입력해주세요.').css('color', 'red');
+					//alert('이메일을 형식에 맞춰 입력해주세요.');
 					$('#email').focus();
-					return false;
+					emailPass =  false;
+				} else {
+					emailPass = true;
 				}
-				$.ajax({
-					url: 'verifyCode.do',
-					type: 'get',
-					data: 'email=' + $('#email').val(),
-					dataType: 'json',
-					success: function(result){
-						alert('인증코드가 발송되었습니다.');
-						fn_verify(result.authCode);
-					},
-					error: function(xhr, textStatus, errorThorwn) {
-						
-					}
-				});
+				fn_email_orCheck();
 			})			
 		}
+		
+		// 이메일 중복검사
+		function fn_email_orCheck(){
+			$.ajax({
+				url: 'emailOrCheck.do',
+				type: 'get',
+				data: 'email=' + $('#email').val(),
+				dataType: 'json',
+				success: function(result){
+					if(result.count == 0) {
+						$('#email_result').text('사용 가능한 이메일입니다.').css('color', 'blue');
+						fn_email_verifyCodeSend();
+					} else {
+						$('#email_result').text('이미 사용중인 이메일입니다.').css('color', 'red');
+					}
+				},
+				error: function(xhr, textStatus, errorThrown) {
+					
+				}
+			});
+		}
+		
+		// 이메일 인증코드발송
+		function fn_email_verifyCodeSend(){
+			$.ajax({
+				url: 'verifyCode.do',
+				type: 'get',
+				data: 'email=' + $('#email').val(),
+				dataType: 'json',
+				success: function(result){
+					alert('인증코드가 발송되었습니다.');
+					fn_verify(result.authCode);
+				},
+				error: function(xhr, textStatus, errorThorwn) {
+					
+				}				
+			});	
+		}
+		
 		
 		// 인증코드 검사
 		var authPass = false;
@@ -120,7 +154,24 @@
 			});
 		}
 		
-		
+		// 회원가입
+		function fn_join(){
+			$('#join_btn').click(function(){
+				if(!idPass) {
+					alert('아이디를 확인하세요');
+					return false;
+				} else if(!pwPass || !pwPass2) {
+					alert('비밀번호를 확인하세요.');
+					return false;
+				} else if(!authPass) {
+					alert('이메일 인증을 받아주세요.');
+					return false;
+				} else {
+					$('#f').attr('action', 'join.do');
+					$('#f').submit();
+				}
+			});
+		}
 		
 	</script>	
 </head>
@@ -156,12 +207,13 @@
      			<div class="join_info">
 	     			<label for="email">이메일</label><br>
 	     			<input type="text" id="email" name="email">
-	     			<input type="button" value="인증코드발송" id="verify_code_btn">
+	     			<input type="button" value="인증코드발송" id="verify_code_btn"><br>
+	     			<span id="email_result"></span>
      			</div>
      			<div class="join_info">
 	     			<label for="memberId">인증코드</label><br>
 	     			<input type="text" id="verify_code" name="verify_code">
-	     			<input type="button" value="인증" id="verify_btn">
+	     			<input type="button" value="인증" id="verify_btn"><br>
      			</div>
      			<input type="button" value="회원가입" id="join_btn">
      		</form>

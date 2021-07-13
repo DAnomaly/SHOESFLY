@@ -20,7 +20,7 @@ import com.koreait.shoefly.util.SecurityUtils;
 public class VerifyCodeCommand implements MemberCommand {
 
 	@Autowired
-	JavaMailSender mailSender;
+	private JavaMailSender mailSender;
 	
 	@Override
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {

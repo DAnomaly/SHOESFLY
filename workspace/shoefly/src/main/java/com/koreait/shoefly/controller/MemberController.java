@@ -13,9 +13,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.koreait.shoefly.command.member.EmailOrCheckCommand;
+import com.koreait.shoefly.command.member.FindIdCommand;
+import com.koreait.shoefly.command.member.FindPwCommand;
 import com.koreait.shoefly.command.member.IdCheckCommand;
+import com.koreait.shoefly.command.member.IdExistsCommand;
+import com.koreait.shoefly.command.member.JoinCommand;
 import com.koreait.shoefly.command.member.LoginCommand;
 import com.koreait.shoefly.command.member.LogoutCommand;
+import com.koreait.shoefly.command.member.UpdatePwCommand;
 import com.koreait.shoefly.command.member.VerifyCodeCommand;
 
 import lombok.AllArgsConstructor;
@@ -27,7 +33,19 @@ public class MemberController {
 
 	// field
 	private SqlSession sqlSession;
+	private LoginCommand loginCommand;
+	private LogoutCommand logoutCommand;
+	private IdCheckCommand idCheckCommand;
+	private VerifyCodeCommand verifyCodeCommand;
+	private JoinCommand joinCommand;
+	private EmailOrCheckCommand emailOrCheckCommand;
+	private FindIdCommand findIdCommand;
+	private FindPwCommand findPwCommand;
+	private IdExistsCommand idExistsCommand;
+	private UpdatePwCommand updatePwCommand;
 	
+	
+	// 페이지 이동
 	@GetMapping("loginPage.do")
 	public String loginPage() {
 		return "member/login";
@@ -43,14 +61,22 @@ public class MemberController {
 		return "member/my";
 	}
 	
+	@GetMapping("findIdPage.do")
+	public String findIdPage() {
+		return "member/findId";
+	}
+	
+	@GetMapping("findPwPage.do")
+	public String findPwPage() {
+		return "member/findPw";
+	}
+	
 	// 로그인
 	@PostMapping("login.do")
 	public String login(HttpServletRequest request,
 						Model model) {
 		model.addAttribute("request", request);
-		LoginCommand loginCommand = new LoginCommand();
-		loginCommand.execute(sqlSession, model);
-		
+		loginCommand.execute(sqlSession, model);		
 		return "redirect:/";
 	}
 	
@@ -58,34 +84,87 @@ public class MemberController {
 	@GetMapping("logout.do")
 	public String logout(HttpSession session,
 						 Model model) {
-		model.addAttribute("session", session);
-		LogoutCommand logoutCommand = new LogoutCommand();
-		logoutCommand.execute(sqlSession, model);
-		
+		model.addAttribute("session", session);		
+		logoutCommand.execute(sqlSession, model);		
 		return "redirect:/";
 	}
 	
 	// 아이디 중복검사
 	@GetMapping(value="idCheck.do", 
-				produces="application/json; utf-8")
+				produces="application/json; charset=utf-8")
 	@ResponseBody
 	public Map<String, Object> idCheck(HttpServletRequest request,
 									   Model model) {
-		model.addAttribute("request", request);
-		IdCheckCommand idCheckCommand = new IdCheckCommand();
-		
+		model.addAttribute("request", request);	
 		return idCheckCommand.execute(sqlSession, model);
+	}
+	
+	// 이메일 중복검사
+	@GetMapping(value="emailOrCheck.do",
+				produces="application/json; charset=utf-8")
+	@ResponseBody
+	public Map<String, Object> emailOrCheck(HttpServletRequest request,
+											Model model) {
+		model.addAttribute("request", request);
+		return emailOrCheckCommand.execute(sqlSession, model);
 	}
 	
 	// 이메일 인증코드 발송
 	@GetMapping(value="verifyCode.do",
-				produces="application/json; utf-8")
+				produces="application/json; charset=utf-8")
 	@ResponseBody
 	public Map<String, Object> verifyCode(HttpServletRequest request,
 										  Model model){
-		model.addAttribute("request", request);
-		VerifyCodeCommand verifyCodeCommand = new VerifyCodeCommand();
+		model.addAttribute("request", request);				
 		return verifyCodeCommand.execute(sqlSession, model);
 	}
+	
+	// 회원가입
+	@PostMapping("join.do")
+	public String join(HttpServletRequest request,
+					   Model model) {
+		model.addAttribute("request", request);
+		joinCommand.execute(sqlSession, model);
+		return "redirect:/";
+	}
+	
+	// 아이디 찾기
+	@PostMapping("findId.do")
+	public String findId(HttpServletRequest request,
+						 Model model) {
+		model.addAttribute("request", request);
+		findIdCommand.execute(sqlSession, model);
+		return "member/findIdResult";
+	}
+	
+	// 아이디 존재여부
+	@GetMapping(value="idExists.do",
+				produces="application/json; charset=utf-8")
+	@ResponseBody
+	public Map<String, Object> idExists(HttpServletRequest request,
+										Model model){
+		model.addAttribute("request", request);
+		return idExistsCommand.execute(sqlSession, model);
+	}
+	
+	
+	// 비밀번호 찾기
+	@PostMapping("findPw.do")
+	public String findPw(HttpServletRequest request,
+						 Model model) {
+		model.addAttribute("request", request);
+		findPwCommand.execute(sqlSession, model);
+		return "member/ChangePw";	
+	}
+	
+	// 비밀번호 변경
+	@PostMapping("updatePw.do")
+	public String updatePw(HttpServletRequest request,
+						   Model model) {
+		model.addAttribute("request", request);
+		updatePwCommand.execute(sqlSession, model);
+		return"index";
+	}
+	
 	
 }

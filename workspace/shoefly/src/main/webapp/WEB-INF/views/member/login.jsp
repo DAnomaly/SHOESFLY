@@ -8,7 +8,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/header.css">
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/footer.css">
-	<title>리스트</title>
+	<title>로그인</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script>
 		$(document).ready(function(){
@@ -47,9 +47,9 @@
          </div>
          <button>Login</button>
       </form>
-      <a href="join.do">회원가입</a>
-      <a href="findId.do">아이디찾기</a>
-      <a href="findPw.do">비밀번호찾기</a>
+      <a href="joinPage.do">회원가입</a>
+      <a href="findIdPage.do">아이디찾기</a>
+      <a href="findPwPage.do">비밀번호찾기</a>
       
 	
 	</section>
