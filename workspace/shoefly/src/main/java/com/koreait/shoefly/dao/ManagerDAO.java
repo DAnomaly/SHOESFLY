@@ -21,5 +21,5 @@ public interface ManagerDAO {
 	public int deleteNotice(long noticeNo);
 	public int insertFaq(Faq faq);
 	public int updateFaq(Faq faq);
-	public int deleteFaq(Faq faq);
+	public int deleteFaq(long faqNo);
 }

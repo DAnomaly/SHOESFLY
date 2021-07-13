@@ -102,13 +102,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="selectOneNotice" resultType="com.koreait.shoefly.dto.Notice">
-		SELECT NOTICE_NO, MEMBER_ID, TITLE, CONTENT, POSTDATE, STATE
+		SELECT NOTICE_NO AS NOTICENO, MEMBER_ID AS MEMBERID, TITLE, CONTENT, POSTDATE, STATE
           FROM NOTICE
          WHERE NOTICE_NO = #{_parameter}
 	</select>
 	
 	<select id="selectOneFaq" resultType="com.koreait.shoefly.dto.Faq">
-		SELECT FAQ_NO, MEMBER_ID, QUESTION, ANSWER, POSTDATE, STATE
+		SELECT FAQ_NO AS FAQNO, MEMBER_ID AS MEMBERID, QUESTION, ANSWER, POSTDATE, STATE
 		  FROM FAQ
 		 WHERE FAQ_NO = #{_parameter}
 	</select>
