@@ -4,10 +4,14 @@ import java.util.List;
 import java.util.Map;
 
 import com.koreait.shoefly.dto.Faq;
+import com.koreait.shoefly.dto.Member;
 import com.koreait.shoefly.dto.Notice;
 
 public interface ManagerDAO {
 
+	// MEMBER
+	public int countMember(Map<String, Object> map);
+	public List<Member> selectListMember(Map<String, Object> map);
 	
 	// NOTICE/FAQ
 	public int countNotice(Map<String, Object> map);

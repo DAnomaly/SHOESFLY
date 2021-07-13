@@ -5,7 +5,41 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.koreait.shoefly.dao.ManagerDAO">
 
+	<!-- MEMBER -->
 	
+	<select id="countMember" resultType="int" parameterType="java.util.Map">
+		SELECT COUNT(*)
+		  FROM MEMBER
+	<if test="query != ''.toString and calumn != 'REGDATE'.toString">
+		 WHERE ${calumn} LIKE '%' || #{query} || '%'
+	</if>
+	<if test="calumn == 'REGDATE'.toString and startDate != ''.toString and endDate != ''.toString">
+		 WHERE REGDATE BETWEEN #{startDate} AND #{endDate}
+	</if>
+	
+	</select>
+	
+	<select id="selectListMember" resultType="com.koreait.shoefly.dto.Member" parameterType="java.util.Map">
+		SELECT B.MEMBER_NO AS MEMBERNO, B.MEMBER_ID AS MEMBERID, B.PW, B.NAME, B.EMAIL, B.REGDATE, B.MANAGER, B.STATE
+		  FROM (
+				SELECT ROWNUM AS RN, A.MEMBER_NO, A.MEMBER_ID, A.PW, A.NAME, A.EMAIL, A.REGDATE, A.MANAGER, A.STATE
+				  FROM (
+						SELECT MEMBER_NO, MEMBER_ID, PW, NAME, EMAIL, REGDATE, MANAGER, STATE
+						  FROM MEMBER
+						<if test="query != ''.toString and calumn != 'REGDATE'.toString">
+						 WHERE ${calumn} LIKE '%' || #{query} || '%'
+						</if>
+						<if test="calumn == 'REGDATE'.toString and startDate != ''.toString and endDate != ''.toString">
+						 WHERE REGDATE BETWEEN #{startDate} AND #{endDate}
+						</if>
+						 ORDER BY ${order}
+						<if test="isDesc == 'true'.toString">
+						                   DESC
+						</if>
+					   ) A
+			   ) B
+		 WHERE B.RN BETWEEN #{beginRecord} AND #{endRecord}
+	</select>
 
 	<!-- NOTICE / FAQ -->
 

@@ -17,6 +17,7 @@ import com.koreait.shoefly.command.manager.DeleteNoticeManagerCommand;
 import com.koreait.shoefly.command.manager.InsertOrUpdateFaqManagerCommand;
 import com.koreait.shoefly.command.manager.InsertOrUpdateNoticeManagerCommand;
 import com.koreait.shoefly.command.manager.SelectListFaqManagerCommand;
+import com.koreait.shoefly.command.manager.SelectListMemberManagerCommand;
 import com.koreait.shoefly.command.manager.SelectListNoticeManagerCommand;
 import com.koreait.shoefly.command.manager.SelectOneFaqMangerCommand;
 import com.koreait.shoefly.command.manager.SelectOneNoticeManagerCommand;
@@ -37,12 +38,31 @@ public class ManagerController {
 	private SelectOneFaqMangerCommand selectOneFaqMangerCommand;
 	private InsertOrUpdateFaqManagerCommand insertOrUpdateFaqManagerCommand;
 	private DeleteFaqManagerCommand deleteFaqManagerCommand;
+	private SelectListMemberManagerCommand selectListMemberManagerCommand;
 	
+	// INDEX
 	@GetMapping(value= {"/","index.do"})
 	public String index() {
 		return "manager/index";
 	}
 	
+	// MEMBER
+	@GetMapping(value="memberListPage.do")
+	public String memberListPage() {
+		return "manager/memberList";
+	}
+	
+	@ResponseBody
+	@PostMapping(value="memberList.do",
+			 produces="application/json; charset=UTF-8")
+	public Map<String, Object> memberList(
+			Model model,
+			HttpServletRequest request) {
+		model.addAttribute("request", request);
+		return selectListMemberManagerCommand.execute(sqlSession, model);
+	}
+	
+	// NOTICE
 	@GetMapping("noticeListPage.do")
 	public String noticeListPage(
 			Model model,
@@ -81,6 +101,7 @@ public class ManagerController {
 		return deleteNoticeManagerCommand.execute(sqlSession, model);
 	}
 	
+	// FAQ
 	@GetMapping("faqListPage.do")
 	public String faqListPage(
 			Model model,
@@ -118,4 +139,5 @@ public class ManagerController {
 		model.addAttribute("request", request);
 		return deleteFaqManagerCommand.execute(sqlSession, model);
 	}
+	
 }
