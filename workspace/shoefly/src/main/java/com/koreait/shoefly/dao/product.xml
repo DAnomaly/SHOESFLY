@@ -4,6 +4,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.koreait.shoefly.dao.ProductDAO">
-
-
+	
+	<!-- 전체 상품 목록 조회 -->
+	<select id="selectAllList" resultType="com.koreait.shoefly.dto.Product">
+		 SELECT DISTINCT B.PRODUCT_NO AS PRODUCTNO, B.PRODUCT_NAME AS PRODUCTNAME, B.PRICE, B.BRAND, B.IMAGE
+		   FROM PRODUCT_DETAIL A INNER JOIN PRODUCT B
+		     ON A.PRODUCT_NAME = B.PRODUCT_NAME
+		 ORDER BY PRICE
+	</select>
+	
+	<!-- 사이즈조회 -->
+	<select id="selectCondition" resultType="com.koreait.shoefly.dto.Product">
+		 SELECT DISTINCT B.PRODUCT_NO AS PRODUCTNO, B.PRODUCT_NAME AS productName, B.PRICE, B.BRAND, B.IMAGE
+		   FROM PRODUCT_DETAIL A INNER JOIN PRODUCT B
+		     ON A.PRODUCT_NAME = B.PRODUCT_NAME
+		  WHERE A.PRODUCT_SIZE IN ( ${_parameter} )
+	</select>
 </mapper>

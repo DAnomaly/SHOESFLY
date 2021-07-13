@@ -10,7 +10,7 @@ import lombok.ToString;
 public class Product {
 
 	// 상품번호 
-    private int productNo;
+    private String productNo;
 
     // 상품이름 
     private String productName;
