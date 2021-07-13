@@ -25,8 +25,8 @@ public class SelectListReviewCommand implements ReviewCommand {
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {
 	
 			ReviewDAO reviewDAO = sqlSession.getMapper(ReviewDAO.class);
-			Map<String, Object> modelMap = model.asMap();
-			HttpServletRequest request = (HttpServletRequest)modelMap.get("request");
+			Map<String, Object> map = model.asMap();
+			HttpServletRequest request = (HttpServletRequest)map.get("request");
 			
 			Map<String, Object> searchMap = new HashMap<>();
 			String column = request.getParameter("column");

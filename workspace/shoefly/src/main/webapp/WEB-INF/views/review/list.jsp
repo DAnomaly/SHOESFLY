@@ -15,20 +15,19 @@
 			fn_search();
 		});
 		
+		
 		function fn_search(){
-			
 			$('#search_btn').click(function(){
 				if ( $('#column').val() == '' ) {
-					alert('검색 목록을 지정하세요.');
-					return false;
+					location.href = 'reviewListPage.do';
 				}else if ( $('#query').val() == '' ) {
-					alert('검색어를 입력하세요.');
-					return false;
+					location.href = 'reviewListPage.do';					
 				}else {
 					$('#f').submit();
 				}
 			});
 		}
+		
 	</script>
 </head>
 <body>
@@ -44,7 +43,7 @@
 				</select>
 				<input type="text" id="query" name="query">
 				<input type="button" value="검색" id="search_btn">
-				<input type="button" value="후기 작성">
+				<input type="button" value="후기 작성" onclick="location.href='insertReviewPage.do'">
 			</form>
 			전체 ${page.totalRecord}개 검색됨
 		</div>
