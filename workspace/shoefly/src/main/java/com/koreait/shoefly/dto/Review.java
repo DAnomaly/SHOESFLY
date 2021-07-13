@@ -17,8 +17,8 @@ public class Review {
     // 아이디 
     private String memberId;
 
-    // 상품일련번호 
-    private int productNo;
+    // 상품명 
+    private String productName;
 
     // 제목 
     private String title;
@@ -34,6 +34,8 @@ public class Review {
 
     // 수정일 
     private Date modifydate;
+    
+    private int hit;
 
     // IP주소 
     private String ip;

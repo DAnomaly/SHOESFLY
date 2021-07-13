@@ -5,5 +5,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.koreait.shoefly.dao.ReviewDAO">
 
+	<select id="countReview" resultType="int" parameterType="java.util.Map">
+		SELECT COUNT(*) 
+		  FROM Review
+	   <where>
+	   <if test="column != null || query != null">
+		          		${column} LIKE '%' || #{query} || '%'
+	   </if>
+	   </where>
+	</select>
+	
+	
+	<select id="selectListReview" resultType="com.koreait.shoefly.dto.Review" parameterType="java.util.Map">
+		SELECT B.REVIEW_NO AS REVIEWNO, B.MEMBER_ID AS MEMBERID, B.TITLE,
+		       B.PRODUCT_NAME AS PRODUCTNAME, B.HIT, B.POSTDATE, B.STATE
+		  FROM (SELECT ROWNUM AS RN, A.REVIEW_NO, A.MEMBER_ID,
+		               A.TITLE, A.PRODUCT_NAME, A.HIT, A.POSTDATE, A.STATE
+		          FROM (SELECT REVIEW_NO,
+		                       MEMBER_ID,
+		                       TITLE,
+		                       PRODUCT_NAME,
+		                       HIT,
+		                       POSTDATE,
+		                       STATE
+		                  FROM REVIEW
+		          <where>
+		          	<if test="column != null || query != null">
+		          		${column} LIKE '%' || #{query} || '%'
+		          	</if>
+		          </where>
+		                 ORDER BY REVIEW_NO DESC) A) B
+		 WHERE B.RN BETWEEN #{beginRecord} AND #{endRecord}
+	</select>
 
 </mapper>
