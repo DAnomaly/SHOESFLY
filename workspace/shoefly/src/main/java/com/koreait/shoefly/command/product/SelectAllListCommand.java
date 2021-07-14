@@ -15,6 +15,7 @@ public class SelectAllListCommand implements ProductCommand {
 		
 		ProductDAO productDAO = sqlSession.getMapper(ProductDAO.class);
 		model.addAttribute("list", productDAO.selectAllList());
+		
 		logger.info("리스트가져왔다");
 		return null;
 	}

@@ -1,5 +1,6 @@
 package com.koreait.shoefly.command.product;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,27 +18,46 @@ public class SelectConditionCommand implements ProductCommand {
 		
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
-		String[] sizes = request.getParameterValues("size");
 		String productName = request.getParameter("productName");
+		String[] brands = request.getParameterValues("brand");
+		String[] sizes = request.getParameterValues("size");
+		Long MINPRICE = Long.parseLong(request.getParameter("minPrice") == "" ? "0" : request.getParameter("minPrice"));
+		Long MAXPRICE = Long.parseLong(request.getParameter("maxPrice") == "" ? "9999999999" : request.getParameter("maxPrice"));
 		
-		//size checkbox 배열값 콤마로 연결시켜서 전달
-		String size = "";
-		for(int i = 0 ;i < sizes.length ; i++) {
-			if(sizes.length == 1) {
-				size = sizes[0];
-			}else {
-				size = sizes[0];
-				for(int j = 1 ; j < sizes.length ; j++) {
-					size += ", " + sizes[j];
-				}
-			}
+		//입력값이 없을경우 전체 조회
+		if(productName == null) {
+			productName = "";
+		}
+			//브랜드 체크가 없을경우 전체 브랜드 조회
+		if(brands == null) {
+			brands = new String[4];
+			brands[0] = "Jordan";
+			brands[1] = "Nike";
+			brands[2] = "New Balance";
+			brands[3] = "Adidas";
+		}
+		//사이즈 체크가 없을 경우 전체 사이즈 조회
+		if(sizes == null) {
+			sizes = new String[6];
+			sizes[0] = "240";
+			sizes[1] = "250";
+			sizes[2] = "260";
+			sizes[3] = "270";
+			sizes[4] = "280";
+			sizes[5] = "290";
 		}
 
-		System.out.println(size);
-		ProductDAO productDAO = sqlSession.getMapper(ProductDAO.class);
+		Map<String, Object> paramMap = new HashMap<>();
+		paramMap.put("PRODUCTNAME", productName);
+		paramMap.put("BRANDS", brands);
+		paramMap.put("SIZES", sizes);
+		paramMap.put("MINPRICE", MINPRICE);
+		paramMap.put("MAXPRICE", MAXPRICE);
 		
-		model.addAttribute("list", productDAO.selectCondition(size));
-		logger.info("size전달했다");
+		ProductDAO productDAO = sqlSession.getMapper(ProductDAO.class);
+		logger.info("조회되었다.");
+		
+		model.addAttribute("list", productDAO.selectCondition(paramMap));
 		return null;
 	}
 

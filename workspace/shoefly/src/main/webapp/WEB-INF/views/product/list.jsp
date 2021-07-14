@@ -53,7 +53,7 @@
 				<label for="AllBrand"><input type="checkbox" id="AllBrand">전체</label>&emsp;
 				<label for="nike"><input type="checkbox" name="brand" id="nike" value="Nike" class="brand">나이키</label>&emsp;
 				<label for="adidas"><input type="checkbox" name="brand" id="adidas" value="Adidas" class="brand">아디다스</label>&emsp;
-				<label for="newbalance"><input type="checkbox" name="brand" id="newbalance" value="NewBalance" class="brand">뉴발란스</label>
+				<label for="newbalance"><input type="checkbox" name="brand" id="newbalance" value="New Balance" class="brand">뉴발란스</label>
 				<br>
 				사이즈&emsp;
 				<label for="240"><input type="checkbox" name="size" id="240" value="240">240</label>&emsp;
@@ -64,8 +64,8 @@
 				<label for="290"><input type="checkbox" name="size" id="290" value="290">290</label>&emsp;
 				<br>
 				가격 &emsp;
-				<input type="text" name="min" id="min" placeholder="최소">&nbsp;&#126;
-				<input type="text" name="max" id="max" placeholder="최대">
+				<input type="text" name="minPrice" id="minPrice" placeholder="최소">&nbsp;&#126;
+				<input type="text" name="maxPrice" id="maxPrice" placeholder="최대">
 			</form>
 		</div>
 		<br>
@@ -76,10 +76,10 @@
 			<c:forEach var="product" items="${list}">
 				<c:if test="${not empty list}">
 					<div class="outbox">
-						<div><a href="viewPage.do?no=${product.productNo}"><img alt="${product.image}" src="/shoefly/resources/archive/product/${product.image}"/></a></div>
+						<div><a href="viewProductPage.do?productNo=${product.productNo}"><img alt="${product.image}" src="/shoefly/resources/archive/product/${product.image}"/></a></div>
 						<div class="text">
-							<span class="text">${product.productName}</span><br>
-							<span class="text">${product.price}</span>
+							<a href="viewProductPage.do?productNo=${product.productNo}"><span class="text">${product.productName}</span></a><br>
+							<span class="text">${product.price}</span>원
 						</div>
 					</div>
 				</c:if>

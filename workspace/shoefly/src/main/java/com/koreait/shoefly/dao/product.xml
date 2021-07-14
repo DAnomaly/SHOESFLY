@@ -13,11 +13,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 ORDER BY PRICE
 	</select>
 	
-	<!-- 사이즈조회 -->
+	<!-- 상품명, 사이즈, 브랜드, 가격 조회 -->
 	<select id="selectCondition" resultType="com.koreait.shoefly.dto.Product">
 		 SELECT DISTINCT B.PRODUCT_NO AS PRODUCTNO, B.PRODUCT_NAME AS productName, B.PRICE, B.BRAND, B.IMAGE
 		   FROM PRODUCT_DETAIL A INNER JOIN PRODUCT B
 		     ON A.PRODUCT_NAME = B.PRODUCT_NAME
-		  WHERE A.PRODUCT_SIZE IN ( ${_parameter} )
+		  WHERE B.PRODUCT_NAME LIKE '%' || #{PRODUCTNAME} || '%'
+		   AND B.BRAND IN
+			    <foreach collection="BRANDS" item="BRAND" open="(" close=")" separator=", "> 
+			  			#{BRAND}
+			  	</foreach>  
+		   AND A.PRODUCT_SIZE IN
+			   	<foreach collection="SIZES" item="SIZE" open="(" close=")" separator=", "> 
+			  			${SIZE}
+			  	</foreach>
+	 	   AND B.PRICE BETWEEN ${MINPRICE} AND ${MAXPRICE}
+	</select>
+	
+	<!-- PRODUCT_NO별로 조회 -->
+	<select id="selectProductByProductNo" resultType="com.koreait.shoefly.dto.Product">
+		SELECT PRODUCT_NO AS productNo, PRODUCT_NAME AS productName, BRAND, PRICE, IMAGE, STATE
+		  FROM PRODUCT
+		 WHERE PRODUCT_NO = #{param1}
 	</select>
 </mapper>
