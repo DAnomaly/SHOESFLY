@@ -91,6 +91,7 @@ CREATE TABLE REVIEW
     IMAGE           VARCHAR2(1000)    NULL, 
     POSTDATE        DATE              NOT NULL, 
     MODIFYDATE      DATE              NULL, 
+    HIT             NUMBER            NULL,
     IP              VARCHAR2(25)      NOT NULL, 
     STATE           NUMBER(1)         NOT NULL, 
     CONSTRAINT PK_REVIEW PRIMARY KEY (REVIEW_NO)

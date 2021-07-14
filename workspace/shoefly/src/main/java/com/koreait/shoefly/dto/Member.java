@@ -2,6 +2,8 @@ package com.koreait.shoefly.dto;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -27,12 +29,13 @@ public class Member {
     private String email;
 
     // 가입일 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date regdate;
 
     // 관리자여부 
-    private Integer manager;
+    private int manager;
 
     // 정상/탈퇴 
-    private Integer state;
+    private int state;
     
 }

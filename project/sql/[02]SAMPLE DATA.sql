@@ -82,7 +82,7 @@ VALUES ('555088-134',
         'Jordan 1 Retro High OG University Blue',
         'Jordan',
         199000,
-        '555088-134.jsp',
+        '555088-134.jpg',
         0);
 
 INSERT 
@@ -91,7 +91,7 @@ VALUES ('555088-105',
         'Jordan 1 Retro High OG Black Mocha',
         'Jordan',
         119000,
-        '555088-105.jsp',
+        '555088-105.jpg',
         0);
                             
 INSERT 
@@ -100,7 +100,7 @@ VALUES ('DD1877-100',
         'Nike x Sacai Blazer Low Magma Orange',
         'Nike',
         139000,
-        'DD1877-100.jsp',
+        'DD1877-100.jpg',
         0);
                              
 INSERT
@@ -109,7 +109,7 @@ VALUES ('DA1469-200',
         'Nike Dunk Low SP Veneer',
         'Nike',
         119000,
-        'DA1469-200.jsp',
+        'DA1469-200.jpg',
         0);
                             
 INSERT 
@@ -118,7 +118,7 @@ VALUES ('M992GR',
         'New Balance 992 Made in USA Grey',
         'New Balance',
         259000,
-        'M992GR.jsp',
+        'M992GR.jpg',
         0);
                             
 INSERT 
@@ -127,7 +127,7 @@ VALUES ('MS327FE',
         'New Balance 327 White Black',
         'New Balance',
         109000,
-        'MS327FE.jsp',
+        'MS327FE.jpg',
         0);
 
 INSERT 
@@ -136,7 +136,7 @@ VALUES ('CP9654',
         'Adidas Yeezy Boost 350 V2 Zebra',
         'Adidas',
         289000,
-        'CP9654.jsp',
+        'CP9654.jpg',
         0);
                             
 INSERT 
@@ -145,7 +145,7 @@ VALUES ('GY7924',
         'Adidas Yeezy Boost 700 V2 Cream',
         'Adidas',
         309000,
-        'GY7924.jsp',
+        'GY7924.jpg',
         0);
 
 
@@ -236,6 +236,7 @@ VALUES (REVIEW_SEQ.NEXTVAL,
         '555088-134.jpg',
         SYSDATE,
         SYSDATE,
+        0,
         '127.0.0.1',
         0);
     
@@ -249,6 +250,7 @@ VALUES (REVIEW_SEQ.NEXTVAL,
         '555088-105.jpg',
         SYSDATE,
         SYSDATE,
+        0,
         '127.0.0.1',
         0);
         
@@ -262,6 +264,7 @@ VALUES (REVIEW_SEQ.NEXTVAL,
         'DD1877-100.jpg',
         SYSDATE,
         SYSDATE,
+        0,
         '127.0.0.1',
         0);
         
@@ -275,6 +278,7 @@ VALUES (REVIEW_SEQ.NEXTVAL,
         '555088-134.jpg',
         SYSDATE,
         SYSDATE,
+        0,
         '127.0.0.1',
         0);
         
@@ -288,6 +292,7 @@ VALUES (REVIEW_SEQ.NEXTVAL,
         'DA1469-200.jpg',
         SYSDATE,
         SYSDATE,
+        0,
         '127.0.0.1',
         0);
         
@@ -301,6 +306,7 @@ VALUES (REVIEW_SEQ.NEXTVAL,
         'M992GR.jsp',
         SYSDATE,
         SYSDATE,
+        0,
         '127.0.0.1',
         0);
         
@@ -314,6 +320,7 @@ VALUES (REVIEW_SEQ.NEXTVAL,
         'MS327FE.jsp',
         SYSDATE,
         SYSDATE,
+        0,
         '127.0.0.1',
         0);
         
@@ -327,6 +334,7 @@ VALUES (REVIEW_SEQ.NEXTVAL,
         'CP9654.jsp',
         SYSDATE,
         SYSDATE,
+        0,
         '127.0.0.1',
         0);
         
@@ -340,6 +348,7 @@ VALUES (REVIEW_SEQ.NEXTVAL,
         'GY7924.jsp',
         SYSDATE,
         SYSDATE,
+        0,
         '127.0.0.1',
         0);
 
