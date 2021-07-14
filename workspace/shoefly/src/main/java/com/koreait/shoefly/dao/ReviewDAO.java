@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.koreait.shoefly.dto.Product;
 import com.koreait.shoefly.dto.Review;
+import com.koreait.shoefly.dto.ReviewComment;
 
 public interface ReviewDAO {
 
@@ -17,5 +18,14 @@ public interface ReviewDAO {
 	public int insertReview(String loginId, String prductName, String title, String content, String filename);
 	
 	public Review selectReview(int reviewNo);
+	
+	public int updateReview(String title, String content, String productName, String filename, int reviewNo);
+	
+	
+	// ================= review comment ========================================================================
+	
+	public List<ReviewComment> selectCommentList(int reviewNo);
+	
+	public int insertComment(int reviewNo, String memberId, String context);
 	
 }

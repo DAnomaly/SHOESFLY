@@ -56,4 +56,43 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE REVIEW_NO = #{reviewNo} 
 	</select>
 
+	<update id="updateReview">
+		UPDATE REVIEW
+		   SET TITLE = #{param1}, 
+		       CONTENT = #{param2},
+		       PRODUCT_NAME = #{param3},
+		       IMAGE = #{param4},
+		       MODIFYDATE = SYSDATE
+		 WHERE REVIEW_NO = #{param5}
+	</update>
+
+
+
+
+
+
+	<!-- ================리뷰 댓글=================== -->
+	
+	<select id="selectCommentList" resultType="com.koreait.shoefly.dto.ReviewComment" parameterType="java.util.Map">
+		SELECT REVIEW_COMMENT_NO AS REVIEWCOMMENTNO,
+		       REVIEW_NO AS REVIEWNO,
+		       MEMBER_ID AS MEMBERID,
+		       CONTEXT,
+		       STATE
+		  FROM REVIEW_COMMENT
+		 WHERE REVIEW_NO = #{param1}
+		 ORDER BY REVIEW_COMMENT_NO DESC
+	</select>
+	
+	<insert id="insertComment">
+		INSERT 
+		  INTO REVIEW_COMMENT
+		VALUES (REVIEW_COMMENT_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3}, 0)
+	</insert>
+
+
+
+
+
+
 </mapper>

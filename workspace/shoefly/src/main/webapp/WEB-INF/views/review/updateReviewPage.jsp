@@ -8,7 +8,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/header.css">
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/footer.css">
-	<title>리뷰 작성</title>
+	<title>리뷰 수정</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script>
 		$(document).ready(function(){
@@ -63,30 +63,28 @@
 			  return false;
 			 }
 			}
-		
-		
-		
-
-		
 	
 	</script>
 </head>
 <body>
 	<jsp:include page="/resources/asset/jsp/header.jsp"/>
 	<section>
-		<h1>Insert Review</h1><br>
+		<h1>Update Review</h1><br>
 		
-		<form  id="f" action="insertReview.do" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="loginId" value="user1">
-			<input type="text" id="title" name="title" placeholder="제목을 입력하세요.">
+		<form  id="f" action="updateReview.do" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="loginId" value="user1"> <!-- 로그인아이디 == 작성자아이디 -->
+			<input type="hidden" name="reviewNo" value="${review.reviewNo}"> <!-- 게시물 번호 -->
+			<input type="hidden" name="filename" value="${review.image}">
+			<input type="text" id="title" name="title" value="${review.title}">
 			<select name="productName" id="productList">
 				<option value="">선택</option>
 			</select>
 			<input type="file" id="file" name="file" accept=".jpg, .png, .jpeg" onchange="fileCheck(this)"><br><br>
-			<textarea id="content" name="content" rows="20" cols="80" placeholder="내용을 입력하세요."></textarea><br>
+			<textarea id="content" name="content" rows="20" cols="80" >${review.content}</textarea><br>
 			<input type="button" value="등록" id="insert_btn">
-			<input type="button" value="취소" onclick="location.href='reviewListPage.do'">
+			<input type="button" value="취소" onclick="location.href='selectReview.do?reviewNo=${review.reviewNo}'">
 		</form>
+	
 	
 	</section>
 	<jsp:include page="/resources/asset/jsp/footer.jsp"/>
