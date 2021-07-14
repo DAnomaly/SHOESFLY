@@ -3,6 +3,7 @@ package com.koreait.shoefly.controller;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.koreait.shoefly.command.member.DeleteMemberCommand;
 import com.koreait.shoefly.command.member.EmailOrCheckCommand;
 import com.koreait.shoefly.command.member.FindIdCommand;
 import com.koreait.shoefly.command.member.FindPwCommand;
@@ -21,6 +23,8 @@ import com.koreait.shoefly.command.member.IdExistsCommand;
 import com.koreait.shoefly.command.member.JoinCommand;
 import com.koreait.shoefly.command.member.LoginCommand;
 import com.koreait.shoefly.command.member.LogoutCommand;
+import com.koreait.shoefly.command.member.SelectAddrListCommand;
+import com.koreait.shoefly.command.member.UpdateNameCommand;
 import com.koreait.shoefly.command.member.UpdatePwCommand;
 import com.koreait.shoefly.command.member.VerifyCodeCommand;
 
@@ -43,7 +47,9 @@ public class MemberController {
 	private FindPwCommand findPwCommand;
 	private IdExistsCommand idExistsCommand;
 	private UpdatePwCommand updatePwCommand;
-	
+	private DeleteMemberCommand deleteMemberCommand;
+	private UpdateNameCommand updateNameCommand;
+	private SelectAddrListCommand selectAddrListCommand;
 	
 	// 페이지 이동
 	@GetMapping("loginPage.do")
@@ -69,6 +75,24 @@ public class MemberController {
 	@GetMapping("findPwPage.do")
 	public String findPwPage() {
 		return "member/findPw";
+	}
+	
+	@GetMapping("updatePwPage.do")
+	public String updatePwPage(
+			Model model,
+			HttpSession session) {
+		model.addAttribute("findMember", session.getAttribute("loginMember"));
+		return "member/changePw";
+	}
+	
+	@GetMapping("addressPage.do")
+	public String addressPage() {
+		return "member/address";
+	}
+	
+	@GetMapping("insertAddress.do")
+	public String insertAddress() {
+		return "member/insertAddr";
 	}
 	
 	// 로그인
@@ -154,7 +178,7 @@ public class MemberController {
 						 Model model) {
 		model.addAttribute("request", request);
 		findPwCommand.execute(sqlSession, model);
-		return "member/ChangePw";	
+		return "member/changePw";	
 	}
 	
 	// 비밀번호 변경
@@ -163,8 +187,34 @@ public class MemberController {
 						   Model model) {
 		model.addAttribute("request", request);
 		updatePwCommand.execute(sqlSession, model);
-		return"index";
+		return "index";
 	}
 	
+	// 회원탈퇴
+	@GetMapping("deleteMember.do")
+	public String deleteMember(HttpServletRequest request,
+							   Model model) {
+		model.addAttribute("request", request);
+		deleteMemberCommand.execute(sqlSession, model);
+		return "index";
+	}
 	
+	// 이름 변경
+	@PostMapping("updateName.do")
+	public String updateName(HttpServletRequest request,
+							 Model model) {
+		model.addAttribute("request", request);
+		updateNameCommand.execute(sqlSession, model);
+		return "index";
+	}
+	
+	// 주소 리스트 가져오기
+	@PostMapping(value="selectAddressList.do",
+				produces="application/json; charset=utf-8")
+	@ResponseBody
+	public Map<String, Object> selectAddrList(HttpServletRequest request,
+											  Model model) {
+		model.addAttribute("request", request);
+		return selectAddrListCommand.execute(sqlSession, model);
+	}
 }

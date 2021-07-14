@@ -3,6 +3,7 @@ package com.koreait.shoefly.command.member;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
@@ -10,32 +11,26 @@ import org.springframework.ui.Model;
 
 import com.koreait.shoefly.dao.MemberDAO;
 import com.koreait.shoefly.dto.Member;
-import com.koreait.shoefly.util.SecurityUtils;
 
 @Component
-public class LoginCommand implements MemberCommand {
+public class DeleteMemberCommand implements MemberCommand {
 
 	@Override
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {
 
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
+		HttpSession session = request.getSession();
 		
-		String memberId = request.getParameter("memberId");
-		String pw = request.getParameter("pw");
-		
-		Member member = new Member();
-		member.setMemberId(memberId);
-		member.setPw(SecurityUtils.sha256(pw));
+		Member loginMember = (Member)session.getAttribute("loginMember");
+		long memberNo = loginMember.getMemberNo();
 		
 		MemberDAO memberDAO = sqlSession.getMapper(MemberDAO.class);
+		int count = memberDAO.deleteMember(memberNo);
 		
-		Member loginMember = memberDAO.login(member);
-		
-		if(loginMember != null) {
-			request.getSession().setAttribute("loginMember", loginMember);
-		} 
-		
+		if(count > 0) {
+			session.invalidate();
+		}
 		
 		return null;
 	}

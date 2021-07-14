@@ -1,6 +1,9 @@
 package com.koreait.shoefly.dao;
 
+import java.util.List;
+
 import com.koreait.shoefly.dto.Member;
+import com.koreait.shoefly.dto.MemberAddress;
 
 public interface MemberDAO {
 
@@ -22,5 +25,10 @@ public interface MemberDAO {
 	
 	public int updatePw(Member member);
 
+	public int deleteMember(long memberNo);
+	
+	public int updateName(Member member);
+	
+	public List<MemberAddress> selectAddrList(long memberNo);
 
 }

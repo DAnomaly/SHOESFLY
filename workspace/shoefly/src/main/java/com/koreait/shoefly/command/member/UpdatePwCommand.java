@@ -21,9 +21,16 @@ public class UpdatePwCommand implements MemberCommand {
 
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
+		HttpSession session = request.getSession();
 		
+		Member loginMember = (Member)session.getAttribute("loginMember");
 		String pw = request.getParameter("pw");
-		long memberNo = Long.parseLong(request.getParameter("memberNo"));
+		long memberNo;
+		if(loginMember == null) {
+			memberNo = Long.parseLong(request.getParameter("memberNo"));			
+		} else {
+			memberNo = loginMember.getMemberNo();
+		}
 		
 		Member member = new Member();
 		member.setPw(SecurityUtils.sha256(pw));
@@ -33,8 +40,6 @@ public class UpdatePwCommand implements MemberCommand {
 		int count = memberDAO.updatePw(member);		
 		
 		if(count > 0) {
-			HttpSession session = request.getSession();
-			Member loginMember = (Member)session.getAttribute("loginMember");
 			if(loginMember != null) {
 				loginMember.setPw(SecurityUtils.sha256(pw));				
 			}
