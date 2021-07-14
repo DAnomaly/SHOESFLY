@@ -48,6 +48,7 @@ header a:last-of-type {
 }
 
 nav {
+	float: left;
 	background-color: #909090;
 	display: inline-block;
 	height: 100vw;

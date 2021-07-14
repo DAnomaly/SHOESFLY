@@ -27,6 +27,6 @@ public class Notice {
     private Date postdate;
 
     // 정상/삭제 
-    private Integer state;
+    private int state;
     
 }

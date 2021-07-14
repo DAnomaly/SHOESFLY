@@ -5,5 +5,219 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.koreait.shoefly.dao.ManagerDAO">
 
+	<!-- MEMBER -->
+	
+	<select id="countMember" resultType="int" parameterType="java.util.Map">
+		SELECT COUNT(*)
+		  FROM MEMBER
+	<if test="query != ''.toString and calumn != 'REGDATE'.toString">
+		 WHERE ${calumn} LIKE '%' || #{query} || '%'
+	</if>
+	<if test="calumn == 'REGDATE'.toString and startDate != ''.toString and endDate != ''.toString">
+		 WHERE REGDATE BETWEEN #{startDate} AND #{endDate}
+	</if>
+	</select>
+	
+	<select id="selectListMember" resultType="com.koreait.shoefly.dto.Member" parameterType="java.util.Map">
+		SELECT B.MEMBER_NO AS MEMBERNO, B.MEMBER_ID AS MEMBERID, B.PW, B.NAME, B.EMAIL, B.REGDATE, B.MANAGER, B.STATE
+		  FROM (
+				SELECT ROWNUM AS RN, A.MEMBER_NO, A.MEMBER_ID, A.PW, A.NAME, A.EMAIL, A.REGDATE, A.MANAGER, A.STATE
+				  FROM (
+						SELECT MEMBER_NO, MEMBER_ID, PW, NAME, EMAIL, REGDATE, MANAGER, STATE
+						  FROM MEMBER
+						<if test="query != ''.toString and calumn != 'REGDATE'.toString">
+						 WHERE ${calumn} LIKE '%' || #{query} || '%'
+						</if>
+						<if test="calumn == 'REGDATE'.toString and startDate != ''.toString and endDate != ''.toString">
+						 WHERE REGDATE BETWEEN #{startDate} AND #{endDate}
+						</if>
+						 ORDER BY ${order}
+						<if test="isDesc == 'true'.toString">
+						                   DESC
+						</if>
+					   ) A
+			   ) B
+		 WHERE B.RN BETWEEN #{beginRecord} AND #{endRecord}
+	</select>
+
+	<select id="selectOneMember" resultType="com.koreait.shoefly.dto.Member">
+		SELECT MEMBER_NO AS MEMBERNO, MEMBER_ID AS MEMBERID, PW, NAME, EMAIL, REGDATE, MANAGER, STATE
+		  FROM MEMBER
+		 WHERE MEMBER_NO = #{_parameter}
+	</select>
+
+	<update id="deleteMember" parameterType="java.util.Map">
+		UPDATE MEMBER
+		   SET STATE = #{state}
+		 WHERE MEMBER_NO = #{memberNo}
+	</update>
+
+	<select id="selectListMemberAddress" resultType="com.koreait.shoefly.dto.MemberAddress">
+		SELECT MEMBER_ADDRESS_NO AS MEMBERADDRESSNO, MEMBER_NO AS MEMBERNO, NAME, ADDR1, ADDR2, STATE
+		  FROM MEMBER_ADDRESS
+		 WHERE MEMBER_NO = #{_parameter}
+		   AND STATE = 0
+	</select>
+	
+	<insert id="insertMemberAddress" parameterType="com.koreait.shoefly.dto.MemberAddress">
+		INSERT INTO MEMBER_ADDRESS VALUES
+			   (MEMBER_ADDRESS_SEQ.NEXTVAL, #{memberNo}, #{name}, #{addr1}, #{addr2}, 0)
+	</insert>
+	
+	<update id="updateMemberAddress" parameterType="com.koreait.shoefly.dto.MemberAddress">
+		UPDATE MEMBER_ADDRESS
+		   SET NAME = #{name}
+		     , ADDR1 = #{addr1}
+		     , ADDR2 = #{addr2}
+		 WHERE MEMBER_ADDRESS_NO = #{memberAddressNo}
+	</update>
+	
+	<update id="deleteMemberAddress">
+		UPDATE MEMBER_ADDRESS
+		   SET STATE = -1
+		 WHERE MEMBER_ADDRESS_NO = #{_parameter}
+	</update>
+
+	<!-- NOTICE / FAQ -->
+
+	<select id="countNotice" resultType="int" parameterType="java.util.Map">
+		SELECT COUNT(*) 
+		  FROM NOTICE
+	   <if test="query != null">
+	   <choose>
+	   		<when test="calumn == 'ALL'.toString">
+		 WHERE TITLE LIKE '%' || #{query} || '%'
+            OR CONTENT LIKE '%' || #{query} || '%'
+            </when>
+            <when test="calumn == 'POSTDATE'.toString">
+		 WHERE POSTDATE BETWEEN #{startDate} AND #{endDate}
+            </when>
+            <otherwise>
+         WHERE ${calumn} LIKE '%' || #{query} || '%'
+            </otherwise>
+	   </choose>
+	   </if> 
+	</select>
+
+	<select id="selectListNotice" resultType="com.koreait.shoefly.dto.Notice" parameterType="java.util.Map">
+		SELECT B.NOTICE_NO AS NOTICENO, B.MEMBER_ID AS MEMBERID, B.TITLE, B.CONTENT, B.POSTDATE, B.STATE
+		  FROM (
+		        SELECT ROWNUM AS RN, A.NOTICE_NO, A.MEMBER_ID, A.TITLE, A.CONTENT, A.POSTDATE, A.STATE
+		          FROM (
+		                SELECT NOTICE_NO, MEMBER_ID, TITLE, CONTENT, POSTDATE, STATE
+		                  FROM NOTICE
+	                   <if test="query != null">
+	                   <choose>
+					   		<when test="calumn == 'ALL'.toString">
+						 WHERE TITLE LIKE '%' || #{query} || '%'
+				            OR CONTENT LIKE '%' || #{query} || '%'
+				            </when>
+				            <when test="calumn == 'POSTDATE'.toString">
+						 WHERE POSTDATE BETWEEN #{startDate} AND #{endDate}
+				            </when>
+				            <otherwise>
+				         WHERE ${calumn} LIKE '%' || #{query} || '%'
+				            </otherwise>
+					   </choose>
+	                   </if> 
+	                     ORDER BY POSTDATE DESC
+	                   ) A
+	           ) B
+		 WHERE B.RN BETWEEN #{beginRecord} AND #{endRecord}
+	</select>
+
+	<select id="countFaq" resultType="int" parameterType="java.util.Map">
+		SELECT COUNT(*) 
+		  FROM FAQ
+	   <if test="query != null">
+       <choose>
+	   		<when test="calumn == 'ALL'.toString">
+		 WHERE QUESTION LIKE '%' || #{query} || '%'
+            OR ANSWER LIKE '%' || #{query} || '%'
+            </when>
+            <when test="calumn == 'POSTDATE'.toString">
+		 WHERE POSTDATE BETWEEN #{startDate} AND #{endDate}
+            </when>
+            <otherwise>
+         WHERE ${calumn} LIKE '%' || #{query} || '%'
+            </otherwise>
+	   </choose>
+       </if>
+	</select>
+
+	<select id="selectListFaq" resultType="com.koreait.shoefly.dto.Faq" parameterType="java.util.Map">
+		SELECT B.FAQ_NO AS FAQNO, B.MEMBER_ID AS MEMBERID, B.QUESTION, B.ANSWER, B.POSTDATE, B.STATE
+		  FROM (
+		        SELECT ROWNUM AS RN, A.FAQ_NO, A.MEMBER_ID, A.QUESTION, A.ANSWER, A.POSTDATE, A.STATE
+		          FROM (
+		                SELECT FAQ_NO, MEMBER_ID, QUESTION, ANSWER, POSTDATE, STATE
+		                  FROM FAQ
+		                  <if test="query != null">
+					      <choose>
+					   		<when test="calumn == 'ALL'.toString">
+						 WHERE QUESTION LIKE '%' || #{query} || '%'
+					           OR ANSWER LIKE '%' || #{query} || '%'
+					           </when>
+					           <when test="calumn == 'POSTDATE'.toString">
+						 WHERE POSTDATE BETWEEN #{startDate} AND #{endDate}
+					           </when>
+					           <otherwise>
+					     WHERE ${calumn} LIKE '%' || #{query} || '%'
+					           </otherwise>
+					   	  </choose>
+					      </if>
+	                     ORDER BY POSTDATE DESC
+	                   ) A
+	           ) B
+		 WHERE RN BETWEEN #{beginRecord} AND #{endRecord}
+	</select>
+
+	<select id="selectOneNotice" resultType="com.koreait.shoefly.dto.Notice">
+		SELECT NOTICE_NO AS NOTICENO, MEMBER_ID AS MEMBERID, TITLE, CONTENT, POSTDATE, STATE
+          FROM NOTICE
+         WHERE NOTICE_NO = #{_parameter}
+	</select>
+	
+	<select id="selectOneFaq" resultType="com.koreait.shoefly.dto.Faq">
+		SELECT FAQ_NO AS FAQNO, MEMBER_ID AS MEMBERID, QUESTION, ANSWER, POSTDATE, STATE
+		  FROM FAQ
+		 WHERE FAQ_NO = #{_parameter}
+	</select>
+	
+	<insert id="insertNotice" parameterType="com.koreait.shoefly.dto.Notice">
+		INSERT INTO NOTICE
+		VALUES (NOTICE_SEQ.NEXTVAL, #{memberId}, #{title}, #{content}, SYSDATE, 0) 
+	</insert>
+	
+	<update id="updateNotice" parameterType="com.koreait.shoefly.dto.Notice">
+		UPDATE NOTICE
+		   SET TITLE = #{title}
+		     , CONTENT = #{content}
+		 WHERE NOTICE_NO = #{noticeNo}
+	</update>
+	
+	<delete id="deleteNotice">
+		DELETE 
+		  FROM NOTICE
+		 WHERE NOTICE_NO = #{_parameter}
+	</delete>
+	
+	<insert id="insertFaq" parameterType="com.koreait.shoefly.dto.Faq">
+		INSERT INTO FAQ
+		VALUES (FAQ_SEQ.NEXTVAL, #{memberId}, #{question}, #{answer}, SYSDATE, 0) 
+	</insert>
+	
+	<update id="updateFaq" parameterType="com.koreait.shoefly.dto.Faq">
+		UPDATE FAQ
+		   SET TITLE = #{question}
+		     , CONTENT = #{answer}
+		 WHERE FAQ_NO = #{faqNo}
+	</update>
+	
+	<delete id="deleteFaq">
+		DELETE 
+		  FROM FAQ
+		 WHERE FAQ_NO = #{_parameter}
+	</delete>
 
 </mapper>
