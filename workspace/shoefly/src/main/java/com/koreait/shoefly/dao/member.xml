@@ -4,6 +4,84 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.koreait.shoefly.dao.MemberDAO">
+	
+	<!-- 로그인 -->
+	<select id="login" resultType="com.koreait.shoefly.dto.Member">
+		SELECT MEMBER_NO AS MEMBERNO, MEMBER_ID AS MEMBERID, PW, NAME, EMAIL, REGDATE, MANAGER, STATE
+		  FROM MEMBER
+		 WHERE MEMBER_ID = #{memberId} 
+		   AND PW = #{pw}  
+		   AND STATE = 0
+	</select>
+	
+	<!-- 아이디 체크 -->
+	<select id="idCheck" resultType="int">
+		SELECT COUNT(MEMBER_ID)
+		  FROM MEMBER
+		 WHERE MEMBER_ID = #{memberId}  
+	</select>
 
+	<!-- 이메일 중복 -->
+	<select id="emailOrCheck" resultType="int">
+		SELECT COUNT(*)
+		  FROM MEMBER
+		 WHERE EMAIL = #{email} 
+	</select>
 
+	<!-- 회원가입 -->
+	<insert id="join">
+		INSERT INTO MEMBER
+		VALUES (MEMBER_SEQ.NEXTVAL, #{memberId}, #{pw}, #{name}, #{email}, SYSDATE, 0, 0)
+	</insert>
+
+	<!-- 아이디 찾기 -->
+	<select id="findId" resultType="com.koreait.shoefly.dto.Member">
+		SELECT MEMBER_ID AS MEMBERID, REGDATE
+		  FROM MEMBER
+		 WHERE EMAIL = #{email}
+	</select>
+
+	<!-- 아이디 존재여부 -->
+	<select id="idExists" resultType="String">
+		SELECT EMAIL
+		  FROM MEMBER
+		 WHERE MEMBER_ID = #{memberId} 
+		   AND STATE = 0
+	</select>
+
+	<!-- 비밀번호 찾기 -->
+	<select id="findPw" resultType="com.koreait.shoefly.dto.Member">
+		SELECT MEMBER_NO AS MEMBERNO, MEMBER_ID AS MEMBERID, PW, EMAIL, REGDATE
+		  FROM MEMBER
+		 WHERE MEMBER_ID = #{memberId}
+		   AND EMAIL = #{email}
+	</select>
+	
+	<!-- 비밀번호 변경 -->
+	<update id="updatePw">
+		UPDATE MEMBER
+		   SET PW = #{pw}
+		 WHERE MEMBER_NO = #{memberNo}  
+	</update>
+	
+	<!-- 회원탈퇴(state : -1) -->
+	<update id="deleteMember">
+		UPDATE MEMBER
+		   SET STATE = -1
+		 WHERE MEMBER_NO = #{memberNo}  
+	</update>
+	
+	<!-- 이름변경 -->
+	<update id="updateName">
+		UPDATE MEMBER
+		   SET NAME = #{name}
+		 WHERE MEMBER_NO = #{memberNo}   
+	</update>
+	
+	<!-- 주소목록 가져오기 -->
+	<select id="selectAddrList" resultType="com.koreait.shoefly.dto.MemberAddress">
+		SELECT MEMBER_ADDRESS_NO AS MEMBERADDRESSNO, MEMBER_NO AS MEMBERNO, NAME, ADDR1, ADDR2, STATE
+		  FROM MEMBER_ADDRESS
+		 WHERE MEMBER_NO = #{memberNo}
+	</select>
 </mapper>
