@@ -34,7 +34,7 @@
 		//검색버튼으로 선택사항 조회
 		//체크박스들은 Command에서 배열 처리
 		function selectCondition(){
-			$('#search_Btn').click(function(){
+			$('#search_btn').click(function(){
 				$('#f').attr('action', 'selectCondition.do');
 				$('#f').submit();
 			});
@@ -47,7 +47,7 @@
 		<div class="selectCondition">
 			<form id="f" method="post">
 				<input type="text" name="productName" id="productName" placeholder="상품명 검색">
-				<input type="button" value="검색" id="search_Btn" class="search_Btn">
+				<input type="button" value="검색" id="search_btn" class="search_btn">
 				<br>
 				브랜드&emsp;
 				<label for="AllBrand"><input type="checkbox" id="AllBrand">전체</label>&emsp;

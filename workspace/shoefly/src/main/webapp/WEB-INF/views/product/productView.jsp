@@ -13,6 +13,12 @@
 	<script>
 	
 	</script>
+	<style>
+		.product{
+			display: flex;
+			
+		}
+	</style>
 </head>
 <body>
 	<jsp:include page="/resources/asset/jsp/header.jsp"/>
@@ -22,12 +28,28 @@
 				제품이 없습니다.
 			</c:if>
 			<c:if test="${not empty product}">
-				제품번호: ${product.productNo}<br>
-				제품명: ${product.productName}<br>
+			<div class="imgBox">
+				<img alt="${product.image}" src="/shoefly/resources/archive/product/${product.image}"/><br>
+			</div>
+			<div class="textBox">
+				<h3>${product.productName}</h3>
+				사이즈: <select name="size">
+							<option value="230">230</option>
+							<option value="230">240</option>
+							<option value="230">250</option>
+							<option value="230">260</option>
+							<option value="230">270</option>
+							<option value="230">280</option>
+							<option value="230">290</option>
+						</select><br>
+				<input type="button" value="즉시구매가" id="buy_btn">
+				<input type="button" value="즉시판매가" id="sell_btn"><br>
+				상품정보<br>
 				브랜드: ${product.brand}<br>
+				모델: ${product.productNo}<br>
+				
 				가격: ${product.price}<br>
-				<input type="button" value="구매하기">
-				<input type="button" value="핀매하기">
+			</div>
 			</c:if>
 		</div>
 	</section>
