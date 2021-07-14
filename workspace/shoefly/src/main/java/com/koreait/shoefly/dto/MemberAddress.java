@@ -15,6 +15,9 @@ public class MemberAddress {
     // 회원일련번호 
     private long memberNo;
 
+    // 이름 
+    private String name;
+    
     // 주소 
     private String addr1;
 
