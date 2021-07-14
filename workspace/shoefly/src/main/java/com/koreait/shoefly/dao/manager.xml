@@ -16,7 +16,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<if test="calumn == 'REGDATE'.toString and startDate != ''.toString and endDate != ''.toString">
 		 WHERE REGDATE BETWEEN #{startDate} AND #{endDate}
 	</if>
-	
 	</select>
 	
 	<select id="selectListMember" resultType="com.koreait.shoefly.dto.Member" parameterType="java.util.Map">
@@ -40,6 +39,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			   ) B
 		 WHERE B.RN BETWEEN #{beginRecord} AND #{endRecord}
 	</select>
+
+	<select id="selectOneMember" resultType="com.koreait.shoefly.dto.Member">
+		SELECT MEMBER_NO AS MEMBERNO, MEMBER_ID AS MEMBERID, PW, NAME, EMAIL, REGDATE, MANAGER, STATE
+		  FROM MEMBER
+		 WHERE MEMBER_NO = #{_parameter}
+	</select>
+
+	<update id="deleteMember" parameterType="java.util.Map">
+		UPDATE MEMBER
+		   SET STATE = #{state}
+		 WHERE MEMBER_NO = #{memberNo}
+	</update>
+
+	<select id="selectListMemberAddress" resultType="com.koreait.shoefly.dto.MemberAddress">
+		SELECT MEMBER_ADDRESS_NO AS MEMBERADDRESSNO, MEMBER_NO AS MEMBERNO, NAME, ADDR1, ADDR2, STATE
+		  FROM MEMBER_ADDRESS
+		 WHERE MEMBER_NO = #{_parameter}
+		   AND STATE = 0
+	</select>
+	
+	<insert id="insertMemberAddress" parameterType="com.koreait.shoefly.dto.MemberAddress">
+		INSERT INTO MEMBER_ADDRESS VALUES
+			   (MEMBER_ADDRESS_SEQ.NEXTVAL, #{memberNo}, #{name}, #{addr1}, #{addr2}, 0)
+	</insert>
+	
+	<update id="updateMemberAddress" parameterType="com.koreait.shoefly.dto.MemberAddress">
+		UPDATE MEMBER_ADDRESS
+		   SET NAME = #{name}
+		     , ADDR1 = #{addr1}
+		     , ADDR2 = #{addr2}
+		 WHERE MEMBER_ADDRESS_NO = #{memberAddressNo}
+	</update>
+	
+	<update id="deleteMemberAddress">
+		UPDATE MEMBER_ADDRESS
+		   SET STATE = -1
+		 WHERE MEMBER_ADDRESS_NO = #{_parameter}
+	</update>
 
 	<!-- NOTICE / FAQ -->
 
@@ -182,7 +219,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  FROM FAQ
 		 WHERE FAQ_NO = #{_parameter}
 	</delete>
-
-	
 
 </mapper>

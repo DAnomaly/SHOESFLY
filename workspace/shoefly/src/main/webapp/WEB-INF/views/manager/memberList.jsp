@@ -38,7 +38,7 @@
 					member_tbody.empty();
 					if(data.result){
 						$.each(data.list, function(index, member) {
-							var tr = $('<tr>').appendTo(member_tbody);
+							var tr = $('<tr>').appendTo(member_tbody).attr('onclick','show_info(' + member.memberNo + ');');
 							$('<td>').text(member.memberNo).appendTo(tr);
 							$('<td>').text(member.memberId).appendTo(tr);
 							$('<td>').text(member.name).appendTo(tr);
@@ -54,14 +54,20 @@
 					}
 					var member_paging = $('#member_paging');
 					member_paging.empty();
-					if (data.page.beginPage == 1) {
+					if (data.page.beginPage == 1) 
 						member_paging.append('<a>&lt;</a>');
-					} else {
+					else 
 						member_paging.append('<a onclick="setPage(' + (data.page.beginPage - 1) + ')">&lt;</a>');
-					}
 					for (var i = data.page.beginPage; i <= data.page.endPage; i++) {
-						
+						if(i == data.page.page)
+							member_paging.append('<a>' + i + '</a>');
+						else
+							member_paging.append('<a onclick="setPage(' + i + ')">' + i + '</a>');
 					}
+					if (data.page.endPage == data.page.totalPage)
+						member_paging.append('<a>&gt;</a>');
+					else
+						member_paging.append('<a onclick="setPage(' + (data.page.beginPage + 1) + ')">&gt;</a>');
 				}
 			})
 		}
@@ -70,14 +76,27 @@
 			pageLoadEvent();
 		}
 		function setOrder(state) {
-			order = state;
+			if(order = state){
+				isDesc = isDesc ? false : true;
+			} else {
+				order = state;
+				isDesc = true;
+			}
 			pageLoadEvent();
+		}
+		function setPage(p) {
+			page = p;
+			pageLoadEvent();
+		}
+		function show_info(no) {
+			window.open("memberInfoPage.do?no=" + no,"noticeInfo","width=600,height=800,top=30,left=80");
 		}
 	</script>
 </head>
 <body>
 	<jsp:include page="/resources/asset/jsp/manager_header.jsp"></jsp:include>
 	<section>
+		<h3><a href="memberListPage.do">회원관리</a></h3>
 		<div class="search">
 			<select id="calumn">
 				<option value="MEMBER_NO">회원번호</option>

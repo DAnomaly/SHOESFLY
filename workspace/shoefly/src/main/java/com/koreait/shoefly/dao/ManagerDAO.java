@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.koreait.shoefly.dto.Faq;
 import com.koreait.shoefly.dto.Member;
+import com.koreait.shoefly.dto.MemberAddress;
 import com.koreait.shoefly.dto.Notice;
 
 public interface ManagerDAO {
@@ -12,6 +13,12 @@ public interface ManagerDAO {
 	// MEMBER
 	public int countMember(Map<String, Object> map);
 	public List<Member> selectListMember(Map<String, Object> map);
+	public Member selectOneMember(long memberNo);
+	public int deleteMember(Map<String, Object> map);
+	public List<MemberAddress> selectListMemberAddress(Long memberNo);
+	public int insertMemberAddress(MemberAddress memberAddress);
+	public int updateMemberAddress(MemberAddress memberAddress);
+	public int deleteMemberAddress(long memberAddressNo);
 	
 	// NOTICE/FAQ
 	public int countNotice(Map<String, Object> map);
