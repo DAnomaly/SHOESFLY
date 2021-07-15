@@ -16,6 +16,7 @@
 			fn_insertReview();
 		});
 		
+		// 상품 리스트 가져오기
 		function fn_selectProduct() {
 			$.ajax({
 				url: 'selectProduct.do',
@@ -30,7 +31,7 @@
 			});
 		}
 		
-	
+		// 리뷰 수정 이벤트
 		function fn_insertReview() {
 			$('#insert_btn').click(function(){
 				if( $('#title').val() == '' ) {
@@ -47,7 +48,8 @@
 				}
 			});
 		}
-			
+		
+		// 이미지 파일 체크 
 		function fileCheck(obj) {
 			 var file_kind = obj.value.lastIndexOf('.');
 			 var file_name = obj.value.substring(file_kind+1,obj.length);

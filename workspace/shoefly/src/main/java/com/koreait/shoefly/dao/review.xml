@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  FROM Review
 	   <where>
 	   <if test="column != null || query != null">
-		          		${column} LIKE '%' || #{query} || '%'
+		          		UPPER(${column}) LIKE '%' || UPPER(#{query}) || '%'
 	   </if>
 	   </where>
 	</select>
@@ -31,7 +31,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		                  FROM REVIEW
 		          <where>
 		          	<if test="column != null || query != null">
-		          		${column} LIKE '%' || #{query} || '%'
+		          		UPPER(${column}) LIKE '%' || UPPER(#{query}) || '%'
 		          	</if>
 		          </where>
 		                 ORDER BY REVIEW_NO DESC) A) B
@@ -76,6 +76,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT COUNT(*) 
 		  FROM REVIEW_COMMENT
 		 WHERE REVIEW_NO = #{_parameter}
+		   AND STATE = 0
 	</select>
 	
 	<select id="selectCommentList" resultType="com.koreait.shoefly.dto.ReviewComment" parameterType="java.util.Map">
@@ -89,9 +90,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		               		   CONTEXT,
 		              		   STATE
 		           		  FROM REVIEW_COMMENT
+		           		 WHERE REVIEW_NO = #{reviewNo}
+		           		 AND STATE = 0
 		                 ORDER BY REVIEW_COMMENT_NO DESC) A) B
-	    WHERE REVIEW_NO = #{reviewNo}
-		AND B.RN BETWEEN #{beginRecord} AND #{endRecord}
+		WHERE B.RN BETWEEN #{beginRecord} AND #{endRecord}
 	</select>
 	
 	<insert id="insertComment">

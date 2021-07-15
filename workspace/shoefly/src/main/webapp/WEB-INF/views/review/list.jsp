@@ -13,9 +13,10 @@
 	<script>
 		$(document).ready(function(){
 			fn_search();
+			fn_loginCheck();
 		});
 		
-		
+		// 검색 이벤트
 		function fn_search(){
 			$('#search_btn').click(function(){
 				if ( $('#column').val() == '' ) {
@@ -27,6 +28,18 @@
 				}
 			});
 		}
+		
+		// 로그인 상태 체크
+		function fn_loginCheck() {
+			$('#insertReview_btn').click(function(){
+				if (${loginMember.memberId == null}) {
+					location.href='/shoefly/member/loginPage.do';
+				}else {
+					location.href = 'insertReviewPage.do';
+				}
+			});
+		}
+		
 		
 	</script>
 </head>
@@ -43,7 +56,7 @@
 				</select>
 				<input type="text" id="query" name="query">
 				<input type="button" value="검색" id="search_btn">
-				<input type="button" value="후기 작성" onclick="location.href='insertReviewPage.do'">
+				<input type="button" value="후기 작성" id="insertReview_btn">  <!-- onclick="location.href='/shoefly/member/loginPage.do'" -->
 			</form>
 			전체 ${page.totalRecord}개 검색됨
 		</div>
