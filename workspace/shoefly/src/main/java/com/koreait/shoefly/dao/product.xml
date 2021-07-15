@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 SELECT DISTINCT B.PRODUCT_NO AS PRODUCTNO, B.PRODUCT_NAME AS productName, B.PRICE, B.BRAND, B.IMAGE
 		   FROM PRODUCT_DETAIL A INNER JOIN PRODUCT B
 		     ON A.PRODUCT_NAME = B.PRODUCT_NAME
-		  WHERE B.PRODUCT_NAME LIKE '%' || #{PRODUCTNAME} || '%'
+		  WHERE UPPER(B.PRODUCT_NAME) LIKE '%' || UPPER(#{PRODUCTNAME}) || '%'
 		   AND B.BRAND IN
 			    <foreach collection="BRANDS" item="BRAND" open="(" close=")" separator=", "> 
 			  			#{BRAND}
@@ -32,8 +32,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- PRODUCT_NO별로 조회 -->
 	<select id="selectProductByProductNo" resultType="com.koreait.shoefly.dto.Product">
-		SELECT PRODUCT_NO AS productNo, PRODUCT_NAME AS productName, BRAND, PRICE, IMAGE, STATE
-		  FROM PRODUCT
+		SELECT DISTINCT A.PRODUCT_NO AS productNo, A.PRODUCT_NAME AS productName, A.BRAND, A.PRICE, A.IMAGE, A.STATE
+		  FROM PRODUCT A INNER JOIN PRODUCT_DETAIL B
+            ON A.PRODUCT_NAME = B.PRODUCT_NAME
 		 WHERE PRODUCT_NO = #{param1}
+	</select>
+	
+	<!-- size와 제품명으로 즉시구매가 조회 -->
+	<select id="selectBuyPriceBySize" resultType="com.koreait.shoefly.dto.ProductSell">
+		SELECT MIN(A.PRICE) 
+		  FROM PRODUCT_SELL A INNER JOIN PRODUCT_DETAIL B
+		    ON A.PRODUCT_DETAIL_NO = B.PRODUCT_DETAIL_NO
+		 WHERE B.PRODUCT_SIZE = ${param1}
+		   AND B.PRODUCT_NAME = #{param2}
+	</select>
+	
+	<!-- size와 제품명으로 즉시판매가 조회 -->
+	<select id="selectSellPriceBySize" resultType="com.koreait.shoefly.dto.ProductBuy">
+		SELECT MAX(A.PRICE) 
+		  FROM PRODUCT_BUY A INNER JOIN PRODUCT_DETAIL B
+		    ON A.PRODUCT_DETAIL_NO = B.PRODUCT_DETAIL_NO
+		 WHERE B.PRODUCT_SIZE = ${param1}
+		   AND B.PRODUCT_NAME = #{param2}
 	</select>
 </mapper>

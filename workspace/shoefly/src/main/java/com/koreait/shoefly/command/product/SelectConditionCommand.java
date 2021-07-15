@@ -21,8 +21,8 @@ public class SelectConditionCommand implements ProductCommand {
 		String productName = request.getParameter("productName");
 		String[] brands = request.getParameterValues("brand");
 		String[] sizes = request.getParameterValues("size");
-		Long MINPRICE = Long.parseLong(request.getParameter("minPrice") == "" ? "0" : request.getParameter("minPrice"));
-		Long MAXPRICE = Long.parseLong(request.getParameter("maxPrice") == "" ? "9999999999" : request.getParameter("maxPrice"));
+		Long minprice = Long.parseLong(request.getParameter("minPrice") == "" ? "0" : request.getParameter("minPrice"));
+		Long maxprice = Long.parseLong(request.getParameter("maxPrice") == "" ? "9999999999" : request.getParameter("maxPrice"));
 		
 		//입력값이 없을경우 전체 조회
 		if(productName == null) {
@@ -46,18 +46,19 @@ public class SelectConditionCommand implements ProductCommand {
 			sizes[4] = "280";
 			sizes[5] = "290";
 		}
-
+		
 		Map<String, Object> paramMap = new HashMap<>();
 		paramMap.put("PRODUCTNAME", productName);
 		paramMap.put("BRANDS", brands);
 		paramMap.put("SIZES", sizes);
-		paramMap.put("MINPRICE", MINPRICE);
-		paramMap.put("MAXPRICE", MAXPRICE);
-		
+		paramMap.put("MINPRICE", minprice);
+		paramMap.put("MAXPRICE", maxprice);
+
 		ProductDAO productDAO = sqlSession.getMapper(ProductDAO.class);
 		logger.info("조회되었다.");
-		
+
 		model.addAttribute("list", productDAO.selectCondition(paramMap));
+
 		return null;
 	}
 

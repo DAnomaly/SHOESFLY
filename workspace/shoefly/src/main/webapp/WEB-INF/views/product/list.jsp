@@ -30,15 +30,17 @@
 	            $("#AllBrand").prop("checked", false);
 	        }
 		});
+		
 	});
-		//검색버튼으로 선택사항 조회
-		//체크박스들은 Command에서 배열 처리
-		function selectCondition(){
-			$('#search_btn').click(function(){
-				$('#f').attr('action', 'selectCondition.do');
-				$('#f').submit();
-			});
-		}
+	
+	//검색버튼으로 모든 선택사항 조회
+	function selectCondition(){
+		$('#search_btn').click(function(){
+			$('#f').attr('action', 'selectCondition.do');
+			$('#f').submit();
+		});
+	}
+	
 	</script>
 </head>
 <body>
@@ -50,7 +52,7 @@
 				<input type="button" value="검색" id="search_btn" class="search_btn">
 				<br>
 				브랜드&emsp;
-				<label for="AllBrand"><input type="checkbox" id="AllBrand">전체</label>&emsp;
+				<label for="AllBrand"><input type="checkbox" id="AllBrand" class="brand">전체</label>&emsp;
 				<label for="nike"><input type="checkbox" name="brand" id="nike" value="Nike" class="brand">나이키</label>&emsp;
 				<label for="adidas"><input type="checkbox" name="brand" id="adidas" value="Adidas" class="brand">아디다스</label>&emsp;
 				<label for="newbalance"><input type="checkbox" name="brand" id="newbalance" value="New Balance" class="brand">뉴발란스</label>

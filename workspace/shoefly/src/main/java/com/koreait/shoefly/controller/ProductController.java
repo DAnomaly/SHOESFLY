@@ -1,5 +1,7 @@
 package com.koreait.shoefly.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
@@ -7,11 +9,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.koreait.shoefly.command.product.SelectAllListCommand;
 import com.koreait.shoefly.command.product.SelectConditionCommand;
 import com.koreait.shoefly.command.product.SelectProductByProductNo;
+import com.koreait.shoefly.command.product.selectPriceBySizeCommand;
+import com.koreait.shoefly.dto.Product;
+import com.koreait.shoefly.dto.ProductDetail;
 
 import lombok.AllArgsConstructor;
 
@@ -24,7 +31,7 @@ public class ProductController {
 	private SelectAllListCommand selectAllListCommand;
 	private SelectConditionCommand selectConditionCommand;
 	private SelectProductByProductNo selectProductByProductNo;
-	
+	private selectPriceBySizeCommand selectPriceBySizeCommand;
 	//전체 상품 종류 조회
 	@GetMapping("listPage.do")
 	public String listPage(HttpServletRequest request,
@@ -49,5 +56,14 @@ public class ProductController {
 		model.addAttribute("request", request);
 		selectProductByProductNo.execute(sqlSession, model);
 		return "product/productView";
+	}
+	
+	//제품 사이즈 선택시 즉시판매가, 즉시구매가 조회
+	@PostMapping(value = "selectPriceBySize.do", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public Map<String, Object> selectPriceBySize(HttpServletRequest request,
+												 Model model){
+		model.addAttribute("request", request);
+		return selectPriceBySizeCommand.execute(sqlSession, model);
 	}
 }
