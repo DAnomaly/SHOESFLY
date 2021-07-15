@@ -68,7 +68,7 @@
 					<tr>
 						<td>${review.reviewNo}</td>
 						<td>${review.memberId}</td>
-						<td><a href="selectReview.do?reviewNo=${review.reviewNo}">${review.title}</a></td>
+						<td><a href="selectReview.do?reviewNo=${review.reviewNo}&page=1">${review.title}</a></td>
 						<td>${review.productName}</td>
 						<td>${review.hit}</td>
 						<td>${review.postdate}</td>

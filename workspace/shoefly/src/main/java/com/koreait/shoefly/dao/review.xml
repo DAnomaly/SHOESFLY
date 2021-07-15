@@ -72,22 +72,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<!-- ================리뷰 댓글=================== -->
+	<select id="countReviewComment" resultType="int" parameterType="int">
+		SELECT COUNT(*) 
+		  FROM REVIEW_COMMENT
+		 WHERE REVIEW_NO = #{_parameter}
+	</select>
 	
 	<select id="selectCommentList" resultType="com.koreait.shoefly.dto.ReviewComment" parameterType="java.util.Map">
-		SELECT REVIEW_COMMENT_NO AS REVIEWCOMMENTNO,
-		       REVIEW_NO AS REVIEWNO,
-		       MEMBER_ID AS MEMBERID,
-		       CONTEXT,
-		       STATE
-		  FROM REVIEW_COMMENT
-		 WHERE REVIEW_NO = #{param1}
-		 ORDER BY REVIEW_COMMENT_NO DESC
+		SELECT B.REVIEW_COMMENT_NO AS REVIEWCOMMENTNO, B.REVIEW_NO AS REVIEWNO,
+			   B.MEMBER_ID AS MEMBERID, B.CONTEXT, B.STATE
+		  FROM (SELECT ROWNUM AS RN, A.REVIEW_COMMENT_NO, A.REVIEW_NO,
+					   A.MEMBER_ID, A.CONTEXT, A.STATE
+		  		  FROM (SELECT REVIEW_COMMENT_NO,
+		   			   	       REVIEW_NO,
+		               		   MEMBER_ID,
+		               		   CONTEXT,
+		              		   STATE
+		           		  FROM REVIEW_COMMENT
+		                 ORDER BY REVIEW_COMMENT_NO DESC) A) B
+	    WHERE REVIEW_NO = #{reviewNo}
+		AND B.RN BETWEEN #{beginRecord} AND #{endRecord}
 	</select>
 	
 	<insert id="insertComment">
 		INSERT 
 		  INTO REVIEW_COMMENT
-		VALUES (REVIEW_COMMENT_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3}, 0)
+		VALUES (REVIEW_COMMENT_SEQ.NEXTVAL, #{reviewNo}, #{memberId}, #{context}, 0)
 	</insert>
 
 

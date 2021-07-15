@@ -9,11 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.koreait.shoefly.command.review.InsertCommentCommand;
 import com.koreait.shoefly.command.review.InsertReviewCommand;
 import com.koreait.shoefly.command.review.SelectCommentListCommand;
 import com.koreait.shoefly.command.review.SelectProductCommand;
@@ -21,7 +21,6 @@ import com.koreait.shoefly.command.review.SelectReviewCommand;
 import com.koreait.shoefly.command.review.SelectReviewListCommand;
 import com.koreait.shoefly.command.review.UpdateReviewCommand;
 import com.koreait.shoefly.command.review.UpdateReviewPageCommand;
-import com.koreait.shoefly.dto.Review;
 
 import lombok.AllArgsConstructor;
 
@@ -38,6 +37,7 @@ public class ReviewController {
 	private UpdateReviewPageCommand updateReviewPageCommand;
 	private UpdateReviewCommand updateReviewCommand;
 	private SelectCommentListCommand selectCommentListCommand;
+	private InsertCommentCommand insertCommentCommand;
 
 	@GetMapping("reviewListPage.do")
 	public String listPage(HttpServletRequest request, Model model) {
@@ -85,11 +85,20 @@ public class ReviewController {
 		return "redirect:reviewListPage.do";
 	}
 	
+/* =====================REVIEW COMMENT=============================================*/
+	
 	@PostMapping(value="selectCommentList.do", produces="application/json; charset=utf-8")
 	@ResponseBody
 	public Map<String, Object> selectCommentList(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		return selectCommentListCommand.execute(sqlSession, model);
+	}
+	
+	@RequestMapping(value="insertComment.do", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public Map<String, Object> insertComment(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		return insertCommentCommand.execute(sqlSession, model);
 	}
 	
 }

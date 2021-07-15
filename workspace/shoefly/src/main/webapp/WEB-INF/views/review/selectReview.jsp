@@ -14,6 +14,7 @@
 		$(document).ready(function(){
 			fn_updateReview();
 			fn_selectCommentList();
+			fn_insertComment();
 		});
 		
 		function fn_updateReview() {
@@ -23,13 +24,15 @@
 			});
 		}
 		
-		var page = 1;
 		function fn_selectCommentList() {
-			
+			var page = 1;
+			if (${param.page} != 1) {
+				page = ${param.page};
+			}
 			$.ajax({
 				url: 'selectCommentList.do',
 				type: 'POST',
-				data: 'reviewNo=' + ${review.reviewNo},
+				data: 'reviewNo=' + ${review.reviewNo} + '&page=' + page,
 				dataType: 'json',
 				success: function(resultMap) {
 					$('#list').empty();
@@ -38,18 +41,35 @@
 							$('<tr>')
 							.append( $('<td>').text(comment.memberId) )
 							.append( $('<td>').text(comment.context) )
+							.append( $('<td>').html(resultMap.paging) )
 							.appendTo('#list');
 						});
 					}else if (resultMap.status == 500) {
 						$('<tr>')
-						.append( $('<td colspan="6">').text('검색 결과 없음') )
+						.append( $('<td colspan="3">').html("검색목록이 없습니다.") )
 						.appendTo('#list');
 					}
 				}
 			});
-			
-			
 		}
+		
+		
+		function fn_insertComment() {
+			$('#insertComment_btn').click(function(){
+				 $.ajax({
+					url: 'insertComment.do',
+					type: 'POST',
+					data: $('#f2').serialize(),
+					dataType: 'json',
+					success: function(resultMap){
+						location.reload();
+					}
+					
+					
+				}); 
+			});
+			
+		} 
 	</script>
 	
 </head>
@@ -86,17 +106,19 @@
 		${review.content}
 		</c:if>
 		<hr>
-		<form id="f">
+		<form id="f2">
 			<input type="hidden" name="memberId" value="user1"> <!-- 로그인아이디 ${loginMember.memberId} -->
 			<input type="hidden" name="reviewNo" value="${review.reviewNo}"> <!-- 게시글 번호 -->
 			<input type="text" name="context" placeholder="댓글 입력">
-			<input type="button" value="등록" id="insert_comment_btn">
+			<input type="button" value="등록" id="insertComment_btn">
 		</form>
 		<hr>
 		<table border="1">
 			<tbody id="list">
 			</tbody>
 		</table>
+		<div class="paging">
+		</div>
 	</section>
 	<jsp:include page="/resources/asset/jsp/footer.jsp"/>
 </body>
