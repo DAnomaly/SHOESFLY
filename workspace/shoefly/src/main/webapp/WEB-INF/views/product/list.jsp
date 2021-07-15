@@ -40,52 +40,124 @@
 			$('#f').submit();
 		});
 	}
-	
 	</script>
+	<style>
+		*{
+			box-sizing: border-box;
+		}
+		.title{
+			width: 1080px;
+			margin: auto;
+			text-align: center;
+		}
+		.productList_container{
+			width: 1080px;
+			display: flex;
+			margin: auto;
+		}
+		.selectCondition{
+			width: 300px;
+			float: left;
+		}
+		table{
+			width: 100%;
+		}
+		td{
+			padding: 5px;
+		}
+		.search_btn{
+			width: 100%;
+			height: 30px;
+		}
+		 #productName{
+		 	width: 100%;
+		 }
+		.productList{
+			width: 780px;
+			float: left;
+			overflow: hidden;
+		}
+		.outbox{
+			border: 1px solid black;
+			width: 33%;
+		}
+		.product_img{
+			width: 100%;
+		}
+		.input_price{
+			width: 46%;
+		}
+	</style>
 </head>
 <body>
 	<jsp:include page="/resources/asset/jsp/header.jsp"/>
 	<section>
-		<div class="selectCondition">
-			<form id="f" method="post">
-				<input type="text" name="productName" id="productName" placeholder="상품명 검색">
-				<input type="button" value="검색" id="search_btn" class="search_btn">
-				<br>
-				브랜드&emsp;
-				<label for="AllBrand"><input type="checkbox" id="AllBrand" class="brand">전체</label>&emsp;
-				<label for="nike"><input type="checkbox" name="brand" id="nike" value="Nike" class="brand">나이키</label>&emsp;
-				<label for="adidas"><input type="checkbox" name="brand" id="adidas" value="Adidas" class="brand">아디다스</label>&emsp;
-				<label for="newbalance"><input type="checkbox" name="brand" id="newbalance" value="New Balance" class="brand">뉴발란스</label>
-				<br>
-				사이즈&emsp;
-				<label for="240"><input type="checkbox" name="size" id="240" value="240">240</label>&emsp;
-				<label for="250"><input type="checkbox" name="size" id="250" value="250">250</label>&emsp;
-				<label for="260"><input type="checkbox" name="size" id="260" value="260">260</label>&emsp;
-				<label for="270"><input type="checkbox" name="size" id="270" value="270">270</label>&emsp;
-				<label for="280"><input type="checkbox" name="size" id="280" value="280">280</label>&emsp;
-				<label for="290"><input type="checkbox" name="size" id="290" value="290">290</label>&emsp;
-				<br>
-				가격 &emsp;
-				<input type="text" name="minPrice" id="minPrice" placeholder="최소">&nbsp;&#126;
-				<input type="text" name="maxPrice" id="maxPrice" placeholder="최대">
-			</form>
+		<div class="title">
+			<h1>SHOP</h1>
 		</div>
-		<br>
-		<div class="productList">
-			<c:if test="${empty list}">
-				준비된 상품이 없습니다.
-			</c:if>
-			<c:forEach var="product" items="${list}">
-				<c:if test="${not empty list}">
-					<div class="outbox">
-						<div><a href="viewProductPage.do?productNo=${product.productNo}"><img alt="${product.image}" src="/shoefly/resources/archive/product/${product.image}"/></a></div>
-						<div class="text">
-							<a href="viewProductPage.do?productNo=${product.productNo}"><span class="text">${product.productName}</span></a><br>
-							<span class="text">${product.price}</span>원
-						</div>
-					</div>
+		<div class="productList_container">
+			<div class="selectCondition">
+				<form id="f" method="post">
+				<table>
+					<tbody>
+						<tr>
+							<td colspan="3"><input type="text" name="productName" id="productName" placeholder="상품명 검색"></td>
+						</tr>
+						<tr>
+							<td rowspan="2">브랜드</td>
+							<td><label for="AllBrand"><input type="checkbox" id="AllBrand" class="brand">전체</label></td>
+							<td><label for="nike"><input type="checkbox" name="brand" id="nike" value="Nike" class="brand">나이키</label></td>
+						</tr>
+						<tr>
+							<td><label for="adidas"><input type="checkbox" name="brand" id="adidas" value="Adidas" class="brand">아디다스</label></td>
+							<td><label for="newbalance"><input type="checkbox" name="brand" id="newbalance" value="New Balance" class="brand">뉴발란스</label></td>
+						</tr>
+						<tr>
+							<td rowspan="3">사이즈</td>
+							<td><label for="240"><input type="checkbox" name="size" id="240" value="240">240</label></td>
+							<td><label for="250"><input type="checkbox" name="size" id="250" value="250">250</label></td>
+						</tr>
+						<tr>
+							<td><label for="260"><input type="checkbox" name="size" id="260" value="260">260</label></td>
+							<td><label for="270"><input type="checkbox" name="size" id="270" value="270">270</label></td>
+						</tr>
+						<tr>
+							<td><label for="280"><input type="checkbox" name="size" id="280" value="280">280</label></td>
+							<td><label for="290"><input type="checkbox" name="size" id="290" value="290">290</label></td>
+						</tr>
+						<tr>
+							<td colspan="3">
+								<input type="text" name="minPrice" id="minPrice" class="input_price" placeholder="최소">&nbsp;&#126;
+								<input type="text" name="maxPrice" id="maxPrice" class="input_price" placeholder="최대">
+							</td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="3"><input type="button" value="검색" id="search_btn" class="search_btn"></td>
+						</tr>
+					</tfoot>
+				</table>
+
+				</form>
+			</div>
+			<br>
+			<div class="productList">
+				<c:if test="${empty list}">
+					준비된 상품이 없습니다.
 				</c:if>
-			</c:forEach>
+				<c:forEach var="product" items="${list}">
+					<c:if test="${not empty list}">
+						<div class="outbox">
+							<div><a href="viewProductPage.do?productNo=${product.productNo}"><img alt="${product.image}" class="product_img" src="/shoefly/resources/archive/product/${product.image}"/></a></div>
+							<div class="text">
+								<a href="viewProductPage.do?productNo=${product.productNo}"><span class="text">${product.productName}</span></a><br>
+								<span class="text">${product.price}</span>원
+							</div>
+						</div>
+					</c:if>
+				</c:forEach>
+			</div>
 		</div>
 	</section>
 	<jsp:include page="/resources/asset/jsp/footer.jsp"/>

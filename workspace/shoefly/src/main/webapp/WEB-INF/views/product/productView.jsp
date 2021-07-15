@@ -28,9 +28,7 @@
 							alert('성공');
 							if(resultMap.buyPrice == null){
 								$('#priceView_1').val("판매");
-							}else if(){
-								
-							}else{
+							else{
 								$('#priceView_1').val("즉시구매가" + resultMap.buyPrice);
 								$('#priceView_2').val("즉시판매가" + resultMap.sellPrice);
 							}

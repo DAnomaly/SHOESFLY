@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 
 import com.koreait.shoefly.dao.ProductDAO;
 @Component
-public class selectPriceBySizeCommand implements ProductCommand {
+public class SelectPriceBySizeCommand implements ProductCommand {
 
 	@Override
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {
@@ -25,9 +25,9 @@ public class selectPriceBySizeCommand implements ProductCommand {
 		ProductDAO productDAO = sqlSession.getMapper(ProductDAO.class);
 		
 		Map<String, Object> resultMap = new HashMap<>();
-		//구매가격
+		//죽사구매가격
 		resultMap.put("buyPrice", productDAO.selectBuyPriceBySize(size, productName));
-		//판매가격
+		//즉시판매가격
 		resultMap.put("sellPrice", productDAO.selectSellPriceBySize(size, productName));
 		return resultMap;
 	}
