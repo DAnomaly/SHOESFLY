@@ -27,6 +27,11 @@
 				})
 			}
 		}
+		function change_pw_btn() {
+			if(confirm('해당 회원의 임시비밀번호를 발급하시겠습니까?')){
+				location.href='updateMemberPw.do?memberNo=' + $('#memberNo').val();
+			}
+		}
 	</script>
 </head>
 <body>

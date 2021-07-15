@@ -26,6 +26,7 @@ import com.koreait.shoefly.command.manager.SelectListNoticeManagerCommand;
 import com.koreait.shoefly.command.manager.SelectOneFaqManagerCommand;
 import com.koreait.shoefly.command.manager.SelectOneMemberManagerCommand;
 import com.koreait.shoefly.command.manager.SelectOneNoticeManagerCommand;
+import com.koreait.shoefly.command.manager.UpdateMemberPwManagerCommand;
 
 import lombok.AllArgsConstructor;
 
@@ -43,6 +44,7 @@ public class ManagerController {
 	private SelectListMemberAddressManagerCommand selectListMemberAddressManagerCommand;
 	private InsertOrUpdateMemberAddressManagerCommand insertOrUpdateMemberAddressManagerCommand;
 	private DeleteMemberAddressManagerCommand deleteMemberAddressManagerCommand;
+	private UpdateMemberPwManagerCommand updateMemberPwManagerCommand;
 	// NOTICE
 	private SelectListNoticeManagerCommand selectListNoticeManagerCommand;
 	private SelectOneNoticeManagerCommand selectOneNoticeManagerCommand;
@@ -122,6 +124,16 @@ public class ManagerController {
 			HttpServletRequest request) {
 		model.addAttribute("request", request);
 		return (String)deleteMemberAddressManagerCommand.execute(sqlSession, model).get("response");
+	}
+	
+	@ResponseBody
+	@GetMapping(value="updateMemberPw.do",
+		    produces="text/html; charset=UTF-8")
+	public String updateMemberPw(
+			Model model,
+			HttpServletRequest request) {
+		model.addAttribute("request", request);
+		return (String)updateMemberPwManagerCommand.execute(sqlSession, model).get("response");
 	}
 	
 	// NOTICE

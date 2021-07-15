@@ -78,6 +78,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE MEMBER_ADDRESS_NO = #{_parameter}
 	</update>
 
+	<update id="updateMemberPw" parameterType="com.koreait.shoefly.dto.Member">
+		UPDATE MEMBER
+		   SET PW = #{pw}
+		 WHERE MEMBER_NO = #{memberNo}
+	</update>
+
 	<!-- NOTICE / FAQ -->
 
 	<select id="countNotice" resultType="int" parameterType="java.util.Map">

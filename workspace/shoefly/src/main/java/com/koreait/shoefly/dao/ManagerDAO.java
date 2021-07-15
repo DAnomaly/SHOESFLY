@@ -19,6 +19,7 @@ public interface ManagerDAO {
 	public int insertMemberAddress(MemberAddress memberAddress);
 	public int updateMemberAddress(MemberAddress memberAddress);
 	public int deleteMemberAddress(long memberAddressNo);
+	public int updateMemberPw(Member member);
 	
 	// NOTICE/FAQ
 	public int countNotice(Map<String, Object> map);
