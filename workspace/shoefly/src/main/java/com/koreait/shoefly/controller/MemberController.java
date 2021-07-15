@@ -3,7 +3,6 @@ package com.koreait.shoefly.controller;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.koreait.shoefly.command.member.DeleteAddressCommand;
 import com.koreait.shoefly.command.member.DeleteMemberCommand;
 import com.koreait.shoefly.command.member.EmailOrCheckCommand;
 import com.koreait.shoefly.command.member.FindIdCommand;
@@ -24,6 +24,8 @@ import com.koreait.shoefly.command.member.JoinCommand;
 import com.koreait.shoefly.command.member.LoginCommand;
 import com.koreait.shoefly.command.member.LogoutCommand;
 import com.koreait.shoefly.command.member.SelectAddrListCommand;
+import com.koreait.shoefly.command.member.UpdateAddressCommand;
+import com.koreait.shoefly.command.member.UpdateAddressListCommand;
 import com.koreait.shoefly.command.member.UpdateNameCommand;
 import com.koreait.shoefly.command.member.UpdatePwCommand;
 import com.koreait.shoefly.command.member.VerifyCodeCommand;
@@ -50,6 +52,9 @@ public class MemberController {
 	private DeleteMemberCommand deleteMemberCommand;
 	private UpdateNameCommand updateNameCommand;
 	private SelectAddrListCommand selectAddrListCommand;
+	private UpdateAddressListCommand updateAddressListCommand;
+	private UpdateAddressCommand updateAddressCommand;
+	private DeleteAddressCommand deleteAddressCommand;
 	
 	// 페이지 이동
 	@GetMapping("loginPage.do")
@@ -216,5 +221,32 @@ public class MemberController {
 											  Model model) {
 		model.addAttribute("request", request);
 		return selectAddrListCommand.execute(sqlSession, model);
+	}
+	
+	// 주소 수정 리스트 가져오기
+	@GetMapping("updateAddressList.do")
+	public String updateAddressList(HttpServletRequest request,
+												 Model model) {
+		model.addAttribute("request", request);
+		updateAddressListCommand.execute(sqlSession, model);
+		return "member/updateAddress";
+	}
+	
+	// 주소 수정
+	@PostMapping("updateAddress.do")
+	public String updateAddress(HttpServletRequest request,
+							    Model model) {
+		model.addAttribute("request", request);
+		updateAddressCommand.execute(sqlSession, model);
+		return "redirect:myPage.do";
+	}
+	
+	// 주소 삭제
+	@GetMapping("deleteAddress.do")
+	public String deleteAddress(HttpServletRequest request,
+								Model model) {
+		model.addAttribute("request", request);
+		deleteAddressCommand.execute(sqlSession, model);
+		return "redirect:myPage.do";
 	}
 }

@@ -83,5 +83,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT MEMBER_ADDRESS_NO AS MEMBERADDRESSNO, MEMBER_NO AS MEMBERNO, NAME, ADDR1, ADDR2, STATE
 		  FROM MEMBER_ADDRESS
 		 WHERE MEMBER_NO = #{memberNo}
+		   AND STATE = 0
 	</select>
+	
+	<!-- 수정할 주소정보 가져오기 -->
+	<select id="selectAddrByNo" resultType="com.koreait.shoefly.dto.MemberAddress">
+		SELECT MEMBER_ADDRESS_NO AS MEMBERADDRESSNO, MEMBER_NO AS MEMBERNO, NAME, ADDR1, ADDR2, STATE
+		  FROM MEMBER_ADDRESS
+		 WHERE MEMBER_ADDRESS_NO = #{memberAddressNo}
+	</select>
+	
+	<!--  주소 수정 -->
+	<update id="updateAddress">
+		UPDATE MEMBER_ADDRESS
+		   SET NAME = #{name}
+		     , ADDR1 = #{addr1}
+		     , ADDR2 = #{addr2}
+		 WHERE MEMBER_NO = #{memberNo}
+		   AND MEMBER_ADDRESS_NO = #{memberAddressNo} 
+	</update>
+	
+	<!-- 주소 삭제(state : -1) -->
+	<update id="deleteMemberAddress">
+		UPDATE MEMBER_ADDRESS
+		   SET STATE = -1
+		 WHERE MEMBER_NO = #{memberNo}
+		   AND MEMBER_ADDRESS_NO = #{memberAddressNo}  
+	</update>
+	
+	
 </mapper>

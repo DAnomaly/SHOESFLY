@@ -1,6 +1,5 @@
 package com.koreait.shoefly.command.member;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,29 +13,25 @@ import com.koreait.shoefly.dao.MemberDAO;
 import com.koreait.shoefly.dto.MemberAddress;
 
 @Component
-public class SelectAddrListCommand implements MemberCommand {
+public class UpdateAddressListCommand implements MemberCommand {
 
 	@Override
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {
 
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
-		//HttpSession session = request.getSession();
-		//Member loginMember = (Member)session.getAttribute("loginMember");
 		
-		//long memberNo = loginMember.getMemberNo();
+		long memberAddressNo = Long.parseLong(request.getParameter("memberAddressNo"));
 		
 		MemberDAO memberDAO = sqlSession.getMapper(MemberDAO.class);
 		
-		long memberNo = Long.parseLong(request.getParameter("memberNo"));
+		MemberAddress memberAddress = memberDAO.selectAddrByNo(memberAddressNo);
 		
-		List<MemberAddress> list = memberDAO.selectAddrList(memberNo);
-
-		Map<String, Object> result = new HashMap<String, Object>();
-		result.put("list", list);
-		result.put("exists", list.size() > 0);
+		if(memberAddress != null) {
+			model.addAttribute("memberAddress", memberAddress);
+		}
 		
-		return result;
+		return null;
 	}
 
 }

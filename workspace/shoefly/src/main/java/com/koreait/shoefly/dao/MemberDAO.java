@@ -30,5 +30,11 @@ public interface MemberDAO {
 	public int updateName(Member member);
 	
 	public List<MemberAddress> selectAddrList(long memberNo);
+	
+	public MemberAddress selectAddrByNo(long memberAddressNo);
+	
+	public int updateAddress(MemberAddress memberAddress);
+	
+	public int deleteMemberAddress(MemberAddress memberAddress);
 
 }
