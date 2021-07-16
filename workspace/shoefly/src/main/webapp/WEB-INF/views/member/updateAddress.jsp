@@ -8,14 +8,14 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/header.css">
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/footer.css">
-	<title>제목</title>
+	<title>주소 수정</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script>
 		$(document).ready(function(){
 			fn_findAddress();
-			fn_insertAddress();
+			fn_updateAddress();
 		})
-
+		
 		function fn_findAddress() {
 			$('#addr_search_btn').click(function(){
 				goPopup();
@@ -31,15 +31,19 @@
 			document.form.addr2.value = addrDetail;
 		}
 		
-		function fn_insertAddress(){
-			$('#insert_addr_btn').click(function(){
+		function fn_updateAddress() {
+			$('#update_address_btn').click(function(){
 				if($('#name').val() == '') {
 					alert('배송지를 입력해주세요.');
-				} else if($('#addr1').val() == '') {
-					alert('주소를 입력해주세요.');
+					return false;
+				} else if('${memberAddress.name}' == $('#name').val() && '${memberAddress.addr1}' == $('#addr1').val() && '${memberAddress.addr2}' == $('#addr2').val()) {
+					alert('변경할 내용이 없습니다.');
+					return false;
 				}
-				$('#form').attr('action', 'insertAddress.do');
+			
+				$('#form').attr('action', 'updateAddress.do');
 				$('#form').submit();
+				
 			})
 		}
 	</script>
@@ -49,18 +53,21 @@
 	<section>
 	
 		<form name="form" id="form" method="post">		
+			<input type="hidden" id="memberAddressNo" name="memberAddressNo" value="${memberAddress.memberAddressNo}">
 			<div class="addr_info">
 				배송지<br>
-				<input type="text" id="name" name="name" placeholder="배송지를 입력해주세요.">
-			</div><br>
+				<input type="text" id="name" name="name" value="${memberAddress.name}" placeholder="배송지명">
+			</div>
 			<div class="addr_info">
 				주소<br>
-				<input type="text"  style="width:500px;" id="addr1"  name="addr1" readonly/>
+				<input type="text"  style="width:500px;" id="addr1"  name="addr1" value="${memberAddress.addr1}" readonly/>
+				<!-- <input type="text" id="addr1" name="addr1" value="${memberAddress.addr1}">  -->
 				<input type="button" id="addr_search_btn" value="주소찾기"><br><br>
 				상세주소<br>
-				<input type="text"  style="width:500px;" id="addr2"  name="addr2" readonly/>				
+				<input type="text"  style="width:500px;" id="addr2"  name="addr2" value="${memberAddress.addr2}" readonly/>				
+				<!-- <input type="text" id="addr2" name="addr2" value="${memberAddress.addr2}"> -->
 			</div>
-			<input type="button" id="insert_addr_btn" value="추가">
+			<input type="button" id="update_address_btn" value="수정">
 		</form>
 	
 	</section>

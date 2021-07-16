@@ -13,13 +13,15 @@
 	<script>
 		$(document).ready(function(){
 			fn_selectAddressList();
+			fn_updateAddress();
+			fn_deleteAddress();
 		})
 			
 		function fn_selectAddressList(){
 			$.ajax({
 				url: 'selectAddressList.do',
 				type: 'post',
-				data: 'memberNo=' + ${loginMember.memberNo},
+				data: 'memberNo=' + $('#memberNo').val(),
 				dataType: 'json',
 				success: function(result){
 					$('#address_list').empty();
@@ -29,18 +31,37 @@
 							.append( $('<td>').text(address.name) )
 							.append( $('<td>').text(address.addr1) )
 							.append( $('<td>').text(address.addr2) )
-							.append( $('<td>').html('<input type="button" id="update_address_btn" value="수정">') )
+							//.append( $('<td>').html('<input type="hidden" name="memberAddressNo" id="memberAddressNo" value="' + address.memberAddressNo + '">'
+							//.append( $('<td>').html('<input type="button" id="update_address_btn" value="수정">') )
+							.append($('<td>').html('<input type="hidden" name="memberAddressNo" id="memberAddressNo" value="' + address.memberAddressNo + '"><input type="button" value="수정" id="update_address_btn">'))
 							.append( $('<td>').html('<input type="button" id="delete_address_btn" value="삭제">') )
-							.appendTo('#address_list');
+							//.append($('<td>').html('<input type="hidden" name="memberAddressNo" id="memberAddressNo" value="' + address.memberAddressNo + '"><input type="button" value="삭제" id="delete_address_btn">'))
+							.appendTo('#address_list')
 						})// each문 끝
 					} else {
 						$('<tr>')
 						.append( $('<td colspan="3">등록된 주소가 없습니다.</td>') )
-						.appendTo('#address_list');
-					} // if문 끝
-				}// success 끝
-			}); // ajax 끝
-		} // 함수 끝
+						.appendTo('#address_list')
+					}
+				}
+			});
+		} 
+		
+		function fn_updateAddress(){
+			$('body').on('click', '#update_address_btn', function(){
+				var memberAddressNo = $(this).prev().val();
+				location.href = 'updateAddressList.do?memberAddressNo=' + memberAddressNo;
+			})
+		}
+		
+		function fn_deleteAddress(){
+			$('body').on('click', '#delete_address_btn', function(){
+				var memberAddressNo = $('#memberAddressNo').val();
+				if(confirm('선택하신 주소지를 삭제하시겠습니까?')) {
+					location.href = 'deleteAddress.do?memberAddressNo=' + memberAddressNo;									
+				}
+			})
+		}
 		
 	</script>	
 </head>
@@ -48,7 +69,7 @@
 	<jsp:include page="/resources/asset/jsp/header.jsp"/>
 	<section>
 	
-		
+		<input type="hidden" id="memberNo" value="${loginMember.memberNo}"/>
 		
 		<table>
 			<thead>
