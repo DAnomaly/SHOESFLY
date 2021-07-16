@@ -16,6 +16,7 @@ import com.koreait.shoefly.command.manager.DeleteFaqManagerCommand;
 import com.koreait.shoefly.command.manager.DeleteMemberAddressManagerCommand;
 import com.koreait.shoefly.command.manager.DeleteMemberManagerCommand;
 import com.koreait.shoefly.command.manager.DeleteNoticeManagerCommand;
+import com.koreait.shoefly.command.manager.DeleteProductManagerCommand;
 import com.koreait.shoefly.command.manager.InsertOrUpdateFaqManagerCommand;
 import com.koreait.shoefly.command.manager.InsertOrUpdateMemberAddressManagerCommand;
 import com.koreait.shoefly.command.manager.InsertOrUpdateNoticeManagerCommand;
@@ -23,9 +24,13 @@ import com.koreait.shoefly.command.manager.SelectListFaqManagerCommand;
 import com.koreait.shoefly.command.manager.SelectListMemberAddressManagerCommand;
 import com.koreait.shoefly.command.manager.SelectListMemberManagerCommand;
 import com.koreait.shoefly.command.manager.SelectListNoticeManagerCommand;
+import com.koreait.shoefly.command.manager.SelectListProductManagerCommand;
 import com.koreait.shoefly.command.manager.SelectOneFaqManagerCommand;
 import com.koreait.shoefly.command.manager.SelectOneMemberManagerCommand;
 import com.koreait.shoefly.command.manager.SelectOneNoticeManagerCommand;
+import com.koreait.shoefly.command.manager.SelectOneProductManagerCommand;
+import com.koreait.shoefly.command.manager.UpdateMemberPwManagerCommand;
+import com.koreait.shoefly.command.manager.UpdateProdcutStateManagerCommand;
 
 import lombok.AllArgsConstructor;
 
@@ -43,6 +48,12 @@ public class ManagerController {
 	private SelectListMemberAddressManagerCommand selectListMemberAddressManagerCommand;
 	private InsertOrUpdateMemberAddressManagerCommand insertOrUpdateMemberAddressManagerCommand;
 	private DeleteMemberAddressManagerCommand deleteMemberAddressManagerCommand;
+	private UpdateMemberPwManagerCommand updateMemberPwManagerCommand;
+	// PRODUCT
+	private SelectListProductManagerCommand selectListProductManagerCommand;
+	private SelectOneProductManagerCommand selectOneProductManagerCommand;
+	private UpdateProdcutStateManagerCommand updateProdcutStateManagerCommand;
+	private DeleteProductManagerCommand deleteProductManagerCommand;
 	// NOTICE
 	private SelectListNoticeManagerCommand selectListNoticeManagerCommand;
 	private SelectOneNoticeManagerCommand selectOneNoticeManagerCommand;
@@ -111,7 +122,7 @@ public class ManagerController {
 			Model model,
 			HttpServletRequest request) {
 		model.addAttribute("request", request);
-		return (String)insertOrUpdateMemberAddressManagerCommand.execute(sqlSession, model).get("response"); 
+		return insertOrUpdateMemberAddressManagerCommand.execute(sqlSession, model).get("response").toString(); 
 	}
 	
 	@ResponseBody
@@ -121,7 +132,61 @@ public class ManagerController {
 			Model model,
 			HttpServletRequest request) {
 		model.addAttribute("request", request);
-		return (String)deleteMemberAddressManagerCommand.execute(sqlSession, model).get("response");
+		return deleteMemberAddressManagerCommand.execute(sqlSession, model).get("response").toString();
+	}
+	
+	@ResponseBody
+	@GetMapping(value="updateMemberPw.do",
+		    produces="text/html; charset=UTF-8")
+	public String updateMemberPw(
+			Model model,
+			HttpServletRequest request) {
+		model.addAttribute("request", request);
+		return updateMemberPwManagerCommand.execute(sqlSession, model).get("response").toString();
+	}
+	
+	// PRODUCT
+	@GetMapping(value="productListPage.do")
+	public String productListPage() {
+		return "manager/productList";
+	}
+	
+	@ResponseBody
+	@GetMapping(value="selectListProduct.do",
+				produces="application/json; charset=UTF-8")
+	public Map<String, Object> selectListProduct(
+			Model model,
+			HttpServletRequest request) {
+		model.addAttribute("request", request);
+		return selectListProductManagerCommand.execute(sqlSession, model);
+	}
+
+	@GetMapping(value="productInfoPage.do")
+	public String productInfoPage(
+			Model model,
+			HttpServletRequest request) {
+		model.addAttribute("request", request);
+		selectOneProductManagerCommand.execute(sqlSession, model);
+		return "manager/productInfo";
+	}
+	
+	@GetMapping(value="updateProductState.do")
+	public String updateProductState(
+			Model model,
+			HttpServletRequest request) {
+		model.addAttribute("request", request);
+		updateProdcutStateManagerCommand.execute(sqlSession, model);
+		return "redirect:productInfoPage.do?no=" + request.getParameter("no");
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="deleteProduct.do",
+				 produces="application/json; charset=UTF-8")
+	public Map<String, Object> deleteProduct(
+			Model model,
+			HttpServletRequest request) {
+		model.addAttribute("request", request);
+		return deleteProductManagerCommand.execute(sqlSession, model);
 	}
 	
 	// NOTICE

@@ -33,9 +33,6 @@ public class InsertOrUpdateFaqManagerCommand implements ManagerCommand {
 		this.request = (HttpServletRequest)modelMap.get("request");
 		this.resultMap = new HashMap<>();
 		
-		// TODO : Member 작업 완료시 삭제할 것
-		loginManager();
-		
 		String strFaqNo = request.getParameter("faqNo");
 		if(strFaqNo == null || strFaqNo.isEmpty()) {
 			insertNotice();  // strNoticeNo값이 없으면
@@ -89,21 +86,4 @@ public class InsertOrUpdateFaqManagerCommand implements ManagerCommand {
 		
 	}
 	
-	
-	/**
-	 * TODO : 임시 로그인 : 추후 삭제 요망
-	 * (MEMBER_SEQ.NEXTVAL, 'admin', '0ffe1abd1a08215353c233d6e009613e95eec4253832a761af28ff37ac5a150c', '관리자', 'admin@home.com', SYSDATE, 1, 0)
-	 */
-	private void loginManager() {
-		Member member = new Member();
-		member.setMemberNo(1);
-		member.setMemberId("admin");
-		member.setPw("0ffe1abd1a08215353c233d6e009613e95eec4253832a761af28ff37ac5a150c");
-		member.setName("관리자");
-		member.setEmail("admin@home.com");
-		member.setManager(1);
-		member.setState(0);
-		
-		request.getSession().setAttribute("loginMember", member);
-	}
 }

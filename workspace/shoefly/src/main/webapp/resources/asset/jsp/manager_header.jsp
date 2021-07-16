@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:if test="${empty loginMember || loginMember.manager != 1}">
+<script>
+	location.href="/shoefly/";
+</script>
+</c:if>
 <header>
 	<a href="/shoefly/manager/"><img alt="SHOEFLY" src="/shoefly/resources/asset/image/logo.png"></a>
 	<a href="/shoefly/">메인 페이지로 이동</a>

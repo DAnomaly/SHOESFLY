@@ -7,6 +7,8 @@ import com.koreait.shoefly.dto.Faq;
 import com.koreait.shoefly.dto.Member;
 import com.koreait.shoefly.dto.MemberAddress;
 import com.koreait.shoefly.dto.Notice;
+import com.koreait.shoefly.dto.Product;
+import com.koreait.shoefly.dto.ProductDetail;
 
 public interface ManagerDAO {
 
@@ -19,6 +21,21 @@ public interface ManagerDAO {
 	public int insertMemberAddress(MemberAddress memberAddress);
 	public int updateMemberAddress(MemberAddress memberAddress);
 	public int deleteMemberAddress(long memberAddressNo);
+	public int updateMemberPw(Member member);
+	
+	// PRODUCT
+	public int countProduct(Map<String, Object> map);
+	public List<Product> selectListProduct(Map<String, Object> map);
+	public Product selectOneProdcut(String productNo);
+	public List<ProductDetail> selectListProductDetail(String productName);
+	public int insertProduct(Product product);
+	public int insertProductDetail(ProductDetail productDetail);
+	public int updateProductState(Product product);
+	public int countProductBuyForProduct(String productNo);
+	public int countProductSellForProduct(String productNo);
+	public int countReviewForProduct(String productNo);
+	public int deleteProductDetails(String productNo);
+	public int deleteProduct(String productNo);
 	
 	// NOTICE/FAQ
 	public int countNotice(Map<String, Object> map);
