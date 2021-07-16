@@ -28,7 +28,16 @@ public class SelectOneProductManagerCommand implements ManagerCommand {
 		model.addAttribute("product", product);
 		
 		List<ProductDetail> details = dao.selectListProductDetail(product.getProductName());
+		int size = details.size();
 		
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < size; i++) {
+			sb.append(details.get(i).getProductSize());
+			if(i != size - 1)
+				sb.append(", ");
+		}
+		
+		model.addAttribute("sizes", sb.toString());
 		return null;
 	}
 	

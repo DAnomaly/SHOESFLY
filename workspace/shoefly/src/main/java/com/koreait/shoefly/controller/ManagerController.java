@@ -16,6 +16,7 @@ import com.koreait.shoefly.command.manager.DeleteFaqManagerCommand;
 import com.koreait.shoefly.command.manager.DeleteMemberAddressManagerCommand;
 import com.koreait.shoefly.command.manager.DeleteMemberManagerCommand;
 import com.koreait.shoefly.command.manager.DeleteNoticeManagerCommand;
+import com.koreait.shoefly.command.manager.DeleteProductManagerCommand;
 import com.koreait.shoefly.command.manager.InsertOrUpdateFaqManagerCommand;
 import com.koreait.shoefly.command.manager.InsertOrUpdateMemberAddressManagerCommand;
 import com.koreait.shoefly.command.manager.InsertOrUpdateNoticeManagerCommand;
@@ -52,6 +53,7 @@ public class ManagerController {
 	private SelectListProductManagerCommand selectListProductManagerCommand;
 	private SelectOneProductManagerCommand selectOneProductManagerCommand;
 	private UpdateProdcutStateManagerCommand updateProdcutStateManagerCommand;
+	private DeleteProductManagerCommand deleteProductManagerCommand;
 	// NOTICE
 	private SelectListNoticeManagerCommand selectListNoticeManagerCommand;
 	private SelectOneNoticeManagerCommand selectOneNoticeManagerCommand;
@@ -175,6 +177,16 @@ public class ManagerController {
 		model.addAttribute("request", request);
 		updateProdcutStateManagerCommand.execute(sqlSession, model);
 		return "redirect:productInfoPage.do?no=" + request.getParameter("no");
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="deleteProduct.do",
+				 produces="application/json; charset=UTF-8")
+	public Map<String, Object> deleteProduct(
+			Model model,
+			HttpServletRequest request) {
+		model.addAttribute("request", request);
+		return deleteProductManagerCommand.execute(sqlSession, model);
 	}
 	
 	// NOTICE
