@@ -25,6 +25,6 @@ public class MemberAddress {
     private String addr2;
 
     // 정상/삭제 
-    private Integer state;
+    private int state;
     
 }

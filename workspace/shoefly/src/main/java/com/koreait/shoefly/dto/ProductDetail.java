@@ -10,12 +10,12 @@ import lombok.ToString;
 public class ProductDetail {
 	
 	// 상품 일련번호 
-    private int productDetailNo;
+    private long productDetailNo;
 
     // 상품이름 
     private String productName;
 
     // 사이즈 
-    private Integer productSize;
+    private int productSize;
     
 }

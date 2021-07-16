@@ -5,6 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.koreait.shoefly.dao.ManagerDAO">
 
+
 	<!-- MEMBER -->
 	
 	<select id="countMember" resultType="int" parameterType="java.util.Map">
@@ -77,6 +78,101 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		   SET STATE = -1
 		 WHERE MEMBER_ADDRESS_NO = #{_parameter}
 	</update>
+
+	<update id="updateMemberPw" parameterType="com.koreait.shoefly.dto.Member">
+		UPDATE MEMBER
+		   SET PW = #{pw}
+		 WHERE MEMBER_NO = #{memberNo}
+	</update>
+
+
+	<!-- PRODUCT -->
+	
+	<select id="countProduct" resultType="int" parameterType="java.util.Map">
+		SELECT COUNT(*)
+		  FROM PRODUCT
+	<where>
+		<if test="productNo != null">
+			   PRODUCT_NO LIKE '%' || #{productNo} || '%'
+		</if>
+		<if test="productName != null">
+		       PRODUCTNAME LIKE '%' || #{productName} || '%'
+		</if>
+		<if test="brands != null">
+		   AND BRAND IN
+			<foreach collection="brands" item="brand" open="(" close=")" separator=", "> 
+			            #{brand}
+			</foreach>
+		</if>
+	</where>
+	</select>
+
+	<select id="selectListProduct" resultType="com.koreait.shoefly.dto.Product" parameterType="java.util.Map">
+		SELECT B.PRODUCT_NO AS PRODUCTNO, B.PRODUCT_NAME AS PRODUCTNAME, B.BRAND, B.PRICE, B.IMAGE, B.STATE
+		  FROM (
+		        SELECT ROWNUM AS RN, A.PRODUCT_NO, A.PRODUCT_NAME, A.BRAND, A.PRICE, A.IMAGE, A.STATE
+		          FROM (
+		                SELECT PRODUCT_NO, PRODUCT_NAME, BRAND, PRICE, IMAGE, STATE
+		                  FROM PRODUCT
+	                <where>
+						<if test="productNo != null">
+							   PRODUCT_NO LIKE '%' || #{productNo} || '%'
+						</if>
+						<if test="productName != null">
+						   AND PRODUCT_NAME LIKE '%' || #{productName} || '%'
+						</if>
+						<if test="brands != null">
+						   AND BRAND IN
+							<foreach collection="brands" item="brand" open="(" close=")" separator=", "> 
+							            #{brand}
+							</foreach>
+						</if>
+					</where>
+	                     ORDER BY ${order} ${isDesc}
+	                   ) A
+	           ) B
+		 WHERE B.RN BETWEEN #{beginRecord} AND #{endRecord}
+	</select>
+
+	<select id="selectOneProdcut" resultType="com.koreait.shoefly.dto.Product">
+		SELECT PRODUCT_NO AS PRODUCTNO, PRODUCT_NAME AS PRODUCTNAME, BRAND, PRICE, IMAGE, STATE
+		  FROM PRODUCT
+		 WHERE PRODUCT_NO = #{_parameter}
+	</select>
+	
+	<select id="selectListProductDetail" resultType="com.koreait.shoefly.dto.ProductDetail">
+		SELECT PRODUCT_DETAIL_NO AS PRODUCTDETAILNO, PRODUCT_NAME AS PRODUCTNAME, PRODUCT_SIZE
+		  FROM PRODUCT_DETAIL
+		 WHERE PRODUCT_NAME = #{_parameter}
+	</select>
+
+	<insert id="insertProduct" parameterType="com.koreait.shoefly.dto.Product">
+		INSERT INTO PRODUCT
+		VALUES (#{productNo}, #{productName}, #{brand}, #{price}, #{image}, #{state})
+	</insert>
+	
+	<insert id="insertProductDetail" parameterType="com.koreait.shoefly.dto.ProductDetail">
+		INSERT INTO PRODUCT_DETAIL
+		VALUES (PRODUCT_DETAIL_SEQ.NEXTVAL, #{productName}, #{productSize})
+	</insert>
+
+	<update id="updateProductState" parameterType="com.koreait.shoefly.dto.Product">
+		UPDATE PRODUCT
+		   SET STATE = #{state}
+		 WHERE PRODUCT_NO = #{productNo}
+	</update>
+
+	<delete id="deleteProduct">
+		DELETE
+		  FROM PRODUCT
+		 WHERE PRODUCT_NO = #{_parameter}
+	</delete>
+
+	<delete id="deleteProductDetail">
+		DELETE 
+		  FROM PRODUCT_DETAIL
+		 WHERE PRODUCT_NO = #{_parameter}
+	</delete>
 
 	<!-- NOTICE / FAQ -->
 

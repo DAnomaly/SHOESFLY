@@ -12,7 +12,7 @@ import lombok.ToString;
 public class Review {
 
 	// 후기 일련번호 
-    private int reviewNo;
+    private long reviewNo;
 
     // 아이디 
     private String memberId;
@@ -41,6 +41,6 @@ public class Review {
     private String ip;
 
     // 정상/삭제 
-    private Integer state;
+    private int state;
 
 }

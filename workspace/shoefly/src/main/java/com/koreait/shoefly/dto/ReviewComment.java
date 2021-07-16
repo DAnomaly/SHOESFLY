@@ -10,10 +10,10 @@ import lombok.ToString;
 public class ReviewComment {
 
 	// 후기 댓글 일련번호 
-    private int reviewCommentNo;
+    private long reviewCommentNo;
 
     // 후기 일련번호 
-    private int reviewNo;
+    private long reviewNo;
 
     // 아이디 
     private String memberId;
@@ -22,6 +22,6 @@ public class ReviewComment {
     private String context;
 
     // 정상/삭제 
-    private Integer state;
+    private int state;
     
 }

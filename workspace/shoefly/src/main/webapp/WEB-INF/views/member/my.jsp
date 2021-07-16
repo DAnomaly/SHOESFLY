@@ -10,6 +10,11 @@
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/footer.css">
 	<title>마이페이지</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<c:if test="${loginMember.manager == 1}">
+	<script>
+		location.href="/shoefly/manager/";
+	</script>
+	</c:if>
 	<script>
 		$(document).ready(function(){
 			fn_delete_member();
