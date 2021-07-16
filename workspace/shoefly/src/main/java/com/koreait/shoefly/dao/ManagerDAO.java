@@ -32,8 +32,11 @@ public interface ManagerDAO {
 	public int insertProduct(Product product);
 	public int insertProductDetail(ProductDetail productDetail);
 	public int updateProductState(Product product);
-	public int deleteProduct(long productNo);
-	public int deleteProductDetail(long productNo);
+	public int countProductBuyForProduct(String productNo);
+	public int countProductSellForProduct(String productNo);
+	public int countReviewForProduct(String productNo);
+	public int deleteProductDetails(String productNo);
+	public int deleteProduct(String productNo);
 	
 	// NOTICE/FAQ
 	public int countNotice(Map<String, Object> map);

@@ -141,7 +141,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="selectListProductDetail" resultType="com.koreait.shoefly.dto.ProductDetail">
-		SELECT PRODUCT_DETAIL_NO AS PRODUCTDETAILNO, PRODUCT_NAME AS PRODUCTNAME, PRODUCT_SIZE
+		SELECT PRODUCT_DETAIL_NO AS PRODUCTDETAILNO, PRODUCT_NAME AS PRODUCTNAME, PRODUCT_SIZE AS PRODUCTSIZE
 		  FROM PRODUCT_DETAIL
 		 WHERE PRODUCT_NAME = #{_parameter}
 	</select>
@@ -161,16 +161,46 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		   SET STATE = #{state}
 		 WHERE PRODUCT_NO = #{productNo}
 	</update>
+	
+	<select id="countProductBuyForProduct" resultType="int">
+		SELECT COUNT(*)
+		  FROM PRODUCT_BUY
+		 WHERE PRODUCT_DETAIL_NO IN (SELECT PRODUCT_DETAIL_NO 
+		 							  FROM PRODUCT_DETAIL 
+		 							 WHERE PRODUCT_NAME = (SELECT PRODUCT_NAME
+									 						 FROM PRODUCT
+									 						WHERE PRODUCT_NO = #{_parameter}))
+	</select>
 
+	<select id="countProductSellForProduct" resultType="int">
+		SELECT COUNT(*)
+		  FROM PRODUCT_SELL
+		 WHERE PRODUCT_DETAIL_NO IN (SELECT PRODUCT_DETAIL_NO 
+		 							  FROM PRODUCT_DETAIL 
+		 							 WHERE PRODUCT_NAME = (SELECT PRODUCT_NAME
+									 						 FROM PRODUCT
+									 						WHERE PRODUCT_NO = #{_parameter}))
+	</select>
+	
+	<select id="countReviewForProduct" resultType="int">
+		SELECT COUNT(*)
+		  FROM REVIEW
+		 WHERE PRODUCT_NAME = (SELECT PRODUCT_NAME
+		 						 FROM PRODUCT
+		 						WHERE PRODUCT_NO = #{_parameter})
+	</select>
+	
+	<delete id="deleteProductDetails">
+		DELETE 
+		  FROM PRODUCT_DETAIL
+		 WHERE PRODUCT_NAME = (SELECT PRODUCT_NAME
+		 						 FROM PRODUCT
+		 						WHERE PRODUCT_NO = #{_parameter})
+	</delete>
+	
 	<delete id="deleteProduct">
 		DELETE
 		  FROM PRODUCT
-		 WHERE PRODUCT_NO = #{_parameter}
-	</delete>
-
-	<delete id="deleteProductDetail">
-		DELETE 
-		  FROM PRODUCT_DETAIL
 		 WHERE PRODUCT_NO = #{_parameter}
 	</delete>
 

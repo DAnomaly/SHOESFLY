@@ -16,6 +16,7 @@
 			fn_insertReview();
 		});
 		
+		// 상품리스트 가져오기
 		function fn_selectProduct() {
 			$.ajax({
 				url: 'selectProduct.do',
@@ -30,7 +31,7 @@
 			});
 		}
 		
-	
+		// 리뷰 등록 이벤트
 		function fn_insertReview() {
 			$('#insert_btn').click(function(){
 				if( $('#title').val() == '' ) {
@@ -47,7 +48,8 @@
 				}
 			});
 		}
-			
+		
+		// 파일 등록시 이미지 파일 확인
 		function fileCheck(obj) {
 			 var file_kind = obj.value.lastIndexOf('.');
 			 var file_name = obj.value.substring(file_kind+1,obj.length);
@@ -75,9 +77,8 @@
 	<jsp:include page="/resources/asset/jsp/header.jsp"/>
 	<section>
 		<h1>Insert Review</h1><br>
-		
 		<form  id="f" action="insertReview.do" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="loginId" value="user1">
+			<input type="hidden" name="loginId" value="${loginMember.memberId}">
 			<input type="text" id="title" name="title" placeholder="제목을 입력하세요.">
 			<select name="productName" id="productList">
 				<option value="">선택</option>

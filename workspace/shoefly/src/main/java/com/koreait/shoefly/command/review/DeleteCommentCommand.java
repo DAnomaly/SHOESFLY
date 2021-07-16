@@ -13,7 +13,7 @@ import com.koreait.shoefly.dao.ReviewDAO;
 import com.koreait.shoefly.dto.ReviewComment;
 
 @Component
-public class InsertCommentCommand implements ReviewCommand {
+public class DeleteCommentCommand implements ReviewCommand {
 
 	@Override
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {
@@ -21,22 +21,17 @@ public class InsertCommentCommand implements ReviewCommand {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		
-		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
-		String memberId = request.getParameter("memberId");
-		String context = request.getParameter("context");
-		
+		int reviewCommentNo = Integer.parseInt(request.getParameter("reviewCommentNo"));
+
 		ReviewComment reviewComment = new ReviewComment();
-		reviewComment.setReviewNo(reviewNo);
-		reviewComment.setMemberId(memberId);
-		reviewComment.setContext(context);
+		reviewComment.setReviewCommentNo(reviewCommentNo);
 		
 		ReviewDAO reviewDAO = sqlSession.getMapper(ReviewDAO.class);
 		
-		int result = reviewDAO.insertComment(reviewComment);
+		int result = reviewDAO.deleteComment(reviewComment);
 		
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("result", result);
-		
 		
 		return resultMap;
 	}
