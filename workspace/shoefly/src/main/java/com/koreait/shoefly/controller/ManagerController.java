@@ -16,15 +16,18 @@ import com.koreait.shoefly.command.manager.DeleteFaqManagerCommand;
 import com.koreait.shoefly.command.manager.DeleteMemberAddressManagerCommand;
 import com.koreait.shoefly.command.manager.DeleteMemberManagerCommand;
 import com.koreait.shoefly.command.manager.DeleteNoticeManagerCommand;
+import com.koreait.shoefly.command.manager.DeleteReviewCommand;
 import com.koreait.shoefly.command.manager.DeleteProductManagerCommand;
 import com.koreait.shoefly.command.manager.InsertOrUpdateFaqManagerCommand;
 import com.koreait.shoefly.command.manager.InsertOrUpdateMemberAddressManagerCommand;
 import com.koreait.shoefly.command.manager.InsertOrUpdateNoticeManagerCommand;
+import com.koreait.shoefly.command.manager.RestoreReviewCommand;
 import com.koreait.shoefly.command.manager.SelectListFaqManagerCommand;
 import com.koreait.shoefly.command.manager.SelectListMemberAddressManagerCommand;
 import com.koreait.shoefly.command.manager.SelectListMemberManagerCommand;
 import com.koreait.shoefly.command.manager.SelectListNoticeManagerCommand;
 import com.koreait.shoefly.command.manager.SelectListProductManagerCommand;
+import com.koreait.shoefly.command.manager.SelectListReviewCommand;
 import com.koreait.shoefly.command.manager.SelectOneFaqManagerCommand;
 import com.koreait.shoefly.command.manager.SelectOneMemberManagerCommand;
 import com.koreait.shoefly.command.manager.SelectOneNoticeManagerCommand;
@@ -64,6 +67,11 @@ public class ManagerController {
 	private SelectOneFaqManagerCommand selectOneFaqMangerCommand;
 	private InsertOrUpdateFaqManagerCommand insertOrUpdateFaqManagerCommand;
 	private DeleteFaqManagerCommand deleteFaqManagerCommand;
+	// REVIEW
+	private SelectListReviewCommand selectListReviewCommand;
+	private DeleteReviewCommand deleteReviewCommand;
+	private RestoreReviewCommand restoreReviewCommand;
+	
 	
 	// INDEX
 	@GetMapping(value= {"/","index.do"})
@@ -267,4 +275,28 @@ public class ManagerController {
 		return deleteFaqManagerCommand.execute(sqlSession, model);
 	}
 	
+	// REVIEW
+	@GetMapping("reviewListPage.do")
+	public String reviewListPage(HttpServletRequest request,
+								 Model model) {
+		model.addAttribute("request", request);
+		selectListReviewCommand.execute(sqlSession, model);
+		return "manager/reviewList";
+	}
+	
+	@GetMapping("deleteReview.do")
+	public String deleteReview(HttpServletRequest request,
+							   Model model) {
+		model.addAttribute("request", request);
+		deleteReviewCommand.execute(sqlSession, model);
+		return "redirect:reviewListPage.do";
+	}
+	
+	@GetMapping("restoreReview.do")
+	public String restoreReview(HttpServletRequest request,
+								Model model) {
+		model.addAttribute("request", request);
+		restoreReviewCommand.execute(sqlSession, model);
+		return "redirect:reviewListPage.do";
+	}
 }
