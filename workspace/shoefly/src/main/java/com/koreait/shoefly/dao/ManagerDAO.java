@@ -9,6 +9,7 @@ import com.koreait.shoefly.dto.MemberAddress;
 import com.koreait.shoefly.dto.Notice;
 import com.koreait.shoefly.dto.Product;
 import com.koreait.shoefly.dto.ProductDetail;
+import com.koreait.shoefly.dto.Review;
 
 public interface ManagerDAO {
 
@@ -47,4 +48,10 @@ public interface ManagerDAO {
 	public int insertFaq(Faq faq);
 	public int updateFaq(Faq faq);
 	public int deleteFaq(long faqNo);
+	
+	// REVIEW
+	public int countReview();
+	public List<Review> selectListReview(Map<String, Object> pageMap);
+	public int deleteReview(Review review);
+	public int restoreReview(Review review);
 }

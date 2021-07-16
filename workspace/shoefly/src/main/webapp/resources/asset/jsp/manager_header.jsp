@@ -25,6 +25,9 @@
 		<li><a href="faqListPage.do"><i class="fas fa-question-circle"></i><span>FAQ</span></a></li>
 	</ul>
 	<ul>
+		<li><a href="reviewListPage.do"><i class="fas fa-question-circle"></i><span>REVIEW</span></a></li>	
+	</ul>
+	<ul>
 		<li><a href="alertPage.do"><i class="fas fa-bell"></i><span>알림</span></a></li>
 	</ul>
 </nav>

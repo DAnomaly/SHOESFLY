@@ -51,21 +51,19 @@
 <body>
 	<jsp:include page="/resources/asset/jsp/header.jsp"/>
 	<section>
-	
+	${memberAddress.memberAddressNo}
 		<form name="form" id="form" method="post">		
 			<input type="hidden" id="memberAddressNo" name="memberAddressNo" value="${memberAddress.memberAddressNo}">
 			<div class="addr_info">
-				배송지<br>
+				<span>배송지</span><br>
 				<input type="text" id="name" name="name" value="${memberAddress.name}" placeholder="배송지명">
 			</div>
 			<div class="addr_info">
-				주소<br>
+				<span>주소</span><br>
 				<input type="text"  style="width:500px;" id="addr1"  name="addr1" value="${memberAddress.addr1}" readonly/>
-				<!-- <input type="text" id="addr1" name="addr1" value="${memberAddress.addr1}">  -->
 				<input type="button" id="addr_search_btn" value="주소찾기"><br><br>
-				상세주소<br>
+				<span>상세주소</span><br>
 				<input type="text"  style="width:500px;" id="addr2"  name="addr2" value="${memberAddress.addr2}" readonly/>				
-				<!-- <input type="text" id="addr2" name="addr2" value="${memberAddress.addr2}"> -->
 			</div>
 			<input type="button" id="update_address_btn" value="수정">
 		</form>
