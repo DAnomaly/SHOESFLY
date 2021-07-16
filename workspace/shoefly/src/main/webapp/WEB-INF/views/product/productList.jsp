@@ -24,7 +24,7 @@
 		});
 		//개별체크클릭시 전체체크, 전체해지
 		$('.brand').click(function(){
-			if($("input[name='brand']:checked").length == 3){
+			if($("input[name='brand']:checked").length == 4){
 	            $("#AllBrand").prop("checked", true);
 	        }else{
 	            $("#AllBrand").prop("checked", false);
@@ -45,7 +45,7 @@
 		*{
 			box-sizing: border-box;
 		}
-		.title{
+		.title, .paging{
 			width: 1080px;
 			margin: auto;
 			text-align: center;
@@ -78,10 +78,12 @@
 			overflow: hidden;
 		}
 		.outbox{
+			display: inline-block;
 			border: 1px solid black;
-			width: 33%;
+			width: 30%;
+			height: 300px;
 		}
-		.product_img{
+		img{
 			width: 100%;
 		}
 		.input_price{
@@ -92,20 +94,23 @@
 <body>
 	<jsp:include page="/resources/asset/jsp/header.jsp"/>
 	<section>
-		<div class="title">
-			<h1>SHOP</h1>
-		</div>
+		<h3 class="title">
+			<a href="listPage.do">SHOP</a>
+		</h3>
 		<div class="productList_container">
 			<div class="selectCondition">
-				<form id="f" method="post">
+				<form id="f">
 				<table>
 					<tbody>
 						<tr>
 							<td colspan="3"><input type="text" name="productName" id="productName" placeholder="상품명 검색"></td>
 						</tr>
 						<tr>
-							<td rowspan="2">브랜드</td>
-							<td><label for="AllBrand"><input type="checkbox" id="AllBrand" class="brand">전체</label></td>
+							<td rowspan="3">브랜드</td>
+							<td colspan="2"><label for="AllBrand"><input type="checkbox" id="AllBrand" class="brand">전체브랜드</label></td>
+						</tr>
+						<tr>
+							<td><label for="jordan"><input type="checkbox" name="brand" id="jordan" value="Jordan" class="brand">조던</label></td>
 							<td><label for="nike"><input type="checkbox" name="brand" id="nike" value="Nike" class="brand">나이키</label></td>
 						</tr>
 						<tr>
@@ -149,8 +154,8 @@
 				<c:forEach var="product" items="${list}">
 					<c:if test="${not empty list}">
 						<div class="outbox">
-							<div><a href="viewProductPage.do?productNo=${product.productNo}"><img alt="${product.image}" class="product_img" src="/shoefly/resources/archive/product/${product.image}"/></a></div>
-							<div class="text">
+							<div class="product_img"><a href="viewProductPage.do?productNo=${product.productNo}"><img alt="${product.image}" src="/shoefly/resources/archive/product/${product.image}"/></a></div>
+							<div class="product_text">
 								<a href="viewProductPage.do?productNo=${product.productNo}"><span class="text">${product.productName}</span></a><br>
 								<span class="text">${product.price}</span>원
 							</div>
@@ -159,6 +164,7 @@
 				</c:forEach>
 			</div>
 		</div>
+		<div class="paging">${paging}</div>
 	</section>
 	<jsp:include page="/resources/asset/jsp/footer.jsp"/>
 </body>

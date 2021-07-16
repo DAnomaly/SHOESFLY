@@ -35,15 +35,15 @@ public class ProductController {
 						   Model model) {
 		model.addAttribute("request", request);
 		selectAllListCommand.execute(sqlSession, model);
-		return "product/list";
+		return "product/productList";
 	}
 	//제품 선택 조건에 따른 조회(검색, 브랜드, 사이즈, 가격범위)
-	@PostMapping("selectCondition.do")
+	@GetMapping("selectCondition.do")
 	public String selectCondition(HttpServletRequest request,
 								  Model model) {
 		model.addAttribute("request", request);
 		selectConditionCommand.execute(sqlSession, model);
-		return "product/list";
+		return "product/productList";
 	}
 	
 	//제품 상세 페이지로 이동
