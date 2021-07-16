@@ -37,4 +37,6 @@ public interface MemberDAO {
 	
 	public int deleteMemberAddress(MemberAddress memberAddress);
 
+	public int insertAddress(MemberAddress memberAddress);
+	
 }

@@ -20,6 +20,7 @@ import com.koreait.shoefly.command.member.FindIdCommand;
 import com.koreait.shoefly.command.member.FindPwCommand;
 import com.koreait.shoefly.command.member.IdCheckCommand;
 import com.koreait.shoefly.command.member.IdExistsCommand;
+import com.koreait.shoefly.command.member.InsertAddressCommand;
 import com.koreait.shoefly.command.member.JoinCommand;
 import com.koreait.shoefly.command.member.LoginCommand;
 import com.koreait.shoefly.command.member.LogoutCommand;
@@ -55,6 +56,7 @@ public class MemberController {
 	private UpdateAddressListCommand updateAddressListCommand;
 	private UpdateAddressCommand updateAddressCommand;
 	private DeleteAddressCommand deleteAddressCommand;
+	private InsertAddressCommand insertAddressCommand;
 	
 	// 페이지 이동
 	@GetMapping("loginPage.do")
@@ -247,6 +249,15 @@ public class MemberController {
 								Model model) {
 		model.addAttribute("request", request);
 		deleteAddressCommand.execute(sqlSession, model);
+		return "redirect:myPage.do";
+	}
+	
+	// 주소 추가
+	@PostMapping("insertAddress.do")
+	public String insertAddress(HttpServletRequest request,
+								Model model) {
+		model.addAttribute("request", request);
+		insertAddressCommand.execute(sqlSession, model);
 		return "redirect:myPage.do";
 	}
 }

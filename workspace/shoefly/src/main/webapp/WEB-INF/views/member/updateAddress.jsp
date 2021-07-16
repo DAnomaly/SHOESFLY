@@ -12,8 +12,24 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script>
 		$(document).ready(function(){
+			fn_findAddress();
 			fn_updateAddress();
 		})
+		
+		function fn_findAddress() {
+			$('#addr_search_btn').click(function(){
+				goPopup();
+			})
+		} 
+		
+		function goPopup(){
+			var pop = window.open("/shoefly/resources/asset/jsp/jusoPopup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+		}
+		
+		function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
+			document.form.addr1.value = roadAddrPart1;
+			document.form.addr2.value = addrDetail;
+		}
 		
 		function fn_updateAddress() {
 			$('#update_address_btn').click(function(){
@@ -25,8 +41,8 @@
 					return false;
 				}
 			
-				$('#f').attr('action', 'updateAddress.do');
-				$('#f').submit();
+				$('#form').attr('action', 'updateAddress.do');
+				$('#form').submit();
 				
 			})
 		}
@@ -36,7 +52,7 @@
 	<jsp:include page="/resources/asset/jsp/header.jsp"/>
 	<section>
 	
-		<form id="f" method="post">		
+		<form name="form" id="form" method="post">		
 			<input type="hidden" id="memberAddressNo" name="memberAddressNo" value="${memberAddress.memberAddressNo}">
 			<div class="addr_info">
 				배송지<br>
@@ -44,9 +60,12 @@
 			</div>
 			<div class="addr_info">
 				주소<br>
-				<input type="text" id="addr1" name="addr1" value="${memberAddress.addr1}">
+				<input type="text"  style="width:500px;" id="addr1"  name="addr1" value="${memberAddress.addr1}" readonly/>
+				<!-- <input type="text" id="addr1" name="addr1" value="${memberAddress.addr1}">  -->
 				<input type="button" id="addr_search_btn" value="주소찾기"><br><br>
-				<input type="text" id="addr2" name="addr2" value="${memberAddress.addr2}">
+				상세주소<br>
+				<input type="text"  style="width:500px;" id="addr2"  name="addr2" value="${memberAddress.addr2}" readonly/>				
+				<!-- <input type="text" id="addr2" name="addr2" value="${memberAddress.addr2}"> -->
 			</div>
 			<input type="button" id="update_address_btn" value="수정">
 		</form>

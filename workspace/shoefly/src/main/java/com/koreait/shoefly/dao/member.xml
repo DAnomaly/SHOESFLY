@@ -111,5 +111,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		   AND MEMBER_ADDRESS_NO = #{memberAddressNo}  
 	</update>
 	
+	<!-- 주소 추가 -->
+	<insert id="insertAddress">
+		INSERT INTO MEMBER_ADDRESS
+		VALUES (MEMBER_ADDRESS_SEQ.NEXTVAL, #{memberNo}, #{name}, #{addr1}, #{addr2}, 0)
+	</insert>
 	
 </mapper>
