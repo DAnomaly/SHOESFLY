@@ -45,7 +45,7 @@ public class SelectReviewListCommand implements ReviewCommand {
 			
 			String path = "reviewListPage.do";
 			if (searchMap.get("column") != null && searchMap.get("query") != null) {
-				path += "?column=" + (String)searchMap.get("column") + "&query=" + (String)searchMap.get("query");
+				path += "?column=" + searchMap.get("column").toString() + "&query=" + searchMap.get("query").toString();
 			}
 			String paging = PagingUtils.getPaging(path, page);
 			

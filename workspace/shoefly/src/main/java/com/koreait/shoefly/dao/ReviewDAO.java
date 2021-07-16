@@ -21,11 +21,22 @@ public interface ReviewDAO {
 	
 	public int updateReview(String title, String content, String productName, String filename, int reviewNo);
 	
+	public int deleteReview(int reviewNo);
+	
+	public int updateHit(int reviewNo);
+	
 	
 	// ================= review comment ========================================================================
 	
-	public List<ReviewComment> selectCommentList(int reviewNo);
+	public int countReviewComment(int reviewNo);
 	
-	public int insertComment(int reviewNo, String memberId, String context);
+	public List<ReviewComment> selectCommentList(Map<String, Object> map);
+	
+	public int insertComment(ReviewComment reviewComment);
+	
+	public int updateComment(ReviewComment reviewComment);
+
+	public int deleteComment(ReviewComment reviewComment);
+	
 	
 }

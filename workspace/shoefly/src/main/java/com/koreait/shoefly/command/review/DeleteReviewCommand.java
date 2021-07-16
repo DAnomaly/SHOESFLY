@@ -1,6 +1,5 @@
 package com.koreait.shoefly.command.review;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,10 +9,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
 import com.koreait.shoefly.dao.ReviewDAO;
-import com.koreait.shoefly.dto.ReviewComment;
 
 @Component
-public class InsertCommentCommand implements ReviewCommand {
+public class DeleteReviewCommand implements ReviewCommand {
 
 	@Override
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {
@@ -22,23 +20,13 @@ public class InsertCommentCommand implements ReviewCommand {
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		
 		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
-		String memberId = request.getParameter("memberId");
-		String context = request.getParameter("context");
-		
-		ReviewComment reviewComment = new ReviewComment();
-		reviewComment.setReviewNo(reviewNo);
-		reviewComment.setMemberId(memberId);
-		reviewComment.setContext(context);
 		
 		ReviewDAO reviewDAO = sqlSession.getMapper(ReviewDAO.class);
 		
-		int result = reviewDAO.insertComment(reviewComment);
-		
-		Map<String, Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("result", result);
+		reviewDAO.deleteReview(reviewNo);
 		
 		
-		return resultMap;
+		return null;
 	}
 
 }
