@@ -13,30 +13,15 @@
 	<script>
 		$(document).ready(function(){
 			fn_updateReview();
-			fn_selectCommentList();
+			fn_deleteReview();
+			
 			fn_insertComment();
+			fn_selectCommentList();
+			fn_updateCommentPage();
 			fn_updateComment();
-		});
-		
-		// 댓글 리스트 보여주기
-		function fn_commentList(comment) {
-			var tr = $('<tr>').appendTo('#list');
-			if('${loginMember.memberId}' == comment.memberId) // 로그인유저와 댓글작성자가 같을때
-				var td = $('<td>').html(comment.memberId + '<br>' + comment.context + '<input type="button" id="updateComment_btn" value="수정"> <input type="button" id="deleteComment_btn" value="삭제">' ).appendTo(tr);
-			else {
-				var td = $('<td>').html(comment.memberId + '<br>' + comment.context).appendTo(tr);
-			}
-		}
-		
-		// 댓글 수정 이벤트
-		function fn_updateComment() {
-			$('section').on('click', '#updateComment_btn', function(){
-				location.href = 'updateCommentPage.do';
-			});
-		}
-		
-		
-		
+			fn_deleteComment();
+			fn_cancel();
+		});	
 		// 리뷰 수정 이벤트
 		function fn_updateReview() {
 			$('#update_btn').click(function(){
@@ -44,6 +29,40 @@
 				$('#f').submit();
 			});
 		}
+		
+		// 리뷰 삭제 이벤트
+		function fn_deleteReview() {
+			$('#delete_btn').click(function() {
+				if (confirm('삭제하시겠습니까?')) {
+					$('#f').attr('action', 'deleteReview.do');
+					$('#f').submit();
+				}
+			});
+		}
+		
+		// 댓글 등록 이벤트
+		function fn_insertComment() {
+			$('#insertComment_btn').click(function(){
+				if ( ${loginMember.memberId == null} ) {
+					location.href='/shoefly/member/loginPage.do';
+				}else if ( $('#context').val() == ''){
+					alert('댓글을 입력하세요.');
+				}else {
+					 $.ajax({
+						url: 'insertComment.do',
+						type: 'POST',
+						data: $('#f2').serialize(),
+						dataType: 'json',
+						success: function(resultMap){
+							location.reload();
+						}
+					}); 
+				}
+			});
+		} 
+		
+		
+		
 		
 		// 댓글 리스트, 페이징
 		function fn_selectCommentList() {
@@ -68,30 +87,86 @@
 						
 					}
 				}
+			}); 
+		}
+		
+		// 댓글 리스트 보여주기
+		function fn_commentList(comment) {
+		    var form = $('<form>').appendTo('#commentList');
+		    if ('${loginMember.memberId}' == comment.memberId) {
+		    	var span1 = $('<span id="review_comment">').html( comment.memberId + '<br>' + comment.context + '<input type="hidden" name="reviewCommentNo" value="' + comment.reviewCommentNo + '"> <input type="button" id="updateComment_btn" value="수정"> <input type="button" id="deleteComment_btn" value="삭제">' )
+		    	.appendTo(form);
+		    	
+		    	var span2 = $('<span id="update_comment" style="display:none">').html( comment.memberId + '<br> <input type="hidden" name="reviewCommentNo" value="' + comment.reviewCommentNo + '"> <input type="text" name="context" value="' + comment.context + '"> <input type="button" id="real_updateComment_btn" value="수정"> <input type="button" id="cancel_btn" value="취소">' )
+		    	.appendTo(form);
+		    
+			}else {
+				var span = $('<span>').html(comment.memberId + '<br>' + comment.context).appendTo(form);
+			}
+		}
+		
+		// 댓글 수정 클릭 이벤트
+		function fn_updateCommentPage() {
+			$('section').on('click', '#updateComment_btn', function(){
+				$(this).parent().hide();
+				$(this).parent().next().attr('style', 'false');
+			});
+		}
+
+		
+		// 댓글 수정 이벤트
+		function fn_updateComment() {
+			$('section').on('click', '#real_updateComment_btn', function(){
+				var f = $(this).parent().parent();
+				$.ajax({
+					url: 'updateComment.do',
+					type: 'POST',
+					data: f.serialize(),
+					dataType: 'json',
+					success: function(resultMap) {
+						location.reload();
+					}
+				});
+			
 			});
 		}
 		
-		// 댓글 등록 이벤트
-		function fn_insertComment() {
-			$('#insertComment_btn').click(function(){
-				if ( ${loginMember.memberId == null} ) {
-					location.href='/shoefly/member/loginPage.do';
-				}else if ( $('#context').val() == ''){
-					alert('댓글을 입력하세요.');
-				}else {
-					 $.ajax({
-						url: 'insertComment.do',
+		// 댓글 삭제 이벤트
+		function fn_deleteComment() {
+			$('section').on('click', '#deleteComment_btn', function(){
+				var f = $(this).parent().parent();
+				if ( confirm('삭제하시겠습니까?') ) {
+					$.ajax({
+						url: 'deleteComment.do',
 						type: 'POST',
-						data: $('#f2').serialize(),
+						data: f.serialize(),
 						dataType: 'json',
-						success: function(resultMap){
+						success: function(resultMap) {
 							location.reload();
 						}
-					}); 
+					});
 				}
 			});
-			
-		} 
+		}
+		
+		
+		
+		
+		
+		
+		// 댓글 수정 취소 클릭 이벤트
+		function fn_cancel() {
+			$('section').on('click', '#cancel_btn', function(){
+				$(this).parent().hide();				
+				$(this).parent().prev().attr('style', 'false');
+			})
+		}
+		
+		
+		
+		
+		
+		
 	</script>
 	
 </head>
@@ -135,12 +210,8 @@
 			<input type="button" value="댓글 등록" id="insertComment_btn">
 		</form>
 		<hr>
-		<table border="1">
-			<tbody id="list">
-			</tbody>
-		</table>
-		<div class="paging">
-		</div>
+		<div id="commentList"></div>
+		<div class="paging"></div>
 	</section>
 	<jsp:include page="/resources/asset/jsp/footer.jsp"/>
 </body>

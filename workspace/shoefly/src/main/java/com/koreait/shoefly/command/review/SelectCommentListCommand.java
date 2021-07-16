@@ -45,7 +45,6 @@ public class SelectCommentListCommand implements ReviewCommand {
 		
 		Map<String, Object> resultMap = new HashMap<>();
 
-		model.addAttribute("paging", paging);
 		
 		if (commentList.size() == 0) {
 			resultMap.put("status", 500);
