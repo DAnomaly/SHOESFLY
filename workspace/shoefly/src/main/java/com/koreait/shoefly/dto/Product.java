@@ -19,12 +19,12 @@ public class Product {
     private String brand;
 
     // 정가 
-    private Long price;
+    private long price;
 
     // 이미지 
     private String image;
 
     // 상태 
-    private Integer state;
+    private int state;
     
 }

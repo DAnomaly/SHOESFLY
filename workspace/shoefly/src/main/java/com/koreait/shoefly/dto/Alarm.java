@@ -10,7 +10,7 @@ import lombok.ToString;
 public class Alarm {
 	
 	// 알람 일련번호 
-    private int alarmNo;
+    private long alarmNo;
 
     // 아이디 
     private String memberId;
@@ -19,6 +19,6 @@ public class Alarm {
     private String content;
 
     // 알림 읽음 여부 
-    private Integer state;
+    private int state;
     
 }

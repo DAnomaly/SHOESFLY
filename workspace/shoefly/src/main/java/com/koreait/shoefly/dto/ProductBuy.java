@@ -12,19 +12,19 @@ import lombok.ToString;
 public class ProductBuy {
 
 	// 구매 일련번호 
-    private int productBuyNo;
+    private long productBuyNo;
 
     // 아이디 
     private String memberId;
 
     // 상품 일련번호 
-    private int productDetailNo;
+    private long productDetailNo;
 
     // 구매가격 
-    private Long price;
+    private long price;
 
     // 구매자주소 
-    private int memberAddressNo;
+    private long memberAddressNo;
 
     // 구매등록일자 
     private Date postdate;
@@ -33,6 +33,6 @@ public class ProductBuy {
     private Date buydate;
 
     // 등록/취소/구매완료 
-    private Integer state;
+    private int state;
     
 }
