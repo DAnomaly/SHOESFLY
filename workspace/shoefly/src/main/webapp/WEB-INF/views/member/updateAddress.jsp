@@ -49,7 +49,7 @@
 	</script>
 </head>
 <body>
-	<jsp:include page="/resources/asset/jsp/header.jsp"/>
+	<jsp:include page="../common/header.jsp"/>
 	<section>
 	${memberAddress.memberAddressNo}
 		<form name="form" id="form" method="post">		
@@ -69,6 +69,6 @@
 		</form>
 	
 	</section>
-	<jsp:include page="/resources/asset/jsp/footer.jsp"/>
+	<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>

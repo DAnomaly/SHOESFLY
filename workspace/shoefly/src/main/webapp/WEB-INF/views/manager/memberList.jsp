@@ -13,8 +13,8 @@
 	<script>
 		$(document).ready(function(){
 			pageLoadEvent();
-			$('#calumn').change(function(){
-				if($('#calumn').val() == 'REGDATE'){
+			$('#column').change(function(){
+				if($('#column').val() == 'REGDATE'){
 					$('#default_search').hide();
 					$('#regdate_search').show();
 				} else {
@@ -30,7 +30,7 @@
 			$.ajax({
 				url: 'memberList.do',
 				type: 'POST',
-				data: 'order=' + order + '&isDesc=' + isDesc + '&calumn=' + $('#calumn').val() + '&query=' + $('#query').val()
+				data: 'order=' + order + '&isDesc=' + isDesc + '&column=' + $('#column').val() + '&query=' + $('#query').val()
 					+ '&page=' + page + '&startDate=' + $('#startDate').val() + '&endDate=' + $('#endDate').val(),
 				dataType: 'json',
 				success: function(data) {
@@ -94,11 +94,11 @@
 	</script>
 </head>
 <body>
-	<jsp:include page="/resources/asset/jsp/manager_header.jsp"></jsp:include>
+	<jsp:include page="../common/manager_header.jsp"></jsp:include>
 	<section>
 		<h3><a href="memberListPage.do">회원관리</a></h3>
 		<div class="search">
-			<select id="calumn">
+			<select id="column">
 				<option value="MEMBER_NO">회원번호</option>
 				<option value="MEMBER_ID">아이디</option>
 				<option value="NAME">이름</option>

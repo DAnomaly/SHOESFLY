@@ -12,8 +12,8 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script>
 		$(document).ready(function(){
-			$('#calumn').change(function(){
-				if($('#calumn').val() == 'POSTDATE'){
+			$('#column').change(function(){
+				if($('#column').val() == 'POSTDATE'){
 					$('#default_search').hide();
 					$('#date_search').show();
 				} else {
@@ -31,14 +31,14 @@
 	</script>
 </head>
 <body>
-	<jsp:include page="/resources/asset/jsp/manager_header.jsp"></jsp:include>
+	<jsp:include page="../common/manager_header.jsp"></jsp:include>
 	<section>
 		<h3 class="title">
 			<a href="noticeListPage.do">NOTICE</a>
 		</h3>
 		<div class="search">
 			<form method="get" autocomplete="off">
-				<select id="calumn" name="calumn">
+				<select id="column" name="column">
 					<option value="ALL">제목/내용</option>
 					<option value="TITLE">제목</option>
 					<option value="CONTENT">내용</option>

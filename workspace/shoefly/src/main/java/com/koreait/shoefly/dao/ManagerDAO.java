@@ -19,9 +19,6 @@ public interface ManagerDAO {
 	public Member selectOneMember(long memberNo);
 	public int deleteMember(Map<String, Object> map);
 	public List<MemberAddress> selectListMemberAddress(Long memberNo);
-	public int insertMemberAddress(MemberAddress memberAddress);
-	public int updateMemberAddress(MemberAddress memberAddress);
-	public int deleteMemberAddress(long memberAddressNo);
 	public int updateMemberPw(Member member);
 	
 	// PRODUCT

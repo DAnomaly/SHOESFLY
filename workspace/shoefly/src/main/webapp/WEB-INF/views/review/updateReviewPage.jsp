@@ -69,7 +69,7 @@
 	</script>
 </head>
 <body>
-	<jsp:include page="/resources/asset/jsp/header.jsp"/>
+	<jsp:include page="../common/header.jsp"/>
 	<section>
 		<h1>Update Review</h1><br>
 		
@@ -89,6 +89,6 @@
 	
 	
 	</section>
-	<jsp:include page="/resources/asset/jsp/footer.jsp"/>
+	<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>

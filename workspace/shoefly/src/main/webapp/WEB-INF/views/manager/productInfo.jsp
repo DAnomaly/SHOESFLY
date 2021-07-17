@@ -36,7 +36,7 @@
 	</script>
 </head>
 <body>
-	<jsp:include page="/resources/asset/jsp/manager_header.jsp"></jsp:include>
+	<jsp:include page="../common/manager_header.jsp"></jsp:include>
 	<section>
 		<div class="right">
 			<img alt="${product.image}" src="/shoefly/resources/archive/product/${product.image}"><br>

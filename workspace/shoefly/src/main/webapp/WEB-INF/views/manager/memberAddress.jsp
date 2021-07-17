@@ -16,47 +16,9 @@
 		
 		function select_change(obj) {
 			var addr_id = '#addr_' + $(obj).val();
-			$('.addr_form').hide();
+			$('.addr_div').hide();
 			$(addr_id).show();
 		}
-		function del_btn(no) {
-			if(confirm('정말로 삭제하시겠습니까?')){
-				location.href='deleteMemberAddress.do?no=' + no + '&memberNo=' + $('#memberNo').val();
-			}
-		}
-		
-		// yuhan 주소 추가작업
-		function fn_findAddress() {
-			$('#addr_search_btn').click(function(){
-				goPopup();
-			})
-		} 
-		
-		function goPopup(){
-			var pop = window.open("/shoefly/resources/asset/jsp/jusoPopup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
-		}
-		
-		function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
-			document.form.addr1.value = roadAddrPart1;
-			document.form.addr2.value = addrDetail;
-		}
-		
-		function fn_updateAddress() {
-			$('#update_address_btn').click(function(){
-				if($('#name').val() == '') {
-					alert('배송지를 입력해주세요.');
-					return false;
-				} else if('${memberAddress.name}' == $('#name').val() && '${memberAddress.addr1}' == $('#addr1').val() && '${memberAddress.addr2}' == $('#addr2').val()) {
-					alert('변경할 내용이 없습니다.');
-					return false;
-				}
-			
-				$('#form').attr('action', 'updateMemberAddress.do');
-				$('#form').submit();
-				
-			})
-		}
-		
 	</script>
 </head>
 <body>
@@ -68,39 +30,25 @@
 		<c:forEach items="${list}" var="address">
 			<option value="${address.memberAddressNo}">${address.name}</option>
 		</c:forEach>
-			<option value="add">추가</option>
 		</select>
 	</div>
+	<div id="addr_" class="addr_div">
+		<span>주소명</span>
+		<input type="text" class="no_blank" name="name" readonly/><br>
+		<span>주소</span>
+		<input type="text" class="no_blank" id="addr1" name="addr1" readonly/><br>
+		<span>상세주소</span>
+		<input type="text" id="addr2" name="addr2" readonly/><br>
+	</div>
 	<c:forEach items="${list}" var="address">
-	<form name="form" id="addr_${address.memberAddressNo}" class="addr_form" onsubmit="fn_submit(this);" method="post" style="display: none;">
-		<input type="hidden" name="memberNo" value="${param.memberNo}"/>
-		<input type="hidden" name="no" value="${address.memberAddressNo}"/>
+	<div id="addr_${address.memberAddressNo}" class="addr_div" style="display: none;">
 		<span>주소명</span>
-		<input type="text" class="no_blank" name="name" value="${address.name}"/><br>
+		<input type="text" class="no_blank" name="name" value="${address.name}" readonly/><br>
 		<span>주소</span>
-		<input type="text" class="no_blank" id="addr1" name="addr1" value="${address.addr1}"/>
-		<input type="button" id="addr_search_btn" value="주소찾기"><br>
+		<input type="text" class="no_blank" id="addr1" name="addr1" value="${address.addr1}" readonly/><br>
 		<span>상세주소</span>
-		<input type="text" id="addr2" name="addr2" value="${address.addr2}"/><br>
-		<div>
-			<input type="button" value="삭제하기" onclick="del_btn(${address.memberAddressNo});"/>
-			<!-- <input type="submit" value="수정하기"/> -->
-			<input type="button" id="update_address_btn" value="수정하기">
-		</div>
-	</form>
+		<input type="text" id="addr2" name="addr2" value="${address.addr2}" readonly/><br>
+	</div>
 	</c:forEach>
-	<form name="form" id="addr_add" class="addr_form" onsubmit="fn_submit(this);" action="updateMemberAddress.do" method="post" style="display: none;">
-		<input type="hidden" name="memberNo" value="${param.memberNo}"/>
-		<input type="hidden" name="no" value="0"/>
-		<span>주소명</span>
-		<input type="text" class="no_blank" name="name" value="${address.name}"/><br>
-		<span>주소</span>
-		<input type="text" class="no_blank" id="addr1" name="addr1" value="${address.addr1}"/><br>
-		<span>상세주소</span>
-		<input type="text" id="addr2" name="addr2" value="${address.addr2}"/><br>
-		<div>
-			<input type="submit" value="추가하기"/>
-		</div>
-	</form>
 </body>
 </html>

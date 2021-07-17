@@ -74,7 +74,7 @@
 	</script>
 </head>
 <body>
-	<jsp:include page="/resources/asset/jsp/header.jsp"/>
+	<jsp:include page="../common/header.jsp"/>
 	<section>
 		<h1>Insert Review</h1><br>
 		<form  id="f" action="insertReview.do" method="post" enctype="multipart/form-data">
@@ -90,6 +90,6 @@
 		</form>
 	
 	</section>
-	<jsp:include page="/resources/asset/jsp/footer.jsp"/>
+	<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>

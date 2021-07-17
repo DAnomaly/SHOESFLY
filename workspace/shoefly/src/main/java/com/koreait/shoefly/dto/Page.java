@@ -3,7 +3,7 @@ package com.koreait.shoefly.dto;
 import com.koreait.shoefly.util.PagingUtils;
 
 import lombok.Data;
-import lombok.ToString;
+import lombok.NoArgsConstructor;
 
 /**
  * Paging 작업을 위한 DTO
@@ -12,7 +12,7 @@ import lombok.ToString;
  * @author 박세환
  */
 @Data
-@ToString
+@NoArgsConstructor
 public class Page {
 	private int page;
 	private int totalRecord;

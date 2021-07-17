@@ -26,7 +26,7 @@ public class SelectListMemberManagerCommand implements ManagerCommand {
 		
 		String order = request.getParameter("order"); // 정렬
 		String isDesc = request.getParameter("isDesc"); // 역순인가
-		String calumn = request.getParameter("calumn"); // 검색 기준
+		String column = request.getParameter("column"); // 검색 기준
 		String query = request.getParameter("query"); // 검색어
 		String strPage = request.getParameter("page"); 
 		if(strPage == null || strPage.isEmpty())
@@ -38,7 +38,7 @@ public class SelectListMemberManagerCommand implements ManagerCommand {
 		Map<String, Object> searchMap = new HashMap<>();
 		searchMap.put("order", order);
 		searchMap.put("isDesc", isDesc);
-		searchMap.put("calumn", calumn);
+		searchMap.put("column", column);
 		searchMap.put("query", query);
 		searchMap.put("nowpage", nowpage);
 		searchMap.put("startDate", startDate);

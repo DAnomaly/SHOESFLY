@@ -12,7 +12,7 @@ import com.koreait.shoefly.dao.ManagerDAO;
 import com.koreait.shoefly.dto.Review;
 
 @Component
-public class RestoreReviewCommand implements ManagerCommand {
+public class RestoreReviewManagerCommand implements ManagerCommand {
 
 	@Override
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {

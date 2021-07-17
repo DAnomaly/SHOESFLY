@@ -23,7 +23,7 @@
 		} 
 		
 		function goPopup(){
-			var pop = window.open("/shoefly/resources/asset/jsp/jusoPopup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+			var pop = window.open("jusoPopup.do","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
 		}
 		
 		function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
@@ -45,7 +45,7 @@
 	</script>
 </head>
 <body>
-	<jsp:include page="/resources/asset/jsp/header.jsp"/>
+	<jsp:include page="../common/header.jsp"/>
 	<section>
 	
 		<form name="form" id="form" method="post">		
@@ -64,6 +64,6 @@
 		</form>
 	
 	</section>
-	<jsp:include page="/resources/asset/jsp/footer.jsp"/>
+	<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>

@@ -234,6 +234,17 @@ public class MemberController {
 		return "member/updateAddress";
 	}
 	
+	/**
+	 * 주소 팝업창 띄우기
+	 *
+	 * @author 박세환
+	 * @return
+	 */
+	@RequestMapping("jusoPopup.do")
+	public String jsuoPopup() {
+		return "common/jusoPopup";
+	}
+	
 	// 주소 수정
 	@PostMapping("updateAddress.do")
 	public String updateAddress(HttpServletRequest request,

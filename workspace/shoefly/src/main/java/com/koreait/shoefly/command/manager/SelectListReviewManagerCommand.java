@@ -16,7 +16,7 @@ import com.koreait.shoefly.dto.Review;
 import com.koreait.shoefly.util.PagingUtils;
 
 @Component
-public class SelectListReviewCommand implements ManagerCommand {
+public class SelectListReviewManagerCommand implements ManagerCommand {
 
 	private int recordPerPage = 5;
 	private int pagePerBlock = 5;

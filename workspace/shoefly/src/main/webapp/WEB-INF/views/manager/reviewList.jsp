@@ -26,7 +26,7 @@
 	</script>
 </head>
 <body>
-	<jsp:include page="/resources/asset/jsp/manager_header.jsp"></jsp:include>
+	<jsp:include page="../common/manager_header.jsp"></jsp:include>
 	<section>
 		<div class="review_box">
 			<table border="1">

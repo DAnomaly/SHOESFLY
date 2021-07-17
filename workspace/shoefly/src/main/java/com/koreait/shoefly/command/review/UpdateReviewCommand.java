@@ -48,7 +48,7 @@ public class UpdateReviewCommand implements ReviewCommand {
 			String originalFilename = file.getOriginalFilename();
 			
 			String extension = originalFilename.substring(originalFilename.lastIndexOf(".") + 1);
-			String filename = originalFilename.substring(0, originalFilename.lastIndexOf("."));
+			String filename = "sf_review_" + System.currentTimeMillis();
 			String uploadFilename = filename + "." + extension;
 			
 			

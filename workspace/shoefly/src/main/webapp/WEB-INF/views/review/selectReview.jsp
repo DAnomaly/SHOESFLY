@@ -171,7 +171,7 @@
 	
 </head>
 <body>
-	<jsp:include page="/resources/asset/jsp/header.jsp"/>
+	<jsp:include page="../common/header.jsp"/>
 	<section>
 		<h1> 리뷰 보기 </h1><br><br>
 		<!-- 로그인아이디 != 작성자아이디 -->
@@ -213,6 +213,6 @@
 		<div id="commentList"></div>
 		<div class="paging"></div>
 	</section>
-	<jsp:include page="/resources/asset/jsp/footer.jsp"/>
+	<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>

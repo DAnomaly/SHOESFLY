@@ -45,7 +45,7 @@
 	</script>
 </head>
 <body>
-	<jsp:include page="/resources/asset/jsp/header.jsp"/>
+	<jsp:include page="../common/header.jsp"/>
 	<section>
 	
 		<div class="pageTitle">
@@ -76,6 +76,6 @@
    		<a href="">구매내역</a>
    		<a href="">판매내역</a>
 	</section>
-	<jsp:include page="/resources/asset/jsp/footer.jsp"/>
+	<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>

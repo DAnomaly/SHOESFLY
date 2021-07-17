@@ -11,6 +11,6 @@
 	<title>SHOEFLY : 관리자</title>
 </head>
 <body>
-	<jsp:include page="/resources/asset/jsp/manager_header.jsp"></jsp:include>
+	<jsp:include page="../common/manager_header.jsp"></jsp:include>
 </body>
 </html>

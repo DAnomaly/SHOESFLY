@@ -11,10 +11,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="countMember" resultType="int" parameterType="java.util.Map">
 		SELECT COUNT(*)
 		  FROM MEMBER
-	<if test="query != ''.toString and calumn != 'REGDATE'.toString">
-		 WHERE ${calumn} LIKE '%' || #{query} || '%'
+	<if test="query != ''.toString and column != 'REGDATE'.toString">
+		 WHERE ${column} LIKE '%' || #{query} || '%'
 	</if>
-	<if test="calumn == 'REGDATE'.toString and startDate != ''.toString and endDate != ''.toString">
+	<if test="column == 'REGDATE'.toString and startDate != ''.toString and endDate != ''.toString">
 		 WHERE REGDATE BETWEEN #{startDate} AND #{endDate}
 	</if>
 	</select>
@@ -26,10 +26,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				  FROM (
 						SELECT MEMBER_NO, MEMBER_ID, PW, NAME, EMAIL, REGDATE, MANAGER, STATE
 						  FROM MEMBER
-						<if test="query != ''.toString and calumn != 'REGDATE'.toString">
-						 WHERE ${calumn} LIKE '%' || #{query} || '%'
+						<if test="query != ''.toString and column != 'REGDATE'.toString">
+						 WHERE ${column} LIKE '%' || #{query} || '%'
 						</if>
-						<if test="calumn == 'REGDATE'.toString and startDate != ''.toString and endDate != ''.toString">
+						<if test="column == 'REGDATE'.toString and startDate != ''.toString and endDate != ''.toString">
 						 WHERE REGDATE BETWEEN #{startDate} AND #{endDate}
 						</if>
 						 ORDER BY ${order}
@@ -60,25 +60,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		   AND STATE = 0
 	</select>
 	
-	<insert id="insertMemberAddress" parameterType="com.koreait.shoefly.dto.MemberAddress">
-		INSERT INTO MEMBER_ADDRESS VALUES
-			   (MEMBER_ADDRESS_SEQ.NEXTVAL, #{memberNo}, #{name}, #{addr1}, #{addr2}, 0)
-	</insert>
-	
-	<update id="updateMemberAddress" parameterType="com.koreait.shoefly.dto.MemberAddress">
-		UPDATE MEMBER_ADDRESS
-		   SET NAME = #{name}
-		     , ADDR1 = #{addr1}
-		     , ADDR2 = #{addr2}
-		 WHERE MEMBER_ADDRESS_NO = #{memberAddressNo}
-	</update>
-	
-	<update id="deleteMemberAddress">
-		UPDATE MEMBER_ADDRESS
-		   SET STATE = -1
-		 WHERE MEMBER_ADDRESS_NO = #{_parameter}
-	</update>
-
 	<update id="updateMemberPw" parameterType="com.koreait.shoefly.dto.Member">
 		UPDATE MEMBER
 		   SET PW = #{pw}
@@ -211,15 +192,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  FROM NOTICE
 	   <if test="query != null">
 	   <choose>
-	   		<when test="calumn == 'ALL'.toString">
+	   		<when test="column == 'ALL'.toString">
 		 WHERE TITLE LIKE '%' || #{query} || '%'
             OR CONTENT LIKE '%' || #{query} || '%'
             </when>
-            <when test="calumn == 'POSTDATE'.toString">
+            <when test="column == 'POSTDATE'.toString">
 		 WHERE POSTDATE BETWEEN #{startDate} AND #{endDate}
             </when>
             <otherwise>
-         WHERE ${calumn} LIKE '%' || #{query} || '%'
+         WHERE ${column} LIKE '%' || #{query} || '%'
             </otherwise>
 	   </choose>
 	   </if> 
@@ -234,15 +215,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		                  FROM NOTICE
 	                   <if test="query != null">
 	                   <choose>
-					   		<when test="calumn == 'ALL'.toString">
+					   		<when test="column == 'ALL'.toString">
 						 WHERE TITLE LIKE '%' || #{query} || '%'
 				            OR CONTENT LIKE '%' || #{query} || '%'
 				            </when>
-				            <when test="calumn == 'POSTDATE'.toString">
+				            <when test="column == 'POSTDATE'.toString">
 						 WHERE POSTDATE BETWEEN #{startDate} AND #{endDate}
 				            </when>
 				            <otherwise>
-				         WHERE ${calumn} LIKE '%' || #{query} || '%'
+				         WHERE ${column} LIKE '%' || #{query} || '%'
 				            </otherwise>
 					   </choose>
 	                   </if> 
@@ -257,15 +238,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  FROM FAQ
 	   <if test="query != null">
        <choose>
-	   		<when test="calumn == 'ALL'.toString">
+	   		<when test="column == 'ALL'.toString">
 		 WHERE QUESTION LIKE '%' || #{query} || '%'
             OR ANSWER LIKE '%' || #{query} || '%'
             </when>
-            <when test="calumn == 'POSTDATE'.toString">
+            <when test="column == 'POSTDATE'.toString">
 		 WHERE POSTDATE BETWEEN #{startDate} AND #{endDate}
             </when>
             <otherwise>
-         WHERE ${calumn} LIKE '%' || #{query} || '%'
+         WHERE ${column} LIKE '%' || #{query} || '%'
             </otherwise>
 	   </choose>
        </if>
@@ -280,15 +261,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		                  FROM FAQ
 		                  <if test="query != null">
 					      <choose>
-					   		<when test="calumn == 'ALL'.toString">
+					   		<when test="column == 'ALL'.toString">
 						 WHERE QUESTION LIKE '%' || #{query} || '%'
 					           OR ANSWER LIKE '%' || #{query} || '%'
 					           </when>
-					           <when test="calumn == 'POSTDATE'.toString">
+					           <when test="column == 'POSTDATE'.toString">
 						 WHERE POSTDATE BETWEEN #{startDate} AND #{endDate}
 					           </when>
 					           <otherwise>
-					     WHERE ${calumn} LIKE '%' || #{query} || '%'
+					     WHERE ${column} LIKE '%' || #{query} || '%'
 					           </otherwise>
 					   	  </choose>
 					      </if>

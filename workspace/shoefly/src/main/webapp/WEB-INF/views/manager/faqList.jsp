@@ -11,8 +11,8 @@
 	<title>SHOEFLY : 관리자</title>
 	<script>
 		$(document).ready(function(){
-			$('#calumn').change(function(){
-				if($('#calumn').val() == 'POSTDATE'){
+			$('#column').change(function(){
+				if($('#column').val() == 'POSTDATE'){
 					$('#default_search').hide();
 					$('#date_search').show();
 				} else {
@@ -30,14 +30,14 @@
 	</script>
 </head>
 <body>
-	<jsp:include page="/resources/asset/jsp/manager_header.jsp"></jsp:include>
+	<jsp:include page="../common/manager_header.jsp"></jsp:include>
 	<section>
 		<h3 class="title">
 			<a href="faqListPage.do">FAQ</a>
 		</h3>
 		<div class="search">
 			<form method="get" autocomplete="off">
-				<select id="calumn" name="calumn">
+				<select id="column" name="column">
 					<option value="ALL">제목/내용</option>
 					<option value="TITLE">제목</option>
 					<option value="CONTENT">내용</option>

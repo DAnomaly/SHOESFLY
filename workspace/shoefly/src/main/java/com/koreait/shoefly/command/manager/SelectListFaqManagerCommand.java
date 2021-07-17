@@ -28,17 +28,17 @@ public class SelectListFaqManagerCommand implements ManagerCommand {
 		HttpServletRequest request = (HttpServletRequest)modelMap.get("request");
 		
 		Map<String, Object> searchMap = new HashMap<>();
-		String calumn = request.getParameter("calumn");
+		String column = request.getParameter("column");
 		String query = request.getParameter("query");
 		if(query == null)
 			query = "";
-		if(calumn != null && !calumn.isEmpty())
-			if(calumn.equals("POSTDATE")) {
-				searchMap.put("calumn", calumn);
+		if(column != null && !column.isEmpty())
+			if(column.equals("POSTDATE")) {
+				searchMap.put("column", column);
 				searchMap.put("startDate", request.getParameter("startDate"));
 				searchMap.put("endDate", request.getParameter("endDate"));
 			} else {
-				searchMap.put("calumn", calumn);
+				searchMap.put("column", column);
 				searchMap.put("query", query);
 			}
 		

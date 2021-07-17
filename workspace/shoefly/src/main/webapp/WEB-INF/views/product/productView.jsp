@@ -50,7 +50,7 @@
 	</style>
 </head>
 <body>
-	<jsp:include page="/resources/asset/jsp/header.jsp"/>
+	<jsp:include page="../common/header.jsp"/>
 	<section>
 		<div class="product">
 			<c:if test="${empty product}">
@@ -83,6 +83,6 @@
 			</c:if>
 		</div>
 	</section>
-	<jsp:include page="/resources/asset/jsp/footer.jsp"/>
+	<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>

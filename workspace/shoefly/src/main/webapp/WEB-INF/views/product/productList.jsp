@@ -92,7 +92,7 @@
 	</style>
 </head>
 <body>
-	<jsp:include page="/resources/asset/jsp/header.jsp"/>
+	<jsp:include page="../common/header.jsp"/>
 	<section>
 		<h3 class="title">
 			<a href="listPage.do">SHOP</a>
@@ -166,6 +166,6 @@
 		</div>
 		<div class="paging">${paging}</div>
 	</section>
-	<jsp:include page="/resources/asset/jsp/footer.jsp"/>
+	<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>

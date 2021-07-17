@@ -13,21 +13,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.koreait.shoefly.command.manager.DeleteFaqManagerCommand;
-import com.koreait.shoefly.command.manager.DeleteMemberAddressManagerCommand;
 import com.koreait.shoefly.command.manager.DeleteMemberManagerCommand;
 import com.koreait.shoefly.command.manager.DeleteNoticeManagerCommand;
-import com.koreait.shoefly.command.manager.DeleteReviewCommand;
 import com.koreait.shoefly.command.manager.DeleteProductManagerCommand;
+import com.koreait.shoefly.command.manager.DeleteReviewManagerCommand;
 import com.koreait.shoefly.command.manager.InsertOrUpdateFaqManagerCommand;
-import com.koreait.shoefly.command.manager.InsertOrUpdateMemberAddressManagerCommand;
 import com.koreait.shoefly.command.manager.InsertOrUpdateNoticeManagerCommand;
-import com.koreait.shoefly.command.manager.RestoreReviewCommand;
+import com.koreait.shoefly.command.manager.RestoreReviewManagerCommand;
 import com.koreait.shoefly.command.manager.SelectListFaqManagerCommand;
 import com.koreait.shoefly.command.manager.SelectListMemberAddressManagerCommand;
 import com.koreait.shoefly.command.manager.SelectListMemberManagerCommand;
 import com.koreait.shoefly.command.manager.SelectListNoticeManagerCommand;
 import com.koreait.shoefly.command.manager.SelectListProductManagerCommand;
-import com.koreait.shoefly.command.manager.SelectListReviewCommand;
+import com.koreait.shoefly.command.manager.SelectListReviewManagerCommand;
 import com.koreait.shoefly.command.manager.SelectOneFaqManagerCommand;
 import com.koreait.shoefly.command.manager.SelectOneMemberManagerCommand;
 import com.koreait.shoefly.command.manager.SelectOneNoticeManagerCommand;
@@ -49,8 +47,6 @@ public class ManagerController {
 	private SelectOneMemberManagerCommand selectOneMemberManagerCommand;
 	private DeleteMemberManagerCommand deleteMemberManagerCommand;
 	private SelectListMemberAddressManagerCommand selectListMemberAddressManagerCommand;
-	private InsertOrUpdateMemberAddressManagerCommand insertOrUpdateMemberAddressManagerCommand;
-	private DeleteMemberAddressManagerCommand deleteMemberAddressManagerCommand;
 	private UpdateMemberPwManagerCommand updateMemberPwManagerCommand;
 	// PRODUCT
 	private SelectListProductManagerCommand selectListProductManagerCommand;
@@ -68,9 +64,9 @@ public class ManagerController {
 	private InsertOrUpdateFaqManagerCommand insertOrUpdateFaqManagerCommand;
 	private DeleteFaqManagerCommand deleteFaqManagerCommand;
 	// REVIEW
-	private SelectListReviewCommand selectListReviewCommand;
-	private DeleteReviewCommand deleteReviewCommand;
-	private RestoreReviewCommand restoreReviewCommand;
+	private SelectListReviewManagerCommand selectListReviewCommand;
+	private DeleteReviewManagerCommand deleteReviewCommand;
+	private RestoreReviewManagerCommand restoreReviewCommand;
 	
 	
 	// INDEX
@@ -121,26 +117,6 @@ public class ManagerController {
 		model.addAttribute("request", request);
 		selectListMemberAddressManagerCommand.execute(sqlSession, model);
 		return "manager/memberAddress";
-	}
-	
-	@ResponseBody
-	@PostMapping(value="updateMemberAddress.do",
-			    produces="text/html; charset=UTF-8")
-	public String updateAddress(
-			Model model,
-			HttpServletRequest request) {
-		model.addAttribute("request", request);
-		return insertOrUpdateMemberAddressManagerCommand.execute(sqlSession, model).get("response").toString(); 
-	}
-	
-	@ResponseBody
-	@GetMapping(value="deleteMemberAddress.do",
-			    produces="text/html; charset=UTF-8")
-	public String deleteAddress(
-			Model model,
-			HttpServletRequest request) {
-		model.addAttribute("request", request);
-		return deleteMemberAddressManagerCommand.execute(sqlSession, model).get("response").toString();
 	}
 	
 	@ResponseBody

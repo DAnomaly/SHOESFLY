@@ -14,7 +14,7 @@
 	<script src="/shoefly/resources/asset/js/notice/noticeList.js" type="text/javascript" charset="UTF-8"></script>
 </head>
 <body>
-	<jsp:include page="/resources/asset/jsp/header.jsp"/>
+	<jsp:include page="../common/header.jsp"/>
 	<section>
 		<h3 class="title">
 			<a href="noticeListPage.do">NOTICE</a>
@@ -57,6 +57,6 @@
 			${paging}
 		</div>
 	</section>
-	<jsp:include page="/resources/asset/jsp/footer.jsp"/>
+	<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>
