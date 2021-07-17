@@ -34,7 +34,7 @@ public class SelectConditionCommand implements ProductCommand {
 		//brand선택하지 않았을경우 전체에서 조회, 선택했을 경우 brandsArray로 합치기
 		String brandsArray = "";
 		if(brands == null) {
-			brandsArray = "Jordan, Nike, New Balance, Adidas";
+			brandsArray = "'Jordan', 'Nike', 'New Balance', 'Adidas'";
 		} else if(brands.length == 1) {
 			brandsArray = "'" + brands[0] + "'";
 		} else {
@@ -73,7 +73,6 @@ public class SelectConditionCommand implements ProductCommand {
 		
 		paramMap.put("beginRecord", page.getBeginRecord());
 		paramMap.put("endRecord", page.getEndRecord());
-		logger.info("================");
 
 		String path = "selectCondition.do";
 		if (paramMap.get("productName") != null || paramMap.get("productName") != null ||

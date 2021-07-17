@@ -11,25 +11,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  FROM PRODUCT
 	</select>
 	
-	<!-- 조건 상품 갯수 조회 -->
-	<select id="countConditionProduct" resultType="int">
-		SELECT COUNT(*)
-		  FROM (SELECT DISTINCT B.PRODUCT_NO, B.PRODUCT_NAME, B.PRICE, B.BRAND, B.IMAGE
-		   		  FROM PRODUCT_DETAIL A INNER JOIN PRODUCT B
-		    		ON A.PRODUCT_NAME = B.PRODUCT_NAME
-		<where>
-		<if test="productName != null or productName == ''.toString">
-					   UPPER(B.PRODUCT_NAME) LIKE '%' || UPPER(#{productName}) || '%'
-  		</if>
-  		<if test="true">
-				   AND B.BRAND IN (${brandsArray})
-	      	       AND A.PRODUCT_SIZE IN (${sizesArray})
-  				   AND B.PRICE BETWEEN ${minPrice} AND ${maxPrice}
-  		</if>
-		</where>
-				)
-	</select>
-	
 	<!-- 전체 상품 목록 조회 -->
 	<select id="selectAllList" resultType="com.koreait.shoefly.dto.Product">
 		SELECT D.PRODUCT_NO AS PRODUCTNO, D.PRODUCT_NAME AS PRODUCTNAME, D.PRICE, D.BRAND, D.IMAGE
@@ -41,6 +22,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE D.RN BETWEEN #{beginRecord} AND #{endRecord}
 	</select>
 	
+	<!-- 조건 상품 갯수 조회 -->
+	<select id="countConditionProduct" resultType="int">
+		SELECT COUNT(*)
+		  FROM (SELECT DISTINCT B.PRODUCT_NO, B.PRODUCT_NAME, B.PRICE, B.BRAND, B.IMAGE
+		   		  FROM PRODUCT_DETAIL A INNER JOIN PRODUCT B
+		    		ON A.PRODUCT_NAME = B.PRODUCT_NAME
+		<where>
+		<if test="productName != null or productName != ''.toString">
+					   UPPER(B.PRODUCT_NAME) LIKE '%' || UPPER(#{productName}) || '%'
+  		</if>
+  		<if test="true">
+				   AND B.BRAND IN (${brandsArray})
+	      	       AND A.PRODUCT_SIZE IN (${sizesArray})
+  				   AND B.PRICE BETWEEN ${minPrice} AND ${maxPrice}
+  		</if>
+		</where>
+				)
+	</select>
+	
 	<!-- 상품명, 사이즈, 브랜드, 가격 조회 -->
 	<select id="selectCondition" resultType="com.koreait.shoefly.dto.Product">
 		 SELECT D.PRODUCT_NO AS PRODUCTNO, D.PRODUCT_NAME AS PRODUCTNAME, D.PRICE, D.BRAND, D.IMAGE
@@ -50,7 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		   				    FROM PRODUCT_DETAIL A INNER JOIN PRODUCT B
 		    				  ON A.PRODUCT_NAME = B.PRODUCT_NAME 				  
 		  				<where>
-		  				<if test="productName != null or productName == ''.toString">
+		  				<if test="productName != null or productName != ''.toString">
  								 UPPER(B.PRODUCT_NAME) LIKE '%' || UPPER(#{productName}) || '%'
 	 	   		   		</if>
 	 	   		   		<if test="true">
