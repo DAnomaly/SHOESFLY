@@ -21,10 +21,14 @@
 				type: 'POST',
 				dataType: 'json',
 				success: function(resultMap) {
-					$.each(resultMap.recomandProduct, function(i, product) {
-						$('<a href="viewProductPage.do?productNo=' + product.productNo + '">')
-						.html( '<img alt="' + product.image + '" src="/shoefly/resources/archive/product/' + product.image + '">' )
+					$.each(resultMap.recommandProduct, function(i, product) {
+						$('<a href="product/viewProductPage.do?productNo=' + product.productNo + '">')
+						.html( '<img alt="' + product.image + '" src="/shoefly/resources/archive/product/' + product.image + '" style="width: 300px;">' )
 						.appendTo('.product_img');
+						$('<a href="product/viewProductPage.do?productNo=' + product.productNo + '">').html('<span class="text">').text(product.productName)
+						.appendTo('.product_text');
+						$('<span class="text">').html(product.price + '원')
+						.appendTo('.product_text');
 					});
 				}
 			});
@@ -33,6 +37,11 @@
 	
 		
 	</script>
+	
+	<style>
+	
+		
+	</style>
 </head>
 <body>
 	<jsp:include page="./common/header.jsp"/>
@@ -46,7 +55,8 @@
 		<div class="outbox">
 			<div class="product_img">
 			</div>
-			<div class="product_text" >
+			<div class="product_text">
+				
 			</div>
 		</div>
 			

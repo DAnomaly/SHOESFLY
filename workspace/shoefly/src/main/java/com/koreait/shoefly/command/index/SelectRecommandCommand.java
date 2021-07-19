@@ -17,13 +17,12 @@ public class SelectRecommandCommand implements IndexCommand {
 	@Override
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {
 		
-		System.out.println("동작확인");
 		IndexDAO indexDAO = sqlSession.getMapper(IndexDAO.class);
 		
 		List<Product> recommandProduct = indexDAO.selectRecommand();
+		
 		Map<String, Object> resultMap = new HashMap<>();
 		resultMap.put("recommandProduct", recommandProduct);
-		
 		
 		return resultMap;
 	}
