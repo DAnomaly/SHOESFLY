@@ -29,10 +29,11 @@ public class SelectReviewListCommand implements ReviewCommand {
 			HttpServletRequest request = (HttpServletRequest)map.get("request");
 			
 			Map<String, Object> searchMap = new HashMap<>();
-			String column = request.getParameter("column");
+			String column =request.getParameter("column");
 			String query = request.getParameter("query");
-			searchMap.put("column", column == null || column.equals("") ? null : column);
-			searchMap.put("query", query == null || query.equals("") ? null : query);
+			
+			searchMap.put("column", column);
+			searchMap.put("query", query);
 			
 			String strNowPage = request.getParameter("page");
 			int nowPage = Integer.parseInt(strNowPage == null || strNowPage.equals("") ? "1" : strNowPage);

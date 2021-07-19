@@ -5,5 +5,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.koreait.shoefly.dao.indexDAO">
 
-
+	<select id="selectRecommand" resultType="com.koreait.shoefly.dto.Product">
+		SELECT PRODUCT_NO AS PRODUCTNO, PRODUCT_NAME AS PRODUCTNAME, BRAND, PRICE, IMAGE
+ 		 FROM PRODUCT
+		WHERE BRAND = 'Nike'
+		ORDER BY PRODUCT_NAME
+	</select>
+	
+	
 </mapper>

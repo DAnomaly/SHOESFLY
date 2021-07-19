@@ -180,7 +180,7 @@
 		<h3>${review.title}</h3><br>
 		${review.memberId}<br>
 		${review.postdate}&nbsp;&nbsp;${review.hit}
-		<input type="button" value="목록" onclick="location.href='reviewListPage.do'">
+		<input type="button" value="목록" onclick="history.back()">
 		<hr>
 		<img alt="${review.image}" src="/shoefly/resources/archive/review/${filename}" style="width: 500px;">
 		${review.content}
@@ -196,7 +196,7 @@
 			<input type="hidden" name="reviewNo" value="${review.reviewNo}">
 			<input type="button" value="수정" id="update_btn">
 			<input type="button" value="삭제" id="delete_btn">
-			<input type="button" value="목록" onclick="location.href='reviewListPage.do'">
+			<input type="button" value="목록" onclick="history.back()">
 		</form>
 		<hr>
 		<img alt="${review.image}" src="/shoefly/resources/archive/review/${filename}" style="width: 500px;">

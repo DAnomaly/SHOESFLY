@@ -19,11 +19,10 @@
 		// 검색 이벤트
 		function fn_search(){
 			$('#search_btn').click(function(){
-				if ( $('#column').val() == '' ) {
+				if ( $('#column').val() == '' || $('#query').val() == '') {
 					location.href = 'reviewListPage.do';
-				}else if ( $('#query').val() == '' ) {
-					location.href = 'reviewListPage.do';					
 				}else {
+					$('#f').attr('action', 'reviewListPage.do' );
 					$('#f').submit();
 				}
 			});

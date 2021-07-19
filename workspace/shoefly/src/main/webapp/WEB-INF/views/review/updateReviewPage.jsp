@@ -84,7 +84,7 @@
 			<input type="file" id="file" name="file" accept=".jpg, .png, .jpeg" onchange="fileCheck(this)"><br><br>
 			<textarea id="content" name="content" rows="20" cols="80" >${review.content}</textarea><br>
 			<input type="button" value="등록" id="insert_btn">
-			<input type="button" value="취소" onclick="location.href='selectReview.do?reviewNo=${review.reviewNo}'">
+			<input type="button" value="취소" onclick="history.back()">
 		</form>
 	
 	

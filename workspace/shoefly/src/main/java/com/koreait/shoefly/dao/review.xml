@@ -7,13 +7,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="countReview" resultType="int" parameterType="java.util.Map">
 		SELECT COUNT(*) 
-		  FROM Review
+		  FROM REVIEW
 		 WHERE STATE = 0
-	   <where>
-	   <if test="column != null || query != null">
-		          		UPPER(${column}) LIKE '%' || UPPER(#{query}) || '%'
+	   <if test="column != null and query != null">
+	   		AND UPPER(${column}) LIKE '%' || UPPER(#{query}) || '%'
 	   </if>
-	   </where>
 	</select>
 	
 	
@@ -31,11 +29,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		                       STATE
 		                  FROM REVIEW
 		                 WHERE STATE = 0
-		          <where>
-		          	<if test="column != null || query != null">
-		          		UPPER(${column}) LIKE '%' || UPPER(#{query}) || '%'
+		          	<if test="column != null and query != null">
+		          		AND UPPER(${column}) LIKE '%' || UPPER(#{query}) || '%'
 		          	</if>
-		          </where>
 		                 ORDER BY REVIEW_NO DESC) A) B
 		 WHERE B.RN BETWEEN #{beginRecord} AND #{endRecord}
 	</select>
