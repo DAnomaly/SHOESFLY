@@ -66,29 +66,64 @@
 			 }
 			}
 		
-		
-		
-
-		
-	
 	</script>
+	<style>
+		*{
+			box-sizing: border-box;
+		}
+		.insert_container {
+			width: 1080px;
+			margin: 0 auto;
+		}
+		.title {
+			width: 500px;
+			height: 30px;
+		}
+		.productList {
+			width: 150px;
+			height: 30px;
+		}
+		.title_line {
+			width: 100%;
+			justify-content: space-between;
+		
+		}
+		.content {
+			width: 100%;
+			height: 500px;
+			resize: none;
+		}
+		.button_box {
+			float: right;
+		}
+		.button {
+			width: 80px;
+			height: 40px;
+		}
+		
+	</style>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
 	<section>
-		<h1>Insert Review</h1><br>
-		<form  id="f" action="insertReview.do" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="loginId" value="${loginMember.memberId}">
-			<input type="text" id="title" name="title" placeholder="제목을 입력하세요.">
-			<select name="productName" id="productList">
-				<option value="">선택</option>
-			</select>
-			<input type="file" id="file" name="file" accept=".jpg, .png, .jpeg" onchange="fileCheck(this)"><br><br>
-			<textarea id="content" name="content" rows="20" cols="80" placeholder="내용을 입력하세요."></textarea><br>
-			<input type="button" value="등록" id="insert_btn">
-			<input type="button" value="취소" onclick="location.href='reviewListPage.do'">
-		</form>
-	
+		<div class="insert_container">
+			<h1>Insert Review</h1><br>
+			<form  id="f" action="insertReview.do" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="loginId" value="${loginMember.memberId}">
+				<div class="title_line">
+					<input type="text" class="title" id="title" name="title" placeholder="제목을 입력하세요.">
+					<select name="productName" id="productList" class="productList">
+						<option value="">선택</option>
+					</select>
+				<input class="file_btn" type="file" id="file" name="file" accept=".jpg, .png, .jpeg" onchange="fileCheck(this)"><br><br>
+				</div>
+				<textarea class="content" id="content" name="content"  placeholder="내용을 입력하세요."></textarea><br>
+				<div class="button_box">
+				<input class="button" type="button" value="등록" id="insert_btn">
+				<input class="button" type="button" value="취소" onclick="location.href='reviewListPage.do'">
+				</div>
+			</form>
+		</div>
 	</section>
 	<jsp:include page="../common/footer.jsp"/>
 </body>

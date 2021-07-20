@@ -46,7 +46,7 @@
 				success: function(resultMap) {
 					$.each(resultMap.recommandProduct, function(i, product) {
 						$('<a href="product/viewProductPage.do?productNo=' + product.productNo + '">')
-						.html( '<img alt="' + product.image + '" src="/shoefly/resources/archive/product/' + product.image + '" style="width: 300px;">' )
+						.html( '<img alt="' + product.image + '" src="/shoefly/resources/archive/product/' + product.image + '" style="width: 250px;">' )
 						.appendTo('.recommandProduct_img');
 						$('<a href="product/viewProductPage.do?productNo=' + product.productNo + '">').html('<span class="text">').text(product.productName)
 						.appendTo('.recommandProduct_text');
@@ -58,6 +58,18 @@
 		}
 		
 		
+		
+		/*
+						$('<a class="item_inner href="product/viewProductPage.do?productNo=' + product.productNo + '">')
+						.appendTo('.product_item');
+						$('<img alt="' + product.image + '" src="/shoefly/resources/archive/product/' + product.image + '" style="width: 300px;">' )
+						.appendTo('.product');
+						$('<p class="product_name">').text(product.productName)
+						.appendTo('.info_box');
+						$('<span class="text">').html(product.price + '원')
+						.appendTo('.price');
+		
+		*/
 	
 		
 	</script>
@@ -70,7 +82,7 @@
 <body>
 	<jsp:include page="./common/header.jsp"/>
 	<section>
-	<div class="index_container">
+		<div class="index_container">
 			<div class="mostPopular_box">
 				<h1>Most Popular</h1>
 				인기 상품<br>

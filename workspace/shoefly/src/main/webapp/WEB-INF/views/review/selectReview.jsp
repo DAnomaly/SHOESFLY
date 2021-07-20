@@ -174,9 +174,7 @@
 	<jsp:include page="../common/header.jsp"/>
 	<section>
 		<h1> 리뷰 보기 </h1><br><br>
-		<!-- 로그인아이디 != 작성자아이디 -->
-		
-		<c:if test="${review.memberId != loginMember.memberId}">
+		<c:if test="${review.memberId != loginMember.memberId}">  <!-- 로그인아이디 != 작성자아이디 -->
 		<h3>${review.title}</h3><br>
 		${review.memberId}<br>
 		${review.postdate}&nbsp;&nbsp;${review.hit}
