@@ -9,4 +9,8 @@ public interface IndexDAO {
 	
 	public List<Product> selectRecommand();
 	
+	public List<Product> selectMostPopular();
+	
+	
+	
 }
