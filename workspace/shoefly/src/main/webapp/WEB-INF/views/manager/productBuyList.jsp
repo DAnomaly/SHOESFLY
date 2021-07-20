@@ -46,13 +46,13 @@
 							$('<td>').text(productBuy.productName).appendTo(tr);
 							$('<td>').text(productBuy.productSize).appendTo(tr);
 							$('<td>').text(productBuy.price).appendTo(tr);
-							$('<td>').append($('<button>').text('확인').attr('onclick','check_addr(this, ' + productBuy.memberAddressNo + ')')).appendTo(tr);
+							$('<td>').append($('<button>').text('확인').attr('onclick','check_addr(' + productBuy.memberAddressNo + ')')).appendTo(tr);
 							$('<td>').text(productBuy.postdate).appendTo(tr);
 							$('<td>').text(productBuy.buydate).appendTo(tr);
 							if(productBuy.state == 1){
-								$('<td>').append($('<button>').text('배송중').attr('onclick','')).appendTo(tr);
+								$('<td>').append($('<button>').text('배송중').attr('onclick','change_state(2,' + productBuy.productBuyNo + ');')).appendTo(tr);
 							} else if(productBuy.state == 0) {
-								$('<td>').append($('<button>').text('취소').attr('onclick','')).appendTo(tr);
+								$('<td>').append($('<button>').text('취소').attr('onclick','change_state(-1,' + productBuy.productBuyNo + ');')).appendTo(tr);
 							} else {
 								$('<td>').appendTo(tr);
 							}
@@ -74,7 +74,7 @@
 			var isDesc = 'DESC';
 			allRefreshList();
 		}
-		function check_addr(td, addrNo){
+		function check_addr(addrNo){
 			$.ajax({
 				url: 'selectOneMemberAddress.do',
 				type: 'get',
@@ -90,7 +90,28 @@
 				}
 			})
 		}
-		
+		function change_state(state, no){
+			var message;
+			if(state == 2)
+				message = '배송중으로 전환하시겠습니까?';
+			else
+				message = '해당 구매신청을 취소하시겠습니까?';
+			
+			if(confirm(message))
+				$.ajax({
+					url: 'updateProductBuyState.do',
+					type: 'get',
+					data: 'no=' + no + "&state=" + state,
+					dataType: 'json',
+					success: function(data) {
+						if(data.result){
+							allRefreshList();
+						} else {
+							console.log('ProductBuy table\'s state is not changed');
+						}
+					}
+				})
+		}
 	</script>
 </head>
 <body>

@@ -231,6 +231,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE MEMBER_ADDRESS_NO = #{_parameter}	
 	</select>
 
+	<update id="updateProductBuyState" parameterType="com.koreait.shoefly.dto.MemberAddress">
+		UPDATE PRODUCT_BUY
+		   SET STATE = #{state}
+		 WHERE PRODUCT_BUY_NO = #{productBuyNo}
+	</update>
+
 	<!-- NOTICE / FAQ -->
 
 	<select id="countNotice" resultType="int" parameterType="java.util.Map">

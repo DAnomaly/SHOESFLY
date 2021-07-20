@@ -34,6 +34,7 @@ import com.koreait.shoefly.command.manager.SelectOneNoticeManagerCommand;
 import com.koreait.shoefly.command.manager.SelectOneProductManagerCommand;
 import com.koreait.shoefly.command.manager.UpdateMemberPwManagerCommand;
 import com.koreait.shoefly.command.manager.UpdateProdcutStateManagerCommand;
+import com.koreait.shoefly.command.manager.UpdateProductBuyStateManagerCommand;
 
 import lombok.AllArgsConstructor;
 
@@ -58,6 +59,7 @@ public class ManagerController {
 	// PRDOCUT BUY
 	private SelectListProductBuyManagerCommand selectListProductBuyManagerCommand;
 	private SelectOneMemberAddressManagerCommand selectOneMemberAddressManagerCommand;
+	private UpdateProductBuyStateManagerCommand updateProductBuyStateManagerCommand;
 	// NOTICE
 	private SelectListNoticeManagerCommand selectListNoticeManagerCommand;
 	private SelectOneNoticeManagerCommand selectOneNoticeManagerCommand;
@@ -202,6 +204,17 @@ public class ManagerController {
 			HttpServletRequest request) {
 		model.addAttribute("request", request);
 		return selectOneMemberAddressManagerCommand.execute(sqlSession, model);
+	}
+	
+
+	@ResponseBody
+	@GetMapping(value="updateProductBuyState.do",
+				produces="application/json; charset=UTF-8")
+	public Map<String, Object> updateProductBuyState(
+			Model model,
+			HttpServletRequest request) {
+		model.addAttribute("request", request);
+		return updateProductBuyStateManagerCommand.execute(sqlSession, model);
 	}
 	
 	// NOTICE

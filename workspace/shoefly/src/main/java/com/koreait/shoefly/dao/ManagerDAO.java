@@ -40,6 +40,7 @@ public interface ManagerDAO {
 	public int countProductBuy(Map<String, Object> map);
 	public List<ProductBuy> selectListProductBuy(Map<String, Object> map);
 	public MemberAddress selectOneMemberAddress(long memberAddressNo);
+	public int updateProductBuyState(ProductBuy productBuy);
 	
 	// NOTICE/FAQ
 	public int countNotice(Map<String, Object> map);
