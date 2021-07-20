@@ -8,18 +8,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/manager_header.css">
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			fn_findAddress();
-			fn_updateAddress();
-		})
-		
-		function select_change(obj) {
-			var addr_id = '#addr_' + $(obj).val();
-			$('.addr_div').hide();
-			$(addr_id).show();
-		}
-	</script>
+	<script src="/shoefly/resources/asset/js/manager/memberAddress.js" charset="utf-8"></script>
 </head>
 <body>
 	<input type="hidden" id="memberNo" value="${param.memberNo}"/>

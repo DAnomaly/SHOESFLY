@@ -9,25 +9,8 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/manager_header.css">
 	<title>SHOEFLY : 관리자</title>
-	<script>
-		$(document).ready(function(){
-			$('#column').change(function(){
-				if($('#column').val() == 'POSTDATE'){
-					$('#default_search').hide();
-					$('#date_search').show();
-				} else {
-					$('#default_search').show();
-					$('#date_search').hide();
-				}
-			})
-		});
-		function fn_show(no) {
-			if(no == null) {
-				no = '';
-			}
-			window.open("faqInfoPage.do?no=" + no,"noticeInfo","width=720,height=600");
-		}
-	</script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script src="/shoefly/resources/asset/js/manager/faqList.js" charset="utf-8"></script>
 </head>
 <body>
 	<jsp:include page="../common/manager_header.jsp"></jsp:include>

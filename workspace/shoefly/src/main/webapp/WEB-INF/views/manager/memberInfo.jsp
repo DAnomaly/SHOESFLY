@@ -9,30 +9,7 @@
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/manager_header.css">
 	<title>${member.memberId}</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-	<script type="text/javascript">
-		function show_address() {
-			location.href="memberAddressPage.do?memberNo=" + $('#memberNo').val();
-		}
-		function del_btn() {
-			if(confirm('정말 해당 회원의 이용/탈퇴 정보를 변경하시겠습니까?')){
-				$.ajax({
-					url: 'deleteMember.do',
-					type: 'GET',
-					data: 'memberNo=' + $('#memberNo').val() + "&state=" + $('#state').val(), 
-					dataType: 'json',
-					success: function(data) {
-						opener.parent.location.reload();
-						location.reload();
-					}
-				})
-			}
-		}
-		function change_pw_btn() {
-			if(confirm('해당 회원의 임시비밀번호를 발급하시겠습니까?')){
-				location.href='updateMemberPw.do?memberNo=' + $('#memberNo').val();
-			}
-		}
-	</script>
+	<script src="/shoefly/resources/asset/js/manager/memberInfo.js" charset="utf-8"></script>
 </head>
 <body>
 	<input type="hidden" id="memberNo" value="${member.memberNo}"/>

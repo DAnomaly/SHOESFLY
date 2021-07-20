@@ -12,9 +12,6 @@
 </header>
 <nav>
 	<ul>
-		<li><a href="index.do"><i class="fas fa-clipboard-list"></i><span>통계</span></a></li>
-	</ul>
-	<ul>
 		<li><a href="memberListPage.do"><i class="fas fa-users"></i><span>회원관리</span></a></li>
 		<li><a href="productListPage.do"><i class="fas fa-gift"></i><span>상품관리</span></a></li>
 		<li><a href="productBuyListPage.do"><i class="fas fa-shopping-cart"></i><span>구입신청</span></a></li>
@@ -26,8 +23,5 @@
 	</ul>
 	<ul>
 		<li><a href="reviewListPage.do"><i class="fas fa-question-circle"></i><span>REVIEW</span></a></li>	
-	</ul>
-	<ul>
-		<li><a href="alertPage.do"><i class="fas fa-bell"></i><span>알림</span></a></li>
 	</ul>
 </nav>
