@@ -17,8 +17,8 @@
 	<ul>
 		<li><a href="memberListPage.do"><i class="fas fa-users"></i><span>회원관리</span></a></li>
 		<li><a href="productListPage.do"><i class="fas fa-gift"></i><span>상품관리</span></a></li>
-		<li><a href="buyListPage.do"><i class="fas fa-shopping-cart"></i><span>구입신청</span></a></li>
-		<li><a href="sellListPage.do"><i class="fas fa-money-bill"></i><span>판매신청</span></a></li>
+		<li><a href="productBuyListPage.do"><i class="fas fa-shopping-cart"></i><span>구입신청</span></a></li>
+		<li><a href="productSellListPage.do"><i class="fas fa-money-bill"></i><span>판매신청</span></a></li>
 	</ul>
 	<ul>
 		<li><a href="noticeListPage.do"><i class="fas fa-exclamation-circle"></i><span>공지사항</span></a></li>

@@ -2,6 +2,8 @@ package com.koreait.shoefly.dto;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -25,12 +27,21 @@ public class ProductBuy {
     private long memberAddressNo;
 
     // 구매등록일자 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm")
     private Date postdate;
 
     // 구매완료일자 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm")
     private Date buydate;
 
     // 등록/취소/구매완료 
     private int state;
     
+    
+    // 추가칼럼
+    // 상품 이름
+    private String productName;
+    
+    // 상품 사이즈
+    private int productSize;
 }

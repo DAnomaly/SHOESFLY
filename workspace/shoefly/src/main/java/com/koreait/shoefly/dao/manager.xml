@@ -185,6 +185,52 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE PRODUCT_NO = #{_parameter}
 	</delete>
 
+
+	<!-- PRODUCT BUY -->
+	
+	<select id="countProductBuy" resultType="int" parameterType="java.util.Map">
+		SELECT COUNT(*)
+		  FROM PRODUCT_BUY b INNER JOIN PRODUCT_DETAIL d
+		    ON b.PRODUCT_DETAIL_NO = d.PRODUCT_DETAIL_NO
+		 WHERE b.STATE = #{state}
+		<if test="memberId != null">
+		   AND UPPER(b.MEMBER_ID) LIKE UPPER(#{memberId})
+		</if>
+		<if test="productName != null">
+		   AND UPPER(d.PRODUCT_NAME) LIKE UPPER(#{productName})
+		</if>
+	</select>
+	
+	<select id="selectListProductBuy" resultType="com.koreait.shoefly.dto.ProductBuy" parameterType="java.util.Map">
+		SELECT r2.PRODUCT_BUY_NO AS PRODUCTBUYNO, r2.MEMBER_ID AS MEMBERID, r2.PRODUCT_DETAIL_NO AS PRODUCTDETAILNO, r2.PRODUCT_NAME AS PRODUCTNAME, r2.PRODUCT_SIZE AS PRODUCTSIZE, r2.PRICE, r2.MEMBER_ADDRESS_NO AS MEMBERADDRESSNO, r2.POSTDATE, r2.BUYDATE, r2.STATE
+		  FROM (
+				SELECT ROWNUM AS RN, r1.PRODUCT_BUY_NO, r1.MEMBER_ID, r1.PRODUCT_DETAIL_NO, r1.PRODUCT_NAME, r1.PRODUCT_SIZE, r1.PRICE, r1.MEMBER_ADDRESS_NO, r1.POSTDATE, r1.BUYDATE, r1.STATE
+				  FROM (
+						SELECT b.PRODUCT_BUY_NO, b.MEMBER_ID, d.PRODUCT_DETAIL_NO, d.PRODUCT_NAME, d.PRODUCT_SIZE, b.PRICE, b.MEMBER_ADDRESS_NO, b.POSTDATE, b.BUYDATE, b.STATE
+						  FROM PRODUCT_BUY b
+						 INNER JOIN PRODUCT_DETAIL d
+						    ON b.PRODUCT_DETAIL_NO = d.PRODUCT_DETAIL_NO
+				         INNER JOIN MEMBER_ADDRESS a
+				            ON b.member_address_no = a.member_address_no
+						 WHERE b.STATE = #{state}
+						<if test="memberId != null">
+						   AND UPPER(b.MEMBER_ID) LIKE UPPER(#{memberId})
+						</if>
+						<if test="productName != null">
+						   AND UPPER(d.PRODUCT_NAME) LIKE UPPER(#{productName})
+						</if>
+						 ORDER BY ${order} ${isDesc}
+					  ) r1
+			  ) r2
+		WHERE r2.RN BETWEEN #{beginRecord} AND #{endRecord}
+	</select>
+
+	<select id="selectOneMemberAddress" resultType="com.koreait.shoefly.dto.MemberAddress">
+		SELECT MEMBER_ADDRESS_NO AS MEMBERADDRESSNO, MEMBER_NO AS MEMBERNO, NAME, ADDR1, ADDR2, STATE
+		  FROM MEMBER_ADDRESS
+		 WHERE MEMBER_ADDRESS_NO = #{_parameter}	
+	</select>
+
 	<!-- NOTICE / FAQ -->
 
 	<select id="countNotice" resultType="int" parameterType="java.util.Map">

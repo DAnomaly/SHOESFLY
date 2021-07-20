@@ -24,9 +24,11 @@ import com.koreait.shoefly.command.manager.SelectListFaqManagerCommand;
 import com.koreait.shoefly.command.manager.SelectListMemberAddressManagerCommand;
 import com.koreait.shoefly.command.manager.SelectListMemberManagerCommand;
 import com.koreait.shoefly.command.manager.SelectListNoticeManagerCommand;
+import com.koreait.shoefly.command.manager.SelectListProductBuyManagerCommand;
 import com.koreait.shoefly.command.manager.SelectListProductManagerCommand;
 import com.koreait.shoefly.command.manager.SelectListReviewManagerCommand;
 import com.koreait.shoefly.command.manager.SelectOneFaqManagerCommand;
+import com.koreait.shoefly.command.manager.SelectOneMemberAddressManagerCommand;
 import com.koreait.shoefly.command.manager.SelectOneMemberManagerCommand;
 import com.koreait.shoefly.command.manager.SelectOneNoticeManagerCommand;
 import com.koreait.shoefly.command.manager.SelectOneProductManagerCommand;
@@ -53,6 +55,9 @@ public class ManagerController {
 	private SelectOneProductManagerCommand selectOneProductManagerCommand;
 	private UpdateProdcutStateManagerCommand updateProdcutStateManagerCommand;
 	private DeleteProductManagerCommand deleteProductManagerCommand;
+	// PRDOCUT BUY
+	private SelectListProductBuyManagerCommand selectListProductBuyManagerCommand;
+	private SelectOneMemberAddressManagerCommand selectOneMemberAddressManagerCommand;
 	// NOTICE
 	private SelectListNoticeManagerCommand selectListNoticeManagerCommand;
 	private SelectOneNoticeManagerCommand selectOneNoticeManagerCommand;
@@ -171,6 +176,32 @@ public class ManagerController {
 			HttpServletRequest request) {
 		model.addAttribute("request", request);
 		return deleteProductManagerCommand.execute(sqlSession, model);
+	}
+	
+	// PRDOCUT BUY
+	@GetMapping(value="productBuyListPage.do")
+	public String productBuyListPage() {
+		return "manager/productBuyList";
+	}
+	
+	@ResponseBody
+	@GetMapping(value="selectListProductBuy.do",
+				produces="application/json; charset=UTF-8")
+	public Map<String, Object> selectListProductBuy(
+			Model model,
+			HttpServletRequest request) {
+		model.addAttribute("request", request);
+		return selectListProductBuyManagerCommand.execute(sqlSession, model);
+	}
+	
+	@ResponseBody
+	@GetMapping(value="selectOneMemberAddress.do",
+				produces="application/json; charset=UTF-8")
+	public Map<String, Object> selectOneMemberAddress(
+			Model model,
+			HttpServletRequest request) {
+		model.addAttribute("request", request);
+		return selectOneMemberAddressManagerCommand.execute(sqlSession, model);
 	}
 	
 	// NOTICE
