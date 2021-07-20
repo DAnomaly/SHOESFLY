@@ -37,5 +37,12 @@ public class ProductSell {
 
     // 등록/취소/판매완료 
     private int state;
+
     
+    // 추가칼럼
+    // 상품 이름
+    private String productName;
+    
+    // 상품 사이즈
+    private int productSize;
 }

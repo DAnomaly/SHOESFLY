@@ -32,7 +32,7 @@
 			var tbody = $('#tbody' + state);
 			var tfoot = $('#tfoot' + state);
 			$.ajax({
-				url: 'selectListProductBuy.do',
+				url: 'selectListProductSell.do',
 				type: 'get',
 				data: 'page=' + page + '&' + $('#option').val() + '=' + $('#query').val() + '&order=' + order + '&isDesc=' + isDesc + '&state=' + state,
 				dataType: 'json',
@@ -40,21 +40,22 @@
 					console.log(data.list);
 					tbody.empty();
 					tfoot.empty();
-					if(data.result){
-						$.each(data.list, function(index, productBuy){
+					if(data.result) {
+						
+						$.each(data.list, function(index, productSell){
 							var tr = $('<tr>').appendTo(tbody);
-							$('<td>').text(productBuy.productBuyNo).appendTo(tr);
-							$('<td>').text(productBuy.memberId).appendTo(tr);
-							$('<td>').text(productBuy.productName).appendTo(tr);
-							$('<td>').text(productBuy.productSize).appendTo(tr);
-							$('<td>').text(productBuy.price).appendTo(tr);
-							$('<td>').append($('<button>').text('확인').attr('onclick','check_addr(' + productBuy.memberAddressNo + ')')).appendTo(tr);
-							$('<td>').text(productBuy.postdate).appendTo(tr);
-							$('<td>').text(productBuy.buydate).appendTo(tr);
-							if(productBuy.state == 1){
-								$('<td>').append($('<button>').text('배송중').attr('onclick','change_state(2,' + productBuy.productBuyNo + ');')).appendTo(tr);
-							} else if(productBuy.state == 0) {
-								$('<td>').append($('<button>').text('취소').attr('onclick','change_state(-1,' + productBuy.productBuyNo + ');')).appendTo(tr);
+							$('<td>').text(productSell.productSellNo).appendTo(tr);
+							$('<td>').text(productSell.memberId).appendTo(tr);
+							$('<td>').text(productSell.productName).appendTo(tr);
+							$('<td>').text(productSell.productSize).appendTo(tr);
+							$('<td>').text(productSell.price).appendTo(tr);
+							$('<td>').append($('<button>').text('확인').attr('onclick','check_addr(' + productSell.memberAddressNo + ')')).appendTo(tr);
+							$('<td>').text(productSell.postdate).appendTo(tr);
+							$('<td>').text(productSell.buydate).appendTo(tr);
+							if(productSell.state == 2){
+								$('<td>').append($('<button>').text('결산완료').attr('onclick','change_state(3,' + productSell.productSellNo + ');')).appendTo(tr);
+							} else if(productSell.state == 0) {
+								$('<td>').append($('<button>').text('취소').attr('onclick','change_state(-1,' + productSell.productSellNo + ');')).appendTo(tr);
 							} else {
 								$('<td>').appendTo(tr);
 							}
@@ -64,13 +65,13 @@
 						$('<a href="javascript:changePage(' + state  + ',' + page + ',' + data.page.totalPage + ',false)">').html('&lt;').appendTo(td);
 						$('<a href="javascript:changePage(' + state  + ',' + page + ',' + data.page.totalPage + ',true)">').html('&gt;').appendTo(td);
 						
-					} else {
-						$('<td colspan="9">').text('주문내역이 없습니다.').appendTo($('<tr>').appendTo(tbody));
-					} 
+					} else { 
+						$('<td colspan="9">').text('검색내역이 없습니다.').appendTo($('<tr>').appendTo(tbody));
+					}
 				}
 			})
 		}
-
+		
 		function changePage(state, nowpage, totalPage, isNext) {
 			if(isNext){
 				if(totalPage != nowpage)
@@ -81,6 +82,7 @@
 			}
 			refreshList(state, nowpage);
 		}
+		
 		function change_option(){
 			t0_page = 1;
 			t1_page = 1;
@@ -119,14 +121,14 @@
 		}
 		function change_state(state, no){
 			var message;
-			if(state == 2)
-				message = '배송중으로 전환하시겠습니까?';
+			if(state == 3)
+				message = '해당 상품에 대한 입금을 완료했으면 확인을 눌러주세요.';
 			else
-				message = '해당 구매신청을 취소하시겠습니까?';
+				message = '해당 판매신청을 취소하시겠습니까?';
 			
 			if(confirm(message))
 				$.ajax({
-					url: 'updateProductBuyState.do',
+					url: 'updateProductSellState.do',
 					type: 'get',
 					data: 'no=' + no + "&state=" + state,
 					dataType: 'json',
@@ -139,6 +141,7 @@
 					}
 				})
 		}
+		
 	</script>
 </head>
 <body>
@@ -175,7 +178,7 @@
 			</table>
 		</div>
 		<div>
-			<h3>구매확정</h3>
+			<h3>상품수령</h3>
 			<table>
 				<thead>
 					<tr>
@@ -197,7 +200,7 @@
 			</table>
 		</div>
 		<div>
-			<h3>배송중</h3>
+			<h3>판매결정</h3>
 			<table>
 				<thead>
 					<tr>
