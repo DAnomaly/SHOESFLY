@@ -24,14 +24,19 @@ import com.koreait.shoefly.command.manager.SelectListFaqManagerCommand;
 import com.koreait.shoefly.command.manager.SelectListMemberAddressManagerCommand;
 import com.koreait.shoefly.command.manager.SelectListMemberManagerCommand;
 import com.koreait.shoefly.command.manager.SelectListNoticeManagerCommand;
+import com.koreait.shoefly.command.manager.SelectListProductBuyManagerCommand;
 import com.koreait.shoefly.command.manager.SelectListProductManagerCommand;
+import com.koreait.shoefly.command.manager.SelectListProductSellManagerCommand;
 import com.koreait.shoefly.command.manager.SelectListReviewManagerCommand;
 import com.koreait.shoefly.command.manager.SelectOneFaqManagerCommand;
+import com.koreait.shoefly.command.manager.SelectOneMemberAddressManagerCommand;
 import com.koreait.shoefly.command.manager.SelectOneMemberManagerCommand;
 import com.koreait.shoefly.command.manager.SelectOneNoticeManagerCommand;
 import com.koreait.shoefly.command.manager.SelectOneProductManagerCommand;
 import com.koreait.shoefly.command.manager.UpdateMemberPwManagerCommand;
 import com.koreait.shoefly.command.manager.UpdateProdcutStateManagerCommand;
+import com.koreait.shoefly.command.manager.UpdateProductBuyStateManagerCommand;
+import com.koreait.shoefly.command.manager.UpdateProductSellStateManagerCommand;
 
 import lombok.AllArgsConstructor;
 
@@ -53,6 +58,13 @@ public class ManagerController {
 	private SelectOneProductManagerCommand selectOneProductManagerCommand;
 	private UpdateProdcutStateManagerCommand updateProdcutStateManagerCommand;
 	private DeleteProductManagerCommand deleteProductManagerCommand;
+	// PRDOCUT BUY
+	private SelectListProductBuyManagerCommand selectListProductBuyManagerCommand;
+	private SelectOneMemberAddressManagerCommand selectOneMemberAddressManagerCommand;
+	private UpdateProductBuyStateManagerCommand updateProductBuyStateManagerCommand;
+	// PRODUCT SELL
+	private SelectListProductSellManagerCommand selectListProductSellManagerCommand;
+	private UpdateProductSellStateManagerCommand updateProductSellStateManagerCommand;
 	// NOTICE
 	private SelectListNoticeManagerCommand selectListNoticeManagerCommand;
 	private SelectOneNoticeManagerCommand selectOneNoticeManagerCommand;
@@ -69,13 +81,17 @@ public class ManagerController {
 	private RestoreReviewManagerCommand restoreReviewCommand;
 	
 	
+	
 	// INDEX
+	
 	@GetMapping(value= {"/","index.do"})
 	public String index() {
 		return "manager/index";
 	}
 	
+	
 	// MEMBER
+	
 	@GetMapping(value="memberListPage.do")
 	public String memberListPage() {
 		return "manager/memberList";
@@ -129,7 +145,9 @@ public class ManagerController {
 		return updateMemberPwManagerCommand.execute(sqlSession, model).get("response").toString();
 	}
 	
+	
 	// PRODUCT
+	
 	@GetMapping(value="productListPage.do")
 	public String productListPage() {
 		return "manager/productList";
@@ -173,7 +191,76 @@ public class ManagerController {
 		return deleteProductManagerCommand.execute(sqlSession, model);
 	}
 	
+	
+	// PRDOCUT BUY
+	
+	@GetMapping(value="productBuyListPage.do")
+	public String productBuyListPage() {
+		return "manager/productBuyList";
+	}
+	
+	@ResponseBody
+	@GetMapping(value="selectListProductBuy.do",
+				produces="application/json; charset=UTF-8")
+	public Map<String, Object> selectListProductBuy(
+			Model model,
+			HttpServletRequest request) {
+		model.addAttribute("request", request);
+		return selectListProductBuyManagerCommand.execute(sqlSession, model);
+	}
+	
+	@ResponseBody
+	@GetMapping(value="selectOneMemberAddress.do",
+				produces="application/json; charset=UTF-8")
+	public Map<String, Object> selectOneMemberAddress(
+			Model model,
+			HttpServletRequest request) {
+		model.addAttribute("request", request);
+		return selectOneMemberAddressManagerCommand.execute(sqlSession, model);
+	}
+	
+
+	@ResponseBody
+	@GetMapping(value="updateProductBuyState.do",
+				produces="application/json; charset=UTF-8")
+	public Map<String, Object> updateProductBuyState(
+			Model model,
+			HttpServletRequest request) {
+		model.addAttribute("request", request);
+		return updateProductBuyStateManagerCommand.execute(sqlSession, model);
+	}
+	
+	
+	// PRODUCT SELL 
+	
+	@GetMapping(value="productSellListPage.do")
+	public String productSellListPage() {
+		return "manager/productSellList";
+	}
+
+	@ResponseBody
+	@GetMapping(value="selectListProductSell.do",
+				produces="application/json; charset=UTF-8")
+	public Map<String, Object> selectListProductSell(
+			Model model,
+			HttpServletRequest request) {
+		model.addAttribute("request", request);
+		return selectListProductSellManagerCommand.execute(sqlSession, model);
+	}
+	
+	@ResponseBody
+	@GetMapping(value="updateProductSellState.do",
+				produces="application/json; charset=UTF-8")
+	public Map<String, Object> updateProductSellState(
+			Model model,
+			HttpServletRequest request) {
+		model.addAttribute("request", request);
+		return updateProductSellStateManagerCommand.execute(sqlSession, model);
+	}
+	
+	
 	// NOTICE
+	
 	@GetMapping("noticeListPage.do")
 	public String noticeListPage(
 			Model model,
@@ -212,7 +299,9 @@ public class ManagerController {
 		return deleteNoticeManagerCommand.execute(sqlSession, model);
 	}
 	
+	
 	// FAQ
+	
 	@GetMapping("faqListPage.do")
 	public String faqListPage(
 			Model model,
@@ -251,7 +340,9 @@ public class ManagerController {
 		return deleteFaqManagerCommand.execute(sqlSession, model);
 	}
 	
+	
 	// REVIEW
+	
 	@GetMapping("reviewListPage.do")
 	public String reviewListPage(HttpServletRequest request,
 								 Model model) {

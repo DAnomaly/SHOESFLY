@@ -90,7 +90,7 @@ public class PagingUtils {
 			path = path + "?page=";
 		}
 		
-		System.out.println("path1: " + path);
+		// System.out.println("path1: " + path);
 		
 		// LEFT (<)
 		if(page.getBeginPage() == 1)
@@ -98,7 +98,7 @@ public class PagingUtils {
 		else
 			sb.append("<a href=\"").append(path).append(page.getBeginPage() - 1).append("\">&lt;</a>").append("&nbsp;");
 
-		System.out.println("path2: " + sb.toString());
+		// System.out.println("path2: " + sb.toString());
 		
 		// NUMBER (1 2 3 4 5)
 		for (int p = page.getBeginPage(); p <= page.getEndPage(); p++) {
@@ -108,7 +108,7 @@ public class PagingUtils {
 				sb.append("<a href=\"").append(path).append(p).append("\">").append(p).append("</a>").append("&nbsp;");
 		}
 		
-		System.out.println("path3: " + sb.toString());
+		// System.out.println("path3: " + sb.toString());
 		
 		// RIGHT (>)
 		if(page.getEndPage() == page.getTotalPage())
@@ -116,7 +116,7 @@ public class PagingUtils {
 		else
 			sb.append("<a href=\"").append(path).append(page.getEndPage() + 1).append("\">&gt;</a>");
 		
-		System.out.println("path4: " + sb.toString());
+		// System.out.println("path4: " + sb.toString());
 		
 		return sb.toString();
 	}
