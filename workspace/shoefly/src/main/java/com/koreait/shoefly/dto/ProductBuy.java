@@ -37,11 +37,16 @@ public class ProductBuy {
     // 등록/취소/구매완료 
     private int state;
     
+    // 이미지
+    private String image;
     
-    // 추가칼럼
-    // 상품 이름
+    // 상품이름 
     private String productName;
-    
-    // 상품 사이즈
+
+    // 사이즈 
     private int productSize;
+    
+    // 상품번호 
+    private String productNo;
+    
 }

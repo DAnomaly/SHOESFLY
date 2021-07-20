@@ -73,8 +73,8 @@
      		</div>
 		</form>
    		<a href="addressPage.do">주소록</a>
-   		<a href="">구매내역</a>
-   		<a href="">판매내역</a>
+   		<a href="productBuyPage.do">구매내역</a>
+   		<a href="productSellPage.do">판매내역</a>
 	</section>
 	<jsp:include page="../common/footer.jsp"/>
 </body>

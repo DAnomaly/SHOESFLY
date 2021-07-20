@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.koreait.shoefly.dto.Member;
 import com.koreait.shoefly.dto.MemberAddress;
+import com.koreait.shoefly.dto.ProductBuy;
+import com.koreait.shoefly.dto.ProductSell;
 
 public interface MemberDAO {
 
@@ -39,4 +41,13 @@ public interface MemberDAO {
 
 	public int insertAddress(MemberAddress memberAddress);
 	
+	public int countBuy();
+	
+	public List<ProductBuy> selectListBuy(int state, String memberId);
+	
+	public int deleteBuyRequest(long productBuyNo);
+	
+	public List<ProductSell> selectListSell(int state, String memberId);
+	
+	public int deleteSellRequest(long productSellNo);
 }

@@ -43,6 +43,13 @@ public class ProductSell {
     // 상품 이름
     private String productName;
     
-    // 상품 사이즈
+    // 이미지
+    private String image;
+    
+    // 사이즈 
     private int productSize;
+    
+    // 상품번호 
+    private String productNo;
+    
 }

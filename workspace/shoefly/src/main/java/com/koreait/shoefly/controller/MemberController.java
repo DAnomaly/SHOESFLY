@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.koreait.shoefly.command.member.DeleteAddressCommand;
+import com.koreait.shoefly.command.member.DeleteBuyRequestCommand;
 import com.koreait.shoefly.command.member.DeleteMemberCommand;
+import com.koreait.shoefly.command.member.DeleteSellRequestCommand;
 import com.koreait.shoefly.command.member.EmailOrCheckCommand;
 import com.koreait.shoefly.command.member.FindIdCommand;
 import com.koreait.shoefly.command.member.FindPwCommand;
@@ -24,6 +26,8 @@ import com.koreait.shoefly.command.member.InsertAddressCommand;
 import com.koreait.shoefly.command.member.JoinCommand;
 import com.koreait.shoefly.command.member.LoginCommand;
 import com.koreait.shoefly.command.member.LogoutCommand;
+import com.koreait.shoefly.command.member.ProductBuyCommand;
+import com.koreait.shoefly.command.member.ProductSellCommand;
 import com.koreait.shoefly.command.member.SelectAddrListCommand;
 import com.koreait.shoefly.command.member.UpdateAddressCommand;
 import com.koreait.shoefly.command.member.UpdateAddressListCommand;
@@ -57,6 +61,10 @@ public class MemberController {
 	private UpdateAddressCommand updateAddressCommand;
 	private DeleteAddressCommand deleteAddressCommand;
 	private InsertAddressCommand insertAddressCommand;
+	private ProductBuyCommand productBuyCommand;
+	private DeleteBuyRequestCommand deleteBuyRequestCommand;
+	private ProductSellCommand productSellCommand;
+	private DeleteSellRequestCommand deleteSellRequestCommand;
 	
 	// 페이지 이동
 	@GetMapping("loginPage.do")
@@ -100,6 +108,22 @@ public class MemberController {
 	@GetMapping("insertAddress.do")
 	public String insertAddress() {
 		return "member/insertAddr";
+	}
+	
+	@GetMapping("productBuyPage.do")
+	public String productBuyPage(HttpServletRequest request,
+								  Model model) {
+		model.addAttribute("request", request);
+		productBuyCommand.execute(sqlSession, model);
+		return "member/myProductBuy";
+	}
+	
+	@GetMapping("productSellPage.do")
+	public String productSellPage(HttpServletRequest request,
+								  Model model) {
+		model.addAttribute("request", request);
+		productSellCommand.execute(sqlSession, model);
+		return "member/myProductSell";
 	}
 	
 	// 로그인
@@ -270,5 +294,23 @@ public class MemberController {
 		model.addAttribute("request", request);
 		insertAddressCommand.execute(sqlSession, model);
 		return "redirect:myPage.do";
+	}
+	
+	// 구매대기 신청 삭제하기
+	@GetMapping("deleteBuyRequest.do")
+	public String deleteBuyRequest(HttpServletRequest request,
+								   Model model) {
+		model.addAttribute("request", request);
+		deleteBuyRequestCommand.execute(sqlSession, model);
+		return "redirect:productBuyPage.do";
+	}
+
+	// 판매대기 신청 삭제하기
+	@GetMapping("deleteSellRequest.do")
+	public String deleteSellRequest(HttpServletRequest request,
+			Model model) {
+		model.addAttribute("request", request);
+		deleteSellRequestCommand.execute(sqlSession, model);
+		return "redirect:productSellPage.do";
 	}
 }
