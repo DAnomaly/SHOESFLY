@@ -90,8 +90,8 @@
 				<form method="get" autocomplete="off" id='f'>
 					<select id="column" name="column">
 						<option value="">선택</option>
-						<option value="MEMBER_ID">작성자</option>
-						<option value="TITLE">제목</option>
+						<option value="MEMBER_ID" <c:if test="${column == 'MEMBER_ID'}">selected="selected"</c:if>>작성자</option>
+						<option value="TITLE" <c:if test="${column == 'TITLE'}">selected="selected"</c:if>>제목</option>
 					</select>
 					<input type="text" id="query" name="query">
 					<input type="button" value="검색" id="search_btn">

@@ -175,30 +175,28 @@
 	<section>
 		<h1> 리뷰 보기 </h1><br><br>
 		<c:if test="${review.memberId != loginMember.memberId}">  <!-- 로그인아이디 != 작성자아이디 -->
-		<h3>${review.title}</h3><br>
-		${review.memberId}<br>
-		${review.postdate}&nbsp;&nbsp;${review.hit}
-		<input type="button" value="목록" onclick="history.back()">
-		<hr>
-		<img alt="${review.image}" src="/shoefly/resources/archive/review/${filename}" style="width: 500px;">
-		${review.content}
+			<h3>${review.title}</h3><br>
+			${review.memberId}<br>
+			${review.postdate}&nbsp;&nbsp;${review.hit}
+			<input type="button" value="목록" onclick="history.back()">
+			<hr>
+			<img alt="${review.image}" src="/shoefly/resources/archive/review/${filename}" style="width: 500px;">
+			${review.content}
 		</c:if> 
-		
-		
 		<!--  로그인아이디 == 작성자아이디 (수정,삭제 권한) review.memberId == loginMember.memberid -->
 		<c:if test="${review.memberId == loginMember.memberId}">
-		<h3>${review.title}</h3><br>
-		${review.memberId}<br>
-		${review.postdate}&nbsp;&nbsp;${review.hit}
-		<form id="f" method="post">
-			<input type="hidden" name="reviewNo" value="${review.reviewNo}">
-			<input type="button" value="수정" id="update_btn">
-			<input type="button" value="삭제" id="delete_btn">
-			<input type="button" value="목록" onclick="history.back()">
-		</form>
-		<hr>
-		<img alt="${review.image}" src="/shoefly/resources/archive/review/${filename}" style="width: 500px;">
-		${review.content}
+			<h3>${review.title}</h3><br>
+			${review.memberId}<br>
+			${review.postdate}&nbsp;&nbsp;${review.hit}
+			<form id="f" method="post">
+				<input type="hidden" name="reviewNo" value="${review.reviewNo}">
+				<input type="button" value="수정" id="update_btn">
+				<input type="button" value="삭제" id="delete_btn">
+				<input type="button" value="목록" onclick="history.back()">
+			</form>
+			<hr>
+			<img alt="${review.image}" src="/shoefly/resources/archive/review/${filename}" style="width: 500px;">
+			${review.content}<br>
 		</c:if>
 		<hr>
 		<form id="f2">

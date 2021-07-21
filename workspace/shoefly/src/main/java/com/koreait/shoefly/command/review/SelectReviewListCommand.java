@@ -53,6 +53,7 @@ public class SelectReviewListCommand implements ReviewCommand {
 			model.addAttribute("review", review);
 			model.addAttribute("page", page);
 			model.addAttribute("paging", paging);
+			model.addAttribute("column", column);
 			
 			return null;
 		
