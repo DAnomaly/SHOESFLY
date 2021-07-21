@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+form {
+	width: 680px;
+	margin: 0 auto;
+	margin-top: 5px;
+}
+form h3 {
+	padding: 20px 10px;
+	border-bottom: 1px solid #ccc;
+}
+form .title input {
+	font-size: 16px;
+	margin-left: 10px;
+	padding: 8px;
+	border: none;
+	border-bottom: 1px solid #666;
+	width: 460px;
+}
+form .content textarea {
+	margin: 10px 0;
+	padding: 8px;
+	width: 680px;
+	height: 300px;
+	resize: vertical;
+	border: 1px solid #666;
+	outline: none;
+	box-sizing: border-box;
+}
+form .preview {
+	margin: 10px 0;
+	border-bottom: 1px solid #666; 
+}
+form .button_area {
+	float: right;
+}
+form .button_area input {
+	background-color: #2E64FE;
+	width: 75px;
+	height: 25px;
+	border: none;
+	border-radius: 3px;
+	color: #fff;
+}
+form .button_area input[value="삭제하기"] {
+	background-color: #B40404;
+	color: #fff;
+}
+form #preview {
+	margin: 10px;
+}

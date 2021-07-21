@@ -7,6 +7,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/manager_header.css">
+	<link rel="stylesheet" href="/shoefly/resources/asset/css/manager/faqInfo.css">
 	<title>${notice.title}</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script src="/shoefly/resources/asset/js/manager/faqInfo.js" charset="utf-8"></script>
@@ -30,7 +31,7 @@
 		<div class="preview" style="display: none;">
 			<div id="preview"></div>
 		</div>
-		<div>
+		<div class="button_area">
 			<input type="button" value="미리보기" onclick="preview_btn();"/>
 			<c:if test="${empty faq}">
 			<input type="button" value="등록하기" onclick="edit_btn();"/>

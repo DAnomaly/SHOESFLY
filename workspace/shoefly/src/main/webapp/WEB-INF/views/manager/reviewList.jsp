@@ -40,7 +40,6 @@
 						<td>${review.productName}</td>
 						<td>${review.hit}</td>
 						<td>${review.postdate}</td>
-						<%-- <input type="hidden" id="reviewNo" name="reviewNo" value="${review.reviewNo}"> --%>
 						<c:if test="${review.state == 0}">
 							<td><input type="button" id="delete_btn" value="삭제" onclick="location.href='deleteReview.do?reviewNo=${review.reviewNo}'"></td>
 						</c:if>
