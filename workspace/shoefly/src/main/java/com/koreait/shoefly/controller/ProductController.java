@@ -3,19 +3,21 @@ package com.koreait.shoefly.controller;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.koreait.shoefly.command.product.BuyApplicationCommand;
 import com.koreait.shoefly.command.product.SelectAllListCommand;
 import com.koreait.shoefly.command.product.SelectConditionCommand;
 import com.koreait.shoefly.command.product.SelectPriceBySizeCommand;
 import com.koreait.shoefly.command.product.SelectProductByProductNo;
+import com.koreait.shoefly.command.product.SellApplicationCommand;
 
 import lombok.AllArgsConstructor;
 
@@ -29,6 +31,9 @@ public class ProductController {
 	private SelectConditionCommand selectConditionCommand;
 	private SelectProductByProductNo selectProductByProductNo;
 	private SelectPriceBySizeCommand selectPriceBySizeCommand;
+	private BuyApplicationCommand buyApplicationCommand;
+	private SellApplicationCommand sellApplicationCommand;
+	
 	//전체 상품 종류 조회
 	@GetMapping("listPage.do")
 	public String listPage(HttpServletRequest request,
@@ -55,12 +60,50 @@ public class ProductController {
 		return "product/productView";
 	}
 	
-	//제품 사이즈 선택시 즉시판매가, 즉시구매가 조회
-	@PostMapping(value = "selectPriceBySize.do", produces = "application/json; charset=utf-8")
+	//AJAX처리_제품 사이즈 선택시 즉시판매가, 즉시구매가 조회
+	@GetMapping(value="selectPriceBySize.do", produces="application/json; charset=utf-8")
 	@ResponseBody
 	public Map<String, Object> selectPriceBySize(HttpServletRequest request,
 												 Model model){
 		model.addAttribute("request", request);
 		return selectPriceBySizeCommand.execute(sqlSession, model);
+	}
+	
+	//즉시구매
+	@GetMapping("buyNow.do")
+	public String buyNow(HttpServletRequest request,
+						 Model model) {
+		model.addAttribute("request", request);
+		return "product/buyNow";
+	}
+	
+	//즉시판매
+	@GetMapping("sellNow.do")
+	public String sellNow(HttpServletRequest request,
+						  Model model) {
+		model.addAttribute("request", request);
+		return "product/sellNow";
+	}
+	
+	//구매신청서 이동
+	@GetMapping("buyApplication.do")
+	public String buyApplication(HttpServletRequest request,
+								 HttpSession session,
+			   					 Model model) {
+		model.addAttribute("request", request);
+		model.addAttribute("session", session);
+		buyApplicationCommand.execute(sqlSession, model);
+		return "product/buyApplication";
+	}
+	
+	//판매신청서 이동
+	@GetMapping("sellApplication.do")
+	public String sellApplication(HttpServletRequest request,
+								  HttpSession session,
+				   				  Model model) {
+		model.addAttribute("request", request);
+		model.addAttribute("session", session);
+		sellApplicationCommand.execute(sqlSession, model);
+		return "product/sellApplication";
 	}
 }

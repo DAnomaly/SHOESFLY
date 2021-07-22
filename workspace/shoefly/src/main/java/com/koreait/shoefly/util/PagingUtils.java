@@ -67,7 +67,6 @@ public class PagingUtils {
 		page.setPagePerBlock(pagePerBlock);
 		page.setBeginPage(beginPage);
 		page.setEndPage(endPage);
-		// return page
 		return page;
 	}
 	
@@ -80,30 +79,34 @@ public class PagingUtils {
 	 * @return paging
 	 */
 	public static String getPaging(String path, Page page) {
+
 		StringBuilder sb = new StringBuilder();
 		if(path.indexOf('?') != -1) {
 			path = path + "&page=";
 		} else {
 			path = path + "?page=";
 		}
+				
 		// LEFT (<)
 		if(page.getBeginPage() == 1)
 			sb.append("<a>&lt;</a>").append("&nbsp;");
 		else
-			sb.append("<a href='").append(path).append(page.getBeginPage() - 1).append("'>&lt;</a>").append("&nbsp;");
+			sb.append("<a href=\"").append(path).append(page.getBeginPage() - 1).append("\">&lt;</a>").append("&nbsp;");
+		
 		// NUMBER (1 2 3 4 5)
 		for (int p = page.getBeginPage(); p <= page.getEndPage(); p++) {
 			if(p == page.getPage())
-				sb.append("<a class='now-page'>").append(p).append("</a>").append("&nbsp;");
+				sb.append("<a class=\"now-page\">").append(p).append("</a>").append("&nbsp;");
 			else
-				sb.append("<a href='").append(path).append(p).append("'>").append(p).append("</a>").append("&nbsp;");
+				sb.append("<a href=\"").append(path).append(p).append("\">").append(p).append("</a>").append("&nbsp;");
 		}
+				
 		// RIGHT (>)
 		if(page.getEndPage() == page.getTotalPage())
 			sb.append("<a>&gt;</a>");
 		else
-			sb.append("<a href='").append(path).append(page.getEndPage() + 1).append("'>&gt;</a>");
-		
+			sb.append("<a href=\"").append(path).append(page.getEndPage() + 1).append("\">&gt;</a>");
+				
 		return sb.toString();
 	}
 

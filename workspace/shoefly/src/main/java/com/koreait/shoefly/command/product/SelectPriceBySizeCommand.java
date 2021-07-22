@@ -19,16 +19,16 @@ public class SelectPriceBySizeCommand implements ProductCommand {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		
-		int size = Integer.parseInt(request.getParameter("size"));
+		int productSize = Integer.parseInt(request.getParameter("productSize"));
 		String productName = request.getParameter("productName");
 		
 		ProductDAO productDAO = sqlSession.getMapper(ProductDAO.class);
-		
 		Map<String, Object> resultMap = new HashMap<>();
-		//죽사구매가격
-		resultMap.put("buyPrice", productDAO.selectBuyPriceBySize(size, productName));
+		//즉시구매가격
+		resultMap.put("buyPrice", productDAO.selectBuyPriceBySize(productSize, productName));
 		//즉시판매가격
-		resultMap.put("sellPrice", productDAO.selectSellPriceBySize(size, productName));
+		resultMap.put("sellPrice", productDAO.selectSellPriceBySize(productSize, productName));
+
 		return resultMap;
 	}
 
