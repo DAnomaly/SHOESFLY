@@ -23,7 +23,7 @@
 			align-items: center;
 			height: 80vh;
 		}
-		section::before { 
+		/* section::before { 
 			content: "";
 			position: absolute;
 			z-index: 1;
@@ -31,10 +31,10 @@
 			right: 0;
 			bottom: 0;
 			left: 0;
-		}
+		} */
 		.login-form {
 			position: relative;
-			z-index: 2;
+			/* z-index: 2; */
 		}
 		.login-form .logo {
 			text-align: center;
@@ -49,7 +49,7 @@
 			margin-top: 0;
 		}
 		.login_box input {
-			width: 100%;
+			width: 380px;
 			padding: 20px 10px 10px;
 			background-color: transparent;
 			border: none;

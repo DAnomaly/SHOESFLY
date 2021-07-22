@@ -53,12 +53,13 @@
 		var pwPass = false;
 		function fn_pwCheck(){
 			$('#pw').keyup(function(){
-				var regPW = /^[a-z0-9]{5,15}$/;
+				 var regPW = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*]{5,15}$/;
+				/* var regPW = /^[a-z0-9]{5,15}$/; */
 			 	if(regPW.test($('#pw').val())){
 					$('#pw_result').text('사용가능한 비밀번호입니다.').css('color', 'blue');	
 					pwPass = true;
 				} else if(!regPW.test($('#pw').val())) {
-					$('#pw_result').text('비밀번호는 영어소문자와 숫자를 조합하여 5자 이상 15자이하로 입력해주세요.').css('color', 'red');
+					$('#pw_result').text('필수 영어 1이상, 숫자 1이상, 5글자 이상 15글자 이하(특수문자 !@#$%^&* 사용가능)').css('color', 'red');
 					pwPass = false; 
 				}
 			});

@@ -135,7 +135,6 @@ public class MemberController {
 		model.addAttribute("request", request);
 		model.addAttribute("response", response);
 		loginCommand.execute(sqlSession, model);		
-		/*return "redirect:/";*/
 	}
 	
 	// 로그아웃
@@ -221,7 +220,7 @@ public class MemberController {
 						   Model model) {
 		model.addAttribute("request", request);
 		updatePwCommand.execute(sqlSession, model);
-		return "index";
+		return "redirect:/";
 	}
 	
 	// 회원탈퇴
@@ -230,7 +229,7 @@ public class MemberController {
 							   Model model) {
 		model.addAttribute("request", request);
 		deleteMemberCommand.execute(sqlSession, model);
-		return "index";
+		return "redirect:/";
 	}
 	
 	// 이름 변경
@@ -239,7 +238,7 @@ public class MemberController {
 							 Model model) {
 		model.addAttribute("request", request);
 		updateNameCommand.execute(sqlSession, model);
-		return "index";
+		return "redirect:/";
 	}
 	
 	// 주소 리스트 가져오기
@@ -261,12 +260,6 @@ public class MemberController {
 		return "member/updateAddress";
 	}
 	
-	/**
-	 * 주소 팝업창 띄우기
-	 *
-	 * @author 박세환
-	 * @return
-	 */
 	@RequestMapping("jusoPopup.do")
 	public String jsuoPopup() {
 		return "common/jusoPopup";
