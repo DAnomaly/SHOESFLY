@@ -51,12 +51,7 @@
 			width: 1080px;
 			margin: 0 auto;
 		}
-		.paging {
-			margin: auto;
-			height: 50px;
-			line-height: 50px;
-			text-align: center;
-		}
+		
 		.search_box {
 			float: left;
 			width: 100%;
@@ -96,7 +91,7 @@
 		}
 		td {
 			border-bottom: 1px solid gray;
-			height: 50px;
+			height: 55px;
 		}
 		a {
 			text-decoration: none;
@@ -107,6 +102,12 @@
 		}
 		.button:hover {
 			cursor: pointer;
+		}
+		.paging {
+			margin: auto;
+			height: 50px;
+			line-height: 50px;
+			text-align: center;
 		}
 		
 	</style>

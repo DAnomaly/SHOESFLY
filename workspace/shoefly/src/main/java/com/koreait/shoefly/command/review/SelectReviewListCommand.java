@@ -18,7 +18,7 @@ import com.koreait.shoefly.util.PagingUtils;
 @Component
 public class SelectReviewListCommand implements ReviewCommand {
 
-	private int recordPerPage = 8;
+	private int recordPerPage = 10;
 	private int pagePerBlock = 5;
 	
 	@Override
@@ -44,7 +44,7 @@ public class SelectReviewListCommand implements ReviewCommand {
 			searchMap.put("endRecord", page.getEndRecord());
 			List<Review> review = reviewDAO.selectListReview(searchMap);
 			
-			String path = "reviewListPage.do";
+			String path = "listPage.do";
 			if (searchMap.get("column") != null && searchMap.get("query") != null) {
 				path += "?column=" + searchMap.get("column").toString() + "&query=" + searchMap.get("query").toString();
 			}
