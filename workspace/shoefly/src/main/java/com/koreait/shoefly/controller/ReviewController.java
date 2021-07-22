@@ -69,7 +69,7 @@ public class ReviewController {
 	public String insertReview(MultipartHttpServletRequest multipartRequest, Model model) {
 		model.addAttribute("multipartRequest", multipartRequest);
 		insertReviewCommand.execute(sqlSession, model);
-		return "redirect:reviewListPage.do";
+		return "redirect:listPage.do";
 	}
 	
 	@GetMapping(value="select.do") 
@@ -91,14 +91,14 @@ public class ReviewController {
 	public String updateReview(MultipartHttpServletRequest multipartRequest, Model model) {
 		model.addAttribute("multipartRequest", multipartRequest);
 		updateReviewCommand.execute(sqlSession, model);
-		return "redirect:selectReview.do?reviewNo=" + multipartRequest.getParameter("reviewNo") + "&page=1";
+		return "redirect:select.do?reviewNo=" + multipartRequest.getParameter("reviewNo") + "&page=1";
 	}
 	
 	@PostMapping(value="delete.do")
 	public String deleteReview(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		deleteReviewCommand.execute(sqlSession, model);
-		return "redirect:reviewListPage.do";
+		return "redirect:listPage.do";
 	}
 	
 /* =====================REVIEW COMMENT=============================================*/
