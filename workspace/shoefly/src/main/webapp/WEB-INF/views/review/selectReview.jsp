@@ -23,6 +23,7 @@
 			fn_cancel();
 			
 			fn_imgExsist();
+			
 		});	
 		// 리뷰 수정 이벤트
 		function fn_updateReview() {
@@ -63,7 +64,12 @@
 			});
 		} 
 		
-		
+		function fn_enterkey() {
+			if (window.event.keyCode == 13) {
+				fn_insertComment();
+			}
+			
+		}
 		
 		
 		// 댓글 리스트, 페이징
@@ -170,6 +176,26 @@
 			}
 		}
 		
+		function fn_enter() {
+			if(event.keyCode == 13) {
+				if ( ${loginMember.memberId == null} ) {
+					location.href='/shoefly/member/loginPage.do';
+				}else if ( $('#context').val() == ''){
+					alert('댓글을 입력하세요.');
+				}else {
+					 $.ajax({
+						url: 'insertComment.do',
+						type: 'POST',
+						data: $('#f2').serialize(),
+						dataType: 'json',
+						success: function(resultMap){
+							location.reload();
+						}
+					}); 
+				}
+				event.preventDefault();
+			}
+		}
 		
 		
 	</script>
@@ -281,7 +307,7 @@
 			<form id="f2">
 				<input type="hidden" name="memberId" value="${loginMember.memberId}"> <!-- 로그인아이디 ${loginMember.memberId} -->
 				<input type="hidden" name="reviewNo" value="${review.reviewNo}"> <!-- 게시글 번호 -->
-				<input class="comment_text" type="text"  id="context" name="context" placeholder="댓글 입력">
+				<input class="comment_text" type="text"  id="context" name="context" placeholder="댓글 입력" onkeypress="fn_enter();">
 				<input class="comment_btn" type="button" value="댓글 등록" id="insertComment_btn">
 			</form>
 			<hr>

@@ -18,6 +18,10 @@
 		
 		});
 		
+		function fn_enter() {
+			fn_search();	
+		}	
+		
 		// 검색 이벤트
 		function fn_search(){
 			$('#search_btn').click(function(){
@@ -39,6 +43,18 @@
 					location.href = 'insertPage.do';
 				}
 			});
+		}
+		
+		function fn_enter() {
+			if(event.keyCode == 13) {
+				if ( $('#column').val() == '' || $('#query').val() == '') {
+					location.href = 'listPage.do';
+				}else {
+					$('#f').attr('action', 'listPage.do' );
+					$('#f').submit();
+				}
+					event.preventDefault();
+			}
 		}
 		
 		
@@ -123,7 +139,7 @@
 						<option class="option" value="MEMBER_ID" <c:if test="${column == 'MEMBER_ID'}">selected="selected"</c:if>>작성자</option>
 						<option class="option" value="TITLE" <c:if test="${column == 'TITLE'}">selected="selected"</c:if>>제목</option>
 					</select>
-					<input class="queryBox" type="text" id="query" name="query">
+					<input class="queryBox" type="text" id="query" name="query" onkeypress="fn_enter();">
 					<input class="button" type="button" value="검색" id="search_btn">
 					<input class="button" type="button" value="후기 작성" id="insertReview_btn">  <!-- onclick="location.href='/shoefly/member/loginPage.do'" -->
 				</form>
