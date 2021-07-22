@@ -42,7 +42,7 @@ public class SelectReviewCommand implements ReviewCommand {
 		
 		if (viewCookie == null) {
 			try {
-				Cookie newCookie = new Cookie("cookie" + reviewNo, "readCount");
+				Cookie newCookie = new Cookie("cookie" + reviewNo, "cookie" + reviewNo);
 				newCookie.setMaxAge(60 * 60 * 24);
 				response.addCookie(newCookie);
 				reviewDAO.updateHit(reviewNo);

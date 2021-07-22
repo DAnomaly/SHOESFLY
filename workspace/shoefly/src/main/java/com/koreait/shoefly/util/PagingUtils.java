@@ -11,7 +11,7 @@ import com.koreait.shoefly.dto.Page;
  */
 public class PagingUtils {
 
-	private PagingUtils(){}
+private PagingUtils(){}
 	
 	/**
 	 * 패이지 당 Record의 개수 [기본값:8] 

@@ -18,7 +18,7 @@ import com.koreait.shoefly.util.PagingUtils;
 @Component
 public class SelectReviewListCommand implements ReviewCommand {
 
-	private int recordPerPage = 5;
+	private int recordPerPage = 8;
 	private int pagePerBlock = 5;
 	
 	@Override
@@ -29,10 +29,11 @@ public class SelectReviewListCommand implements ReviewCommand {
 			HttpServletRequest request = (HttpServletRequest)map.get("request");
 			
 			Map<String, Object> searchMap = new HashMap<>();
-			String column = request.getParameter("column");
+			String column =request.getParameter("column");
 			String query = request.getParameter("query");
-			searchMap.put("column", column == null || column.equals("") ? null : column);
-			searchMap.put("query", query == null || query.equals("") ? null : query);
+			
+			searchMap.put("column", column);
+			searchMap.put("query", query);
 			
 			String strNowPage = request.getParameter("page");
 			int nowPage = Integer.parseInt(strNowPage == null || strNowPage.equals("") ? "1" : strNowPage);
@@ -52,6 +53,7 @@ public class SelectReviewListCommand implements ReviewCommand {
 			model.addAttribute("review", review);
 			model.addAttribute("page", page);
 			model.addAttribute("paging", paging);
+			model.addAttribute("column", column);
 			
 			return null;
 		

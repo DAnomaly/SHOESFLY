@@ -14,6 +14,7 @@
 		$(document).ready(function(){
 			fn_selectProduct();
 			fn_insertReview();
+			fn_imgExsist();
 		});
 		
 		// 상품 리스트 가져오기
@@ -51,41 +52,114 @@
 		
 		// 이미지 파일 체크 
 		function fileCheck(obj) {
-			 var file_kind = obj.value.lastIndexOf('.');
-			 var file_name = obj.value.substring(file_kind+1,obj.length);
-			 var file_type = file_name.toLowerCase();
+			var file_kind = obj.value.lastIndexOf('.');
+			var file_name = obj.value.substring(file_kind+1,obj.length);
+			var file_type = file_name.toLowerCase();
 
-			 var check_file_type=['jpg','png','jpeg'];
+			var check_file_type=['jpg','png','jpeg'];
 
-			 if(check_file_type.indexOf(file_type)==-1){
-			  alert('이미지 파일만 선택할 수 있습니다.');
-			  var parent_Obj=obj.parentNode
-			  var node=parent_Obj.replaceChild(obj.cloneNode(true),obj);
-			  $('#file').val('');
-			  return false;
+			if(check_file_type.indexOf(file_type)==-1){
+			 alert('이미지 파일만 선택할 수 있습니다.');
+			 var parent_Obj=obj.parentNode
+			 var node=parent_Obj.replaceChild(obj.cloneNode(true),obj);
+			 $('#file').val('');
+			 return false;
+			}else {
+			 	if (obj.files && obj.files[0]) {
+					var reader = new FileReader();
+				    reader.onload = function (e) {
+				   		$('.img').attr('src', e.target.result)
+				    	.width(400)
+				    	.height(500);
+				        $('.content').width(669);
+				    }
+				reader.readAsDataURL(obj.files[0]);
+				}		 
 			 }
+		}
+		
+		function fn_imgExsist () {
+			if (${review.image != null}) {
+				$('.content').width(669);
 			}
+			
+		}
 	
 	</script>
+	
+	<style>
+		*{
+			box-sizing: border-box;
+		}
+		.update_container {
+			width: 1080px;
+			margin: 0 auto;
+		}
+		.title_line {
+			width: 100%;
+			margin-bottom: 30px;
+		}
+		.title {
+			width: 500px;
+			height: 40px;
+			font-size: 16px;
+		}
+		.productList {
+			width: 150px;
+			height: 40px;
+		}
+		.content_box {
+		}
+		.content {
+			width: 100%;
+			height: 500px;
+			resize: none;
+			font-size: 20px;
+		}
+		.button_box {
+			float: right;
+		}
+		.button {
+			width: 80px;
+			height: 40px;
+		}
+		.img {
+			display: inline;
+			width: 400px;
+			height: 500px;
+		}
+		
+		
+	</style>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
 	<section>
-		<h1>Update Review</h1><br>
-		
-		<form  id="f" action="updateReview.do" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="loginId" value="user1"> <!-- 로그인아이디 == 작성자아이디 -->
-			<input type="hidden" name="reviewNo" value="${review.reviewNo}"> <!-- 게시물 번호 -->
-			<input type="hidden" name="filename" value="${review.image}">
-			<input type="text" id="title" name="title" value="${review.title}">
-			<select name="productName" id="productList">
-				<option value="">선택</option>
-			</select>
-			<input type="file" id="file" name="file" accept=".jpg, .png, .jpeg" onchange="fileCheck(this)"><br><br>
-			<textarea id="content" name="content" rows="20" cols="80" >${review.content}</textarea><br>
-			<input type="button" value="등록" id="insert_btn">
-			<input type="button" value="취소" onclick="location.href='selectReview.do?reviewNo=${review.reviewNo}'">
-		</form>
+		<div class="update_container">
+			<h1>${review.productName }</h1>
+			<form  id="f" action="updateReview.do" method="post" enctype="multipart/form-data">
+				<div class="title_line">
+					<input type="hidden" name="loginId" value="user1"> <!-- 로그인아이디 == 작성자아이디 -->
+					<input type="hidden" name="reviewNo" value="${review.reviewNo}"> <!-- 게시물 번호 -->
+					<input type="hidden" name="filename" value="${review.image}">
+					<input type="text" class="title" id="title" name="title" value="${review.title}">
+					<select class="productList" name="productName" id="productList" >
+						<option value="">선택</option>
+					</select>
+					<input class="file_btn" type="file" id="file" name="file" accept=".jpg, .png, .jpeg" onchange="fileCheck(this)"><br><br>
+				</div>
+				<div class="content_box">
+					<c:if test="${review.image != null}">
+					<img class="img" alt="업로드이미지" src="/shoefly/resources/archive/review/${review.image}" >
+					</c:if>
+					<textarea class="content" id="content" name="content" >${review.content}</textarea><br>
+				</div>
+				<div class="button_box">
+					<input class="button" type="button" value="등록" id="insert_btn">
+					<input class="button" type="button" value="취소" onclick="history.back()">
+				</div>
+			</form>
+		</div>
 	
 	
 	</section>

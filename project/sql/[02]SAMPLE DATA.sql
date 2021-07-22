@@ -148,7 +148,115 @@ VALUES ('GY7924',
         'GY7924.jpg',
         0);
 
+-- 샘플 추가 데이터 =====================================================
+INSERT 
+  INTO PRODUCT 
+VALUES ('M992WT', 
+        'New Balance x WTAPS 992 Made in USA Olive',
+        'New Balance',
+        297000,
+        'M992WT.jpg',
+        0);
 
+INSERT 
+  INTO PRODUCT 
+VALUES ('BB550A3', 
+        'New Balance x Aime Leon Dore 550 Navy Red',
+        'New Balance',
+        159000,
+        'BB550A3.jpg',
+        0);
+        
+INSERT 
+  INTO PRODUCT 
+VALUES ('MR530SG', 
+        'New Balance 530 White',
+        'New Balance',
+        99000,
+        'MR530SG.jpg',
+        0);
+        
+INSERT 
+  INTO PRODUCT 
+VALUES ('555088-035', 
+        'Jordan 1 Retro High OG Shadow 2.0',
+        'Jordan',
+        199000,
+        '555088-035.jpg',
+        0);
+        
+INSERT 
+  INTO PRODUCT 
+VALUES ('555088-180', 
+        'Jordan 1 Retro High OG Electro Orange',
+        'Jordan',
+        199000,
+        '555088-180.jpg',
+        0);
+        
+INSERT 
+  INTO PRODUCT 
+VALUES ('CD4487-100', 
+        'Jordan 1 x Travis Scott Retro High OG SP Mocha',
+        'Jordan',
+        239000,
+        'CD4487-100.jpg',
+        0);
+        
+INSERT 
+  INTO PRODUCT 
+VALUES ('AQ3692-001', 
+        'Nike x Peaceminusone Air Force 1 Low Para-Noise',
+        'Nike',
+        219000,
+        'AQ3692-001.jpg',
+        0);
+        
+INSERT 
+  INTO PRODUCT 
+VALUES ('CZ6501-101', 
+        'Nike x Kasina Dunk Low Road Sign (kasina Exclusive)',
+        'Nike',
+        129000,
+        'CZ6501-101.jpg',
+        0);
+        
+INSERT 
+  INTO PRODUCT 
+VALUES ('CU1726-500', 
+        'Nike Dunk Low SP Plum',
+        'Nike',
+        119000,
+        'CU1726-500.jpg',
+        0);
+        
+INSERT 
+  INTO PRODUCT 
+VALUES ('GZ5554', 
+        'Adidas Yeezy Slide Pure',
+        'Adidas',
+        79000,
+        'GZ5554.jpg',
+        0);
+        
+INSERT 
+  INTO PRODUCT 
+VALUES ('B75571', 
+        'Adidas Yeezy Boost 700 Wave Runner Solid Grey',
+        'Adidas',
+        342000,
+        'B75571.jpg',
+        0);
+        
+INSERT 
+  INTO PRODUCT 
+VALUES ('FY4567', 
+        'Adidas Yeezy Foam RNNR Sand',
+        'Adidas',
+        99000,
+        'FY4567.jpg',
+        0);
+        
 -- PRODUCT_DETAIL
 
 -- INSERT : Jordan 1 Retro High OG University Blue 사이즈 분리
