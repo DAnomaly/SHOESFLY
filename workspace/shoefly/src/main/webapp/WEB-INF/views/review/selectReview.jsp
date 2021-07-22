@@ -21,11 +21,13 @@
 			fn_updateComment();
 			fn_deleteComment();
 			fn_cancel();
+			
+			fn_imgExsist();
 		});	
 		// 리뷰 수정 이벤트
 		function fn_updateReview() {
 			$('#update_btn').click(function(){
-				$('#f').attr('action', 'updateReviewPage.do');
+				$('#f').attr('action', 'updatePage.do');
 				$('#f').submit();
 			});
 		}
@@ -34,7 +36,7 @@
 		function fn_deleteReview() {
 			$('#delete_btn').click(function() {
 				if (confirm('삭제하시겠습니까?')) {
-					$('#f').attr('action', 'deleteReview.do');
+					$('#f').attr('action', 'delete.do');
 					$('#f').submit();
 				}
 			});
@@ -94,25 +96,36 @@
 		function fn_commentList(comment) {
 		    var form = $('<form>').appendTo('#commentList');
 		    if ('${loginMember.memberId}' == comment.memberId) {
-		    	var span1 = $('<span id="review_comment">').html( comment.memberId + '<br>' + comment.context + '<input type="hidden" name="reviewCommentNo" value="' + comment.reviewCommentNo + '"> <input type="button" id="updateComment_btn" value="수정"> <input type="button" id="deleteComment_btn" value="삭제">' )
+		    	var div1 = $('<div class="comment">').html( '<span class="comment_id">' + comment.memberId + '</span><br><input class="comment_content" type="text" value="' + comment.context + '"><input type="hidden" name="reviewCommentNo" value="' + comment.reviewCommentNo + '"> <input type="button" id="updateComment_btn" value="수정"> <input type="button" id="deleteComment_btn" value="삭제">' )
 		    	.appendTo(form);
 		    	
-		    	var span2 = $('<span id="update_comment" style="display:none">').html( comment.memberId + '<br> <input type="hidden" name="reviewCommentNo" value="' + comment.reviewCommentNo + '"> <input type="text" name="context" value="' + comment.context + '"> <input type="button" id="real_updateComment_btn" value="수정"> <input type="button" id="cancel_btn" value="취소">' )
+		    	var div2 = $('<div id="update_comment" style="display:none">').html( '<span class="comment_id">' + comment.memberId + '</span><br> <input type="hidden" name="reviewCommentNo" value="' + comment.reviewCommentNo + '"> <input class="hidden_content" type="text" name="context" value="' + comment.context + '"> <input type="button" id="real_updateComment_btn" value="수정"> <input type="button" id="cancel_btn" value="취소">' )
 		    	.appendTo(form);
 		    
 			}else {
-				var span = $('<span>').html(comment.memberId + '<br>' + comment.context).appendTo(form);
+				var span = $('<div class=comment">').html('<span class="comment_id">' + comment.memberId + '</span><br> <input class="comment_content" tyle="text" value="' + comment.context + '">').appendTo(form);
 			}
 		}
 		
 		// 댓글 수정 클릭 이벤트
 		function fn_updateCommentPage() {
 			$('section').on('click', '#updateComment_btn', function(){
+				const len = $(this).parent().next().children('.hidden_content').val().length;
 				$(this).parent().hide();
 				$(this).parent().next().attr('style', 'false');
+				$(this).parent().next().children('.hidden_content').focus();
+				$(this).parent().next().children('.hidden_content')[0].setSelectionRange(len, len);
+				
 			});
 		}
 
+		// 댓글 수정 취소 클릭 이벤트
+		function fn_cancel() {
+			$('section').on('click', '#cancel_btn', function(){
+				$(this).parent().hide();				
+				$(this).parent().prev().attr('style', 'false');
+			})
+		}
 		
 		// 댓글 수정 이벤트
 		function fn_updateComment() {
@@ -150,64 +163,131 @@
 		}
 		
 		
-		
-		
-		
-		
-		// 댓글 수정 취소 클릭 이벤트
-		function fn_cancel() {
-			$('section').on('click', '#cancel_btn', function(){
-				$(this).parent().hide();				
-				$(this).parent().prev().attr('style', 'false');
-			})
+		function fn_imgExsist () {
+			if (${review.image != null}) {
+				$('.content').width(669);
+				$('.img').width(400).height(500);
+			}
 		}
-		
-		
-		
 		
 		
 		
 	</script>
 	
+	<style>
+		*{
+			box-sizing: border-box;
+		}
+		.review_container {
+			width: 1080px;
+			margin: 0 auto;
+		}
+		.title_box {
+			width: 100%;
+		}
+		.title_text {
+			font-weight: 400;
+    		font-size: 26px;
+		}
+		.memberId {
+			font-size: 16px;
+			font-weight: 700;
+		}
+		.date, .hit {
+			font-size: 14px;
+			color: #979797;			
+		}
+		.button_box {
+			float: right;
+		}
+		.button {
+			width: 40px;
+		}
+		.content {
+			border: none;
+			width: 100%;
+			height: 500px;
+			resize: none;
+			font-size: 20px;
+		}
+		.comment_text {
+			width: 90%;
+			height: 50px;
+			border-radius: 5px;
+			padding-left: 5px;
+			font-size: 16px;
+		}
+		.comment_btn {
+			width: 100px;
+			height: 50px;
+			border-radius: 5px;
+		}
+		.comment_content {
+			width: 90%;
+			height: 40px;
+			border-style: none;
+		}
+		.hidden_content {
+			width: 90%;
+			height: 40px;
+		}
+		.comment_id {
+			font-size: 16px;
+			font-weight: 700;
+		}
+		.comment_content {
+			margin-left: 10px;
+			font-size: 16px;
+		}
+		a {
+			text-decoration: none;
+			color: black;
+		}
+		a:hover {
+			text-decoration: underline;
+		}
+		.paging {
+			margin: auto;
+			height: 50px;
+			line-height: 50px;
+			text-align: center;
+		}
+	</style>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
 	<section>
-		<h1> 리뷰 보기 </h1><br><br>
-		<c:if test="${review.memberId != loginMember.memberId}">  <!-- 로그인아이디 != 작성자아이디 -->
-			<h3>${review.title}</h3><br>
-			${review.memberId}<br>
-			${review.postdate}&nbsp;&nbsp;${review.hit}
-			<input type="button" value="목록" onclick="history.back()">
+		<div class="review_container">
+			<div class="title_box">
+					<h3 class="title_text">${review.title}</h3>
+					<span class="memberId">${review.memberId}</span><br>
+					<span class="date">${review.postdate}</span>&nbsp;&nbsp;<span class="hit">조회 ${review.hit}</span>
+				<div class="button_box">
+					<form id="f" method="post">
+						<input class="button" type="hidden" name="reviewNo" value="${review.reviewNo}">
+						<c:if test="${review.memberId == loginMember.memberId}"> <!--  로그인아이디 == 작성자아이디 (수정,삭제 권한) review.memberId == loginMember.memberid -->
+							<input class="button" type="button" value="수정" id="update_btn">
+							<input class="button" type="button" value="삭제" id="delete_btn">
+						</c:if>
+						<input type="button" value="목록" onclick="history.back()">
+					</form>
+				</div>
+			</div>
 			<hr>
-			<img alt="${review.image}" src="/shoefly/resources/archive/review/${filename}" style="width: 500px;">
-			${review.content}
-		</c:if> 
-		<!--  로그인아이디 == 작성자아이디 (수정,삭제 권한) review.memberId == loginMember.memberid -->
-		<c:if test="${review.memberId == loginMember.memberId}">
-			<h3>${review.title}</h3><br>
-			${review.memberId}<br>
-			${review.postdate}&nbsp;&nbsp;${review.hit}
-			<form id="f" method="post">
-				<input type="hidden" name="reviewNo" value="${review.reviewNo}">
-				<input type="button" value="수정" id="update_btn">
-				<input type="button" value="삭제" id="delete_btn">
-				<input type="button" value="목록" onclick="history.back()">
+			<div class="content_box">
+				<img class="img" alt="${review.image}" src="/shoefly/resources/archive/review/${filename}">
+				<textarea class="content">${review.content}</textarea>
+			</div>
+			<form id="f2">
+				<input type="hidden" name="memberId" value="${loginMember.memberId}"> <!-- 로그인아이디 ${loginMember.memberId} -->
+				<input type="hidden" name="reviewNo" value="${review.reviewNo}"> <!-- 게시글 번호 -->
+				<input class="comment_text" type="text"  id="context" name="context" placeholder="댓글 입력">
+				<input class="comment_btn" type="button" value="댓글 등록" id="insertComment_btn">
 			</form>
 			<hr>
-			<img alt="${review.image}" src="/shoefly/resources/archive/review/${filename}" style="width: 500px;">
-			${review.content}<br>
-		</c:if>
-		<hr>
-		<form id="f2">
-			<input type="hidden" name="memberId" value="${loginMember.memberId}"> <!-- 로그인아이디 ${loginMember.memberId} -->
-			<input type="hidden" name="reviewNo" value="${review.reviewNo}"> <!-- 게시글 번호 -->
-			<input type="text"  id="context" name="context" placeholder="댓글 입력">
-			<input type="button" value="댓글 등록" id="insertComment_btn">
-		</form>
-		<hr>
-		<div id="commentList"></div>
-		<div class="paging"></div>
+			<div class="comment_list" id="commentList"></div>
+			<div class="paging"></div>
+		</div>
 	</section>
 	<jsp:include page="../common/footer.jsp"/>
 </body>

@@ -40,7 +40,7 @@ public class SelectCommentListCommand implements ReviewCommand {
 		
 		List<ReviewComment> commentList = reviewDAO.selectCommentList(searchMap);
 		
-		String path = "selectReview.do?reviewNo=" + reviewNo;
+		String path = "select.do?reviewNo=" + reviewNo;
 		String paging = PagingUtils.getPaging(path, page);
 		
 		Map<String, Object> resultMap = new HashMap<>();

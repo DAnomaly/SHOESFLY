@@ -133,7 +133,7 @@
 	<section>
 		<div class="insert_container">
 			<h1>Insert Review</h1>
-			<form  id="f" action="insertReview.do" method="post" enctype="multipart/form-data">
+			<form  id="f" action="insert.do" method="post" enctype="multipart/form-data">
 				<div class="title_line">
 					<input type="hidden" name="loginId" value="${loginMember.memberId}">
 					<input type="text" class="title" id="title" name="title" placeholder="제목을 입력하세요.">
@@ -148,7 +148,7 @@
 				</div>
 				<div class="button_box">
 					<input class="button" type="button" value="등록" id="insert_btn">
-					<input class="button" type="button" value="취소" onclick="location.href='reviewListPage.do'">
+					<input class="button" type="button" value="취소" onclick="location.href='listPage.do'">
 				</div>
 			</form>
 		</div>
