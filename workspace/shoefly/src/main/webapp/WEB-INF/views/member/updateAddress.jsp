@@ -23,7 +23,11 @@
 		} 
 		
 		function goPopup(){
-			var pop = window.open("/shoefly/resources/asset/jsp/jusoPopup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+<<<<<<< HEAD
+			var pop = window.open("/shoefly/member/jusoPopup.do","pop","width=570,height=420, scrollbars=yes, resizable=yes");
+=======
+			var pop = window.open("/shoefly/member/jusoPopup.do","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+>>>>>>> main
 		}
 		
 		function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
@@ -51,7 +55,6 @@
 <body>
 	<jsp:include page="../common/header.jsp"/>
 	<section>
-	${memberAddress.memberAddressNo}
 		<form name="form" id="form" method="post">		
 			<input type="hidden" id="memberAddressNo" name="memberAddressNo" value="${memberAddress.memberAddressNo}">
 			<div class="addr_info">
