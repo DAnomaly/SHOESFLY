@@ -43,26 +43,106 @@
 			})
 		}
 	</script>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+		}
+		section {
+			width: 700px;
+			margin: 0 auto;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100%;
+			line-height: 30px;
+		}
+		.container {
+			width: 500px;
+			margin: 0 auto;
+		}
+		.pageTitle {
+			text-align: center;
+		}	
+		.insert_addr {
+			width: 300px;
+			margin-left: 120px;
+			display: flex;
+		}
+		.addr_title {
+			margin: 19px 0 8px 5px;
+			font-size: 15px;
+			font-weight: 700;
+		}
+		.addr_info {
+			width: 350px;
+			margin-bottom: 5px;
+		}
+		.addr_info input[type=text] {
+			width: 250px;
+			padding: 10px;			
+			border: none;
+			border-bottom: 1px solid gray;
+			outline: none;
+		}
+		.addr_info input[type=button] {
+			width: 60px;
+			height: 30px;
+		}
+		.btn_primary {
+			border: none;
+			box-shadow: 1px 1px 3px 1px #dadce0 inset;
+			border-radius: 5px;
+			background-color: lightgray; 
+			cursor: pointer;
+		}
+		.btn_primary:hover {
+			background-color: darkgray;
+		} 
+		.insert_addr_btn {
+			width: 200px;
+			margin-top: 20px;
+			margin-left: 25px;
+			padding: 15px 0 15px;
+			font-size: 18px;
+			text-align: center;
+			cursor: pointer;
+			box-sizing: border-box;
+		}
+	</style>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
 	<section>
-	
+		<div class="container">
+		<div class="pageTitle">
+			<h1>신규 주소등록</h1>
+		</div>	
+		<div class="insert_addr">
 		<form name="form" id="form" method="post">		
+			<div class="addr_title">
+		     	<label for="name">배송지</label>			
+			</div>
 			<div class="addr_info">
-				배송지<br>
 				<input type="text" id="name" name="name" placeholder="배송지를 입력해주세요.">
 			</div><br>
-			<div class="addr_info">
-				주소<br>
-				<input type="text"  style="width:500px;" id="addr1"  name="addr1" readonly/>
-				<input type="button" id="addr_search_btn" value="주소찾기"><br><br>
-				상세주소<br>
-				<input type="text"  style="width:500px;" id="addr2"  name="addr2" readonly/>				
+			<div class="addr_title">
+		     	<label for="addr1">주소</label>	
 			</div>
-			<input type="button" id="insert_addr_btn" value="추가">
+			<div class="addr_info">
+				<input type="text" id="addr1"  name="addr1" readonly/>
+				<input type="button" id="addr_search_btn" value="주소찾기" class="btn_primary"><br><br>				
+			</div>
+			<div class="addr_title">
+		     	<label for="addr2">상세주소</label>		
+			</div>
+			<div class="addr_info">
+				<input type="text" id="addr2"  name="addr2" readonly/>				
+			</div>
+			<input type="button" id="insert_addr_btn" value="추가" class="insert_addr_btn btn_primary">
 		</form>
-	
+		</div>
+		</div>
 	</section>
 	<jsp:include page="../common/footer.jsp"/>
 </body>

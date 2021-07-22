@@ -31,8 +31,8 @@
 							.append( $('<td>').text(address.name) )
 							.append( $('<td>').text(address.addr1) )
 							.append( $('<td>').text(address.addr2) )
-							.append($('<td>').html('<input type="hidden" name="memberAddressNo" id="memberAddressNo" value="' + address.memberAddressNo + '"><input type="button" value="수정" id="update_address_btn">'))
-							.append( $('<td>').html('<input type="button" id="delete_address_btn" value="삭제">') )
+							.append($('<td>').html('<input type="hidden" name="memberAddressNo" id="memberAddressNo" value="' + address.memberAddressNo + '"><input type="button" value="수정" id="update_address_btn" class="btn_primary">'))
+							.append( $('<td>').html('<input type="button" id="delete_address_btn" value="삭제" class="btn_primary">') )
 							.appendTo('#address_list')
 						})
 					} else {
@@ -98,15 +98,30 @@
 			border-bottom: 1px solid black;
 		}
 		.insert_btn {
+			color: black;
+			font-weight: 400;
 			display: inline-block;
-			padding: 2px;
+			padding: 3px 10px 3px 10px;
 			text-decoration: none;
 			border: 1px solid none;
 			background-color: lightgray;
 			border-radius: 5px;
 			box-shadow: 1px 1px 3px 1px #dadce0 inset;
 		}
-		
+		.btn_primary {
+			border: none;
+			box-shadow: 1px 1px 3px 1px #dadce0 inset;
+			border-radius: 5px;
+			background-color: lightgray; 
+			cursor: pointer;
+		}
+		.btn_primary:hover {
+			background-color: darkgray;
+		}
+		.body input[type=button] {
+			width: 50px;
+			height: 30px;
+		}
 	</style>
 </head>
 <body>
@@ -124,18 +139,12 @@
 					<td>주소</td>
 					<td>상세주소</td>
 					<td colspan="2">
-						<a href='insertAddress.do' class="insert_btn">주소추가</a>
+						<a href='insertAddress.do' class="insert_btn btn_primary">주소추가</a>
 					</td>
 				</tr>
 			</thead>
-			<tbody id="address_list" class="body">
-				
+			<tbody id="address_list" class="body">				
 			</tbody>
-			<tfoot>
-				<tr>
-					
-				</tr>
-			</tfoot>
 		</table>
 		</div>
 	</section>

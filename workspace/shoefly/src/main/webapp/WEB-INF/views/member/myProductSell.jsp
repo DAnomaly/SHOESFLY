@@ -20,16 +20,88 @@
 			$('.' + className + '_a_hidden').hide();
 		}
 	</script>	
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+		}
+		section {
+			width: 900px;
+			margin: 0 auto;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100%;
+			line-height: 40px;
+		}
+		.container {
+			width: 800px;
+			margin: 0 auto;
+		}
+		.pageTitle {
+			text-align: center;
+			margin: 80px 0 50px 0;
+		}	
+		.table_title {
+			margin: 25px 0 8px 5px;
+			font-size: 15px;
+			font-weight: 700;
+		}
+		.sale_list_box {
+			margin-left: 100px;
+		}
+		.last_box {
+			margin-bottom: 100px;
+		}
+		table {
+			width: 700px;
+			height: 80px;
+			border-collapse: collapse;
+		}
+		table thead {
+			text-align: center;
+		}
+		table tbody {
+			text-align: center;
+		}
+		tbody > tr > td {
+			border-top: 1px solid black;
+			border-bottom: 1px solid black;
+		}
+		tbody > tr > td > a {
+			width: 100%;
+			font-size: 15px;
+			font-weight: 400;
+			color: black;
+			text-decoration: none;
+			padding: 30px; 
+		}
+		.btn_primary {
+			width: 60px;
+			height: 40px;
+			border: none;
+			box-shadow: 1px 1px 3px 1px #dadce0 inset;
+			border-radius: 5px;
+			background-color: lightgray; 
+			cursor: pointer;
+		}
+		.btn_primary:hover {
+			background-color: darkgray;
+		}
+	</style>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
 	<section>
-		
-		<h1>판매내역</h1>	
-		
+		<div class="container">
+		<div class="pageTitle">
+			<h1>판매내역</h1>	
+		</div>			
 		<div class="sale_list_box">
-			<span>판매중</span>
-			<table border="1">
+			<div class="table_title">
+				<span>판매중</span>
+			</div>
+			<table>
 				<thead>
 					<tr>
 						<td></td>
@@ -57,7 +129,7 @@
 							<td>${sellRequestList.price}</td>
 							<td>${sellRequestList.productSize}</td>
 							<td>${sellRequestList.postdate}</td>
-							<td><input type="button" value="삭제" onclick="location.href='deleteSellRequest.do?productSellNo=${sellRequestList.productSellNo}'"></td>
+							<td><input type="button" value="삭제" class="btn_primary" onclick="location.href='deleteSellRequest.do?productSellNo=${sellRequestList.productSellNo}'"></td>
 						</tr>	
 					</c:forEach>
 				</tbody>
@@ -71,8 +143,10 @@
 		</table>
 		</div>
 		<div class="sale_list_box">
-			<span>판매대기</span>
-			<table border="1">
+			<div class="table_title">
+				<span>판매대기</span>
+			</div>
+			<table>
 				<thead>
 					<tr>
 						<td></td>
@@ -113,8 +187,10 @@
 		</table>
 		</div>
 		<div class="sale_list_box">
-			<span>판매확정</span>
-			<table border="1">
+			<div class="table_title">
+				<span>판매확정</span>
+			</div>
+			<table>
 				<thead>
 					<tr>
 						<td></td>
@@ -154,9 +230,11 @@
 				</c:if>
 		</table>
 		</div>
-		<div class="sale_list_box">
-			<span>거래완료</span>
-			<table border="1">
+		<div class="sale_list_box last_box">
+			<div class="table_title">
+				<span>거래완료</span>
+			</div>
+			<table>
 				<thead>
 					<tr>
 						<td></td>
@@ -196,7 +274,7 @@
 				</c:if>
 		</table>
 		</div>
-		
+		</div>
 	</section>
 	<jsp:include page="../common/footer.jsp"/>
 </body>
