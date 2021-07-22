@@ -37,7 +37,7 @@ public class UpdateAddressCommand implements MemberCommand {
 		
 		MemberDAO memberDAO = sqlSession.getMapper(MemberDAO.class);
 		
-		int count = memberDAO.updateAddress(memberAddress);
+		memberDAO.updateAddress(memberAddress);
 				
 		return null;
 	}

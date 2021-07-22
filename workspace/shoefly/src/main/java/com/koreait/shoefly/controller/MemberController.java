@@ -3,6 +3,7 @@ package com.koreait.shoefly.controller;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -128,11 +129,13 @@ public class MemberController {
 	
 	// 로그인
 	@PostMapping("login.do")
-	public String login(HttpServletRequest request,
+	public void login(HttpServletRequest request,
+						HttpServletResponse response,
 						Model model) {
 		model.addAttribute("request", request);
+		model.addAttribute("response", response);
 		loginCommand.execute(sqlSession, model);		
-		return "redirect:/";
+		/*return "redirect:/";*/
 	}
 	
 	// 로그아웃

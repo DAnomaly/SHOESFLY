@@ -25,7 +25,6 @@ public class UpdateNameCommand implements MemberCommand {
 		String name = request.getParameter("name");
 		Member loginMember = (Member)session.getAttribute("loginMember");
 		long memberNo = loginMember.getMemberNo();
-		System.out.println(name + ", " + memberNo);
 		Member member = new Member();
 		member.setName(name);
 		member.setMemberNo(memberNo);
