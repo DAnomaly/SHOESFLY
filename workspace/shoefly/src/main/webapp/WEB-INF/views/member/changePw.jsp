@@ -21,12 +21,12 @@
 		var pwPass = false;
 		function fn_pwCheck(){
 			$('#pw').keyup(function(){
-				var regPW = /^[0-9]{4,10}$/;
+				var regPW = /^[a-z0-9]{5,15}$/;
 			 	if(regPW.test($('#pw').val())){
 					$('#pw_result').text('사용가능한 비밀번호입니다.').css('color', 'blue');	
 					pwPass = true;
 				} else if(!regPW.test($('#pw').val())) {
-					$('#pw_result').text('비밀번호는 0~9사이의 숫자 4자이상 10자이하로 입력해주세요.').css('color', 'red');
+					$('#pw_result').text('비밀번호는 영어소문자와 숫자를 조합하여 5자 이상 15자이하로 입력해주세요.').css('color', 'red');
 					pwPass = false; 
 				}
 			});
@@ -59,17 +59,74 @@
 			});
 		}	
 	</script>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+		}
+		section {
+			width: 500px;
+			margin: 0 auto;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100%;
+			line-height: 30px;
+		}
+		.container {
+			width: 700px;
+			margin: 0 auto;
+		}
+		.pageTitle {
+			text-align: center;
+		}
+		.change {
+			width: 300px;
+			margin-left: 170px;
+			display: flex;
+		}
+		.updatePw_info {
+			width: 300px;
+			margin-bottom: 10px;
+		}
+		.updatePw_info input[type=password] {
+			width: 150px;
+			padding: 10px;			
+			border: none;
+			border-bottom: 1px solid gray;
+			outline: none;
+		} 
+		.btn_primary {
+			border: none;
+			box-shadow: 1px 1px 3px 1px #dadce0 inset;
+			border-radius: 5px;
+			background-color: lightgray; 
+			cursor: pointer;
+		}
+		.btn_primary:hover {
+			background-color: darkgray;
+		}
+		.changePw_btn {
+			width: 150px;
+			margin-top: 20px;
+			padding: 15px 0 15px;
+			font-size: 18px;
+			text-align: center;
+			cursor: pointer;
+			box-sizing: border-box;
+		}
+	</style>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
 	<section>
-	
+		<div class="container">
 		<div class="pageTitle">
 			<h1>비밀번호 변경</h1>
 		</div>
-		
+		<div class="change">
 		<c:if test="${findMember == null}">
-			일치하는 회원정보가 없습니다.<br><br>
+			<span>일치하는 회원정보가 없습니다.</span><br><br>
 			<a href="joinPage.do">회원가입</a>
 		</c:if>
 		<c:if test="${findMember != null}">
@@ -85,10 +142,11 @@
 	     			<input type="password" id="pw2"><br>
 	     			<span id="pw2_result"></span>
      			</div>
-				<input type="button" value="비밀번호변경" id="updatePw_btn">
+				<input type="button" value="비밀번호변경" id="updatePw_btn" class="changePw_btn btn_primary">
 			</form>
-		</c:if>
-	
+		</c:if>	
+		</div>
+		</div>
 	</section>
 	<jsp:include page="../common/footer.jsp"/>
 </body>

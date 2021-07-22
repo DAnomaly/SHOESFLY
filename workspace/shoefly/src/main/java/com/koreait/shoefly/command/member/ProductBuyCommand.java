@@ -34,11 +34,6 @@ public class ProductBuyCommand implements MemberCommand {
 	    List<ProductBuy> buyingList2 = memberDAO.selectListBuy(2, memberId);
 	    List<ProductBuy> buyingList3 = memberDAO.selectListBuy(3, memberId);
 		
-		System.out.println(buyingList0);
-		System.out.println(buyingList1);
-		System.out.println(buyingList2);
-		System.out.println(buyingList3);
-		
 		model.addAttribute("buyRequestList", buyingList0);
 		model.addAttribute("buyingList", buyingList1);
 		model.addAttribute("ShippingList", buyingList2);
