@@ -47,14 +47,14 @@ public class ReviewController {
 	private DeleteCommentCommand deleteCommentCommand;
 	
 
-	@GetMapping("reviewListPage.do")
+	@GetMapping("listPage.do")
 	public String listPage(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		selectReviewListCommand.execute(sqlSession, model);
 		return "review/list";
 	}
 	
-	@GetMapping("insertReviewPage.do")
+	@GetMapping("insertPage.do")
 	public String inserinsertReviewPage() {
 		return "review/insertReviewPage";
 	}
@@ -65,14 +65,14 @@ public class ReviewController {
 		return selectProductCommand.execute(sqlSession, model);
 	}
 	
-	@PostMapping(value="insertReview.do")
+	@PostMapping(value="insert.do")
 	public String insertReview(MultipartHttpServletRequest multipartRequest, Model model) {
 		model.addAttribute("multipartRequest", multipartRequest);
 		insertReviewCommand.execute(sqlSession, model);
 		return "redirect:reviewListPage.do";
 	}
 	
-	@GetMapping(value="selectReview.do") 
+	@GetMapping(value="select.do") 
 	public String selectReview(HttpServletRequest request, HttpServletResponse response, Model model) {
 		model.addAttribute("request", request);
 		model.addAttribute("response", response);
@@ -80,21 +80,21 @@ public class ReviewController {
 		return "review/selectReview";
 	}
 	
-	@PostMapping(value="updateReviewPage.do")
+	@PostMapping(value="updatePage.do")
 	public String updateReviewPage(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		updateReviewPageCommand.execute(sqlSession, model);
 		return "review/updateReviewPage";
 	}
 	
-	@PostMapping(value="updateReview.do")
+	@PostMapping(value="update.do")
 	public String updateReview(MultipartHttpServletRequest multipartRequest, Model model) {
 		model.addAttribute("multipartRequest", multipartRequest);
 		updateReviewCommand.execute(sqlSession, model);
 		return "redirect:selectReview.do?reviewNo=" + multipartRequest.getParameter("reviewNo") + "&page=1";
 	}
 	
-	@PostMapping(value="deleteReview.do")
+	@PostMapping(value="delete.do")
 	public String deleteReview(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		deleteReviewCommand.execute(sqlSession, model);

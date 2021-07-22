@@ -14,15 +14,17 @@
 		$(document).ready(function(){
 			fn_search();
 			fn_loginCheck();
+			
+		
 		});
 		
 		// 검색 이벤트
 		function fn_search(){
 			$('#search_btn').click(function(){
 				if ( $('#column').val() == '' || $('#query').val() == '') {
-					location.href = 'reviewListPage.do';
+					location.href = 'listPage.do';
 				}else {
-					$('#f').attr('action', 'reviewListPage.do' );
+					$('#f').attr('action', 'listPage.do' );
 					$('#f').submit();
 				}
 			});
@@ -34,16 +36,18 @@
 				if (${loginMember.memberId == null}) {
 					location.href='/shoefly/member/loginPage.do';
 				}else {
-					location.href = 'insertReviewPage.do';
+					location.href = 'insertPage.do';
 				}
 			});
 		}
+		
+		
 	</script>
 	<style>
 		*{
 			box-sizing: border-box;
 		}
-		.review_container {
+		.reviewList_container {
 			width: 1080px;
 			margin: 0 auto;
 		}
@@ -60,10 +64,27 @@
 			margin-top: 10px;
 			margin-bottom: 10px;
 		}
-		.insertReview_btn {
-			float: right;
+		.selectBox {
+			width: 70px;
+			height: 30px;
 		}
-		.review_table {
+		.selectBox:: -ms-expand {
+			display: none;
+		}
+		.queryBox {
+			width: 200px;
+			height: 30px;
+		}
+		.button {
+			width: 70px;
+			height: 30px;
+			
+		}
+		#insertReview_btn {
+			float: right;
+			width: 100px;
+		}
+		.reviewList_table {
 			width: 100%;
 			margin: 0 auto;
 			text-align: center;
@@ -76,29 +97,37 @@
 		td {
 			border-bottom: 1px solid gray;
 			height: 50px;
-		
 		}
-		
+		a {
+			text-decoration: none;
+			color: black;
+		}
+		a:hover {
+			text-decoration: underline;
+		}
+		.button:hover {
+			cursor: pointer;
+		}
 		
 	</style>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
 	<section>
-		<div class="review_container">
+		<div class="reviewList_container">
 			<div class="search_box">
 				<form method="get" autocomplete="off" id='f'>
-					<select id="column" name="column">
-						<option value="">선택</option>
-						<option value="MEMBER_ID" <c:if test="${column == 'MEMBER_ID'}">selected="selected"</c:if>>작성자</option>
-						<option value="TITLE" <c:if test="${column == 'TITLE'}">selected="selected"</c:if>>제목</option>
+					<select class="selectBox" id="column" name="column">
+						<option class="option" value="">선택</option>
+						<option class="option" value="MEMBER_ID" <c:if test="${column == 'MEMBER_ID'}">selected="selected"</c:if>>작성자</option>
+						<option class="option" value="TITLE" <c:if test="${column == 'TITLE'}">selected="selected"</c:if>>제목</option>
 					</select>
-					<input type="text" id="query" name="query">
-					<input type="button" value="검색" id="search_btn">
-					<input type="button" value="후기 작성" class="insertReview_btn" id="insertReview_btn">  <!-- onclick="location.href='/shoefly/member/loginPage.do'" -->
+					<input class="queryBox" type="text" id="query" name="query">
+					<input class="button" type="button" value="검색" id="search_btn">
+					<input class="button" type="button" value="후기 작성" id="insertReview_btn">  <!-- onclick="location.href='/shoefly/member/loginPage.do'" -->
 				</form>
 			</div>
-			<table class="review_table">
+			<table class="reviewList_table">
 				<thead class="thead">
 					<tr>
 						<td>No</td>
@@ -119,7 +148,7 @@
 						<tr>
 							<td>${review.reviewNo}</td>
 							<td>${review.memberId}</td>
-							<td><a href="selectReview.do?reviewNo=${review.reviewNo}&page=1">${review.title}</a></td>
+							<td><a href="select.do?reviewNo=${review.reviewNo}&page=1">${review.title}</a></td>
 							<td>${review.productName}</td>
 							<td>${review.hit}</td>
 							<td>${review.postdate}</td>

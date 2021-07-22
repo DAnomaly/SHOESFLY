@@ -59,19 +59,27 @@
 			var check_file_type=['jpg','png','jpeg'];
 
 			if(check_file_type.indexOf(file_type)==-1){
-			 alert('이미지 파일만 선택할 수 있습니다.');
-			 var parent_Obj=obj.parentNode
-			 var node=parent_Obj.replaceChild(obj.cloneNode(true),obj);
-			 $('#file').val('');
-			 return false;
+				
+			 	alert('이미지 파일만 선택할 수 있습니다.');
+			 	var parent_Obj=obj.parentNode
+			 	var node=parent_Obj.replaceChild(obj.cloneNode(true),obj);
+			 	$('#file').val('');
+			 	return false;
 			}else {
 			 	if (obj.files && obj.files[0]) {
 					var reader = new FileReader();
 				    reader.onload = function (e) {
-				   		$('.img').attr('src', e.target.result)
-				    	.width(400)
-				    	.height(500);
-				        $('.content').width(669);
+				    	if (${review.image == null}) {
+					   		$('.newImg').attr('src', e.target.result)
+					    	.width(400)
+					    	.height(500);
+					        $('.content').width(669);
+				    	}else {
+				    		$('.img').attr('src', e.target.result)
+					    	.width(400)
+					    	.height(500);
+					        $('.content').width(669);
+				    	}
 				    }
 				reader.readAsDataURL(obj.files[0]);
 				}		 
@@ -137,7 +145,7 @@
 	<section>
 		<div class="update_container">
 			<h1>${review.productName }</h1>
-			<form  id="f" action="updateReview.do" method="post" enctype="multipart/form-data">
+			<form  id="f" action="update.do" method="post" enctype="multipart/form-data">
 				<div class="title_line">
 					<input type="hidden" name="loginId" value="user1"> <!-- 로그인아이디 == 작성자아이디 -->
 					<input type="hidden" name="reviewNo" value="${review.reviewNo}"> <!-- 게시물 번호 -->
@@ -151,6 +159,9 @@
 				<div class="content_box">
 					<c:if test="${review.image != null}">
 					<img class="img" alt="업로드이미지" src="/shoefly/resources/archive/review/${review.image}" >
+					</c:if>
+					<c:if test="${review.image == null}">
+						<img class="newImg" src="">
 					</c:if>
 					<textarea class="content" id="content" name="content" >${review.content}</textarea><br>
 				</div>
