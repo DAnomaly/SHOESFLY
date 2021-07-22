@@ -90,8 +90,9 @@
 					</tr>
 					<tr>
 						<td>판매 희망 가격</td>
-						<td><input type="text" name="price" id="price" >원<br>
-						현재 최고 판매희망가보다 낮게 입력해야 즉시 구매에 유리합니다.</td>
+						<td>
+							<input type="text" name="price" id="price" >원
+						</td>
 					</tr>
 					<tr>
 						<td>현재 최저 판매희망가</td>

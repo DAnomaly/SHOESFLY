@@ -11,7 +11,56 @@
 	<title>상품상세페이지</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script>
-		
+	$(document).ready(function(){
+		clickRadio();
+		checkbox();
+		submitCheck();
+	});
+	//저장된 주소 radio 클릭시 주소창에 보여주기
+	function clickRadio(){
+		$('input:radio[name=addressName]').click(function(){
+			$('#addrName').val($('input:radio[name=addressName]:checked').val());
+			$('#addr1').val($(this).next().val());
+			$('#addr2').val($(this).next().next().val());
+		});
+	}
+	function checkbox() {
+		//전체동의 클릭, 해제
+		$('#check0').click(function(){
+			if($("#check0").prop("checked")) { 
+				$(".check").prop("checked",true);
+			} else if(!$("#check0").prop("checked")) {
+				$(".check").prop("checked",false);
+			} 
+		});
+		//개별체크클릭시 전체체크, 전체해지
+		$('.check').click(function(){
+			if($("input[class='check']:checked").length == 3){
+	            $("#check0").prop("checked", true);
+	        }else{
+	            $("#check0").prop("checked", false);
+	        }
+		});
+	}
+	function submitCheck(){
+		$('#buyNow_btn').click(function(){
+			if($('#addrname').val() == "" || $('#addr1').val() == ""){
+				alert('반송지를 입력해주세요.');
+			} else if($('#check1').is(":checked") == false){
+				alert("필수 이용약관을 읽고 동의해주세요.");
+				return false;
+			} else if($('#check2').is(":checked") == false){
+				alert("필수 이용약관을 읽고 동의해주세요.");
+				return false;
+			} else{
+				//판매완료하기
+				$('#f').attr('action', 'buy.do');
+				//sellCommand제작해야함
+				$('#f').serialize();
+				$('#f').submit();
+			}
+		});
+	}
 	</script>
 	<style>
 		*{
@@ -27,25 +76,81 @@
 			<table border="1">
 				<tbody>
 					<tr>
-						<td>판매자</td>
-						<td></td>
+						<td colspan="2">
+							<img alt="${product.image}"
+							src="/shoefly/resources/archive/product/${product.image}" />
+						</td>
 					</tr>
 					<tr>
-						<td>구매 상품명</td>
-						<td></td>
+						<td>판매 신청자 ID</td>
+						<td>${loginMember.memberId}
+						<input type="hidden" name="memberId" value="${loginMember.memberId}"></td>			
 					</tr>
 					<tr>
-						<td>판매 가격</td>
-						<td></td>
+						<td>판매 상품명</td>
+						<td>${product.productName}
+						<input type="hidden" name="productName" value="${product.productName}"></td>
 					</tr>
 					<tr>
-						<td>주소</td>
-						<td></td>
+						<td>사이즈</td>
+						<td>${param.productSize}mm
+						<input type="hidden" name="productSize" value="${param.productSize}"></td>
 					</tr>
+					<tr>
+						<td>브랜드</td>
+						<td>${product.brand}</td>
+					</tr>
+					<tr>
+						<td>판매수익</td>
+						<td>${highPrice}원</td>
+					</tr>
+
+					<tr>
+						<td rowspan="2">반송지<br>주소</td>
+						<td>
+							<c:if test="${empty addressList}">
+								저장된 주소가 존재하지 않습니다.<br>
+								직접 입력해주세요.
+							</c:if>
+							<c:if test="${not empty addressList}">
+								저장된 주소에서 선택 가능합니다.<br>
+								<c:forEach var="address" items="${addressList}">
+									<input type="radio" name="addressName" value="${address.name}">${address.name}
+									<input type="hidden" value="${address.addr1}">
+									<input type="hidden" value="${address.addr2}">
+								</c:forEach>
+							</c:if>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							반송지명<br>
+							<input type="text" id="addrName" name="addrName" placeholder="ex&#41; 집, 회사"><br>
+							주소<br>
+							<input type="text" name="addr1" id="addr1" readonly>
+							<input type="button" id="addr_search_btn" value="주소찾기"><br>
+							상세주소<br>
+							<input type="text" name="addr2" id="addr2" readonly>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<label for="check0"><input type="checkbox" class="check0" id="check0">전체 동의</label><br>
+							<label for="check1"><input type="checkbox" class="check" id="check1">
+								개인정보 이용약관에 동의
+							</label><label for="check1" class="redText">(필수)</label><br>
+							<label for="check2"><input type="checkbox" class="check" id="check2">
+								위치정보 이용약관에 동의
+							</label><label for="check2" class="redText">(필수)</label><br>
+							<label for="check3"><input type="checkbox" class="check" id="check3">
+								마케팅 수신 동의(선택)
+							</label>
+						</td>
+					</tr>		
 				</tbody>
 				<tfoot>
 					<tr>
-						<td colspan="2"><button>판매 하기</button></td>
+						<td colspan="2"><input type="button" value="판매하기" id="sellNow_btn"></td>
 					</tr>
 				</tfoot>
 			</table>

@@ -27,8 +27,8 @@
 		}
 		
 		function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
-			document.form.addr1.value = roadAddrPart1;
-			document.form.addr2.value = addrDetail;
+			$('#addr1').val(roadAddrPart1);
+			$('#addr2').val(addrDetail);
 		}
 		
 		function fn_insertAddress(){

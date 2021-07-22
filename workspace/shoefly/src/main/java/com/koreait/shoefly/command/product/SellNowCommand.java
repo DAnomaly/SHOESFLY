@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -14,15 +15,15 @@ import com.koreait.shoefly.dao.ProductDAO;
 import com.koreait.shoefly.dto.Member;
 import com.koreait.shoefly.dto.MemberAddress;
 import com.koreait.shoefly.dto.Product;
-
 @Component
-public class BuyApplicationCommand implements ProductCommand {
+public class SellNowCommand implements ProductCommand {
 
 	@Override
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {
 		
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
+		HttpServletResponse response = (HttpServletResponse)map.get("response");
 		HttpSession session = (HttpSession)map.get("session");
 		
 		String productName = request.getParameter("productName");
@@ -33,14 +34,12 @@ public class BuyApplicationCommand implements ProductCommand {
 		ProductDAO productDAO = sqlSession.getMapper(ProductDAO.class);
 		Product product = productDAO.buyApplication(productName, productSize);
 		Long highPrice = productDAO.hightPriceInBuy(productName, productSize);
-		Long lowPrice = productDAO.lowPriceInSell(productName, productSize);
 		List<MemberAddress> addressList= productDAO.selectMemberAddr(memberId);
-				
+		
 		model.addAttribute("product", product);
 		model.addAttribute("highPrice", highPrice == null ? 0 : highPrice);
-		model.addAttribute("lowPrice", lowPrice == null ? 0 : lowPrice);
 		model.addAttribute("addressList", addressList);
-		
+
 		return null;
 	}
 

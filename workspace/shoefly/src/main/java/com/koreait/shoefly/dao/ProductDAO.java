@@ -18,4 +18,5 @@ public interface ProductDAO {
 	public Long hightPriceInBuy(String productName, int productSize);
 	public Long lowPriceInSell(String productName, int productSize);
 	public List<MemberAddress> selectMemberAddr(String memberId);
+	public int insertBuyApplication(String memberId, String productName, int productSize, long price, String addrName, String addr1, String addr2);;
 }
