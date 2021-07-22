@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/header.css">
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/footer.css">
+	<link rel="stylesheet" href="/shoefly/resources/asset/css/notice/noticeList.css">
 	<title>리스트</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script src="/shoefly/resources/asset/js/notice/noticeList.js" type="text/javascript" charset="UTF-8"></script>
@@ -16,9 +17,9 @@
 <body>
 	<jsp:include page="../common/header.jsp"/>
 	<section>
-		<h3 class="title">
+		<h2 class="title">
 			<a href="noticeListPage.do">NOTICE</a>
-		</h3>
+		</h2>
 		<div class="search">
 			<form method="get" autocomplete="off">
 				<button><i class="fas fa-search"></i></button>
@@ -42,11 +43,11 @@
 				<c:forEach items="${list}" var="notice" varStatus="status">
 				<tr>
 					<td>${page.beginRecord + status.index}</td>
-					<td onclick="fn_table_toggle(${status.index})">${notice.title}</td>
+					<td onclick="fn_table_toggle(${status.index})"><a href="javascript:void(0);">${notice.title}</a></td>
 					<td>${notice.postdate}</td>
 				</tr>
 				<tr>
-					<td class="content-${status.index}" colspan="3" style="display:none">
+					<td class="content-${status.index} table-content" colspan="3" style="display:none">
 						<div>${notice.content}</div>
 					</td>
 				</tr>

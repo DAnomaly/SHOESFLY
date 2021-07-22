@@ -33,6 +33,19 @@ form .preview {
 }
 form .button_area {
 	float: right;
+	margin: 10px 0;
+}
+form .button_area input {
+	background-color: #2E64FE;
+	width: 75px;
+	height: 25px;
+	border: none;
+	border-radius: 3px;
+	color: #fff;
+}
+form .button_area input[value="삭제하기"] {
+	background-color: #B40404;
+	color: #fff;
 }
 form #preview {
 	margin: 10px;

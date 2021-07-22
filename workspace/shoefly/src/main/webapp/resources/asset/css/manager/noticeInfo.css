@@ -33,6 +33,7 @@ form .preview {
 }
 form .button_area {
 	float: right;
+	margin: 10px 0;
 }
 form .button_area input {
 	background-color: #2E64FE;
