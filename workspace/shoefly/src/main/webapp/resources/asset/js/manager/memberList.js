@@ -88,5 +88,5 @@ function setPage(p) {
 	pageLoadEvent();
 }
 function show_info(no) {
-	window.open("memberInfoPage.do?no=" + no,"noticeInfo","width=600,height=800,top=30,left=80");
+	window.open("memberInfoPage.do?no=" + no,"noticeInfo","width=450,height=420,top=30,left=80");
 }

@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+/* h3 */
+h3 {
+	margin: 10px 30px;
+	margin-top: 35px;
+	border-bottom: 2px solid #00006f;
+}
+h3 span{
+	display: inline-block;
+	color: #00006f;
+	border-bottom: 3px solid #00006f;
+}
+
+/* table */
+table {
+	margin: 0 auto;
+	border-collapse: collapse;
+}
+
+/* table tbody */
+table tbody {
+	border-bottom: 3px solid #00006f;
+}
+table tbody td, table tbody th {
+	padding: 10px;
+	margin: 5px;
+	border-bottom: 1px solid #0938df;
+}
+table tbody td {
+	width: 200px;
+	font-size: 14px;
+}
+table tbody th {
+	width: 100px;
+}
+
+/* table tfoot */
+table tfoot td {
+	text-align: right;
+	padding: 10px;
+}
+table tfoot td input {
+	border: 0;
+	border-radius: 3px;
+	padding: 5px 8px;
+	color: #ffffff;
+	background-color: #ca0000;
+}
+table tfoot td input[value="주소록 확인"] {
+	background-color: rgb(66,146,195);
+}
