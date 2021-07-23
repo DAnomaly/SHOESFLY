@@ -37,8 +37,9 @@
 	function clickRadio(){
 		$('input:radio[name=addressName]').click(function(){
 			$('#addrName').val($('input:radio[name=addressName]:checked').val());
-			$('#addr1').val($(this).next().val());
-			$('#addr2').val($(this).next().next().val());
+			$('#memberAddressNo').val($(this).next().val());
+			$('#addr1').val($(this).next().next().val());
+			$('#addr2').val($(this).next().next().next().val());
 		});
 	}
 	function checkbox() {
@@ -69,20 +70,16 @@
 			}
 			//즉시 구매가 보다 높은금액 입력시
 			else if($('#price').val() >= $('#lowPrice').val()){
-				if(confirm('신청하신 금액으로 즉시 판매하실 수 있습니다. 즉시 판매하기 페이지로 이동하시겠습니까?')){
+				if(confirm('현재 신청하신 금액으로 즉시 구매하실 수 있습니다. \n즉시 구매하기 페이지로 이동하시겠습니까?')){
 					//
 					// 즉시 구매로 이동작성해야하는 부분
 					// 상품명, 사이즈, 즉시구매가 가져가기
 					//
 				}
-			} else if($('#addrname').val() == "" || $('#addr1').val() == ""){
-				if($('#addrname').val() == '' || $('#addr1').val() == '') {
-					alert('배송지를 입력해주세요.');
-				}
-			} else if($('#check1').is(":checked") == false){
-				alert("필수 이용약관을 읽고 동의해주세요.");
+			} else if($('#addrName').val() == '' || $('#addr1').val() == ''){			
+				alert('배송지를 입력해주세요.');
 				return false;
-			} else if($('#check2').is(":checked") == false){
+			} else if($('#check1').is(":checked") == false || $('#check2').is(":checked") == false){
 				alert("필수 이용약관을 읽고 동의해주세요.");
 				return false;
 			} else{
@@ -104,9 +101,6 @@
 		}
 		.redText{
 			color: red;
-		}
-		input[type="checkbox"]{
-			/*  display: none;  */
 		}
 	</style>
 </head>
@@ -187,6 +181,7 @@
 								저장된 주소에서 선택 가능합니다.<br>
 								<c:forEach var="address" items="${addressList}">
 									<input type="radio" name="addressName" value="${address.name}">${address.name}
+									<input type="hidden" value="${address.memberAddressNo}">
 									<input type="hidden" value="${address.addr1}">
 									<input type="hidden" value="${address.addr2}">
 								</c:forEach>
@@ -196,6 +191,7 @@
 					<tr>
 						<td>
 							배송지명<br>
+							<input type="hidden" id="memberAddressNo" name="memberAddressNo" value="0">
 							<input type="text" id="addrName" name="addrName" placeholder="ex&#41; 집, 회사"><br>
 							주소<br>
 							<input type="text" name="addr1" id="addr1" readonly>

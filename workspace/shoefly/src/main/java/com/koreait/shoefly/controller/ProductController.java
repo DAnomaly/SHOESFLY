@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.koreait.shoefly.command.product.BuyApplicationCommand;
 import com.koreait.shoefly.command.product.BuyNowCommand;
 import com.koreait.shoefly.command.product.InsertBuyApplicationCommand;
+import com.koreait.shoefly.command.product.InsertSellApplicationCommand;
 import com.koreait.shoefly.command.product.SelectAllListCommand;
 import com.koreait.shoefly.command.product.SelectConditionCommand;
 import com.koreait.shoefly.command.product.SelectPriceBySizeCommand;
@@ -41,6 +42,7 @@ public class ProductController {
 	private InsertBuyApplicationCommand insertBuyApplicationCommand;
 	private BuyNowCommand buyNowCommand;
 	private SellNowCommand sellNowCommand;
+	private InsertSellApplicationCommand insertSellApplicationCommand;
 	
 	//전체 상품 종류 조회
 	@GetMapping("listPage.do")
@@ -140,7 +142,17 @@ public class ProductController {
 		model.addAttribute("request", request);
 		model.addAttribute("response", response);
 		insertBuyApplicationCommand.execute(sqlSession, model);
-		return "";
+		return null;
 	}
 	
+	//판매신청서 작성
+	@PostMapping("insertSellApplication.do")
+	public String insertSellApplication(HttpServletRequest request,
+									    HttpServletResponse response,
+			 						    Model model) {
+		model.addAttribute("request", request);
+		model.addAttribute("response", response);
+		insertSellApplicationCommand.execute(sqlSession, model);
+		return null;
+	}
 }

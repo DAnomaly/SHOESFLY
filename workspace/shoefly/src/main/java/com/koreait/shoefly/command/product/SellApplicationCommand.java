@@ -32,10 +32,12 @@ public class SellApplicationCommand implements ProductCommand {
 		
 		ProductDAO productDAO = sqlSession.getMapper(ProductDAO.class);
 		Product product = productDAO.buyApplication(productName, productSize);
+		Long highPrice = productDAO.hightPriceInBuy(productName, productSize);
 		Long lowPrice = productDAO.lowPriceInSell(productName, productSize);
 		List<MemberAddress> addressList= productDAO.selectMemberAddr(memberId);
 				
 		model.addAttribute("product", product);
+		model.addAttribute("highPrice", highPrice == null ? 0 : highPrice);
 		model.addAttribute("lowPrice", lowPrice == null ? 0 : lowPrice);
 		model.addAttribute("addressList", addressList);
 		
