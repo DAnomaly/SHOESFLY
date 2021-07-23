@@ -278,6 +278,9 @@
 			line-height: 50px;
 			text-align: center;
 		}
+		input[type="button"]:hover {
+			cursor: pointer;
+		}
 	</style>
 </head>
 <body>

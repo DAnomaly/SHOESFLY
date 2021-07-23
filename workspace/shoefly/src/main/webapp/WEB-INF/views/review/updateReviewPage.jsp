@@ -105,7 +105,7 @@
 		}
 		.title_line {
 			width: 100%;
-			margin-bottom: 30px;
+			margin-bottom: 10px;
 		}
 		.title {
 			width: 500px;
@@ -136,7 +136,36 @@
 			width: 400px;
 			height: 500px;
 		}
+		input[type="button"]:hover {
+			cursor: pointer;
+		}
+		.filebox {
+			display:inline; 
+		}
 		
+		.filebox label {
+			display: inline-block;
+			padding: .6em .8em;
+			color: #fff;
+			font-size: inherit;
+			line-height: normal;
+			vertical-align: middle;
+			background-color: #337ab7;
+			cursor: pointer;
+			border: 1px solid #2e6da4;
+			border-radius: .25em;
+		}
+		
+		.filebox input[type="file"] {  /* 파일 필드 숨기기 */
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			padding: 0;
+			margin: -1px;
+			overflow: hidden;
+			clip:rect(0,0,0,0);
+			border: 0;
+		}
 		
 	</style>
 </head>
@@ -154,7 +183,10 @@
 					<select class="productList" name="productName" id="productList" >
 						<option value="">선택</option>
 					</select>
-					<input class="file_btn" type="file" id="file" name="file" accept=".jpg, .png, .jpeg" onchange="fileCheck(this)"><br><br>
+					<div class="filebox">
+						<label for="file">사진 첨부</label>
+						<input class="file" type="file" id="file" name="file" accept=".jpg, .png, .jpeg" onchange="fileCheck(this)"><br><br>
+					</div>
 				</div>
 				<div class="content_box">
 					<c:if test="${review.image != null}">
