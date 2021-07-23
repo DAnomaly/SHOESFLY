@@ -27,7 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectRecommand" resultType="com.koreait.shoefly.dto.Product">
 		SELECT ROWNUM RN, PRODUCT_NO AS PRODUCTNO, PRODUCT_NAME AS PRODUCTNAME, BRAND, PRICE, IMAGE
  		 FROM PRODUCT
-		WHERE BRAND = 'Nike'
+		WHERE BRAND = 'Nike' <!-- 현재 브랜드 Nike, Jordan, Adidas, New Balance -->
 		  AND STATE = 0
 		  AND ROWNUM &lt; 5
 		ORDER BY PRODUCT_NAME
