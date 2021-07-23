@@ -103,7 +103,7 @@
 		.btn_primary:hover {
 			background-color: darkgray;
 		} 
-		.update_addr_btn {
+		.update_btn {
 			width: 200px;
 			margin-top: 20px;
 			margin-left: 25px;
@@ -144,7 +144,7 @@
 			<div class="addr_info">
 				<input type="text" id="addr2" name="addr2" value="${memberAddress.addr2}" readonly/>				
 			</div>
-			<input type="button" id="update_address_btn" value="수정" class="update_addr_btn btn_primary">
+			<input type="button" id="update_address_btn" value="수정" class="update_btn btn_primary">
 		</form>
 		</div>
 		</div>
