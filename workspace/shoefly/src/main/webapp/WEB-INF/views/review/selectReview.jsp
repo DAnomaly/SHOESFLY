@@ -266,7 +266,7 @@
 			font-size: 16px;
 		}
 		a {
-			text-decoration: none;
+			text-decoration: none;  
 			color: black;
 		}
 		a:hover {

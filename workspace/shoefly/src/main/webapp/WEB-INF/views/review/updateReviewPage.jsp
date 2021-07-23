@@ -114,7 +114,7 @@
 		}
 		.productList {
 			width: 150px;
-			height: 40px;
+			height: 40px;  
 		}
 		.content_box {
 		}
@@ -126,7 +126,7 @@
 		}
 		.button_box {
 			float: right;
-		}
+		} 
 		.button {
 			width: 80px;
 			height: 40px;
