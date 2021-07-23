@@ -45,7 +45,8 @@ public class SelectListMemberManagerCommand implements ManagerCommand {
 		searchMap.put("endDate", endDate);
 		
 		int totalRecord = dao.countMember(searchMap);
-		Page page = PagingUtils.getPage(nowpage, totalRecord, 5, 5);
+		int recordPerPage = 10;
+		Page page = PagingUtils.getPage(nowpage, totalRecord, recordPerPage, 1);
 		searchMap.put("beginRecord", page.getBeginRecord());
 		searchMap.put("endRecord", page.getEndRecord());
 		
