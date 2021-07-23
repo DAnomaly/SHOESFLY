@@ -37,5 +37,19 @@ public class ProductSell {
 
     // 등록/취소/판매완료 
     private int state;
+
+    
+    // 추가칼럼
+    // 상품 이름
+    private String productName;
+    
+    // 이미지
+    private String image;
+    
+    // 사이즈 
+    private int productSize;
+    
+    // 상품번호 
+    private String productNo;
     
 }

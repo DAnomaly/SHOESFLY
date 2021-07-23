@@ -21,10 +21,6 @@ public class SelectAddrListCommand implements MemberCommand {
 
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
-		//HttpSession session = request.getSession();
-		//Member loginMember = (Member)session.getAttribute("loginMember");
-		
-		//long memberNo = loginMember.getMemberNo();
 		
 		MemberDAO memberDAO = sqlSession.getMapper(MemberDAO.class);
 		

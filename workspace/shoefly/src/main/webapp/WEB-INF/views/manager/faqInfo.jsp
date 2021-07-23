@@ -7,62 +7,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/manager_header.css">
+	<link rel="stylesheet" href="/shoefly/resources/asset/css/manager/faqInfo.css">
 	<title>${notice.title}</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-	<script>
-		function preview_btn() {
-			$('#preview').html($('#answer').val());
-			$('.content').toggle();
-			$('.preview').toggle();
-		}
-		function edit_btn() {
-			if($('#title').val() == '') {
-				alert('제목을 입력해 주세요.')
-				$('#title').focus();
-				return;
-			}
-			if($('#content').val() == '') {
-				alert('내용을 입력해 주세요.')
-				$('#content').focus();
-				return;
-			}
-			$.ajax({
-				url: 'insertFaq.do',
-				type: 'POST',
-				data: 'faqNo=' + $('#faqNo').val() + '&question=' + $('#question').val() + '&answer=' + $('#answer').val(),
-				dataType: 'json',
-				success: function(data) {
-					console.log("yes");
-					console.log(data);
-					if (data.result) {
-						alert(data.message);
-						opener.parent.location.reload();
-						window.close();
-					}
-				}
-			})
-		}
-		function del_btn() {
-			if(!confirm('정말로 삭제하겠습니까?\n (복구가 되지 않습니다)')){
-				return;
-			}
-			$.ajax({
-				url: 'deleteFaq.do',
-				type: 'POST',
-				data: 'faqNo=' + $('#faqNo').val(),
-				dataType: 'json',
-				success: function(data) {
-					console.log("yes");
-					console.log(data);
-					if (data.result) {
-						alert(data.message);
-						opener.parent.location.reload();
-						window.close();
-					}
-				}
-			})
-		}
-	</script>
+	<script src="/shoefly/resources/asset/js/manager/faqInfo.js" charset="utf-8"></script>
 </head>
 <body>
 	<form id="f" method="post">
@@ -83,7 +31,7 @@
 		<div class="preview" style="display: none;">
 			<div id="preview"></div>
 		</div>
-		<div>
+		<div class="button_area">
 			<input type="button" value="미리보기" onclick="preview_btn();"/>
 			<c:if test="${empty faq}">
 			<input type="button" value="등록하기" onclick="edit_btn();"/>

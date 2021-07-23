@@ -1,0 +1,107 @@
+@charset "UTF-8";
+
+/* SECTION */
+section {
+	width: 980px;
+	margin: 0 auto;
+}
+
+/* TITLE */
+section h2 {
+	padding-top: 35px;
+	text-align: center;
+}
+section h2 a {
+	color: #084B8A;
+	text-decoration: none; 
+}
+
+/* SEARCH */
+section .search {
+	width: 760px;
+	margin: 5px auto;
+	text-align: right;
+}
+section .search form {
+	display: inline-block;
+	border: 1px solid #084B8A;
+	border-radius: 3px;
+	padding: 4px;
+}
+section .search input, section .search button {
+	border: none;
+	background: none;
+}
+
+/* CONTENT */
+section .content {
+	border-collapse: collapse;
+	text-align: center;
+	box-sizing: border-box;
+	margin: 0 auto;
+	border-bottom: 2px solid #084B8A;
+}
+section .content tbody tr td {
+	padding: 6px;
+	border-bottom: 1px solid #0174DF;
+}
+section .content thead tr th{
+	background-color: #084B8A;
+	color: #fff;
+	padding: 6px;
+}
+section .content thead tr th:nth-of-type(1) {
+	width: 60px;
+}
+section .content thead tr th:nth-of-type(2) {
+	width: 580px;
+}
+section .content thead tr th:nth-of-type(3) {
+	width: 120px;
+}
+section .content tbody tr td:nth-of-type(2) {
+	text-align: left;
+	cursor: pointer;
+}
+section .content tbody tr td:nth-of-type(2) a{
+	color: #000;
+	text-decoration: none;
+}
+section .content tbody tr td:nth-of-type(2):hover a{
+	text-decoration: underline;
+}
+section .content .table-content {
+	text-align: left;
+	width: 760px;
+	border-bottom: 2px solid #084B8A;
+}
+section .content .table-content div{
+	width: 730px;
+	padding: 5px;
+	margin: 3px;
+	border: 1px solid #084B8A;
+	border-top: none;
+	border-radius: 3px;
+	float: right;
+	font-size: 15px; 
+ 	font-family: '푸른전남체R', sans-serif;
+}
+
+/* paging */
+section .paging {
+	margin: 10px auto;
+	margin-bottom: 60px;
+	text-align: center;
+	font-family: '푸른전남체R', sans-serif;
+}
+section .paging .now-page {
+	text-decoration: underline;
+	font-weight: bold;	
+}
+section .paging a[href] {
+	color: #084B8A;
+	text-decoration: none;
+}
+section .paging a[href]:hover {
+	text-decoration: underline;
+}

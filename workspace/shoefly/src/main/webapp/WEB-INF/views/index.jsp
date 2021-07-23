@@ -9,12 +9,135 @@
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/header.css">
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/footer.css">
 	<title>제목</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(function(){
+			fn_recommand();
+			fn_mostPopular();
+		});
+		
+		
+		// mostPopular_list
+		function fn_mostPopular() {
+			$.ajax({
+				url: 'selectMostPopular.do',
+				type: 'POST',
+				dataType: 'json',
+				success: function(resultMap) {
+					$.each(resultMap.mostProduct, function(i, product) {
+						$('<div class="product_item">')
+						.html('<a class="item_inner" href="product/viewProductPage.do?productNo=' + product.productNo + '"> <div class="product" style="background-color: #D5C2EE;"> <img class="product_img" alt="' + product.image +
+						'" src="/shoefly/resources/archive/product/' + product.image + '"> </div><div class="info_box"> <p class="product_name">' + product.productName)
+						.appendTo('.most_list');
+					});
+				}
+			});
+		}
+		
+		// recommand_list 관리자가 추천하는 제품 index.xml에서 변경 가능(브랜드)
+		function fn_recommand() {
+			$.ajax({
+				url: 'selectRecommand.do',
+				type: 'POST',
+				dataType: 'json',
+				success: function(resultMap) {
+					$.each(resultMap.recommandProduct, function(i, product) {
+						$('<div class="product_item">')
+						.html('<a class="item_inner" href="product/viewProductPage.do?productNo=' + product.productNo + '"> <div class="product" style="background-color: #FFBEBE;"> <img class="product_img" alt="' + product.image +
+						'" src="/shoefly/resources/archive/product/' + product.image + '"> </div><div class="info_box"> <p class="product_name">' + product.productName)
+						.appendTo('.recommand_list');
+						
+						
+					});
+				}
+			});
+		}
+		
+	</script>
+	
+	<style>
+		*{
+			box-sizing: border-box;
+		}
+		.index_container {
+			width: 1080px;
+			margin: 0 auto;
+		}
+		.product_title {
+			margin: 40px auto 0;
+    		padding: 0 40px;
+   			max-width: 1280px;
+		}
+		.title {
+			font-size: 20px;
+			font-weight: 700;
+		}
+		.sub_title {
+			font-size: 14px;
+			color: #22222280;
+		}
+		.most_list, .recommand_list {
+		    width: 100%;
+			overflow: hidden;
+		    position: relative;
+		    margin: 0 auto;
+		    padding: 0 28px;
+		}
+		.product_item {
+			position: relative;
+		    float: left;
+		    margin: 20px 0;
+		    padding: 0 12px;
+		    width: 25%;
+		    
+		}
+		.product_item, .item_inner {
+			display: block;
+    		background-color: #fff;
+    		border-radius: 12px;
+    		text-decoration: none;
+		}
+		.product {
+			overflow: hidden;
+		    position: relative;
+		    padding-top: 100%;
+		    border-radius: 12px;
+		}
+		.product_img {
+		    width: 81.5%;
+		    height: auto;
+		    top: 50%;
+		    left: 50%;
+			position: absolute;
+		    transform: translate(-50%,-50%);
+			border-radius: 12px;
+		}
+		.product_name {
+			padding-left: 5px;
+			font-size: 14px;
+			
+			color: #000;
+		}
+		
+	</style>
 </head>
 <body>
 	<jsp:include page="./common/header.jsp"/>
 	<section>
-	index입니다.
-	
+		<div class="index_container">
+			<div class="product_title">
+				<div class="title">Most Popular</div>
+				<div class="sub_title">인기 상품</div>
+			</div>
+			<div class="most_list">
+			</div>
+			<div class="product_title">
+				<div class="title">Recomanded Product</div>
+				<div class="sub_title">추천 상품</div>
+			</div>
+			<div class="recommand_list">
+			</div>
+		</div>
 	</section>
 	<jsp:include page="./common/footer.jsp"/>
 </body>

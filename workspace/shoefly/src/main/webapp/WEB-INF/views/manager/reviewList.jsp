@@ -10,20 +10,6 @@
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/manager_header.css">
 	<title>SHOEFLY : 관리자</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-	<script>
-		$(document).ready(function(){
-			//fn_deleteReview();
-		})
-		/* 
-		var reviewNo = $('#reviewNo').val();
-		function fn_deleteReview(){
-			$('#delete_btn').click(function(){
-				if(confirm('정말 삭제하시겠습니까?')) {
-					location.href = 'deleteReview.do?reviewNo=' + reviewNo;
-				}
-			})
-		} */
-	</script>
 </head>
 <body>
 	<jsp:include page="../common/manager_header.jsp"></jsp:include>
@@ -50,11 +36,10 @@
 					<tr>
 						<td>${review.reviewNo}</td>
 						<td>${review.memberId}</td>
-						<td><a href="selectReview.do?reviewNo=${review.reviewNo}">${review.title}</a></td>
+						<td><a href="/shoefly/review/selectReview.do?reviewNo=${review.reviewNo}">${review.title}</a></td>
 						<td>${review.productName}</td>
 						<td>${review.hit}</td>
 						<td>${review.postdate}</td>
-						<%-- <input type="hidden" id="reviewNo" name="reviewNo" value="${review.reviewNo}"> --%>
 						<c:if test="${review.state == 0}">
 							<td><input type="button" id="delete_btn" value="삭제" onclick="location.href='deleteReview.do?reviewNo=${review.reviewNo}'"></td>
 						</c:if>

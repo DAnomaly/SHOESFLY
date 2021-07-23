@@ -3,6 +3,7 @@ package com.koreait.shoefly.controller;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.koreait.shoefly.command.member.DeleteAddressCommand;
+import com.koreait.shoefly.command.member.DeleteBuyRequestCommand;
 import com.koreait.shoefly.command.member.DeleteMemberCommand;
+import com.koreait.shoefly.command.member.DeleteSellRequestCommand;
 import com.koreait.shoefly.command.member.EmailOrCheckCommand;
 import com.koreait.shoefly.command.member.FindIdCommand;
 import com.koreait.shoefly.command.member.FindPwCommand;
@@ -24,6 +27,8 @@ import com.koreait.shoefly.command.member.InsertAddressCommand;
 import com.koreait.shoefly.command.member.JoinCommand;
 import com.koreait.shoefly.command.member.LoginCommand;
 import com.koreait.shoefly.command.member.LogoutCommand;
+import com.koreait.shoefly.command.member.ProductBuyCommand;
+import com.koreait.shoefly.command.member.ProductSellCommand;
 import com.koreait.shoefly.command.member.SelectAddrListCommand;
 import com.koreait.shoefly.command.member.UpdateAddressCommand;
 import com.koreait.shoefly.command.member.UpdateAddressListCommand;
@@ -57,6 +62,10 @@ public class MemberController {
 	private UpdateAddressCommand updateAddressCommand;
 	private DeleteAddressCommand deleteAddressCommand;
 	private InsertAddressCommand insertAddressCommand;
+	private ProductBuyCommand productBuyCommand;
+	private DeleteBuyRequestCommand deleteBuyRequestCommand;
+	private ProductSellCommand productSellCommand;
+	private DeleteSellRequestCommand deleteSellRequestCommand;
 	
 	// 페이지 이동
 	@GetMapping("loginPage.do")
@@ -102,13 +111,30 @@ public class MemberController {
 		return "member/insertAddr";
 	}
 	
+	@GetMapping("productBuyPage.do")
+	public String productBuyPage(HttpServletRequest request,
+								  Model model) {
+		model.addAttribute("request", request);
+		productBuyCommand.execute(sqlSession, model);
+		return "member/myProductBuy";
+	}
+	
+	@GetMapping("productSellPage.do")
+	public String productSellPage(HttpServletRequest request,
+								  Model model) {
+		model.addAttribute("request", request);
+		productSellCommand.execute(sqlSession, model);
+		return "member/myProductSell";
+	}
+	
 	// 로그인
 	@PostMapping("login.do")
-	public String login(HttpServletRequest request,
+	public void login(HttpServletRequest request,
+						HttpServletResponse response,
 						Model model) {
 		model.addAttribute("request", request);
+		model.addAttribute("response", response);
 		loginCommand.execute(sqlSession, model);		
-		return "redirect:/";
 	}
 	
 	// 로그아웃
@@ -194,7 +220,7 @@ public class MemberController {
 						   Model model) {
 		model.addAttribute("request", request);
 		updatePwCommand.execute(sqlSession, model);
-		return "index";
+		return "redirect:/";
 	}
 	
 	// 회원탈퇴
@@ -203,7 +229,7 @@ public class MemberController {
 							   Model model) {
 		model.addAttribute("request", request);
 		deleteMemberCommand.execute(sqlSession, model);
-		return "index";
+		return "redirect:/";
 	}
 	
 	// 이름 변경
@@ -212,7 +238,7 @@ public class MemberController {
 							 Model model) {
 		model.addAttribute("request", request);
 		updateNameCommand.execute(sqlSession, model);
-		return "index";
+		return "redirect:/";
 	}
 	
 	// 주소 리스트 가져오기
@@ -234,12 +260,6 @@ public class MemberController {
 		return "member/updateAddress";
 	}
 	
-	/**
-	 * 주소 팝업창 띄우기
-	 *
-	 * @author 박세환
-	 * @return
-	 */
 	@RequestMapping("jusoPopup.do")
 	public String jsuoPopup() {
 		return "common/jusoPopup";
@@ -270,5 +290,23 @@ public class MemberController {
 		model.addAttribute("request", request);
 		insertAddressCommand.execute(sqlSession, model);
 		return "redirect:myPage.do";
+	}
+	
+	// 구매대기 신청 삭제하기
+	@GetMapping("deleteBuyRequest.do")
+	public String deleteBuyRequest(HttpServletRequest request,
+								   Model model) {
+		model.addAttribute("request", request);
+		deleteBuyRequestCommand.execute(sqlSession, model);
+		return "redirect:productBuyPage.do";
+	}
+
+	// 판매대기 신청 삭제하기
+	@GetMapping("deleteSellRequest.do")
+	public String deleteSellRequest(HttpServletRequest request,
+			Model model) {
+		model.addAttribute("request", request);
+		deleteSellRequestCommand.execute(sqlSession, model);
+		return "redirect:productSellPage.do";
 	}
 }

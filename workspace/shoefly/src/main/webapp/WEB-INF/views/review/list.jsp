@@ -14,16 +14,21 @@
 		$(document).ready(function(){
 			fn_search();
 			fn_loginCheck();
+			
+		
 		});
+		
+		function fn_enter() {
+			fn_search();	
+		}	
 		
 		// 검색 이벤트
 		function fn_search(){
 			$('#search_btn').click(function(){
-				if ( $('#column').val() == '' ) {
-					location.href = 'reviewListPage.do';
-				}else if ( $('#query').val() == '' ) {
-					location.href = 'reviewListPage.do';					
+				if ( $('#column').val() == '' || $('#query').val() == '') {
+					location.href = 'listPage.do';
 				}else {
+					$('#f').attr('action', 'listPage.do' );
 					$('#f').submit();
 				}
 			});
@@ -35,62 +40,142 @@
 				if (${loginMember.memberId == null}) {
 					location.href='/shoefly/member/loginPage.do';
 				}else {
-					location.href = 'insertReviewPage.do';
+					location.href = 'insertPage.do';
 				}
 			});
 		}
 		
+		function fn_enter() {
+			if(event.keyCode == 13) {
+				if ( $('#column').val() == '' || $('#query').val() == '') {
+					location.href = 'listPage.do';
+				}else {
+					$('#f').attr('action', 'listPage.do' );
+					$('#f').submit();
+				}
+					event.preventDefault();
+			}
+		}
+		
 		
 	</script>
+	<style>
+		*{
+			box-sizing: border-box;
+		}
+		.reviewList_container {
+			width: 1080px;
+			margin: 0 auto;
+		}
+		
+		.search_box {
+			float: left;
+			width: 100%;
+			height: 30px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+		.selectBox {
+			width: 70px;
+			height: 30px;
+		}
+		.selectBox:: -ms-expand {
+			display: none;
+		}
+		.queryBox {
+			width: 200px;
+			height: 30px;
+		}
+		.button {
+			width: 70px;
+			height: 30px;
+			
+		}
+		#insertReview_btn {
+			float: right;
+			width: 100px;
+		}
+		.reviewList_table {
+			width: 100%;
+			margin: 0 auto;
+			text-align: center;
+			border-collapse: collapse;
+		}
+		.thead {
+			background-color: #909090;
+			font-weight: bold;
+		}
+		td {
+			border-bottom: 1px solid gray;
+			height: 55px;
+		}
+		a {
+			text-decoration: none;
+			color: black;
+		}
+		a:hover {
+			text-decoration: underline;
+		}
+		.button:hover {
+			cursor: pointer;
+		}
+		.paging {
+			margin: auto;
+			height: 50px;
+			line-height: 50px;
+			text-align: center;
+		}
+		
+	</style>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
 	<section>
-		<h1>REVIEW</h1><br>
-			<div class="search">
-			<form method="get" autocomplete="off" id='f'>
-				<select id="column" name="column">
-					<option value="">선택</option>
-					<option value="MEMBER_ID">작성자</option>
-					<option value="TITLE">제목</option>
-				</select>
-				<input type="text" id="query" name="query">
-				<input type="button" value="검색" id="search_btn">
-				<input type="button" value="후기 작성" id="insertReview_btn">  <!-- onclick="location.href='/shoefly/member/loginPage.do'" -->
-			</form>
-			전체 ${page.totalRecord}개 검색됨
-		</div>
-		<table border="1">
-			<thead>
-				<tr>
-					<td>No</td>
-					<td>작성자</td>
-					<td>제목</td>
-					<td>제품명</td>
-					<td>조회수</td>
-					<td>작성일</td>
-				</tr>
-			</thead>
-			<tbody>
-				<c:if test="${empty review}">
+		<div class="reviewList_container">
+			<div class="search_box">
+				<form method="get" autocomplete="off" id='f'>
+					<select class="selectBox" id="column" name="column">
+						<option class="option" value="">선택</option>
+						<option class="option" value="MEMBER_ID" <c:if test="${column == 'MEMBER_ID'}">selected="selected"</c:if>>작성자</option>
+						<option class="option" value="TITLE" <c:if test="${column == 'TITLE'}">selected="selected"</c:if>>제목</option>
+					</select>
+					<input class="queryBox" type="text" id="query" name="query" onkeypress="fn_enter();">
+					<input class="button" type="button" value="검색" id="search_btn">
+					<input class="button" type="button" value="후기 작성" id="insertReview_btn">  <!-- onclick="location.href='/shoefly/member/loginPage.do'" -->
+				</form>
+			</div>
+			<table class="reviewList_table">
+				<thead class="thead">
 					<tr>
-						<td colspan="6">검색결과가 없습니다.</td>
+						<td>No</td>
+						<td>작성자</td>
+						<td>제목</td>
+						<td>제품명</td>
+						<td>조회수</td>
+						<td>작성일</td>
 					</tr>
-				</c:if>
-				<c:forEach items="${review}" var="review" varStatus="status">
-					<tr>
-						<td>${review.reviewNo}</td>
-						<td>${review.memberId}</td>
-						<td><a href="selectReview.do?reviewNo=${review.reviewNo}&page=1">${review.title}</a></td>
-						<td>${review.productName}</td>
-						<td>${review.hit}</td>
-						<td>${review.postdate}</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-		<div class="paging">
-			${paging}
+				</thead>
+				<tbody>
+					<c:if test="${empty review}">
+						<tr>
+							<td colspan="6">검색결과가 없습니다.</td>
+						</tr>
+					</c:if>
+					<c:forEach items="${review}" var="review" varStatus="status">
+						<tr>
+							<td>${review.reviewNo}</td>
+							<td>${review.memberId}</td>
+							<td><a href="select.do?reviewNo=${review.reviewNo}&page=1">${review.title}</a></td>
+							<td>${review.productName}</td>
+							<td>${review.hit}</td>
+							<td>${review.postdate}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+			<div class="paging">
+				${paging}
+			</div>
 		</div>
 	</section>
 	<jsp:include page="../common/footer.jsp"/>
