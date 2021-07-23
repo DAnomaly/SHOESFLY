@@ -14,16 +14,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.koreait.shoefly.command.product.BuyApplicationCommand;
-import com.koreait.shoefly.command.product.BuyNowCommand;
+import com.koreait.shoefly.command.product.SelectBuyApplicationCommand;
+import com.koreait.shoefly.command.product.InsertBuyCommand;
 import com.koreait.shoefly.command.product.InsertBuyApplicationCommand;
 import com.koreait.shoefly.command.product.InsertSellApplicationCommand;
 import com.koreait.shoefly.command.product.SelectAllListCommand;
 import com.koreait.shoefly.command.product.SelectConditionCommand;
 import com.koreait.shoefly.command.product.SelectPriceBySizeCommand;
-import com.koreait.shoefly.command.product.SelectProductByProductNo;
-import com.koreait.shoefly.command.product.SellApplicationCommand;
-import com.koreait.shoefly.command.product.SellNowCommand;
+import com.koreait.shoefly.command.product.SelectProductByProductNoCommand;
+import com.koreait.shoefly.command.product.SelectSellApplicationCommand;
+import com.koreait.shoefly.command.product.InsertSellCommand;
 
 import lombok.AllArgsConstructor;
 
@@ -35,13 +35,13 @@ public class ProductController {
 	private SqlSession sqlSession;
 	private SelectAllListCommand selectAllListCommand;
 	private SelectConditionCommand selectConditionCommand;
-	private SelectProductByProductNo selectProductByProductNo;
+	private SelectProductByProductNoCommand selectProductByProductNoCommand;
 	private SelectPriceBySizeCommand selectPriceBySizeCommand;
-	private BuyApplicationCommand buyApplicationCommand;
-	private SellApplicationCommand sellApplicationCommand;
+	private SelectBuyApplicationCommand selectBuyApplicationCommand;
+	private SelectSellApplicationCommand selectSellApplicationCommand;
 	private InsertBuyApplicationCommand insertBuyApplicationCommand;
-	private BuyNowCommand buyNowCommand;
-	private SellNowCommand sellNowCommand;
+	private InsertBuyCommand insertBuyCommand;
+	private InsertSellCommand insertSellCommand;
 	private InsertSellApplicationCommand insertSellApplicationCommand;
 	
 	//전체 상품 종류 조회
@@ -66,7 +66,7 @@ public class ProductController {
 	public String viewProductPage(HttpServletRequest request,
 								  Model model) {
 		model.addAttribute("request", request);
-		selectProductByProductNo.execute(sqlSession, model);
+		selectProductByProductNoCommand.execute(sqlSession, model);
 		return "product/productView";
 	}
 	
@@ -86,7 +86,7 @@ public class ProductController {
 				      Model model) {
 		model.addAttribute("request", request);
 		model.addAttribute("session", session);
-		buyNowCommand.execute(sqlSession, model);
+		insertBuyCommand.execute(sqlSession, model);
 		return "product/buyNow";
 	}
 	
@@ -97,7 +97,7 @@ public class ProductController {
 						  Model model) {
 		model.addAttribute("request", request);
 		model.addAttribute("session", session);
-		sellNowCommand.execute(sqlSession, model);
+		insertSellCommand.execute(sqlSession, model);
 		return "product/sellNow";
 	}
 	
@@ -108,7 +108,7 @@ public class ProductController {
 			   					 Model model) {
 		model.addAttribute("request", request);
 		model.addAttribute("session", session);
-		buyApplicationCommand.execute(sqlSession, model);
+		selectBuyApplicationCommand.execute(sqlSession, model);
 		return "product/buyApplication";
 	}
 	
@@ -119,7 +119,7 @@ public class ProductController {
 				   				  Model model) {
 		model.addAttribute("request", request);
 		model.addAttribute("session", session);
-		sellApplicationCommand.execute(sqlSession, model);
+		selectSellApplicationCommand.execute(sqlSession, model);
 		return "product/sellApplication";
 	}
 	
