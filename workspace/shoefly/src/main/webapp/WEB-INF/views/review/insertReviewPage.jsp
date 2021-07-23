@@ -127,7 +127,9 @@
 		.filebox {
 			display:inline; 
 		}
-		
+		input[type="button"]:hover {
+			cursor: pointer;
+		}
 		.filebox label {
 			display: inline-block;
 			padding: .6em .8em;
