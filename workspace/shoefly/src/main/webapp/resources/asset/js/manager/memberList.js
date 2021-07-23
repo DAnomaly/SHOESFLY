@@ -3,20 +3,32 @@
  */
 $(document).ready(function(){
 	pageLoadEvent();
-	$('#column').change(function(){
-		if($('#column').val() == 'REGDATE'){
-			$('#default_search').hide();
-			$('#regdate_search').show();
-		} else {
-			$('#default_search').show();
-			$('#regdate_search').hide();
-		}
-	})
 });
+
+function column_change() {
+	if($('#column').val() == 'REGDATE'){
+		$('.default_search').hide();
+		$('.regdate_search').show();
+	} else {
+		$('.default_search').show();
+		$('.regdate_search').hide();
+	}
+}
+
 var page = 1;
 var order = 'MEMBER_NO';
 var isDesc = true;
 function pageLoadEvent() {
+	// ORDER STATE UPDATE
+	var state_idName = "#" + order + "_STATE";
+	$('.up-down').empty();
+	if(isDesc)
+		$(state_idName).html('<i class="fas fa-caret-down"></i>');
+	else
+		$(state_idName).html('<i class="fas fa-caret-up"></i>');
+	
+	
+	// MEMBER LIST LOAD
 	$.ajax({
 		url: 'memberList.do',
 		type: 'POST',
@@ -44,20 +56,16 @@ function pageLoadEvent() {
 			}
 			var member_paging = $('#member_paging');
 			member_paging.empty();
-			if (data.page.beginPage == 1) 
-				member_paging.append('<a>&lt;</a>');
-			else 
-				member_paging.append('<a onclick="setPage(' + (data.page.beginPage - 1) + ')">&lt;</a>');
-			for (var i = data.page.beginPage; i <= data.page.endPage; i++) {
-				if(i == data.page.page)
-					member_paging.append('<a>' + i + '</a>');
-				else
-					member_paging.append('<a onclick="setPage(' + i + ')">' + i + '</a>');
+			if(data.page.page == 1){
+				$('<span>').html('<i class="fas fa-caret-left"></i>이전').appendTo(member_paging);
+			} else {
+				$('<a>').html('<i class="fas fa-caret-left"></i>이전').attr('href','javascript:setPage(' + (data.page.page - 1) + ')').appendTo(member_paging);
 			}
-			if (data.page.endPage == data.page.totalPage)
-				member_paging.append('<a>&gt;</a>');
-			else
-				member_paging.append('<a onclick="setPage(' + (data.page.beginPage + 1) + ')">&gt;</a>');
+			if(data.page.page == data.page.totalPage){
+				$('<span>').html('이후<i class="fas fa-caret-right"></i>').appendTo(member_paging);
+			} else {
+				$('<a>').html('이후<i class="fas fa-caret-right"></i>').attr('href','javascript:setPage(' + (data.page.page + 1) + ')').appendTo(member_paging);
+			}
 		}
 	})
 }
@@ -66,6 +74,7 @@ function search_btn() {
 	pageLoadEvent();
 }
 function setOrder(state) {
+	page = 1;
 	if(order = state){
 		isDesc = isDesc ? false : true;
 	} else {

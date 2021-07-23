@@ -11,12 +11,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="countMember" resultType="int" parameterType="java.util.Map">
 		SELECT COUNT(*)
 		  FROM MEMBER
-	<if test="query != ''.toString and column != 'REGDATE'.toString">
-		 WHERE ${column} LIKE '%' || #{query} || '%'
-	</if>
-	<if test="column == 'REGDATE'.toString and startDate != ''.toString and endDate != ''.toString">
-		 WHERE REGDATE BETWEEN #{startDate} AND #{endDate}
-	</if>
+		 WHERE MANAGER != 1
+		<if test="query != ''.toString and column != 'REGDATE'.toString">
+		   AND ${column} LIKE '%' || #{query} || '%'
+		</if>
+		<if test="column == 'REGDATE'.toString and startDate != ''.toString and endDate != ''.toString">
+		   AND REGDATE BETWEEN #{startDate} AND #{endDate}
+		</if>
 	</select>
 	
 	<select id="selectListMember" resultType="com.koreait.shoefly.dto.Member" parameterType="java.util.Map">
@@ -26,11 +27,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				  FROM (
 						SELECT MEMBER_NO, MEMBER_ID, PW, NAME, EMAIL, REGDATE, MANAGER, STATE
 						  FROM MEMBER
+						 WHERE MANAGER != 1
 						<if test="query != ''.toString and column != 'REGDATE'.toString">
-						 WHERE ${column} LIKE '%' || #{query} || '%'
+						   AND ${column} LIKE '%' || #{query} || '%'
 						</if>
 						<if test="column == 'REGDATE'.toString and startDate != ''.toString and endDate != ''.toString">
-						 WHERE REGDATE BETWEEN #{startDate} AND #{endDate}
+						   AND REGDATE BETWEEN #{startDate} AND #{endDate}
 						</if>
 						 ORDER BY ${order}
 						<if test="isDesc == 'true'.toString">
