@@ -35,8 +35,10 @@
 			$('#insert_addr_btn').click(function(){
 				if($('#name').val() == '') {
 					alert('배송지를 입력해주세요.');
+					return false;
 				} else if($('#addr1').val() == '') {
 					alert('주소를 입력해주세요.');
+					return false;
 				}
 				$('#form').attr('action', 'insertAddress.do');
 				$('#form').submit();

@@ -13,6 +13,7 @@
 	<script>
 		$(document).ready(function(){
 			$('.tr_hidden').hide();
+			delete_buying_list();
 		})
 		
 		function show_tr(className) {
@@ -20,6 +21,14 @@
 			$('.' + className + '_a_hidden').hide();
 		}
 		
+		function delete_buying_list(){
+			$('body').on('click', '#delete_btn', function(){
+				var productBuyNo = $(this).prev().val();
+				if(confirm('삭제하시겠습니까?')) {
+					location.href = 'deleteBuyRequest.do?productBuyNo=' + productBuyNo;
+				}
+			})
+		}
 	</script>	
 	<style>
 		 body {
@@ -130,7 +139,7 @@
 							<td>${buyRequestList.price}</td>
 							<td>${buyRequestList.productSize}</td>
 							<td>${buyRequestList.postdate}</td>
-							<td><input type="button" value="삭제" class="btn_primary" onclick="location.href='deleteBuyRequest.do?productBuyNo=${buyRequestList.productBuyNo}'"></td>
+							<td><input type="hidden" value="${buyRequestList.productBuyNo}" id="productBuyNo" name="productBuyNo"><input type="button" value="삭제" id="delete_btn" class="btn_primary"></td>
 						</tr>	
 					</c:forEach>
 				</tbody>

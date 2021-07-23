@@ -13,11 +13,21 @@
 	<script>
 		$(document).ready(function(){
 			$('.tr_hidden').hide();
+			delete_sale_list();
 		})
 		
 		function show_tr(className) {
 			$('.' + className).show();
 			$('.' + className + '_a_hidden').hide();
+		}
+		
+		function delete_sale_list(){
+			$('body').on('click', '#delete_btn', function(){
+				var productSellNo = $(this).prev().val();
+				if(confirm('삭제하시겠습니까?')) {
+					location.href = 'deleteSellRequest.do?productSellNo=' + productSellNo;
+				}
+			})
 		}
 	</script>	
 	<style>
@@ -88,6 +98,13 @@
 		.btn_primary:hover {
 			background-color: darkgray;
 		}
+		tfoot {
+			text-align: center;
+		}	
+		tfoot > tr > td > a{
+			text-decoration: underline double;
+			color: black;
+		}
 	</style>
 </head>
 <body>
@@ -119,18 +136,18 @@
 					</c:if>
 					<c:forEach var="sellRequestList" items="${sellRequestList}" varStatus="status">
 						<c:if test="${status.count > 3}">
-						<tr class="tr1 tr_hidden">
+							<tr class="tr1 tr_hidden">
 						</c:if>
 						<c:if test="${status.count <= 3}">
-						<tr>	
+							<tr>	
 						</c:if>
 							<td><img class="image_box" src="/shoefly/resources/archive/product/${sellRequestList.image}" alt="shoesimage" style="width:80px;"></td>
 							<td><a href="/shoefly/product/viewProductPage.do?productNo=${sellRequestList.productNo}">${sellRequestList.productName}</a></td>
 							<td>${sellRequestList.price}</td>
 							<td>${sellRequestList.productSize}</td>
 							<td>${sellRequestList.postdate}</td>
-							<td><input type="button" value="삭제" class="btn_primary" onclick="location.href='deleteSellRequest.do?productSellNo=${sellRequestList.productSellNo}'"></td>
-						</tr>	
+							<td><input type="hidden" value="${sellRequestList.productSellNo}" id="productSellNo" name="productSellNo"><input type="button" value="삭제" id="delete_btn" class="btn_primary"></td>
+							</tr>	
 					</c:forEach>
 				</tbody>
 				<c:if test="${sellRequestList.size() > 3}">	
@@ -163,10 +180,10 @@
 						</tr>
 					</c:if>
 					<c:forEach var="waitingForSale" items="${waitingForSale}" varStatus="status">
-						<c:if test="status.count > 3">
+						<c:if test="${status.count > 3}">
 						<tr class="tr2 tr_hidden">
 						</c:if>
-						<c:if test="status.count <= 3">
+						<c:if test="${status.count <= 3}">
 						<tr>	
 						</c:if>	
 							<td><img class="image_box" src="/shoefly/resources/archive/product/${waitingForSale.image}" alt="shoesimage" style="width:80px;"></td>
@@ -207,10 +224,10 @@
 						</tr>
 					</c:if>
 					<c:forEach var="soldOut" items="${soldOut}" varStatus="status">
-						<c:if test="status.count > 3">
+						<c:if test="${status.count > 3}">
 						<tr class="tr3 tr_hidden">
 						</c:if>
-						<c:if test="status.count <= 3">
+						<c:if test="${status.count <= 3}">
 						<tr>	
 						</c:if>	
 							<td><img class="image_box" src="/shoefly/resources/archive/product/${soldOut.image}" alt="shoesimage" style="width:80px;"></td>
@@ -251,10 +268,10 @@
 						</tr>
 					</c:if>
 					<c:forEach var="sellCompleted" items="${sellCompleted}" varStatus="status">
-						<c:if test="status.count > 3">
+						<c:if test="${status.count > 3}">
 						<tr class="tr4 tr_hidden">
 						</c:if>
-						<c:if test="status.count <= 3">
+						<c:if test="${status.count <= 3}">
 						<tr>	
 						</c:if>	
 							<td><img class="image_box" src="/shoefly/resources/archive/product/${sellCompleted.image}" alt="shoesimage" style="width:80px;"></td>

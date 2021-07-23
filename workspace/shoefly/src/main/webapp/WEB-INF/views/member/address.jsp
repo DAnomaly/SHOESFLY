@@ -32,7 +32,7 @@
 							.append( $('<td>').text(address.addr1) )
 							.append( $('<td>').text(address.addr2) )
 							.append($('<td>').html('<input type="hidden" name="memberAddressNo" id="memberAddressNo" value="' + address.memberAddressNo + '"><input type="button" value="수정" id="update_address_btn" class="btn_primary">'))
-							.append( $('<td>').html('<input type="button" id="delete_address_btn" value="삭제" class="btn_primary">') )
+							.append( $('<td>').html('<input type="hidden" name="memberAddressNo" id="memberAddressNo" value="' + address.memberAddressNo + '"><input type="button" id="delete_address_btn" value="삭제" class="btn_primary">') )
 							.appendTo('#address_list')
 						})
 					} else {
@@ -53,7 +53,7 @@
 		
 		function fn_deleteAddress(){
 			$('body').on('click', '#delete_address_btn', function(){
-				var memberAddressNo = $('#memberAddressNo').val();
+				var memberAddressNo = $(this).prev().val();/*  $('#memberAddressNo').val(); */
 				if(confirm('선택하신 주소지를 삭제하시겠습니까?')) {
 					location.href = 'deleteAddress.do?memberAddressNo=' + memberAddressNo;									
 				}
