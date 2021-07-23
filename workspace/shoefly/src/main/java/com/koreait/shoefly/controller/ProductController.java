@@ -74,8 +74,10 @@ public class ProductController {
 	@GetMapping(value="selectPriceBySize.do", produces="application/json; charset=utf-8")
 	@ResponseBody
 	public Map<String, Object> selectPriceBySize(HttpServletRequest request,
+												 HttpSession session,
 												 Model model){
 		model.addAttribute("request", request);
+		model.addAttribute("session", session);
 		return selectPriceBySizeCommand.execute(sqlSession, model);
 	}
 	

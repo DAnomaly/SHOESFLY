@@ -71,8 +71,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE PRODUCT_NO = #{param1}
 	</select>
 	
-	<!-- size와 제품명으로 즉시구매가 조회 -->
-	<select id="selectBuyPriceBySize" resultType="long">
+	<!-- 비로그인시/ size와 제품명으로 즉시구매가 조회 -->
+	<select id="selectBuyPriceBySizeNoId" resultType="long">
 		SELECT MIN(A.PRICE) 
 		  FROM PRODUCT_SELL A INNER JOIN PRODUCT_DETAIL B
 		    ON A.PRODUCT_DETAIL_NO = B.PRODUCT_DETAIL_NO
@@ -81,7 +81,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
            AND A.STATE = 1
 	</select>
 	
-	<!-- size와 제품명으로 즉시판매가 조회 -->
+	<!-- 비로그인시/ size와 제품명으로 즉시판매가 조회 -->
+	<select id="selectSellPriceBySizeNoId" resultType="long">
+		SELECT MAX(A.PRICE) 
+		  FROM PRODUCT_BUY A INNER JOIN PRODUCT_DETAIL B
+		    ON A.PRODUCT_DETAIL_NO = B.PRODUCT_DETAIL_NO
+		 WHERE B.PRODUCT_SIZE = ${param1}
+		   AND B.PRODUCT_NAME = #{param2}
+		   AND A.STATE = 0
+	</select>
+	
+	<!-- 로그인시/ size와 제품명으로 즉시구매가 조회 -->
+	<select id="selectBuyPriceBySize" resultType="long">
+		SELECT MIN(A.PRICE) 
+		  FROM PRODUCT_SELL A INNER JOIN PRODUCT_DETAIL B
+		    ON A.PRODUCT_DETAIL_NO = B.PRODUCT_DETAIL_NO
+		 WHERE B.PRODUCT_SIZE = ${param1}
+		   AND B.PRODUCT_NAME = #{param2}
+           AND A.STATE = 1
+		   AND A.MEMBER_ID != #{param3}
+	</select>
+	
+	<!-- 로그인시/ size와 제품명으로 즉시판매가 조회 -->
 	<select id="selectSellPriceBySize" resultType="long">
 		SELECT MAX(A.PRICE) 
 		  FROM PRODUCT_BUY A INNER JOIN PRODUCT_DETAIL B
@@ -89,6 +110,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE B.PRODUCT_SIZE = ${param1}
 		   AND B.PRODUCT_NAME = #{param2}
 		   AND A.STATE = 0
+		   AND A.MEMBER_ID != #{param3}
 	</select>
 	
 	<!-- 구매 신청서 이동시 product 조회 -->

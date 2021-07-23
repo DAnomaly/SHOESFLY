@@ -10,8 +10,10 @@ public interface ProductDAO {
 	public List<Product> selectAllList(Map<String, Object> listMap);
 	public List<Product> selectCondition(Map<String, Object> paramMap);
 	public Product selectProductByProductNo(String productNo);
-	public Long selectBuyPriceBySize(int productSize, String productName);
-	public Long selectSellPriceBySize(int productSize, String productName);
+	public Long selectBuyPriceBySizeNoId(int productSize, String productName);
+	public Long selectSellPriceBySizeNoId(int productSize, String productName);
+	public Long selectBuyPriceBySize(int productSize, String productName, String memberId);
+	public Long selectSellPriceBySize(int productSize, String productName, String memberId);
 	public int countProduct();
 	public int countConditionProduct(Map<String, Object> paramMap);
 	public Product buyApplication(String productName, int productSize);
