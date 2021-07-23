@@ -25,9 +25,11 @@ public class SelectConditionCommand implements ProductCommand {
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		ProductDAO productDAO = sqlSession.getMapper(ProductDAO.class);
 		
-		String productName = (request.getParameter("productName"));
+		String productName = request.getParameter("productName");
 		String[] brands = request.getParameterValues("brand");
 		String[] sizes = request.getParameterValues("size");
+		
+		// price는 무조건 만들고 있음.
 		Long minPrice = Long.parseLong(request.getParameter("minPrice") == "" ? "0" : request.getParameter("minPrice"));
 		Long maxPrice = Long.parseLong(request.getParameter("maxPrice") == "" ? "9999999999" : request.getParameter("maxPrice"));
 		
@@ -35,8 +37,6 @@ public class SelectConditionCommand implements ProductCommand {
 		String brandsArray = "";
 		if(brands == null) {
 			brandsArray = "'Jordan', 'Nike', 'New Balance', 'Adidas'";
-		} else if(brands.length == 1) {
-			brandsArray = "'" + brands[0] + "'";
 		} else {
 				brandsArray = "'" + brands[0] + "'";
 				for(int i = 1 ; i < brands.length ; i++) {
@@ -44,12 +44,10 @@ public class SelectConditionCommand implements ProductCommand {
 			}
 		}
 
-		//사이즈 체크가 없을 경우 전체 사이즈 조회, 선택했을 경우 sizesArray로 합치기
+		// 사이즈 체크가 없을 경우 전체 사이즈 조회, 선택했을 경우 sizesArray로 합치기
 		String sizesArray = "";
 		if(sizes == null) {
 			sizesArray = "'240', '250', '260', '270', '280', '290'";
-		} else if(sizes.length == 1) {
-			sizesArray = sizes[0];
 		} else {
 			sizesArray =  "'"+ sizes[0] + "'";
 			for(int j = 1 ; j < sizes.length ; j++) {
@@ -74,20 +72,20 @@ public class SelectConditionCommand implements ProductCommand {
 		paramMap.put("beginRecord", page.getBeginRecord());
 		paramMap.put("endRecord", page.getEndRecord());
 
-		String path = "selectCondition.do";
-		if (paramMap.get("productName") != null || paramMap.get("productName") != null ||
-		    paramMap.get("brandsArray") != null || paramMap.get("sizesArray") != null ||
-		    paramMap.get("minPrice") != null || paramMap.get("maxPrice") != null){
-			path += "?productName=" + paramMap.get("productName").toString() +
-					"&brandsArray=" + paramMap.get("brandsArray").toString() + 
-					"&sizesArray=" + paramMap.get("sizesArray").toString() + 
-					"&minPrice=" + paramMap.get("minPrice").toString() + 
-					"&maxPrice=" + paramMap.get("maxPrice").toString();
+		String path = "selectCondition.do?minPrice=" + minPrice + "&maxPrice=" + maxPrice;
+		if (paramMap.get("productName") != null) {
+			path += "&productName=" + productName;
 		}
-
+		if (paramMap.get("brandsArray") != null) {
+			path += "&brandsArray=" + brandsArray;
+		}
+		if (paramMap.get("sizesArray") != null) {
+			path += "&sizesArray=" + sizesArray;
+		}
+		
 		String paging = PagingUtils.getPaging(path, page);
 		
-		//model.addAttribute("list", productDAO.selectCondition(paramMap));
+		model.addAttribute("list", productDAO.selectCondition(paramMap));
 		model.addAttribute("page", page);
 		model.addAttribute("paging", paging);
 		

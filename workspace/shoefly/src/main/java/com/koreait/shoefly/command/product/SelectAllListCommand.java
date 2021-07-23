@@ -40,8 +40,7 @@ public class SelectAllListCommand implements ProductCommand {
 		model.addAttribute("list", productDAO.selectAllList(listMap));
 		model.addAttribute("page", page);
 		model.addAttribute("paging", paging);
-		
-		logger.info("리스트가져왔다");
+
 		return null;
 	}
 

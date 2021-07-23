@@ -67,7 +67,6 @@ private PagingUtils(){}
 		page.setPagePerBlock(pagePerBlock);
 		page.setBeginPage(beginPage);
 		page.setEndPage(endPage);
-		// return page
 		return page;
 	}
 	
@@ -80,25 +79,18 @@ private PagingUtils(){}
 	 * @return paging
 	 */
 	public static String getPaging(String path, Page page) {
-		// 이거 넣어서 찍어보세요.
-		// System.out.println("page=" + page);
-		
 		StringBuilder sb = new StringBuilder();
 		if(path.indexOf('?') != -1) {
 			path = path + "&page=";
 		} else {
 			path = path + "?page=";
 		}
-		
-		// System.out.println("path1: " + path);
-		
+				
 		// LEFT (<)
 		if(page.getBeginPage() == 1)
 			sb.append("<a>&lt;</a>").append("&nbsp;");
 		else
 			sb.append("<a href=\"").append(path).append(page.getBeginPage() - 1).append("\">&lt;</a>").append("&nbsp;");
-
-		// System.out.println("path2: " + sb.toString());
 		
 		// NUMBER (1 2 3 4 5)
 		for (int p = page.getBeginPage(); p <= page.getEndPage(); p++) {
@@ -107,17 +99,13 @@ private PagingUtils(){}
 			else
 				sb.append("<a href=\"").append(path).append(p).append("\">").append(p).append("</a>").append("&nbsp;");
 		}
-		
-		// System.out.println("path3: " + sb.toString());
-		
+				
 		// RIGHT (>)
 		if(page.getEndPage() == page.getTotalPage())
 			sb.append("<a>&gt;</a>");
 		else
 			sb.append("<a href=\"").append(path).append(page.getEndPage() + 1).append("\">&gt;</a>");
-		
-		// System.out.println("path4: " + sb.toString());
-		
+				
 		return sb.toString();
 	}
 
