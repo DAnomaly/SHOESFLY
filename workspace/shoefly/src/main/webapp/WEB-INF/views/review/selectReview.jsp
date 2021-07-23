@@ -266,7 +266,7 @@
 			font-size: 16px;
 		}
 		a {
-			text-decoration: none;
+			text-decoration: none;  
 			color: black;
 		}
 		a:hover {
@@ -277,6 +277,9 @@
 			height: 50px;
 			line-height: 50px;
 			text-align: center;
+		}
+		input[type="button"]:hover {
+			cursor: pointer;
 		}
 	</style>
 </head>
