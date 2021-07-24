@@ -41,10 +41,7 @@ public class SelectPriceBySizeCommand implements ProductCommand {
 		//로그인시
 		else {
 			Member loginMember = (Member)session.getAttribute("loginMember");
-			logger.info(loginMember.toString());
-			String memberId = loginMember.getMemberId();
-			logger.info("memberId: " + loginMember.getMemberId());
-			
+			String memberId = loginMember.getMemberId();			
 			//즉시구매가격
 			resultMap.put("buyPrice", productDAO.selectBuyPriceBySize(productSize, productName, memberId));
 			//즉시판매가격

@@ -146,7 +146,7 @@
 <body>
 	<jsp:include page="../common/header.jsp"/>
 	<section>
-	<a href="listPage.do">목록보기</a>
+	<a href="productListPage.do">목록보기</a>
 		<form id="f" method="post">
 		<input type="hidden" id="loginMember" value="${loginMember}">
 		<input type="hidden" id="productNo" value="${productproductNo}">

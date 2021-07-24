@@ -45,7 +45,7 @@ public class ProductController {
 	private InsertSellApplicationCommand insertSellApplicationCommand;
 	
 	//전체 상품 종류 조회
-	@GetMapping("listPage.do")
+	@GetMapping("productListPage.do")
 	public String listPage(HttpServletRequest request,
 						   Model model) {
 		model.addAttribute("request", request);

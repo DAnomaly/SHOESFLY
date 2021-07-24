@@ -41,14 +41,13 @@ public class InsertBuyApplicationCommand implements ProductCommand {
 				//새로등록된 주소의 memberAddressNo을 알기위해
 				//maxMemberAddressNo를 조회하기
 				long maxMemberAddressNo = productDAO.maxMemberAddressNo();
-				logger.info("maxMemberAddressNo:" + maxMemberAddressNo);
 				int result1 = productDAO.insertBuyApplication(memberId, productName, productSize, price, maxMemberAddressNo);
 				
 				//구매신청서 완료
 				if(result1 > 0) {
 					response.getWriter().println("<script>");
 					response.getWriter().println("alert('구매신청이 완료되었습니다.')");
-					response.getWriter().println("location.href='listPage.do'");
+					response.getWriter().println("location.href='productListPage.do'");
 					response.getWriter().println("</script>");
 				//구매신청서 실패
 				}else {
@@ -66,7 +65,7 @@ public class InsertBuyApplicationCommand implements ProductCommand {
 				if(result2 > 0) {
 					response.getWriter().println("<script>");
 					response.getWriter().println("alert('구매신청이 완료되었습니다.')");
-					response.getWriter().println("location.href='listPage.do'");
+					response.getWriter().println("location.href='productListPage.do'");
 					response.getWriter().println("</script>");
 				//구매신청서 실패
 				}else {

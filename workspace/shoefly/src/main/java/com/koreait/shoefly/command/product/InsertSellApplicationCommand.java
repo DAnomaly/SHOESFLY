@@ -47,7 +47,7 @@ public class InsertSellApplicationCommand implements ProductCommand {
 				if(result1 > 0) {
 					response.getWriter().println("<script>");
 					response.getWriter().println("alert('판매신청이 완료되었습니다.')");
-					response.getWriter().println("location.href='listPage.do'");
+					response.getWriter().println("location.href='productListPage.do'");
 					response.getWriter().println("</script>");
 				//구매신청서 실패
 				}else {
@@ -65,7 +65,7 @@ public class InsertSellApplicationCommand implements ProductCommand {
 				if(result2 > 0) {
 					response.getWriter().println("<script>");
 					response.getWriter().println("alert('구매신청이 완료되었습니다.')");
-					response.getWriter().println("location.href='listPage.do'");
+					response.getWriter().println("location.href='productListPage.do'");
 					response.getWriter().println("</script>");
 				//판매신청서 실패
 				}else {
