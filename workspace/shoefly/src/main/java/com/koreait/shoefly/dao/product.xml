@@ -98,8 +98,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    ON A.PRODUCT_DETAIL_NO = B.PRODUCT_DETAIL_NO
 		 WHERE B.PRODUCT_SIZE = ${param1}
 		   AND B.PRODUCT_NAME = #{param2}
-           AND A.STATE = 1
 		   AND A.MEMBER_ID != #{param3}
+           AND A.STATE = 1
 	</select>
 	
 	<!-- 로그인시/ size와 제품명으로 즉시판매가 조회 -->
@@ -113,6 +113,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		   AND A.MEMBER_ID != #{param3}
 	</select>
 	
+	<!-- 즉시구매시 판매테이블에서 PRODUCT_SELL_NO 조회 -->
+	<!-- 즉시 구매시 로그인은 필수이므로 본인의 아이디는 where절에서 제외  -->
+	<!-- 서로다른 멤버가 같은 상품을 같은 가격에 내놓았을 경우 POSTDATE순으로 조회하기위해 MIN(D.PRODUCT_SELL_NO)처리 -->
+	<select id="selectProductSellNo" resultType="long">
+		SELECT MIN(D.PRODUCT_SELL_NO)
+	       FROM (
+	          	 SELECT C.PRODUCT_SELL_NO, C.MEMBER_ID, C.POSTDATE, C.PRICE
+	               FROM PRODUCT_SELL C
+	        	  WHERE C.PRICE = (SELECT MIN(A.PRICE)
+	                          		 FROM PRODUCT_SELL A INNER JOIN PRODUCT_DETAIL B
+	                           		   ON A.PRODUCT_DETAIL_NO = B.PRODUCT_DETAIL_NO
+	                         		WHERE B.PRODUCT_SIZE = ${param1}
+	                           		  AND B.PRODUCT_NAME = #{param2}
+                                      AND A.MEMBER_ID != #{param3}
+                                      AND A.STATE = 1
+	                        	   )
+	               AND C.PRODUCT_DETAIL_NO = (SELECT PRODUCT_DETAIL_NO
+	                                            FROM PRODUCT_DETAIL
+	                                           WHERE PRODUCT_SIZE = ${param1}
+	                                             AND PRODUCT_NAME = #{param2}
+	               							 )
+                   AND C.STATE = 1
+                   AND C.MEMBER_ID != #{param3}                
+	             ) D
+	      WHERE MEMBER_ID != #{param3}
+ 	</select>
+ 	
 	<!-- 구매 신청서 이동시 product 조회 -->
 	<select id="buyApplication" resultType="com.koreait.shoefly.dto.Product">
 		SELECT A.PRODUCT_NAME AS PRODUCTNAME, A.BRAND, A.PRICE, A.IMAGE
@@ -166,7 +193,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 현재 MEMBER_ADDRESS TABLE에서 MEMBER_ADDRESS_NO중 최대값 찾기 -->
-	<!-- 값이 0이면 신규등록한 주소라는것, 0이 아니면 기존주소라는 것 -->
 	<select id="maxMemberAddressNo" resultType="long">
 		SELECT MAX(MEMBER_ADDRESS_NO) AS maxMemberAddressNo
 		  FROM MEMBER_ADDRESS 
@@ -227,4 +253,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			    0 
 				)
 	</insert>
+	
+	<!-- 즉시구매시 구매테이블에 등록 -->
+	<insert id="insertBuy">
+		INSERT INTO PRODUCT_BUY
+		VALUES (
+				PRODUCT_BUY_SEQ.NEXTVAL,
+			    #{param1},
+			    (SELECT PRODUCT_DETAIL_NO 
+			       FROM PRODUCT_DETAIL
+			      WHERE PRODUCT_NAME = #{param2}
+			        AND PRODUCT_SIZE = ${param3}
+			    ),
+			    ${param4},
+				${param5},
+			    SYSDATE,
+			    SYSDATE,
+			    1 
+			   )
+	</insert>
+	
+	<!-- 구매테이블에 등록된 번호중 최근값(최대값조회) -->
+	<select id="selectMaxProductBuyNo" resultType="long">
+		SELECT MAX(PRODUCT_BUY_NO)
+		  FROM PRODUCT_BUY
+	</select>
+	
+	<!-- 구매시 판매테이블의 해당 상품을 찾아 구매연결시키기(update = 2, SELL_DATE에 오늘날짜), productBuyNo 연결 -->
+	<update id="updateSellProduct">
+		UPDATE PRODUCT_SELL
+		   SET SELLDATE = SYSDATE,
+		   	   STATE = 2,
+		   	   PRODUCT_BUY_NO = ${param1}
+	 	 WHERE PRODUCT_SELL_NO = ${param2}
+	</update>
 </mapper>

@@ -37,6 +37,10 @@ public class SelectPriceBySizeCommand implements ProductCommand {
 			resultMap.put("buyPrice", productDAO.selectBuyPriceBySizeNoId(productSize, productName));
 			//즉시판매가격
 			resultMap.put("sellPrice", productDAO.selectSellPriceBySizeNoId(productSize, productName));
+			//Product_Sell_No조회, 구매할때 판매번호를 찾야야하기때문
+			
+			
+			
 		}
 		//로그인시
 		else {

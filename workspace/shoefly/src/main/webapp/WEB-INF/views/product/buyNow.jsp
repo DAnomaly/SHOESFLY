@@ -20,8 +20,9 @@
 		function clickRadio(){
 			$('input:radio[name=addressName]').click(function(){
 				$('#addrName').val($('input:radio[name=addressName]:checked').val());
-				$('#addr1').val($(this).next().val());
-				$('#addr2').val($(this).next().next().val());
+				$('#memberAddressNo').val($(this).next().val());
+				$('#addr1').val($(this).next().next().val());
+				$('#addr2').val($(this).next().next().next().val());
 			});
 		}
 		function checkbox() {
@@ -78,13 +79,13 @@
 					<tr>
 						<td colspan="2">
 							<img alt="${product.image}"
-							src="/shoefly/resources/archive/product/${product.image}" />
+							src="/shoefly/resources/archive/product/${product.image}"/>
 						</td>
 					</tr>
 					<tr>
 						<td>구매 신청자 ID</td>
 						<td>${loginMember.memberId}
-						<input type="hidden" name="memberId" value="${loginMember.memberId}"></td>			
+						<input type="hidden" name="memberId" value="${loginMember.memberId}"></td>
 					</tr>
 					<tr>
 						<td>구매 상품명</td>
@@ -102,9 +103,9 @@
 					</tr>
 					<tr>
 						<td>지불금액</td>
-						<td>${lowPrice}원</td>
+						<td>${lowPrice}원
+						<input type="hidden" name="price" value="${lowPrice}"></td>
 					</tr>
-
 					<tr>
 						<td rowspan="2">배송지<br>주소</td>
 						<td>
@@ -116,6 +117,7 @@
 								저장된 주소에서 선택 가능합니다.<br>
 								<c:forEach var="address" items="${addressList}">
 									<input type="radio" name="addressName" value="${address.name}">${address.name}
+									<input type="hidden" value="${address.memberAddressNo}">
 									<input type="hidden" value="${address.addr1}">
 									<input type="hidden" value="${address.addr2}">
 								</c:forEach>
@@ -125,6 +127,7 @@
 					<tr>
 						<td>
 							배송지명<br>
+							<input type="hidden" id="memberAddressNo" name="memberAddressNo" value="0">
 							<input type="text" id="addrName" name="addrName" placeholder="ex&#41; 집, 회사"><br>
 							주소<br>
 							<input type="text" name="addr1" id="addr1" readonly>

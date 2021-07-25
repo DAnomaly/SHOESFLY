@@ -15,15 +15,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.koreait.shoefly.command.product.SelectBuyApplicationCommand;
-import com.koreait.shoefly.command.product.InsertBuyCommand;
+import com.koreait.shoefly.command.product.SelectBuyNowCommand;
 import com.koreait.shoefly.command.product.InsertBuyApplicationCommand;
+import com.koreait.shoefly.command.product.InsertBuyCommand;
 import com.koreait.shoefly.command.product.InsertSellApplicationCommand;
 import com.koreait.shoefly.command.product.SelectAllListCommand;
 import com.koreait.shoefly.command.product.SelectConditionCommand;
 import com.koreait.shoefly.command.product.SelectPriceBySizeCommand;
 import com.koreait.shoefly.command.product.SelectProductByProductNoCommand;
 import com.koreait.shoefly.command.product.SelectSellApplicationCommand;
-import com.koreait.shoefly.command.product.InsertSellCommand;
+import com.koreait.shoefly.command.product.SelectSellNowCommand;
 
 import lombok.AllArgsConstructor;
 
@@ -40,9 +41,10 @@ public class ProductController {
 	private SelectBuyApplicationCommand selectBuyApplicationCommand;
 	private SelectSellApplicationCommand selectSellApplicationCommand;
 	private InsertBuyApplicationCommand insertBuyApplicationCommand;
-	private InsertBuyCommand insertBuyCommand;
-	private InsertSellCommand insertSellCommand;
+	private SelectBuyNowCommand selectBuyNowCommand;
+	private SelectSellNowCommand selectSellNowCommand;
 	private InsertSellApplicationCommand insertSellApplicationCommand;
+	private InsertBuyCommand insertBuyCommand;
 	
 	//전체 상품 종류 조회
 	@GetMapping("productListPage.do")
@@ -88,7 +90,7 @@ public class ProductController {
 				      Model model) {
 		model.addAttribute("request", request);
 		model.addAttribute("session", session);
-		insertBuyCommand.execute(sqlSession, model);
+		selectBuyNowCommand.execute(sqlSession, model);
 		return "product/buyNow";
 	}
 	
@@ -99,7 +101,7 @@ public class ProductController {
 						  Model model) {
 		model.addAttribute("request", request);
 		model.addAttribute("session", session);
-		insertSellCommand.execute(sqlSession, model);
+		selectSellNowCommand.execute(sqlSession, model);
 		return "product/sellNow";
 	}
 	
@@ -157,4 +159,19 @@ public class ProductController {
 		insertSellApplicationCommand.execute(sqlSession, model);
 		return null;
 	}
+	
+	//구매
+	@PostMapping("buy.do")
+	public String buy(HttpServletRequest request,
+					  HttpServletResponse response,
+					  HttpSession session,
+					  Model model) {
+		model.addAttribute("request", request);
+		model.addAttribute("response", response);
+		model.addAttribute("session", session);
+		insertBuyCommand.execute(sqlSession, model);
+		return null;
+	}
+	//판매
+	
 }

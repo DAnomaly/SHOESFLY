@@ -46,6 +46,7 @@
 						}
 					}
 				});	//end ajax
+				
 			}
 		});
 		//구매신청하기 클릭
@@ -158,9 +159,8 @@
 							src="/shoefly/resources/archive/product/${product.image}" /><br>
 					</div>
 					<div class="textBox">
-						<input type="hidden" name ="productName" id="productName"
-							value="${product.productName}">
 						<h3>${product.productName}</h3>
+						<input type="hidden" name ="productName" id="productName" value="${product.productName}">
 						<p>
 							사이즈: <select name="productSize" id="productSize">
 								<option value="">::::: 선택 :::::</option>

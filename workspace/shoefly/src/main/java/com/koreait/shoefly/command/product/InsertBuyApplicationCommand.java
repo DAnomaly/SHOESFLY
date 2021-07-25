@@ -49,8 +49,9 @@ public class InsertBuyApplicationCommand implements ProductCommand {
 					response.getWriter().println("alert('구매신청이 완료되었습니다.')");
 					response.getWriter().println("location.href='productListPage.do'");
 					response.getWriter().println("</script>");
+				}
 				//구매신청서 실패
-				}else {
+				else {
 					response.getWriter().println("<script>");
 					response.getWriter().println("alert('구매신청에 실패하였습니다.')");
 					response.getWriter().println("history.back()");

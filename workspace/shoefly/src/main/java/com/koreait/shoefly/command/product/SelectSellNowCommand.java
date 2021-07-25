@@ -16,7 +16,7 @@ import com.koreait.shoefly.dto.Member;
 import com.koreait.shoefly.dto.MemberAddress;
 import com.koreait.shoefly.dto.Product;
 @Component
-public class InsertSellCommand implements ProductCommand {
+public class SelectSellNowCommand implements ProductCommand {
 
 	@Override
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {
