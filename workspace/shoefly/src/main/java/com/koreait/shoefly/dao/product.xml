@@ -109,13 +109,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    ON A.PRODUCT_DETAIL_NO = B.PRODUCT_DETAIL_NO
 		 WHERE B.PRODUCT_SIZE = ${param1}
 		   AND B.PRODUCT_NAME = #{param2}
-		   AND A.STATE = 0
 		   AND A.MEMBER_ID != #{param3}
+		   AND A.STATE = 0
 	</select>
 <!-- =============================================================================== -->		
 	<!-- 즉시구매시 판매테이블에서 PRODUCT_SELL_NO 조회 -->
 	<!-- 즉시 구매시 로그인은 필수이므로 본인의 아이디는 where절에서 제외  -->
-	<!-- 서로다른 멤버가 같은 상품을 같은 가격에 내놓았을 경우 POSTDATE순으로 조회하기위해 MIN(D.PRODUCT_SELL_NO)처리 -->
+	<!-- 서로다른 멤버가 같은 상품을 같은 가격에 내놓았을 경우 POSTDATE순으로 조회하기위해 MIN(D.PRODUCT_SELL_NO)으로 조회 -->
 	<select id="selectProductSellNo" resultType="long">
 		SELECT MIN(D.PRODUCT_SELL_NO)
 	       FROM (
@@ -211,8 +211,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			    #{param1},
 			    (SELECT PRODUCT_DETAIL_NO 
 			       FROM PRODUCT_DETAIL
-			      WHERE PRODUCT_NAME = #{param2}
-			        AND PRODUCT_SIZE = ${param3}
+			      WHERE PRODUCT_SIZE = ${param2}
+			        AND PRODUCT_NAME = #{param3}
 			    ),
 			    ${param4},
 				${param5},
@@ -231,8 +231,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			    #{param1},
 			    (SELECT PRODUCT_DETAIL_NO 
 			       FROM PRODUCT_DETAIL
-			      WHERE PRODUCT_NAME = #{param2}
-			        AND PRODUCT_SIZE = ${param3}
+			      WHERE PRODUCT_SIZE = ${param2}
+			        AND PRODUCT_NAME = #{param3}
 			    ),
 			    ${param4},
 				${param5},
@@ -256,4 +256,56 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		   	   PRODUCT_BUY_NO = ${param1}
 	 	 WHERE PRODUCT_SELL_NO = ${param2}
 	</update>
+	
+	<!-- 즉시판매시 해당구매신청서의No 조회(PRODUCT_BUY 테이블의 PRODUCT_BUY_NO) -->
+	<!-- 서로다른 멤버가 같은 상품을 같은 가격에 구매신청서를 작성했을 경우 POSTDATE순으로 조회하기위해 MIN(PRODUCT_BUY_NO)으로 조회 -->
+	<select id="selectProductBuyNo" resultType="long">
+	SELECT MIN(PRODUCT_BUY_NO)
+	  FROM PRODUCT_BUY
+	 WHERE PRICE = (SELECT MAX(A.PRICE) 
+					  FROM PRODUCT_BUY A INNER JOIN PRODUCT_DETAIL B
+					    ON A.PRODUCT_DETAIL_NO = B.PRODUCT_DETAIL_NO
+					 WHERE B.PRODUCT_SIZE = ${param1}
+					   AND B.PRODUCT_NAME = #{param2}
+					   AND A.MEMBER_ID != #{param3}
+					   AND A.STATE = 0
+					)
+	   AND MEMBER_ID != #{param3}
+	   AND PRODUCT_DETAIL_NO = (SELECT PRODUCT_DETAIL_NO
+	    					      FROM PRODUCT_DETAIL
+	    					     WHERE PRODUCT_SIZE = ${param1}
+	    					       AND PRODUCT_NAME = #{param2}
+	   							)
+	   AND STATE = 0
+	</select>
+	
+	<!-- 즉시판매시 판매테이블에 등록 -->
+	<insert id="insertSell">
+		INSERT INTO PRODUCT_SELL
+		VALUES (
+				PRODUCT_SELL_SEQ.NEXTVAL,
+                #{param1},
+                (SELECT PRODUCT_DETAIL_NO 
+			       FROM PRODUCT_DETAIL
+			      WHERE PRODUCT_NAME = #{param2}
+			        AND PRODUCT_SIZE = ${param3}
+			    ),
+                ${param4},
+                #{param5},
+                SYSDATE,
+                SYSDATE,
+                ${param6},
+                2
+		)
+	</insert>
+	
+	<!-- 판매시 구매테이블의 해당 상품을 찾아 판매연결시키기(update = 2, SELL_DATE에 오늘날짜) -->
+	<update id="updateBuyProduct">
+		UPDATE PRODUCT_BUY
+		   SET STATE = 1,
+		   	   BUYDATE = SYSDATE
+	 	 WHERE PRODUCT_BUY_NO = #{param1}
+	</update>
+	
+	
 </mapper>

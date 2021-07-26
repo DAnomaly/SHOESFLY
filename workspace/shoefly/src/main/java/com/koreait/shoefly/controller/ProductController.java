@@ -19,6 +19,7 @@ import com.koreait.shoefly.command.product.SelectBuyNowCommand;
 import com.koreait.shoefly.command.product.InsertBuyApplicationCommand;
 import com.koreait.shoefly.command.product.InsertBuyCommand;
 import com.koreait.shoefly.command.product.InsertSellApplicationCommand;
+import com.koreait.shoefly.command.product.InsertSellCommand;
 import com.koreait.shoefly.command.product.SelectAllListCommand;
 import com.koreait.shoefly.command.product.SelectConditionCommand;
 import com.koreait.shoefly.command.product.SelectPriceBySizeCommand;
@@ -45,6 +46,7 @@ public class ProductController {
 	private SelectSellNowCommand selectSellNowCommand;
 	private InsertSellApplicationCommand insertSellApplicationCommand;
 	private InsertBuyCommand insertBuyCommand;
+	private InsertSellCommand insertSellCommand;
 	
 	//전체 상품 종류 조회
 	@GetMapping("productListPage.do")
@@ -174,5 +176,16 @@ public class ProductController {
 	}
 
 	//판매
+	@PostMapping("sell.do")
+	public String sell(HttpServletRequest request,
+					  HttpServletResponse response,
+					  HttpSession session,
+					  Model model) {
+		model.addAttribute("request", request);
+		model.addAttribute("response", response);
+		model.addAttribute("session", session);
+		insertSellCommand.execute(sqlSession, model);
+		return null;
+	}
 	
 }

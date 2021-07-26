@@ -21,9 +21,12 @@ public interface ProductDAO {
 	public List<MemberAddress> selectMemberAddr(String memberId);
 	public int insertNewAddress(String memberId, String addrName, String addr1, String addr2);
 	public long maxMemberAddressNo();
-	public int insertBuyApplication(String memberId, String productName, int productSize, long price, long MemberAddressNo);;
-	public int insertSellApplication(String memberId, String productName, int productSize, long price, long MemberAddressNo);;
+	public int insertBuyApplication(String memberId, int productSize, String productName, long price, long MemberAddressNo);;
+	public int insertSellApplication(String memberId, int productSize, String productName, long price, long MemberAddressNo);;
 	public int insertBuy(String memberId, String productName, int productSize, long price, long MemberAddressNo);
 	public long selectMaxProductBuyNo();
 	public int updateSellProduct(long MaxproductBuyNo, long productSellNo);
+	public long selectProductBuyNo(int productSize, String productName, String memberId);
+	public int insertSell(String memberId, String productName, int productSize, long price, long memberAddressNo, long productBuyNo);
+	public int updateBuyProduct(long productBuyNo);
 }

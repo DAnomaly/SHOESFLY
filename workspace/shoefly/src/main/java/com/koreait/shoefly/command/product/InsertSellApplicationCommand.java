@@ -41,7 +41,7 @@ public class InsertSellApplicationCommand implements ProductCommand {
 				//새로등록된 주소의 memberAddressNo을 알기위해
 				//maxMemberAddressNo를 조회하기( = 새로 등록된 주소의 memberAddressNo)
 				long maxMemberAddressNo = productDAO.maxMemberAddressNo();
-				int result1 = productDAO.insertSellApplication(memberId, productName, productSize, price, maxMemberAddressNo);
+				int result1 = productDAO.insertSellApplication(memberId, productSize, productName, price, maxMemberAddressNo);
 				
 				//구매신청서 완료
 				if(result1 > 0) {
@@ -60,7 +60,7 @@ public class InsertSellApplicationCommand implements ProductCommand {
 				
 			}else {
 				//기존에 등록되어있는 주소임 주소등록필요X -> 판매신청서등록진행
-				int result2 = productDAO.insertSellApplication(memberId, productName, productSize, price, memberAddressNo);
+				int result2 = productDAO.insertSellApplication(memberId, productSize, productName, price, memberAddressNo);
 				
 				//판매신청서 완료
 				if(result2 > 0) {

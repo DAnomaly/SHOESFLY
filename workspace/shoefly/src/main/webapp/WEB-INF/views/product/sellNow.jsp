@@ -36,8 +36,9 @@
 	function clickRadio(){
 		$('input:radio[name=addressName]').click(function(){
 			$('#addrName').val($('input:radio[name=addressName]:checked').val());
-			$('#addr1').val($(this).next().val());
-			$('#addr2').val($(this).next().next().val());
+			$('#memberAddressNo').val($(this).next().val());
+			$('#addr1').val($(this).next().next().val());
+			$('#addr2').val($(this).next().next().next().val());
 		});
 	}
 	function checkbox() {
@@ -59,7 +60,7 @@
 		});
 	}
 	function submitCheck(){
-		$('#buyNow_btn').click(function(){
+		$('#sellNow_btn').click(function(){
 			if($('#addrname').val() == "" || $('#addr1').val() == ""){
 				alert('반송지를 입력해주세요.');
 			} else if($('#check1').is(":checked") == false){
@@ -70,7 +71,7 @@
 				return false;
 			} else{
 				//판매완료하기
-				$('#f').attr('action', 'buy.do');
+				$('#f').attr('action', 'sell.do');
 				//sellCommand제작해야함
 				$('#f').serialize();
 				$('#f').submit();
@@ -118,7 +119,8 @@
 					</tr>
 					<tr>
 						<td>판매수익</td>
-						<td>${highPrice}원</td>
+						<td>${highPrice}원
+						<input type="hidden" name="price" value="${highPrice}"></td>
 					</tr>
 
 					<tr>
@@ -132,6 +134,7 @@
 								저장된 주소에서 선택 가능합니다.<br>
 								<c:forEach var="address" items="${addressList}">
 									<input type="radio" name="addressName" value="${address.name}">${address.name}
+									<input type="hidden" value="${address.memberAddressNo}">
 									<input type="hidden" value="${address.addr1}">
 									<input type="hidden" value="${address.addr2}">
 								</c:forEach>
@@ -141,6 +144,7 @@
 					<tr>
 						<td>
 							반송지명<br>
+							<input type="hidden" id="memberAddressNo" name="memberAddressNo" value="0">
 							<input type="text" id="addrName" name="addrName" placeholder="ex&#41; 집, 회사"><br>
 							주소<br>
 							<input type="text" name="addr1" id="addr1" readonly>
