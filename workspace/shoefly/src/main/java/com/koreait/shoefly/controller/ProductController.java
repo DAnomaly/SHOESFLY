@@ -188,4 +188,11 @@ public class ProductController {
 		return null;
 	}
 	
+	@GetMapping("sellComplete.do")
+	public String sellComplete(HttpServletRequest request,
+						Model model) {
+		model.addAttribute("request", request);
+		
+		return "product/sellComplete";
+	}
 }

@@ -22,6 +22,7 @@
 	//주소api사용
 	function fn_findAddress() {
 		$('#addr_search_btn').click(function(){
+			$('#memberAddressNo').val(0);
 			goPopup();
 		})
 	} 
@@ -76,7 +77,7 @@
 					$('#f').submit();
 					return false;
 				}
-			} else if($('#addrName').val() == '' || $('#addr1').val() == '' || $('#addr2').val() == ''){			
+			} else if($('#addrName').val() == '' || $('#addr1').val() == ''){			
 				alert('배송지를 입력해주세요.');
 				return false;
 			} else if($('#check1').is(":checked") == false || $('#check2').is(":checked") == false){

@@ -34,7 +34,7 @@ public class InsertSellCommand implements ProductCommand {
 			long memberAddressNo = Long.parseLong(request.getParameter("memberAddressNo"));
 			String addrName = request.getParameter("addrName");
 			String addr1 = request.getParameter("addr1");
-			String addr2 = request.getParameter("addr2");
+			String addr2 = request.getParameter("addr2") == "" ? "null" : request.getParameter("addr2");
 			
 			ProductDAO productDAO = sqlSession.getMapper(ProductDAO.class);
 			
@@ -42,8 +42,13 @@ public class InsertSellCommand implements ProductCommand {
 			if(memberAddressNo == 0) {
 				//기존에 등록되어있는 주소가 아닌 사용자가 새로 등록한 주소 -> MemberAddress 테이블에 삽입해주고 판매등록도 진행
 				//새로운 주소 등록
-				productDAO.insertNewAddress(memberId, addrName, addr1, addr2);
-				
+				//상세주소 유무로 구분하여 진행
+				if(addr2 != "null") {
+					productDAO.insertNewAddress(memberId, addrName, addr1, addr2);
+				}else {
+					productDAO.insertNewAddressNoAddr2(memberId, addrName, addr1);
+				}
+
 				//새로등록된 주소의 memberAddressNo을 알기위해
 				//maxMemberAddressNo를 조회하기( = 새로 등록된 주소의 memberAddressNo)
 				long maxMemberAddressNo = productDAO.maxMemberAddressNo();
@@ -57,7 +62,7 @@ public class InsertSellCommand implements ProductCommand {
 				if(result1 > 0 && result2 > 0) {
 					response.getWriter().println("<script>");
 					response.getWriter().println("alert('판매가 완료되었습니다.')");
-					response.getWriter().println("location.href='productListPage.do'");
+					response.getWriter().println("location.href='sellComplete.do'");
 					response.getWriter().println("</script>");
 				//판매 실패
 				}else {
@@ -80,7 +85,7 @@ public class InsertSellCommand implements ProductCommand {
 				if(result3 > 0 && result4 > 0) {
 					response.getWriter().println("<script>");
 					response.getWriter().println("alert('판매가 완료되었습니다.')");
-					response.getWriter().println("location.href='productListPage.do'");
+					response.getWriter().println("location.href='sellComplete.do'");
 					response.getWriter().println("</script>");
 				//판매 실패
 				}else {

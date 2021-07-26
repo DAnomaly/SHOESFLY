@@ -20,10 +20,11 @@ public interface ProductDAO {
 	public Product buyApplication(String productName, int productSize);
 	public List<MemberAddress> selectMemberAddr(String memberId);
 	public int insertNewAddress(String memberId, String addrName, String addr1, String addr2);
+	public int insertNewAddressNoAddr2(String memberId, String addrName, String addr1);
 	public long maxMemberAddressNo();
-	public int insertBuyApplication(String memberId, int productSize, String productName, long price, long MemberAddressNo);;
-	public int insertSellApplication(String memberId, int productSize, String productName, long price, long MemberAddressNo);;
-	public int insertBuy(String memberId, String productName, int productSize, long price, long MemberAddressNo);
+	public int insertBuyApplication(String memberId, int productSize, String productName, long price, long memberAddressNo);;
+	public int insertSellApplication(String memberId, int productSize, String productName, long price, long memberAddressNo);;
+	public int insertBuy(String memberId, int productSize, String productName, long price, long memberAddressNo);
 	public long selectMaxProductBuyNo();
 	public int updateSellProduct(long MaxproductBuyNo, long productSellNo);
 	public long selectProductBuyNo(int productSize, String productName, String memberId);

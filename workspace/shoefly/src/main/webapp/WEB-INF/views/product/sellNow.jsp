@@ -21,6 +21,7 @@
 	//주소api사용
 	function fn_findAddress() {
 		$('#addr_search_btn').click(function(){
+			$('#memberAddressNo').val(0);
 			goPopup();
 		})
 	} 

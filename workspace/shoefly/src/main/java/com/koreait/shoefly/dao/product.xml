@@ -20,6 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			   		       FROM PRODUCT_DETAIL A INNER JOIN PRODUCT B
 			                 ON A.PRODUCT_NAME = B.PRODUCT_NAME ) C ) D
 		 WHERE D.RN BETWEEN #{beginRecord} AND #{endRecord}
+		 ORDER BY D.PRICE
 	</select>
 	
 	<!-- 조건 상품 갯수 조회 -->
@@ -184,6 +185,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				)
 	</insert>
 	
+	<!-- 새로운 주소 등록 (addr2 입력 안했을경우) -->
+	<insert id="insertNewAddressNoAddr2">
+		INSERT INTO MEMBER_ADDRESS
+		VALUES (
+				MEMBER_ADDRESS_SEQ.NEXTVAL,
+				(SELECT MEMBER_NO
+				   FROM MEMBER
+				  WHERE MEMBER_ID = #{param1}
+				),
+				#{param2},
+				#{param3},
+				NULL,
+				0
+				)
+	</insert>
+	
 	<!-- 구매 신청서 작성 -->
 	<insert id="insertBuyApplication">
 		INSERT INTO PRODUCT_BUY
@@ -192,8 +209,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			    #{param1},
 			    (SELECT PRODUCT_DETAIL_NO 
 			       FROM PRODUCT_DETAIL
-			      WHERE PRODUCT_NAME = #{param2}
-			        AND PRODUCT_SIZE = ${param3}
+			      WHERE PRODUCT_SIZE = ${param2}
+			        AND PRODUCT_NAME = #{param3}
 			    ),
 			    ${param4},
 				${param5},
