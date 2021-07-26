@@ -150,7 +150,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 
-	<!-- 현재 구매희망가 중 최고가 -->
+	<!-- 현재 구매희망가 중 최고가 / 비로그인시 조회 -->
 	<select id="hightPriceInBuy" resultType="long">
 		SELECT MAX(A.PRICE)
 		  FROM PRODUCT_BUY A INNER JOIN PRODUCT_DETAIL B
@@ -165,7 +165,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             AND STATE = 0
 	</select>
 	
-	<!-- 현재 판매 희망가 중 최저가 -->
+	<!-- 현재 판매 희망가 중 최저가 / 비로그인시 조회 -->
 	<select id="lowPriceInSell" resultType="long">
 		SELECT MIN(A.PRICE)
 		  FROM PRODUCT_SELL A INNER JOIN PRODUCT_DETAIL B

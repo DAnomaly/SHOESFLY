@@ -23,7 +23,6 @@ public class SelectBuyNowCommand implements ProductCommand {
 		
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
-		HttpServletResponse response = (HttpServletResponse)map.get("response");
 		HttpSession session = (HttpSession)map.get("session");
 		
 		String productName = request.getParameter("productName");
@@ -33,7 +32,7 @@ public class SelectBuyNowCommand implements ProductCommand {
 		
 		ProductDAO productDAO = sqlSession.getMapper(ProductDAO.class);
 		Product product = productDAO.buyApplication(productName, productSize);
-		Long lowPrice = productDAO.lowPriceInSell(productName, productSize);
+		Long lowPrice = productDAO.selectBuyPriceBySize(productSize, productName, memberId);
 		List<MemberAddress> addressList= productDAO.selectMemberAddr(memberId);
 		
 		model.addAttribute("product", product);
