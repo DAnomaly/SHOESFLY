@@ -70,10 +70,10 @@
 				//즉시 판매가 보다 낮은금액 입력시
 				else if($('#price').val() <= $('#highPrice').val()){
 					if(confirm('현재 신청하신 금액으로 즉시 판매하실 수 있습니다. \n즉시 판매하기 페이지로 이동하시겠습니까?')){
-						//
-						// 즉시 판매로 이동작성해야하는 부분
-						// 상품명, 사이즈, 즉시구매가 가져가기
-						//
+						$('#f').attr('action', 'sellNow.do');
+						$('#f').serialize();
+						$('#f').submit();
+						return false;
 					}
 				} else if($('#addrName').val() == '' || $('#addr1').val() == '' || $('#addr2').val() == ''){		
 					alert('배송지를 입력해주세요.');

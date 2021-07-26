@@ -18,8 +18,6 @@ public interface ProductDAO {
 	public int countProduct();
 	public int countConditionProduct(Map<String, Object> paramMap);
 	public Product buyApplication(String productName, int productSize);
-	public Long hightPriceInBuy(String productName, int productSize);
-	public Long lowPriceInSell(String productName, int productSize);
 	public List<MemberAddress> selectMemberAddr(String memberId);
 	public int insertNewAddress(String memberId, String addrName, String addr1, String addr2);
 	public long maxMemberAddressNo();
