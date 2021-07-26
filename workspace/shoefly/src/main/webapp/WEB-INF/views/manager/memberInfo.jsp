@@ -7,14 +7,16 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/manager_header.css">
+	<link rel="stylesheet" href="/shoefly/resources/asset/css/manager/memberInfo.css">
 	<title>${member.memberId}</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script src="/shoefly/resources/asset/js/manager/memberInfo.js" charset="utf-8"></script>
 </head>
 <body>
 	<input type="hidden" id="memberNo" value="${member.memberNo}"/>
+	<input type="hidden" id="memberId" value="${member.memberId}"/>
 	<input type="hidden" id="state" value="${member.state}"/>
-	<h3>회원 상세 정보</h3>
+	<h3><span>회원 상세 정보</span></h3>
 	<table>
 		<tbody>
 			<tr>
@@ -50,9 +52,10 @@
 		<tfoot>
 			<tr>
 				<td colspan="2">
-					<input type="button" value="주소록 확인" onclick="show_address();">
+					<input type="button" value="주소록 조회" onclick="show_address();">
 					<input type="button" value="비밀번호 변경" onclick="change_pw_btn();">
 					<input type="button" value="이용/탈퇴 변경" onclick="del_btn();">
+					<input type="button" value="닫기" onclick="window.close();">
 				</td>
 			</tr>
 		</tfoot>

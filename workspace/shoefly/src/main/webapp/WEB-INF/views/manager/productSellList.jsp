@@ -8,6 +8,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/manager_header.css">
+	<link rel="stylesheet" href="/shoefly/resources/asset/css/manager/productSellList.css">
 	<title>SHOEFLY : 관리자</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script src="/shoefly/resources/asset/js/manager/productSellList.js" charset="utf-8"></script>
@@ -15,7 +16,9 @@
 <body>
 	<jsp:include page="../common/manager_header.jsp"></jsp:include>
 	<section>
-		<h3 class="title_container">구입신청</h3>
+		<h2 class="title_container">
+			<a href="productSellListPage.do">구입신청</a>
+		</h2>
 		<div class="search_container">
 			<select id="option" onchange="change_option();">
 				<option value="memberId">아이디</option>
@@ -23,7 +26,7 @@
 			</select>
 			<input type="text" id="query" oninput="change_query();">
 		</div>
-		<div>
+		<div class="list_container">
 			<h3>신청목록</h3>
 			<table>
 				<thead>
@@ -45,7 +48,7 @@
 				</tfoot>
 			</table>
 		</div>
-		<div>
+		<div class="list_container">
 			<h3>상품수령</h3>
 			<table>
 				<thead>
@@ -67,7 +70,7 @@
 				</tfoot>
 			</table>
 		</div>
-		<div>
+		<div class="list_container">
 			<h3>판매결정</h3>
 			<table>
 				<thead>
@@ -89,7 +92,7 @@
 				</tfoot>
 			</table>
 		</div>
-		<div>
+		<div class="list_container">
 			<h3>결산완료</h3>
 			<table>
 				<thead>
@@ -111,7 +114,7 @@
 				</tfoot>
 			</table>
 		</div>
-		<div>
+		<div class="list_container">
 			<h3>취소/삭제</h3>
 			<table>
 				<thead>

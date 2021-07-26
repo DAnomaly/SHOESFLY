@@ -14,8 +14,25 @@
 <body>
 	<jsp:include page="../common/manager_header.jsp"></jsp:include>
 	<section>
-		<div class="review_box">
-			<table border="1">
+		<h2>REVIEW</h2>
+		<form method="get">
+			<select id="column" name="column">
+				<option value="ALL">제목/내용</option>
+				<option value="TITLE">제목</option>
+				<option value="CONTENT">내용</option>
+				<option value="POSTDATE">날짜</option>
+			</select>
+			<span id="default_search">
+				<input type="text" id="query" name="query" placeholder="검색내용입력"/>
+				<button><i class="fas fa-search"></i></button>
+			</span>
+			<span id="date_search" style="display: none;">
+				<input type="date" id="startDate" name="startDate" value="2021-01-01"/>
+				<input type="date" id="endDate" name="endDate" value="${nowDate}"/>
+				<button><i class="fas fa-search"></i></button>
+			</span>
+		</form>
+		<table class="content-table">
 			<thead>
 				<tr>
 					<td>No</td>
@@ -36,7 +53,7 @@
 					<tr>
 						<td>${review.reviewNo}</td>
 						<td>${review.memberId}</td>
-						<td><a href="/shoefly/review/selectReview.do?reviewNo=${review.reviewNo}">${review.title}</a></td>
+						<td><a href="/shoefly/review/select.do?reviewNo=${review.reviewNo}&page=1">${review.title}</a></td>
 						<td>${review.productName}</td>
 						<td>${review.hit}</td>
 						<td>${review.postdate}</td>
@@ -52,7 +69,6 @@
 		</table>
 		<div class="paging">
 			${paging}
-		</div>
 		</div>
 	</section>
 </body>

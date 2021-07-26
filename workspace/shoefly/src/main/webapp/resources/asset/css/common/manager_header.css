@@ -69,6 +69,8 @@ nav a span{
 }
 nav .nav-container {
 	border: 1px solid #bbb;
+	margin-left: 60px;
+	margin-right: 20px;
 }
 nav ul {
 	margin: 5px;
