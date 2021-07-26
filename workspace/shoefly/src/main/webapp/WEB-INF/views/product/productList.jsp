@@ -80,6 +80,12 @@
 		 	width: 100%;
 		 }
 		
+		
+		
+		
+		
+		
+		
 		.productList_box {
 			width: 875px;
 		}
@@ -120,14 +126,14 @@
 		}
 		.product_name {
 			padding-left: 5px;
-			font-size: 13px;
-			height: 25px;
+			font-size: 12px;
+			height: 20px;
 			color: #000;
 		}
 		.product_price {
    			padding-left: 5px;
 			height: 20px;
-			font-size: 14px;
+			font-size: 13px;
    			font-weight: 600;
    			color: #000;
 		}
@@ -204,7 +210,7 @@
 									</div>
 									<div class="info_box">
 										<p class="product_name">${product.productName}</p>
-										<p class="product_price">${product.price}원</p>
+										<p class="product_price">발매가 ${product.price}원</p>
 									</div>
 								</a>
 							</div>

@@ -167,7 +167,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td>정가</td>
+						<td>발매가</td>
 						<td>${product.price}원</td>
 					</tr>
 					<tr>
