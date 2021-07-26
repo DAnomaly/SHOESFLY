@@ -1,0 +1,110 @@
+@charset "UTF-8";
+
+/* SECTION */
+section {
+	margin-top: 10px;
+	margin-left: 10px;
+	float: left;
+}
+
+/* H2 */
+section h2 {
+	padding: 10px;
+	padding-left: 20px;
+	border-bottom: 1px solid #444;
+	margin: 40px 0;
+}
+section h2 a {
+	color: #000;
+	text-decoration: none;
+}
+
+/* SEARCH */
+section .search {
+	position: relative;
+	padding-left: 20px;
+	border: 1px solid #444;
+}
+section .search input[type="text"] {
+	width: 200px;
+	padding: 5px 10px;
+	margin: 5px;
+}
+section .search .checkbox_container {
+	margin: 5px;
+}
+section .search > input[type="button"] {
+	display: block;
+	position: absolute;
+	bottom: 5px;
+	right: 10px;
+	padding: 5px 10px;
+	border: none;
+	border-radius: 3px;
+	background-color: #303030;
+	color: #ffffff;
+} 
+
+/* LIST_CONTAINER */
+section .list_container {
+	margin-top: 18px;
+}
+section .list_container table {
+	border-collapse: collapse;
+}
+section .list_container table th, section .list_container table td {
+	padding: 10px 5px;
+}
+section .list_container table thead th {
+	box-sizing: border-box;
+	background-color: #4292C3;
+	color: #ffffff;
+}
+section .list_container table tbody td {
+	border-bottom: 1px solid #4292C3;
+}
+section .list_container table thead th:nth-of-type(1) { min-width: 110px; }
+section .list_container table thead th:nth-of-type(2) { min-width: 490px; }
+section .list_container table thead th:nth-of-type(3) { min-width: 120px; }
+section .list_container table thead th:nth-of-type(4) { min-width: 72px; }
+section .list_container table thead th:nth-of-type(5) { min-width: 60px; }
+section .list_container table thead th:nth-of-type(6) { min-width: 60px; }
+
+section .list_container table tbody td:nth-of-type(2) a {
+	color: #0101DF;
+	text-decoration: none;
+	font-weight: bold;
+}
+section .list_container table tbody td:nth-of-type(2) a:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
+section .list_container table tbody td:nth-of-type(4),
+section .list_container table tbody td:nth-of-type(5),
+section .list_container table tbody td:nth-of-type(6) {
+	text-align: center;
+}
+section .list_container table tbody td:nth-of-type(5):hover {
+	cursor: pointer;
+	color: #FF0000;
+}
+
+/* TFOOT */
+section #tfoot {
+	padding: 10px;
+	text-align: center;
+}
+section #tfoot a, section #tfoot span {
+	display: inline-block;
+	margin: 0 30px;
+}
+section #tfoot a {
+	color: #000;
+	text-decoration: none;
+}
+section #tfoot a:hover {
+	text-decoration: underline;
+}
+section #tfoot span {
+	color: #999;
+}

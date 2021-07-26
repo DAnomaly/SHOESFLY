@@ -81,18 +81,9 @@ public class ManagerController {
 	private RestoreReviewManagerCommand restoreReviewCommand;
 	
 	
-	
-	// INDEX
-	
-	@GetMapping(value= {"/","index.do"})
-	public String index() {
-		return "manager/index";
-	}
-	
-	
 	// MEMBER
 	
-	@GetMapping(value="memberListPage.do")
+	@GetMapping(value= {"/","memberListPage.do"})
 	public String memberListPage() {
 		return "manager/memberList";
 	}

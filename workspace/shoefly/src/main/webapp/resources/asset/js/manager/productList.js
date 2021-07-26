@@ -2,10 +2,15 @@
  * @see WEB-INF/views/manager/productList.jsp
  */
 $(document).ready(function(){
-	search();
+	updateList();
 })
 
 function search() {
+	$('#page').val('1');
+	updateList();
+}
+
+function updateList() {
 	$('#tbody').empty();
 	$('#tfoot').empty();
 	$.ajax({
@@ -32,27 +37,22 @@ function search() {
 				
 				var page = data.page;
 				var td = $('<td colspan="6">').appendTo($('<tr>').appendTo('#tfoot'));
-				if(page.beginPage == 1)
-					$('<span>').html('&lt;').appendTo(td);
-				else
-					$('<span>').html('&lt;').attr('onclick','setPage(' + (page.beginPage - 1) + ')').appendTo(td);
-				for (var i = page.beginPage; i <= page.endPage; i++) {
-					if(i == page.page) {
-						$('<span>').text(i).appendTo(td);
-					} else {
-						$('<span>').text(i).attr('onclick','setPage(' + i + ')').appendTo(td);
-					}
+				if(data.page.page == 1){
+					$('<span>').html('<i class="fas fa-caret-left"></i>이전').appendTo(td);
+				} else {
+					$('<a>').html('<i class="fas fa-caret-left"></i>이전').attr('href','javascript:setPage(' + (data.page.page - 1) + ')').appendTo(td);
 				}
-				if(page.endPage == page.totalPage)
-					$('<span>').html('&gt;').appendTo(td);
-				else
-					$('<span>').html('&gt;').attr('onclick','setPage(' + (page.endPage + 1) + ')').appendTo(td);
-				
+				if(data.page.page == data.page.totalPage){
+					$('<span>').html('이후<i class="fas fa-caret-right"></i>').appendTo(td);
+				} else {
+					$('<a>').html('이후<i class="fas fa-caret-right"></i>').attr('href','javascript:setPage(' + (data.page.page + 1) + ')').appendTo(td);
+				}
 			} else {
 				$('<td colspan="6">').text('검색된 상품이 없습니다.').appendTo(tr);
 			}
 		}
 	})
+	
 }
 
 function setOrder(data) {
@@ -73,7 +73,7 @@ function setOrder(data) {
 
 function setPage(data) {
 	$('#page').val(data);
-	search();
+	updateList();
 }
 
 function show_img(data) {

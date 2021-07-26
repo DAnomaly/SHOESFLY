@@ -8,6 +8,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/manager_header.css">
+	<link rel="stylesheet" href="/shoefly/resources/asset/css/manager/productList.css">
 	<title>SHOEFLY : 관리자</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script src="/shoefly/resources/asset/js/manager/productList.js" charset="utf-8"></script>
@@ -15,28 +16,29 @@
 <body>
 	<jsp:include page="../common/manager_header.jsp"></jsp:include>
 	<section>
-		<h3>PRODUCT</h3>
-		<form id="f">
-			<span>검색</span><br>
-			<input type="hidden" id="page" name="page" value="1"/>
-			<input type="hidden" id="order" name="order" value="PRODUCT_NO"/>
-			<input type="hidden" id="isDesc" name="isDesc" value="ASC"/>
-			<input type="text" name="productNo" placeholder="상품번호"/><br>
-			<input type="text" name="productName" placeholder="상품이름"/><br>
+		<h2>PRODUCT</h2>
+		<form id="f" class="search">
 			<div>
-				<label><input type="checkbox" name="brand" value="Nike"/><span>Nike</span></label>
-				<label><input type="checkbox" name="brand" value="Jordan"/><span>Jordan</span></label>
-				<label><input type="checkbox" name="brand" value="New Balance"/><span>New Balance</span></label>
-				<label><input type="checkbox" name="brand" value="Adidas"/><span>Adidas</span></label>
+				<input type="hidden" id="page" name="page" value="1"/>
+				<input type="hidden" id="order" name="order" value="PRODUCT_NO"/>
+				<input type="hidden" id="isDesc" name="isDesc" value="ASC"/>
+				<input type="text" name="productNo" placeholder="상품번호"/><br>
+				<input type="text" name="productName" placeholder="상품명"/><br>
+				<div class="checkbox_container">
+					<label><input type="checkbox" name="brand" value="Nike"/><span>Nike</span></label>
+					<label><input type="checkbox" name="brand" value="Jordan"/><span>Jordan</span></label>
+					<label><input type="checkbox" name="brand" value="New Balance"/><span>New Balance</span></label>
+					<label><input type="checkbox" name="brand" value="Adidas"/><span>Adidas</span></label>
+				</div>
 			</div>
 			<input type="button" value="검색" onclick="search();"/>
 		</form>
-		<div>
+		<div class="list_container">
 			<table>
 				<thead>
 					<tr>
 						<th onclick="setOrder('PRODUCT_NO');">상품번호</th>
-						<th onclick="setOrder('PRODUCT_NAME');">상품이름</th>
+						<th onclick="setOrder('PRODUCT_NAME');">상품명</th>
 						<th onclick="setOrder('BRAND');">브랜드</th>
 						<th onclick="setOrder('PRICE');">정가</th>
 						<th>이미지</th>
