@@ -177,7 +177,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                                        WHERE D.PRODUCT_NAME = #{param1}
                                          AND D.PRODUCT_SIZE = ${param2}
 									  )
-            AND STATE = 1
+            AND A.STATE = 1
 	</select>
 	
 	<!-- 로그인유저의 배송지 조회-->

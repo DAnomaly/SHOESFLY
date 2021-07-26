@@ -172,6 +172,7 @@ public class ProductController {
 		insertBuyCommand.execute(sqlSession, model);
 		return null;
 	}
+
 	//판매
 	
 }

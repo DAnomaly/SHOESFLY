@@ -33,7 +33,7 @@ public class SelectSellNowCommand implements ProductCommand {
 		
 		ProductDAO productDAO = sqlSession.getMapper(ProductDAO.class);
 		Product product = productDAO.buyApplication(productName, productSize);
-		Long highPrice = productDAO.hightPriceInBuy(productName, productSize);
+		Long highPrice = productDAO.selectSellPriceBySize(productSize, productName, memberId);
 		List<MemberAddress> addressList= productDAO.selectMemberAddr(memberId);
 		
 		model.addAttribute("product", product);
