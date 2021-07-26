@@ -296,6 +296,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	   AND STATE = 0
 	</select>
 	
+	<!-- 판매테이블에 등록된 판매게시글의 번호 -->
+	<select id="selectMaxProductSellNo" resultType="long">
+		SELECT PRODUCT_SELL_NO
+		  FROM PRODUCT_SELL
+		 WHERE PRODUCT_BUY_NO = #{param1}
+	</select>
+	
 	<!-- 즉시판매시 판매테이블에 등록 -->
 	<insert id="insertSell">
 		INSERT INTO PRODUCT_SELL
@@ -316,6 +323,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	
+	<!--  -->
+	<select id="selectProductDetailInfo1" resultType="string">
+		SELECT PRODUCT_NAME
+		  FROM PRODUCT_DETAIL
+		 WHERE PRODUCT_DETAIL_NO = #{param1}
+	</select>
+	
+	<select id="selectProductDetailInfo2" resultType="int">
+		SELECT PRODUCT_SIZE
+		  FROM PRODUCT_DETAIL
+		 WHERE PRODUCT_DETAIL_NO = #{param1}
+	</select>
+	
+	<!--  -->
+	<select id="selectMemberAddrNo" resultType="long">
+		SELECT MEMBER_ADDRESS_NO
+		  FROM PRODUCT_SELL
+		 WHERE PRODUCT_SELL_NO = #{param1}
+	</select>
+	
+	<!--  -->
+	<select id="selectMemberAddrByProductSellNo" resultType="com.koreait.shoefly.dto.MemberAddress">
+		SELECT NAME, ADDR1, ADDR2
+		  FROM MEMBER_ADDRESS
+		 WHERE MEMBER_ADDRESS_NO = #{param1}
+	</select>
 	<!-- 판매시 구매테이블의 해당 상품을 찾아 판매연결시키기(update = 2, SELL_DATE에 오늘날짜) -->
 	<update id="updateBuyProduct">
 		UPDATE PRODUCT_BUY
@@ -324,5 +357,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 	 WHERE PRODUCT_BUY_NO = #{param1}
 	</update>
 	
+	<!-- 판매완료 후 판매게시글 조회 -->
+	<select id="selectProductSellByNo" resultType="long">
+		SELECT PRODUCT_DETAIL_NO
+		  FROM PRODUCT_SELL 
+		 WHERE PRODUCT_SELL_NO = #{param1}
+	</select>
 	
 </mapper>

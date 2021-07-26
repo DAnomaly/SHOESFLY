@@ -25,6 +25,7 @@ import com.koreait.shoefly.command.product.SelectConditionCommand;
 import com.koreait.shoefly.command.product.SelectPriceBySizeCommand;
 import com.koreait.shoefly.command.product.SelectProductByProductNoCommand;
 import com.koreait.shoefly.command.product.SelectSellApplicationCommand;
+import com.koreait.shoefly.command.product.SelectSellCompleteCommand;
 import com.koreait.shoefly.command.product.SelectSellNowCommand;
 
 import lombok.AllArgsConstructor;
@@ -47,6 +48,7 @@ public class ProductController {
 	private InsertSellApplicationCommand insertSellApplicationCommand;
 	private InsertBuyCommand insertBuyCommand;
 	private InsertSellCommand insertSellCommand;
+	private SelectSellCompleteCommand selectSellCompleteCommand;
 	
 	//전체 상품 종류 조회
 	@GetMapping("productListPage.do")
@@ -188,11 +190,14 @@ public class ProductController {
 		return null;
 	}
 	
+	//판매완료
 	@GetMapping("sellComplete.do")
 	public String sellComplete(HttpServletRequest request,
-						Model model) {
+							   HttpSession session,
+							   Model model) {
 		model.addAttribute("request", request);
-		
+		model.addAttribute("session", session);
+		selectSellCompleteCommand.execute(sqlSession, model);
 		return "product/sellComplete";
 	}
 }

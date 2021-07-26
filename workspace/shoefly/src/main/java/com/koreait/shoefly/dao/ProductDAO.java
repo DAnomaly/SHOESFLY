@@ -5,6 +5,8 @@ import java.util.Map;
 
 import com.koreait.shoefly.dto.MemberAddress;
 import com.koreait.shoefly.dto.Product;
+import com.koreait.shoefly.dto.ProductDetail;
+import com.koreait.shoefly.dto.ProductSell;
 
 public interface ProductDAO {
 	public List<Product> selectAllList(Map<String, Object> listMap);
@@ -28,6 +30,12 @@ public interface ProductDAO {
 	public long selectMaxProductBuyNo();
 	public int updateSellProduct(long MaxproductBuyNo, long productSellNo);
 	public long selectProductBuyNo(int productSize, String productName, String memberId);
+	public long selectProductSellByNo(long productSellNo);
+	public String selectProductDetailInfo1(long productDetailNo);
+	public int selectProductDetailInfo2(long productDetailNo);
+	public long selectMemberAddrNo(long productSellNo);
+	public MemberAddress selectMemberAddrByProductSellNo(long productSellNo);
+	public long selectMaxProductSellNo(long productBuyNo);
 	public int insertSell(String memberId, String productName, int productSize, long price, long memberAddressNo, long productBuyNo);
 	public int updateBuyProduct(long productBuyNo);
 }

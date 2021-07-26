@@ -58,11 +58,14 @@ public class InsertSellCommand implements ProductCommand {
 				//상품 구매자의 구매요청서를 찾아서 구매된것으로 처리
 				int result2 = productDAO.updateBuyProduct(productBuyNo);
 				
+				//등록된 판매 게시글번호
+				long productSellNo = productDAO.selectMaxProductSellNo(productBuyNo);
+				
 				//판매완료
 				if(result1 > 0 && result2 > 0) {
 					response.getWriter().println("<script>");
 					response.getWriter().println("alert('판매가 완료되었습니다.')");
-					response.getWriter().println("location.href='sellComplete.do'");
+					response.getWriter().println("location.href='sellComplete.do?productSellNo=" + productSellNo + "'");
 					response.getWriter().println("</script>");
 				//판매 실패
 				}else {
@@ -81,11 +84,14 @@ public class InsertSellCommand implements ProductCommand {
 				//상품 구매자의 구매요청서를 찾아서 구매된것으로 처리
 				int result4 = productDAO.updateBuyProduct(productBuyNo);
 				
+				//등록된 판매 게시글번호
+				long productSellNo = productDAO.selectMaxProductSellNo(productBuyNo);
+
 				//판매 완료
 				if(result3 > 0 && result4 > 0) {
 					response.getWriter().println("<script>");
 					response.getWriter().println("alert('판매가 완료되었습니다.')");
-					response.getWriter().println("location.href='sellComplete.do'");
+					response.getWriter().println("location.href='sellComplete.do?productSellNo=" + productSellNo + "'");
 					response.getWriter().println("</script>");
 				//판매 실패
 				}else {
