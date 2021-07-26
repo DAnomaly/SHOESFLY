@@ -46,7 +46,6 @@
 		모의 해킹 테스트 시 팝업API를 호출하시면 IP가 차단 될 수 있습니다. 
 		주소팝업API를 제외하시고 테스트 하시기 바랍니다.
 */
-
 function init(){
 	var url = location.href;
 	var confmKey = "U01TX0FVVEgyMDIxMDcxNTEyMTUzMTExMTQxNTI=";
@@ -56,16 +55,17 @@ function init(){
 		document.form.confmKey.value = confmKey;
 		document.form.returnUrl.value = url;
 		document.form.resultType.value = resultType;
-		document.form.action="https://www.juso.go.kr/addrlink/addrLinkUrl.do"; //인터넷망
+		document.form.action = "https://www.juso.go.kr/addrlink/addrLinkUrl.do"; //인터넷망
 		//document.form.action="https://www.juso.go.kr/addrlink/addrMobileLinkUrl.do"; //모바일 웹인 경우, 인터넷망
 		document.form.submit();
-	}else{
+	} else {
 		opener.jusoCallBack("<%=roadFullAddr%>","<%=roadAddrPart1%>","<%=addrDetail%>","<%=roadAddrPart2%>","<%=engAddr%>","<%=jibunAddr%>","<%=zipNo%>", "<%=admCd%>", "<%=rnMgtSn%>", "<%=bdMgtSn%>", "<%=detBdNmList%>", "<%=bdNm%>", "<%=bdKdcd%>", "<%=siNm%>", "<%=sggNm%>", "<%=emdNm%>", "<%=liNm%>", "<%=rn%>", "<%=udrtYn%>", "<%=buldMnnm%>", "<%=buldSlno%>", "<%=mtYn%>", "<%=lnbrMnnm%>", "<%=lnbrSlno%>", "<%=emdNo%>");
 		window.close();
-		}
+	}
 }
 </script>
 <body onload="init();">
+
 	<form id="form" name="form" method="post">
 		<input type="hidden" id="confmKey" name="confmKey" value=""/>
 		<input type="hidden" id="returnUrl" name="returnUrl" value=""/>
