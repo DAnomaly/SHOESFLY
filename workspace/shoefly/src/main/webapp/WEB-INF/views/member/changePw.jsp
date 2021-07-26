@@ -15,6 +15,7 @@
 			fn_updatePw();
 			fn_pwCheck();
 			fn_pwCheck2();
+			fn_return();
 		})
 	
 		// 비밀번호 검사 (정규식검사)
@@ -58,6 +59,13 @@
 				}
 			});
 		}	
+		
+		// 돌아가기
+		function fn_return(){
+			$('#return_btn').click(function(){
+				history.back();
+			})
+		}
 	</script>
 	<style>
 		body {
@@ -107,10 +115,19 @@
 			background-color: darkgray;
 		}
 		.changePw_btn {
-			width: 150px;
+			width: 85px;
 			margin-top: 20px;
 			padding: 15px 0 15px;
-			font-size: 18px;
+			font-size: 15px;
+			text-align: center;
+			cursor: pointer;
+			box-sizing: border-box;
+		}
+		.returnPage_btn {
+			width: 85px;
+			margin-top: 20px;
+			padding: 15px 0 15px;
+			font-size: 15px;
 			text-align: center;
 			cursor: pointer;
 			box-sizing: border-box;
@@ -143,6 +160,7 @@
 	     			<span id="pw2_result"></span>
      			</div>
 				<input type="button" value="비밀번호변경" id="updatePw_btn" class="changePw_btn btn_primary">
+				<input type="button" value="돌아가기" id="return_btn" class="returnPage_btn btn_primary">
 			</form>
 		</c:if>	
 		</div>

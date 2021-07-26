@@ -119,6 +119,7 @@
 			    </a>
 	      	</div>
 	    <form action="login.do" id="f" method="post">
+	    	<input type="hidden" name="referer" value="<%=request.getHeader("Referer")%>"/>
 	       	<div class="login_box">
 	       	      <input type="text" id="memberId" name="memberId" autocomplete="off" required>
 	          	  <label for="memberId">USER ID</label><br>

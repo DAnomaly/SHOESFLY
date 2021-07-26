@@ -121,6 +121,7 @@
 		<div class="container">
 		<div class="pageTitle">
 			<h1>주소지 변경</h1>
+			<h1>${loginMember.memberNo}</h1>
 		</div>	
 		<div class="update_addr">
 		<form name="form" id="form" method="post">		

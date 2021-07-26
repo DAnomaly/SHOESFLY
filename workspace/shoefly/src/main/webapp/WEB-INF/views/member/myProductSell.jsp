@@ -10,10 +10,17 @@
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/footer.css">
 	<title>마이페이지 : 구매내역</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<c:if test="${empty loginMember}">
+	<script>
+		alert('로그인을 해주세요.');
+		location.href="loginPage.do";
+	</script>
+	</c:if>
 	<script>
 		$(document).ready(function(){
 			$('.tr_hidden').hide();
 			delete_sale_list();
+			fn_return();
 		})
 		
 		function show_tr(className) {
@@ -27,6 +34,13 @@
 				if(confirm('삭제하시겠습니까?')) {
 					location.href = 'deleteSellRequest.do?productSellNo=' + productSellNo;
 				}
+			})
+		}
+		
+		// 돌아가기
+		function fn_return(){
+			$('#return_btn').click(function(){
+				history.back();
 			})
 		}
 	</script>	
@@ -61,7 +75,7 @@
 			margin-left: 100px;
 		}
 		.last_box {
-			margin-bottom: 100px;
+			margin-bottom: 50px;
 		}
 		table {
 			width: 700px;
@@ -104,6 +118,17 @@
 		tfoot > tr > td > a{
 			text-decoration: underline double;
 			color: black;
+		}
+		.returnPage_btn {
+			width: 85px;
+			margin-top: 10px;
+			margin-bottom: 50px;
+			padding: 15px 0 15px;
+			font-size: 15px;
+			text-align: center;
+			cursor: pointer;
+			box-sizing: border-box;
+			float: right;
 		}
 	</style>
 </head>
@@ -290,6 +315,9 @@
 				</tfoot>
 				</c:if>
 		</table>
+		</div>
+		<div class="return-box">
+			<input type="button" value="돌아가기" id="return_btn" class="returnPage_btn btn_primary">
 		</div>
 		</div>
 	</section>
