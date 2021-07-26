@@ -75,7 +75,7 @@
 						// 상품명, 사이즈, 즉시구매가 가져가기
 						//
 					}
-				} else if($('#addrName').val() == '' || $('#addr1').val() == ''){			
+				} else if($('#addrName').val() == '' || $('#addr1').val() == '' || $('#addr2').val() == ''){		
 					alert('배송지를 입력해주세요.');
 					return false;
 				} else if($('#check1').is(":checked") == false || $('#check2').is(":checked") == false){

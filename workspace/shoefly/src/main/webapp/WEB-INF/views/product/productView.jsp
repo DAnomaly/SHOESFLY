@@ -46,6 +46,7 @@
 						}
 					}
 				});	//end ajax
+				
 			}
 		});
 		//구매신청하기 클릭
@@ -146,7 +147,7 @@
 <body>
 	<jsp:include page="../common/header.jsp"/>
 	<section>
-	<a href="listPage.do">목록보기</a>
+	<a href="productListPage.do">목록보기</a>
 		<form id="f" method="post">
 		<input type="hidden" id="loginMember" value="${loginMember}">
 		<input type="hidden" id="productNo" value="${productproductNo}">
@@ -158,9 +159,8 @@
 							src="/shoefly/resources/archive/product/${product.image}" /><br>
 					</div>
 					<div class="textBox">
-						<input type="hidden" name ="productName" id="productName"
-							value="${product.productName}">
 						<h3>${product.productName}</h3>
+						<input type="hidden" name ="productName" id="productName" value="${product.productName}">
 						<p>
 							사이즈: <select name="productSize" id="productSize">
 								<option value="">::::: 선택 :::::</option>

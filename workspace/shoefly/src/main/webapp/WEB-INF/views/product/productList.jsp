@@ -95,7 +95,7 @@
 	<jsp:include page="../common/header.jsp"/>
 	<section>
 		<h3 class="title">
-			<a href="listPage.do">SHOP</a>
+			<a href="productListPage.do">SHOP</a>
 		</h3>
 		<div class="productList_container">
 			<div class="selectCondition">

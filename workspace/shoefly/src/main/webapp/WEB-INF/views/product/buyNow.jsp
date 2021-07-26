@@ -12,16 +12,33 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script>
 		$(document).ready(function(){
+			fn_findAddress();
 			clickRadio();
 			checkbox();
 			submitCheck();
 		});
+		
+		//주소api사용
+		function fn_findAddress() {
+			$('#addr_search_btn').click(function(){
+				goPopup();
+			})
+		} 
+		function goPopup(){
+			var pop = window.open("jusoPopup.do","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+		}
+		function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
+			$('#addr1').val(roadAddrPart1);
+			$('#addr2').val(addrDetail);
+		}
+		
 		//저장된 주소 radio 클릭시 주소창에 보여주기
 		function clickRadio(){
 			$('input:radio[name=addressName]').click(function(){
 				$('#addrName').val($('input:radio[name=addressName]:checked').val());
-				$('#addr1').val($(this).next().val());
-				$('#addr2').val($(this).next().next().val());
+				$('#memberAddressNo').val($(this).next().val());
+				$('#addr1').val($(this).next().next().val());
+				$('#addr2').val($(this).next().next().next().val());
 			});
 		}
 		function checkbox() {
@@ -44,7 +61,7 @@
 		}
 		function submitCheck(){
 			$('#buyNow_btn').click(function(){
-				if($('#addrname').val() == "" || $('#addr1').val() == ""){
+				if($('#addrName').val() == '' || $('#addr1').val() == '' || $('#addr2').val() == ''){
 					alert('배송지를 입력해주세요.');
 				} else if($('#check1').is(":checked") == false){
 					alert("필수 이용약관을 읽고 동의해주세요.");
@@ -78,13 +95,13 @@
 					<tr>
 						<td colspan="2">
 							<img alt="${product.image}"
-							src="/shoefly/resources/archive/product/${product.image}" />
+							src="/shoefly/resources/archive/product/${product.image}"/>
 						</td>
 					</tr>
 					<tr>
 						<td>구매 신청자 ID</td>
 						<td>${loginMember.memberId}
-						<input type="hidden" name="memberId" value="${loginMember.memberId}"></td>			
+						<input type="hidden" name="memberId" value="${loginMember.memberId}"></td>
 					</tr>
 					<tr>
 						<td>구매 상품명</td>
@@ -102,9 +119,9 @@
 					</tr>
 					<tr>
 						<td>지불금액</td>
-						<td>${lowPrice}원</td>
+						<td>${lowPrice}원
+						<input type="hidden" name="price" value="${lowPrice}"></td>
 					</tr>
-
 					<tr>
 						<td rowspan="2">배송지<br>주소</td>
 						<td>
@@ -116,6 +133,7 @@
 								저장된 주소에서 선택 가능합니다.<br>
 								<c:forEach var="address" items="${addressList}">
 									<input type="radio" name="addressName" value="${address.name}">${address.name}
+									<input type="hidden" value="${address.memberAddressNo}">
 									<input type="hidden" value="${address.addr1}">
 									<input type="hidden" value="${address.addr2}">
 								</c:forEach>
@@ -125,6 +143,7 @@
 					<tr>
 						<td>
 							배송지명<br>
+							<input type="hidden" id="memberAddressNo" name="memberAddressNo" value="0">
 							<input type="text" id="addrName" name="addrName" placeholder="ex&#41; 집, 회사"><br>
 							주소<br>
 							<input type="text" name="addr1" id="addr1" readonly>

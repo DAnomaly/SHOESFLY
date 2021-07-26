@@ -36,7 +36,7 @@ public class InsertSellApplicationCommand implements ProductCommand {
 			if(memberAddressNo == 0) {
 				//기존에 등록되어있는 주소가 아닌 사용자가 새로 등록한 주소 -> MemberAddress 테이블에 삽입해주고 판매신청서등록도 진행
 				//새로운 주소 등록
-				int addressResult = productDAO.insertNewAddress(memberId, addrName, addr1, addr2);
+				productDAO.insertNewAddress(memberId, addrName, addr1, addr2);
 				
 				//새로등록된 주소의 memberAddressNo을 알기위해
 				//maxMemberAddressNo를 조회하기( = 새로 등록된 주소의 memberAddressNo)
@@ -47,10 +47,11 @@ public class InsertSellApplicationCommand implements ProductCommand {
 				if(result1 > 0) {
 					response.getWriter().println("<script>");
 					response.getWriter().println("alert('판매신청이 완료되었습니다.')");
-					response.getWriter().println("location.href='listPage.do'");
-					response.getWriter().println("</script>");
+					response.getWriter().println("location.href='productListPage.do'");
+					response.getWriter().println("</script>");		
+				}
 				//구매신청서 실패
-				}else {
+				else {
 					response.getWriter().println("<script>");
 					response.getWriter().println("alert('판매신청에 실패하였습니다.')");
 					response.getWriter().println("history.back()");
@@ -65,10 +66,11 @@ public class InsertSellApplicationCommand implements ProductCommand {
 				if(result2 > 0) {
 					response.getWriter().println("<script>");
 					response.getWriter().println("alert('구매신청이 완료되었습니다.')");
-					response.getWriter().println("location.href='listPage.do'");
+					response.getWriter().println("location.href='productListPage.do'");
 					response.getWriter().println("</script>");
+				}
 				//판매신청서 실패
-				}else {
+				else {
 					response.getWriter().println("<script>");
 					response.getWriter().println("alert('구매신청에 실패하였습니다.')");
 					response.getWriter().println("history.back()");
