@@ -58,7 +58,7 @@ section .member_table table thead tr th:nth-of-type(2) { width: 100px; }
 section .member_table table thead tr th:nth-of-type(3) { width: 100px; }
 section .member_table table thead tr th:nth-of-type(4) { width: 200px; }
 section .member_table table thead tr th:nth-of-type(5) { width: 100px; }
-section .member_table table thead tr th:nth-of-type(6) { width: 80px; }
+section .member_table table thead tr th:nth-of-type(6) { width: 100px; }
 section .member_table table tbody tr td {
 	border-bottom: 1px solid rgb(66,146,195);
 }

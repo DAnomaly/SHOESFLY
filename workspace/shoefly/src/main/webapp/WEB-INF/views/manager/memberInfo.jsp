@@ -14,6 +14,7 @@
 </head>
 <body>
 	<input type="hidden" id="memberNo" value="${member.memberNo}"/>
+	<input type="hidden" id="memberId" value="${member.memberId}"/>
 	<input type="hidden" id="state" value="${member.state}"/>
 	<h3><span>회원 상세 정보</span></h3>
 	<table>
@@ -51,9 +52,10 @@
 		<tfoot>
 			<tr>
 				<td colspan="2">
-					<input type="button" value="주소록 확인" onclick="show_address();">
+					<input type="button" value="주소록 조회" onclick="show_address();">
 					<input type="button" value="비밀번호 변경" onclick="change_pw_btn();">
 					<input type="button" value="이용/탈퇴 변경" onclick="del_btn();">
+					<input type="button" value="닫기" onclick="window.close();">
 				</td>
 			</tr>
 		</tfoot>

@@ -3,6 +3,7 @@
  */
 $(document).ready(function(){
 	pageLoadEvent();
+	keyDownEvent();
 });
 
 function column_change() {
@@ -16,6 +17,7 @@ function column_change() {
 }
 
 var page = 1;
+var total_page = 1;
 var order = 'MEMBER_NO';
 var isDesc = true;
 function pageLoadEvent() {
@@ -66,6 +68,7 @@ function pageLoadEvent() {
 			} else {
 				$('<a>').html('이후<i class="fas fa-caret-right"></i>').attr('href','javascript:setPage(' + (data.page.page + 1) + ')').appendTo(member_paging);
 			}
+			total_page = data.page.totalPage;
 		}
 	})
 }
@@ -90,3 +93,23 @@ function setPage(p) {
 function show_info(no) {
 	window.open("memberInfoPage.do?no=" + no,"noticeInfo","width=450,height=420,top=30,left=80");
 }
+
+/* 키보드 이벤트 */
+function keyDownEvent() {
+	window.addEventListener("keydown", (e) => {
+		if(e.shiftKey == true) {
+			if(e.key == 'ArrowRight'){
+				if(page < total_page){
+					page = page + 1;
+					pageLoadEvent();
+				}
+			}
+			if(e.key == 'ArrowLeft'){
+				if(page > 1){
+					page = page - 1;
+					pageLoadEvent();
+				}
+			}
+		}
+	});
+} 
