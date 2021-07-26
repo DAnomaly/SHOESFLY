@@ -15,7 +15,7 @@ import com.koreait.shoefly.util.PagingUtils;
 @Component
 public class SelectAllListCommand implements ProductCommand {
 	
-	private int recordPerPage = 6;
+	private int recordPerPage = 12;
 	private int pagePerBlock = 5;
 	
 	@Override
@@ -40,6 +40,7 @@ public class SelectAllListCommand implements ProductCommand {
 		model.addAttribute("list", productDAO.selectAllList(listMap));
 		model.addAttribute("page", page);
 		model.addAttribute("paging", paging);
+		model.addAttribute("totalProduct", totalRecord);
 
 		return null;
 	}

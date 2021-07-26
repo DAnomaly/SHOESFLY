@@ -142,7 +142,6 @@
 		let memberId = $('#memberId');
 		let pw = $('#pw');
 		let loginBtn = $('#login_btn');
-		
 			$(loginBtn).on('click', function(){
 				if($(memberId).val() == '') {
 					$(memberId).next('label').addClass('warning');
@@ -156,6 +155,7 @@
 						$('label').removeClass('warning');
 					}, 1500);
 				}
+				
 			})	
 		
 		

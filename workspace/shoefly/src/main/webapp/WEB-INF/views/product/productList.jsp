@@ -45,10 +45,16 @@
 		*{
 			box-sizing: border-box;
 		}
-		.title, .paging{
+		.title{
 			width: 1080px;
 			margin: auto;
 			text-align: center;
+		}
+		.paging {
+			width: 100%;
+			margin: auto;
+			text-align: center;
+			display: block;
 		}
 		.productList_container{
 			width: 1080px;
@@ -58,6 +64,7 @@
 		.selectCondition{
 			width: 300px;
 			float: left;
+			margin-top: 15px;
 		}
 		table{
 			width: 100%;
@@ -72,31 +79,67 @@
 		 #productName{
 		 	width: 100%;
 		 }
-		.productList{
-			width: 780px;
-			float: left;
+		
+		.productList_box {
+			width: 875px;
+		}
+		.productList {
+			 width: 100%;
 			overflow: hidden;
+		    position: relative;
+		    margin: 0 auto;
 		}
-		.outbox{
-			display: inline-block;
-			border: 1px solid black;
-			width: 30%;
-			height: 300px;
+		.product_item {
+			position: relative;
+		    float: left;
+		    margin: 20px 0;
+		    padding: 0 12px;
+		    width: 25%;
+		    
 		}
-		img{
-			width: 100%;
+		.product_item, .item_inner {
+			display: block;
+    		background-color: #fff;
+    		border-radius: 12px;
+    		text-decoration: none;
 		}
-		.input_price{
-			width: 46%;
+		.product {
+			overflow: hidden;
+		    position: relative;
+		    padding-top: 100%;
+		    border-radius: 12px;
 		}
+		.product_img {
+		    width: 81.5%;
+		    height: auto;
+		    top: 50%;
+		    left: 50%;
+			position: absolute;
+		    transform: translate(-50%,-50%);
+			border-radius: 12px;
+		}
+		.product_name {
+			padding-left: 5px;
+			font-size: 13px;
+			height: 25px;
+			color: #000;
+		}
+		.product_price {
+   			padding-left: 5px;
+			height: 20px;
+			font-size: 14px;
+   			font-weight: 600;
+   			color: #000;
+		}
+		
+		
+		
+		
 	</style>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
 	<section>
-		<h3 class="title">
-			<a href="listPage.do">SHOP</a>
-		</h3>
 		<div class="productList_container">
 			<div class="selectCondition">
 				<form id="f">
@@ -147,24 +190,30 @@
 				</form>
 			</div>
 			<br>
-			<div class="productList">
-				<c:if test="${empty list}">
-					준비된 상품이 없습니다.
-				</c:if>
-				<c:forEach var="product" items="${list}">
-					<c:if test="${not empty list}">
-						<div class="outbox">
-							<div class="product_img"><a href="viewProductPage.do?productNo=${product.productNo}"><img alt="${product.image}" src="/shoefly/resources/archive/product/${product.image}"/></a></div>
-							<div class="product_text">
-								<a href="viewProductPage.do?productNo=${product.productNo}"><span class="text">${product.productName}</span></a><br>
-								<span class="text">${product.price}</span>원
-							</div>
-						</div>
+			<div class="productList_box">
+				<div class="productList">
+					<c:if test="${empty list}">
+						준비된 상품이 없습니다.
 					</c:if>
-				</c:forEach>
+					<c:forEach var="product" items="${list}">
+						<c:if test="${not empty list}">
+							<div class="product_item">
+								<a class="item_inner" href="viewProductPage.do?productNo=${product.productNo}">
+									<div class="product" style="background-color: #B9E2FA;">
+										<img class="product_img" alt="${product.image}" src="/shoefly/resources/archive/product/${product.image}">
+									</div>
+									<div class="info_box">
+										<p class="product_name">${product.productName}</p>
+										<p class="product_price">${product.price}원</p>
+									</div>
+								</a>
+							</div>
+						</c:if>
+					</c:forEach>
+				</div>
+				<div class="paging">${paging}</div>
 			</div>
 		</div>
-		<div class="paging">${paging}</div>
 	</section>
 	<jsp:include page="../common/footer.jsp"/>
 </body>
