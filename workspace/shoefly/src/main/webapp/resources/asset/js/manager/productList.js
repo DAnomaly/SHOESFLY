@@ -20,6 +20,12 @@ function updateList() {
 		dataType: 'json',
 		success: function(data){
 			if(data.result){
+				var state_idName = "#" + $('#order').val() + "_STATE";
+				$('.up-down').empty();
+				if($('#isDesc').val() == 'ASC')
+					$(state_idName).html('<i class="fas fa-caret-down"></i>');
+				else
+					$(state_idName).html('<i class="fas fa-caret-up"></i>');
 				
 				var list = data.list;
 				$.each(list,function(index, product){
@@ -43,9 +49,9 @@ function updateList() {
 					$('<a>').html('<i class="fas fa-caret-left"></i>이전').attr('href','javascript:setPage(' + (data.page.page - 1) + ')').appendTo(td);
 				}
 				if(data.page.page == data.page.totalPage){
-					$('<span>').html('이후<i class="fas fa-caret-right"></i>').appendTo(td);
+					$('<span>').html('다음<i class="fas fa-caret-right"></i>').appendTo(td);
 				} else {
-					$('<a>').html('이후<i class="fas fa-caret-right"></i>').attr('href','javascript:setPage(' + (data.page.page + 1) + ')').appendTo(td);
+					$('<a>').html('다음<i class="fas fa-caret-right"></i>').attr('href','javascript:setPage(' + (data.page.page + 1) + ')').appendTo(td);
 				}
 			} else {
 				$('<td colspan="6">').text('검색된 상품이 없습니다.').appendTo(tr);

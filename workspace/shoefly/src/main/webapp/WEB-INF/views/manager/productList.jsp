@@ -37,12 +37,27 @@
 			<table>
 				<thead>
 					<tr>
-						<th onclick="setOrder('PRODUCT_NO');">상품번호</th>
-						<th onclick="setOrder('PRODUCT_NAME');">상품명</th>
-						<th onclick="setOrder('BRAND');">브랜드</th>
-						<th onclick="setOrder('PRICE');">정가</th>
+						<th onclick="setOrder('PRODUCT_NO');">
+							<span>상품번호</span>
+							<span id="PRODUCT_NO_STATE" class="up-down"></span>
+						</th>
+						<th onclick="setOrder('PRODUCT_NAME');">
+							<span>상품명</span>
+							<span id="PRODUCT_NAME_STATE" class="up-down"></span>
+						</th>
+						<th onclick="setOrder('BRAND');">
+							<span>브랜드</span>
+							<span id="BRAND_STATE" class="up-down"></span>
+						</th>
+						<th onclick="setOrder('PRICE');">
+							<span>정가</span>
+							<span id="PRICE_STATE" class="up-down"></span>
+						</th>
 						<th>이미지</th>
-						<th onclick="setOrder('STATE');">상태</th>
+						<th onclick="setOrder('STATE');">
+							<span>상태</span>
+							<span id="STATE_STATE" class="up-down"></span>
+						</th>
 					</tr>
 				</thead>
 				<tbody id="tbody"></tbody>

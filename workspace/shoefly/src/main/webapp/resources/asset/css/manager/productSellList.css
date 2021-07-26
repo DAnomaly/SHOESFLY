@@ -1,0 +1,98 @@
+@charset "UTF-8";
+
+/* SECTION */
+section {
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-bottom: 60px;
+	float: left;
+}
+button {
+	padding: 3px 5px;
+	margin: 0 2px;
+	border: none;
+	border-radius: 3px;
+	background: #001572;
+	color: #ffffff;
+}
+
+
+/* H2 */
+section h2 {
+	padding: 10px;
+	padding-left: 20px;
+	border-bottom: 1px solid #444;
+	margin: 40px 0;
+}
+section h2 a {
+	color: #000;
+	text-decoration: none;
+}
+
+/* search_container */
+section .search_container {
+	display: inline-block;
+	margin-left: 10px;
+	padding: 5px;
+	border: 1px solid #666;
+	border-radius: 3px;
+}
+section .search_container select, section .search_container div{
+	display: inline-block;
+}  
+section .search_container select, section .search_container input, section .search_container input {
+	border: none;
+}
+
+
+/* MEMBER_TABLE */
+section .list_container {
+	margin-top: 20px;
+	padding: 10px;
+	border: 1px solid #444;
+}
+section .list_container table {
+	border-collapse: collapse;
+	box-sizing: border-box;
+}
+section .list_container table th, section .list_container table td {
+	box-sizing: border-box;
+	padding: 10px;
+	text-align: center;
+}
+section .list_container table thead tr th {
+	background-color: rgb(66,146,195);
+	color: white;
+}
+section .list_container table thead tr th:nth-of-type(1) { width: 80px; }
+section .list_container table thead tr th:nth-of-type(2) { width: 100px; }
+section .list_container table thead tr th:nth-of-type(3) { width: 380px; }
+section .list_container table thead tr th:nth-of-type(4) { width: 80px; }
+section .list_container table thead tr th:nth-of-type(5) { width: 80px; }
+section .list_container table thead tr th:nth-of-type(6) { width: 80px; }
+section .list_container table thead tr th:nth-of-type(7) { width: 168px; }
+section .list_container table thead tr th:nth-of-type(8) { width: 168px; }
+section .list_container table thead tr th:nth-of-type(9) { width: 120px; }
+section .list_container table tbody tr td {
+	border-bottom: 1px solid rgb(66,146,195);
+}
+
+/* tfoot */
+section tfoot {
+	padding: 10px;
+	text-align: center;
+}
+section tfoot a, section tfoot span {
+	display: inline-block;
+	margin: 0 30px;
+}
+section tfoot a {
+	color: #000;
+	text-decoration: none;
+}
+section tfoot a:hover {
+	text-decoration: underline;
+}
+section tfoot span {
+	color: #999;
+}

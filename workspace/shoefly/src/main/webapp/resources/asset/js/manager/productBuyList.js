@@ -27,7 +27,6 @@ function refreshList(state, page) {
 		data: 'page=' + page + '&' + $('#option').val() + '=' + $('#query').val() + '&order=' + order + '&isDesc=' + isDesc + '&state=' + state,
 		dataType: 'json',
 		success: function(data){
-			console.log(data.list);
 			tbody.empty();
 			tfoot.empty();
 			if(data.result){
@@ -50,10 +49,17 @@ function refreshList(state, page) {
 					}
 				});
 
-				var td = $('<td>').appendTo($('<tr>').appendTo(tfoot));
-				$('<a href="javascript:changePage(' + state  + ',' + page + ',' + data.page.totalPage + ',false)">').html('&lt;').appendTo(td);
-				$('<a href="javascript:changePage(' + state  + ',' + page + ',' + data.page.totalPage + ',true)">').html('&gt;').appendTo(td);
-				
+				var td = $('<td colspan="9">').appendTo($('<tr>').appendTo(tfoot));
+				if(data.page.page == 1){
+					$('<span>').html('<i class="fas fa-caret-left"></i>이전').appendTo(td);
+				} else {
+					$('<a>').html('<i class="fas fa-caret-left"></i>이전').attr('href','javascript:setPage(' + state + ',' + (data.page.page - 1) + ')').appendTo(td);
+				}
+				if(data.page.page == data.page.totalPage){
+					$('<span>').html('다음<i class="fas fa-caret-right"></i>').appendTo(td);
+				} else {
+					$('<a>').html('다음<i class="fas fa-caret-right"></i>').attr('href','javascript:setPage(' + state + ',' + (data.page.page + 1) + ')').appendTo(td);
+				}
 			} else {
 				$('<td colspan="9">').text('주문내역이 없습니다.').appendTo($('<tr>').appendTo(tbody));
 			} 
@@ -61,14 +67,7 @@ function refreshList(state, page) {
 	})
 }
 
-function changePage(state, nowpage, totalPage, isNext) {
-	if(isNext){
-		if(totalPage != nowpage)
-			nowpage = nowpage + 1;
-	} else {
-		if(1 != nowpage)
-			nowpage = nowpage - 1;
-	}
+function setPage(state, nowpage) {
 	refreshList(state, nowpage);
 }
 function change_option(){
