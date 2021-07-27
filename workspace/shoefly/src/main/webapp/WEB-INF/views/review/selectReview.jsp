@@ -60,16 +60,18 @@
 							location.reload();
 						}
 					}); 
+					fn_scroll();
 				}
 			});
 		} 
+
 		
-		function fn_enterkey() {
-			if (window.event.keyCode == 13) {
-				fn_insertComment();
-			}
-			
+		// 스크롤 이벤트
+		function fn_scroll() {
+			$('html, body').animate({scrollTop: $('.paging').offset().top},400);
 		}
+		
+		
 		
 		
 		// 댓글 리스트, 페이징
@@ -228,6 +230,9 @@
 		}
 		.button {
 			width: 40px;
+		}
+		.content_box {
+			margin-bottom: 10px;
 		}
 		.content {
 			border: none;
