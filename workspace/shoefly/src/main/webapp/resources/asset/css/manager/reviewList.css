@@ -1,0 +1,126 @@
+@charset "UTF-8";
+
+/* section */
+section {
+	margin-top: 10px;
+	margin-left: 10px;
+	float: left;
+}
+
+/* h2 */
+section h2 {
+	padding: 10px;
+	padding-left: 20px;
+	border-bottom: 1px solid #444;
+	margin: 40px 0;
+}
+section h2 a {
+	color: #000;
+	text-decoration: none;
+}
+
+/* search */
+section .search {
+	border: 1px solid #666;
+	border-radius: 3px;
+	display: inline-block;
+	padding: 5px;
+}
+section .search input, section .search select, section .search button {
+	background: none;
+	border: none;
+	color: #444;
+}
+section .search input {
+	color: #000;
+}
+
+section .write {
+	float: right;
+	padding-right: 10px;
+	display: inline-block;
+}
+section .write input[type="button"] {
+	font-size: 14px;
+	width: 80px;
+	height: 31px;
+	background-color: #2E2EFE;
+	border: none;
+	border-radius: 3px;
+	color: #fff;
+}
+section table.content {
+	margin-top: 5px;
+	border-collapse: collapse;
+}
+section table.content th {
+	font-weight: normal;
+}
+section table.content thead tr {
+	background-color: #909090;
+	color: #fff;
+}
+section table.content tr td, section table.content tr th {
+	box-sizing: border-box;
+	padding: 6px;
+}
+section table.content tbody tr td {
+	text-align: center;
+	border-bottom: 1px solid #ccc;
+}
+section table.content thead tr th:nth-of-type(1) { width: 60px;}
+section table.content thead tr th:nth-of-type(2) { width: 100px;}
+section table.content thead tr th:nth-of-type(3) { width: 300px;}
+section table.content thead tr th:nth-of-type(4) { width: 180px;}
+section table.content thead tr th:nth-of-type(5) { width: 80px;}
+section table.content thead tr th:nth-of-type(6) { width: 120px;}
+section table.content thead tr th:nth-of-type(7) { width: 60px;}
+section table.content tbody td:nth-of-type(3) div { width: 288px; }
+section table.content tbody td:nth-of-type(4) div { width: 168px; }
+section table.content tbody td:nth-of-type(3) div,
+section table.content tbody td:nth-of-type(4) div {
+	white-space: nowrap;
+	overflow: hidden; 
+	text-overflow: ellipsis; 
+}
+section table.content tbody td:nth-of-type(3) div a {
+	color: #000000;
+	text-decoration: none;
+}
+section table.content tbody td:nth-of-type(3) div a:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
+section table.content tbody input{
+	width: 54px;
+	height: 25px;
+	border: none;
+	border-radius: 3px;
+	color: #fff;
+}
+section table.content tbody input[value="삭제"] {
+	background-color: #ff131a;
+}
+section table.content tbody input[value="복구"] {
+	background-color: #0c01de;
+}
+
+
+section .paging {
+	border-top: 1px solid #909090;
+	padding: 3px;
+	text-align: center;
+}
+section .paging a{
+	font-size: 18px;
+	text-decoration: none;
+	color: black;
+}
+section .paging a.now-page {
+	font-weight: bold;
+	color: blue;
+}
+section .paging a[href]:hover {
+	text-decoration: underline;
+}
+
