@@ -427,6 +427,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="countReview" resultType="int">
 		SELECT COUNT(*)
 		  FROM REVIEW
+		<if test="column != null and column != ''.toString">
+			<choose>
+				<when test="column eq 'ALL'.toString">
+		 WHERE UPPER(TITLE) LIKE UPPER(#{query})
+		    OR UPPER(CONTENT) LIKE UPPER(#{query})
+				</when>
+				<when test="column eq 'POSTDATE'.toString">
+		 WHERE POSTDATE BETWEEN TO_DATE(#{startDate}, 'YYYY-MM-DD') AND TO_DATE(#{endDate}, 'YYYY-MM-DD')
+				</when>
+				<otherwise>
+		 WHERE UPPER(${column}) LIKE UPPER(#{query})
+				</otherwise>
+			</choose>
+		</if>
 	</select>
 	
 	<select id="selectListReview" resultType="com.koreait.shoefly.dto.Review">
@@ -442,6 +456,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		                       POSTDATE,
 		                       STATE
 		                  FROM REVIEW
+		<if test="column != null and column != ''.toString">
+			<choose>
+				<when test="column eq 'ALL'.toString">
+						 WHERE UPPER(TITLE) LIKE UPPER(#{query})
+							OR UPPER(CONTENT) LIKE UPPER(#{query})
+				</when>
+				<when test="column eq 'POSTDATE'.toString">
+						 WHERE POSTDATE BETWEEN TO_DATE(#{startDate}, 'YYYY-MM-DD') AND TO_DATE(#{endDate}, 'YYYY-MM-DD')
+				</when>
+				<otherwise>
+						 WHERE UPPER(${column}) LIKE UPPER(#{query})
+				</otherwise>
+			</choose>
+		</if>
 		                 ORDER BY REVIEW_NO DESC) A) B
 		 WHERE B.RN BETWEEN #{beginRecord} AND #{endRecord}
 	</select>

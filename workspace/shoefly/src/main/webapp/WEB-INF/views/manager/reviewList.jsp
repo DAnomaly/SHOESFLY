@@ -10,6 +10,42 @@
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/manager_header.css">
 	<title>SHOEFLY : 관리자</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(function(){
+			column_onchange();
+		})
+		function column_onchange() {
+			$('#column').change(function(){
+				if($('#column').val() == 'POSTDATE'){
+					date_search_toggle(true);
+					default_search_toggle(false);
+				} else {
+					date_search_toggle(false);
+					default_search_toggle(true);
+				}
+			})
+		}
+		function default_search_toggle(isAble) {
+			if(isAble) {
+				$('#default_search').show();
+				$('#query').attr('disabled',false);
+			} else {
+				$('#default_search').hide();
+				$('#query').attr('disabled',true);
+			}
+		}
+		function date_search_toggle(isAble) {
+			if(isAble) {
+				$('#date_search').show();
+				$('#startDate').attr('disabled',false);
+				$('#endDate').attr('disabled',false);
+			} else {
+				$('#date_search').hide();
+				$('#startDate').attr('disabled',true);
+				$('#endDate').attr('disabled',true);
+			}
+		}
+	</script>
 </head>
 <body>
 	<jsp:include page="../common/manager_header.jsp"></jsp:include>
@@ -27,8 +63,8 @@
 				<button><i class="fas fa-search"></i></button>
 			</span>
 			<span id="date_search" style="display: none;">
-				<input type="date" id="startDate" name="startDate" value="2021-01-01"/>
-				<input type="date" id="endDate" name="endDate" value="${nowDate}"/>
+				<input type="date" id="startDate" name="startDate" value="2021-01-01" disabled/>
+				<input type="date" id="endDate" name="endDate" value="${nowDate}" disabled/>
 				<button><i class="fas fa-search"></i></button>
 			</span>
 		</form>
