@@ -31,14 +31,19 @@
 	            $("#AllBrand").prop("checked", false);
 	        }
 		});
-		
 	});
 	
 	//검색버튼으로 모든 선택사항 조회
 	function selectCondition(){
+		var reg = /[0-9]/;
 		$('#search_btn').click(function(){
+			if (!reg.test($('.input_price').val()) && $('.input_price').val() != '') {
+				alert('가격은 숫자만 입력 가능합니다.');
+				return false;
+			}
 			$('#f').attr('action', 'selectCondition.do');
 			$('#f').submit();
+			
 		});
 	}
 	</script>
@@ -133,7 +138,7 @@
 			width: 875px;
 		}
 		.productList {
-			 width: 100%;
+			width: 100%;
 			overflow: hidden;
 		    position: relative;
 		    margin: 0 auto;
@@ -179,6 +184,10 @@
 			font-size: 13px;
    			font-weight: 600;
    			color: #000;
+		}
+		.empty_text {
+			text-align: center;
+			line-height: px;
 		}
 		
 		
@@ -276,7 +285,7 @@
 			<div class="productList_box">
 				<div class="productList">
 					<c:if test="${empty list}">
-						준비된 상품이 없습니다.
+						<h3 class="empty_text">준비된 상품이 없습니다.</h3>
 					</c:if>
 					<c:forEach var="product" items="${list}">
 						<c:if test="${not empty list}">
@@ -294,7 +303,9 @@
 						</c:if>
 					</c:forEach>
 				</div>
-				<div class="paging">${paging}</div>
+				<c:if test="${not empty list}">
+					<div class="paging">${paging}</div>
+				</c:if>
 			</div>
 		</div>
 	</section>
