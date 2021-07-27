@@ -1,6 +1,32 @@
 /**
  * @see WEB-INF/views/manager/noticeInfo.jsp
  */
+$(document).ready(function(){
+	textarea_tab();
+})
+
+/**
+ * textarea에서 tab키를 누를 수 있게 해 줍니다.
+ */
+function textarea_tab() {
+	$('textarea').keydown(function(e){
+		if(event.keyCode == 9){
+		     var start = this.selectionStart;
+		     var end = this.selectionEnd;
+
+		     var $this = $(this);
+		     var value = $this.val();
+		     $this.val(value.substring(0, start)
+		                    + "\t"
+		                    + value.substring(end));
+
+		     this.selectionStart = this.selectionEnd = start + 1;
+
+		     e.preventDefault();
+		}
+	})
+}
+
 function preview_btn() {
 	$('#preview').html($('#content').val());
 	$('.content').toggle();
@@ -20,7 +46,7 @@ function edit_btn() {
 	$.ajax({
 		url: 'insertNotice.do',
 		type: 'POST',
-		data: 'noticeNo=' + $('#noticeNo').val() + '&title=' + $('#title').val() + '&content=' + $('#content').val(),
+		data: $('#f').serialize(),
 		dataType: 'json',
 		success: function(data) {
 			console.log("yes");
@@ -33,6 +59,8 @@ function edit_btn() {
 		}
 	})
 }
+
+
 function del_btn() {
 	if(!confirm('정말로 삭제하겠습니까?\n (복구가 되지 않습니다)')){
 		return;
