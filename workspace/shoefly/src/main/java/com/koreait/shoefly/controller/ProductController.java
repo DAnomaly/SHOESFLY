@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.koreait.shoefly.command.product.SelectBuyApplicationCommand;
+import com.koreait.shoefly.command.product.SelectBuyCompleteCommand;
 import com.koreait.shoefly.command.product.SelectBuyNowCommand;
 import com.koreait.shoefly.command.product.InsertBuyApplicationCommand;
 import com.koreait.shoefly.command.product.InsertBuyCommand;
@@ -49,6 +50,7 @@ public class ProductController {
 	private InsertBuyCommand insertBuyCommand;
 	private InsertSellCommand insertSellCommand;
 	private SelectSellCompleteCommand selectSellCompleteCommand;
+	private SelectBuyCompleteCommand selectBuyCompleteCommand;
 	
 	//전체 상품 종류 조회
 	@GetMapping("productListPage.do")
@@ -199,5 +201,16 @@ public class ProductController {
 		model.addAttribute("session", session);
 		selectSellCompleteCommand.execute(sqlSession, model);
 		return "product/sellComplete";
+	}
+	
+	//구매완료
+	@GetMapping("buyComplete.do")
+	public String buyComplete(HttpServletRequest request,
+			   HttpSession session,
+			   Model model) {
+		model.addAttribute("request", request);
+		model.addAttribute("session", session);
+		selectBuyCompleteCommand.execute(sqlSession, model);
+		return "product/buyComplete";
 	}
 }

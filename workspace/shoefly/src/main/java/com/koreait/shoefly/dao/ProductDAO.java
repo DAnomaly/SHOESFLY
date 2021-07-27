@@ -1,5 +1,6 @@
 package com.koreait.shoefly.dao;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -31,9 +32,14 @@ public interface ProductDAO {
 	public int updateSellProduct(long MaxproductBuyNo, long productSellNo);
 	public long selectProductBuyNo(int productSize, String productName, String memberId);
 	public long selectProductSellByNo(long productSellNo);
+	public long selectProductBuyByNo(long MaxproductBuyNo);
 	public String selectProductDetailInfo1(long productDetailNo);
 	public int selectProductDetailInfo2(long productDetailNo);
-	public long selectMemberAddrNo(long productSellNo);
+	public long selectMemberAddrNoInSell(long productSellNo);
+	public long selectMemberAddrNoInBuy(long MaxproductBuyNo);
+	public Date selectSelldate(long productSellNo);
+	public long selectPriceinSell(long productSellNo);
+	public long selectPriceinBuy(long MaxproductBuyNo);
 	public MemberAddress selectMemberAddrByProductSellNo(long productSellNo);
 	public long selectMaxProductSellNo(long productBuyNo);
 	public int insertSell(String memberId, String productName, int productSize, long price, long memberAddressNo, long productBuyNo);

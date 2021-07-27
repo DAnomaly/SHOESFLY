@@ -69,40 +69,38 @@
 		<div class="container">
 			<div class="infoBox">
 				<i class="fas fa-check"></i><br>
-				상품 판매가 완료되었습니다.
+				상품 구매가 완료되었습니다.
 			</div>
-			<form id="f" method="post">
-				<table border="1">
-					<tbody>
-						<tr class="tableName">
-							<td rowspan="5">상품/결제정보</td>
-							<td>판매 고객</td>
-							<td>${memberId}</td>
-						</tr>
-						<tr>
-							<td>상품명</td>
-							<td>${productName}</td>
-						</tr>
-						<tr>
-							<td>사이즈</td>
-							<td>${productSize}mm</td>
-						</tr>
-						<tr>
-							<td>판매금액</td>
-							<td>${price}원</td>
-						</tr>
-						<tr>
-							<td>반송지</td>
-							<td>${memberAddress.name}&nbsp;/&nbsp;${memberAddress.addr1}&nbsp;
-							<c:if test="not empty ${memberAddres.addr2}">
-								${memberAddress.addr2}
-							</c:if>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<input type="button" value="쇼핑 이어하기" id="listBtn" class="listBtn">
-			</form>
+			<table border="1">
+				<tbody>
+					<tr class="tableName">
+						<td rowspan="5">상품/결제정보</td>
+						<td>구입 고객</td>
+						<td>${memberId}</td>
+					</tr>
+					<tr>
+						<td>상품명</td>
+						<td>${productName}</td>
+					</tr>
+					<tr>
+						<td>사이즈</td>
+						<td>${productSize}mm</td>
+					</tr>
+					<tr>
+						<td>구입금액</td>
+						<td>${price}원</td>
+					</tr>
+					<tr>
+						<td>배송지</td>
+						<td>${memberAddress.name}&nbsp;/&nbsp;${memberAddress.addr1}&nbsp;
+						<c:if test="not empty ${memberAddres.addr2}">
+							${memberAddress.addr2}
+						</c:if>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<input type="button" value="쇼핑 이어하기" id="listBtn" class="listBtn">
 		</div>
 	</section>
 	<jsp:include page="../common/footer.jsp"/>

@@ -66,7 +66,7 @@ public class InsertBuyCommand implements ProductCommand {
 				if(result1 > 0 && result2 > 0) {
 					response.getWriter().println("<script>");
 					response.getWriter().println("alert('구매가 완료되었습니다.')");
-					response.getWriter().println("location.href='productListPage.do'");
+					response.getWriter().println("location.href='buyComplete.do?MaxproductBuyNo=" + MaxproductBuyNo + "'");
 					response.getWriter().println("</script>");
 				}
 				//구매신청서 실패
@@ -90,7 +90,7 @@ public class InsertBuyCommand implements ProductCommand {
 				if(result3 >0 && result4 > 0) {
 					response.getWriter().println("<script>");
 					response.getWriter().println("alert('구매가 완료되었습니다.')");
-					response.getWriter().println("location.href='productListPage.do'");
+					response.getWriter().println("location.href='buyComplete.do?MaxproductBuyNo=" + MaxproductBuyNo + "'");
 					response.getWriter().println("</script>");
 				//구매 실패
 				}else {

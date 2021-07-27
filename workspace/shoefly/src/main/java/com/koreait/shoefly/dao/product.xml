@@ -143,7 +143,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	
 	<!-- 구매 신청서 이동시 product 조회 -->
 	<select id="buyApplication" resultType="com.koreait.shoefly.dto.Product">
-		SELECT A.PRODUCT_NAME AS PRODUCTNAME, A.BRAND, A.PRICE, A.IMAGE
+		SELECT A.PRODUCT_NAME AS PRODUCTNAME, A.BRAND, A.PRICE, A.IMAGE, A.PRODUCT_NO as PRODUCTNO
 		  FROM PRODUCT A INNER JOIN PRODUCT_DETAIL B
 		    ON A.PRODUCT_NAME = B.PRODUCT_NAME
 		 WHERE A.PRODUCT_NAME = #{param1}
@@ -337,8 +337,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!--  -->
-	<select id="selectMemberAddrNo" resultType="long">
+	<select id="selectMemberAddrNoInSell" resultType="long">
 		SELECT MEMBER_ADDRESS_NO
+		  FROM PRODUCT_SELL
+		 WHERE PRODUCT_SELL_NO = #{param1}
+	</select>
+	
+	<!--  -->
+	<select id="selectMemberAddrNoInBuy" resultType="long">
+		SELECT MEMBER_ADDRESS_NO
+		  FROM PRODUCT_BUY
+		 WHERE PRODUCT_BUY_NO = #{param1}
+	</select>
+	
+	<!--  -->
+	<select id="selectPriceinSell" resultType="long">
+		SELECT PRICE
+		  FROM PRODUCT_SELL
+		 WHERE PRODUCT_SELL_NO = #{param1}
+	</select>
+	
+	<!--  -->
+	<select id="selectPriceinBuy" resultType="long">
+		SELECT PRICE
+		  FROM PRODUCT_BUY
+		 WHERE PRODUCT_BUY_NO = #{param1}
+	</select>
+	
+	<!--  -->
+	<select id="selectSelldate" resultType="date">
+		SELECT SELLDATE
 		  FROM PRODUCT_SELL
 		 WHERE PRODUCT_SELL_NO = #{param1}
 	</select>
@@ -362,6 +390,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT PRODUCT_DETAIL_NO
 		  FROM PRODUCT_SELL 
 		 WHERE PRODUCT_SELL_NO = #{param1}
+	</select>
+	
+	<!-- 구매완료 후 구매게시글 조회 -->
+	<select id="selectProductBuyByNo" resultType="long">
+		SELECT PRODUCT_DETAIL_NO
+		  FROM PRODUCT_BUY 
+		 WHERE PRODUCT_BUY_NO = #{param1}
 	</select>
 	
 </mapper>

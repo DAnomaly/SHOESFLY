@@ -13,24 +13,47 @@
 	<script>
 		$(document).ready(function(){
 			fn_findAddress();
+			fn_findAddress1();
+			fn_findAddress2();
+			goBackPage();
 			clickRadio();
 			checkbox();
 			submitCheck();
 		});
 		
 		//주소api사용
-		function fn_findAddress() {
-			$('#addr_search_btn').click(function(){
-				$('#memberAddressNo').val(0);
-				goPopup();
-			})
-		} 
+		//주소api사용
+	function fn_findAddress() {
+		$('#addr_search_btn').click(function(){
+			$('#memberAddressNo').val(0);
+			goPopup();
+		})
+	}
+	function fn_findAddress1() {
+		$('#addr1').click(function(){
+			$('#memberAddressNo').val(0);
+			goPopup();
+		})
+	}
+	function fn_findAddress2() {
+		$('#addr2').click(function(){
+			$('#memberAddressNo').val(0);
+			goPopup();
+		})
+	} 
 		function goPopup(){
 			var pop = window.open("jusoPopup.do","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
 		}
 		function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
 			$('#addr1').val(roadAddrPart1);
 			$('#addr2').val(addrDetail);
+		}
+		
+		//뒤로가기
+		function goBackPage(){
+			$('#backBtn').click(function(){
+				location.href='viewProductPage.do?productNo=' + $('#productNo').val();
+			});
 		}
 		
 		//저장된 주소 radio 클릭시 주소창에 보여주기
@@ -96,23 +119,87 @@
 		*{
 			box-sizing: border-box;
 		}
+		.container{
+			margin: auto;
+			width: 1080px;
+		}
+		#backBtn{
+			display: inline-block;
+			margin-top: 20px;
+			width: 100px;
+			height: 35px;
+			line-height: 35px;
+			text-align: center;
+			background-color: lightgrey;
+		}
+		#backBtn:hover{
+			cursor: pointer;
+		}
+		h3{
+			text-align: center;
+		}
 		table{
+			margin-top: 30px;
+			width: 100%;
 			border-collapse: collapse;
+			border: 1px solid lightgray;
+		}
+		td{
+			padding: 5px;
+		}
+		.firstTr > td:nth-child(1){width: 50%; test-align: center;}
+		.firstTr > td:nth-child(2){width: 15%;}
+		.firstTr > td:nth-child(3){width: 35%;}
+		tr >td:nth-last-child(2){text-align: center;}
+		input[type="text"]{
+			width: 100%;
+			outline: none;
+			border: 1px solid lightgrey;
+			padding: 5px;
+		}
+		#addr1, #price{
+			width: 291px;
+		}
+		.addr_search_btn{
+			width: 70px;
+			height: 28px;
+			line-height: 28px;
+			outline: none;
+			border: none;
+		}
+		.addr_search_btn:hover{
+			cursor: pointer;
 		}
 		.redText{
 			color: red;
+		}
+		.sellApplication_btn{
+			display: inline-block;
+			float: right;
+			margin-top: 20px;
+			border: none;
+			width: 150px;
+			padding: 10px;
+			background-color: lightgrey;
+			font-weight: bolder;
+		}
+		.sellApplication_btn:hover {
+			cursor: pointer;
+			font-weight: border;
 		}
 	</style>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
 	<section>
+	<div class="container">
+		<a id = "backBtn">뒤로가기</a>
 		<h3>판매 신청서</h3>
 		<form id="f" method="post">
 			<table border="1">
 				<tbody>
 					<tr>
-						<td colspan="2">
+						<td rowspan="12">
 							<img alt="${product.image}"
 							src="/shoefly/resources/archive/product/${product.image}" />
 						</td>
@@ -139,7 +226,7 @@
 					<tr>
 						<td>판매 희망 가격</td>
 						<td>
-							<input type="text" name="price" id="price" >원
+							<input type="text" name="price" id="price" >&nbsp;원
 						</td>
 					</tr>
 					<tr>
@@ -149,7 +236,7 @@
 								현재 등록된 상품이 없습니다.
 							</c:if>
 							<c:if test="${lowPrice ne 0}">
-								${lowPrice}원
+								${lowPrice}&nbsp;원
 								<input type="hidden" id="lowPrice" value="${lowPrice}">
 							</c:if>
 						</td>
@@ -161,14 +248,14 @@
 								현재 등록된 상품이 없습니다.
 							</c:if>
 							<c:if test="${highPrice ne 0}">
-								${highPrice}원
+								${highPrice}&nbsp;원
 								<input type="hidden" id="highPrice" value="${highPrice}">
 							</c:if>
 						</td>
 					</tr>
 					<tr>
 						<td>정가</td>
-						<td>${product.price}원</td>
+						<td>${product.price}&nbsp;원</td>
 					</tr>
 					<tr>
 						<td rowspan="2">반품<br>주소</td>
@@ -195,7 +282,7 @@
 							<input type="text" id="addrName" name="addrName" placeholder="ex&#41; 집, 회사"><br>
 							주소<br>
 							<input type="text" name="addr1" id="addr1" readonly>
-							<input type="button" id="addr_search_btn" value="주소찾기"><br>
+							<input type="button" id="addr_search_btn" class="addr_search_btn" value="주소찾기"><br>
 							상세주소<br>
 							<input type="text" name="addr2" id="addr2" readonly>
 						</td>
@@ -215,13 +302,11 @@
 						</td>
 					</tr>	
 				</tbody>
-				<tfoot>
-					<tr>
-						<td colspan="2"><input type="button" value="판매 신청서 작성 완료" id="sellApplication_btn"></td>
-					</tr>
-				</tfoot>
 			</table>
 		</form>
+		<input type="hidden" id ="productNo" value="${product.productNo}">
+		<input type="button" value="판매 신청서 작성 완료" id="sellApplication_btn" class="sellApplication_btn">
+	</div>
 	</section>
 	<jsp:include page="../common/footer.jsp"/>
 </body>
