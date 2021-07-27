@@ -40,6 +40,11 @@ import com.koreait.shoefly.command.manager.UpdateProductSellStateManagerCommand;
 
 import lombok.AllArgsConstructor;
 
+/**
+ * 관리자 페이지 컨트롤러
+ * 
+ * @author 박세환
+ */
 @Controller
 @RequestMapping("manager")
 @AllArgsConstructor
@@ -82,12 +87,19 @@ public class ManagerController {
 	
 	
 	// MEMBER
-	
+	/**
+	 * 회원관리 페이지 (리스트)
+	 */
 	@GetMapping(value= {"/","memberListPage.do"})
 	public String memberListPage() {
 		return "manager/memberList";
 	}
 	
+	/**
+	 * 회원 전체/검색 리스트 출력
+	 * 
+	 * @see SelectListMemberManagerCommand
+	 */
 	@ResponseBody
 	@PostMapping(value="memberList.do",
 				 produces="application/json; charset=UTF-8")
@@ -98,6 +110,9 @@ public class ManagerController {
 		return selectListMemberManagerCommand.execute(sqlSession, model);
 	}
 	
+	/**
+	 * 회원관리 페이지 (상세)
+	 */
 	@GetMapping(value="memberInfoPage.do")
 	public String memberInfoPage(
 			Model model,
@@ -107,6 +122,12 @@ public class ManagerController {
 		return "manager/memberInfo";
 	}
 	
+	/**
+	 * 회원 삭제처리<br>
+	 * 결과 JSON으로 출력
+	 * 
+	 * @see DeleteMemberManagerCommand
+	 */
 	@ResponseBody
 	@GetMapping(value="deleteMember.do",
 			 	produces="application/json; charset=UTF-8")
@@ -117,6 +138,9 @@ public class ManagerController {
 		return deleteMemberManagerCommand.execute(sqlSession, model);
 	}
 	
+	/**
+	 * 회원 주소관리 페이지
+	 */
 	@GetMapping(value="memberAddressPage.do")
 	public String selectListAddress(
 			Model model,
@@ -126,6 +150,13 @@ public class ManagerController {
 		return "manager/memberAddress";
 	}
 	
+	/**
+	 * 회원 비밀번호 재설정<br>
+	 * 변경된 비밀번호는 회원 이메일에 전송<br>
+	 * 전송결과는 JSON으로 출력
+	 * 
+	 * @see UpdateMemberPwManagerCommand
+	 */
 	@ResponseBody
 	@GetMapping(value="updateMemberPw.do",
 		    produces="text/html; charset=UTF-8")
@@ -138,12 +169,21 @@ public class ManagerController {
 	
 	
 	// PRODUCT
-	
+	/**
+	 * 상품관리 페이지
+	 */
 	@GetMapping(value="productListPage.do")
 	public String productListPage() {
 		return "manager/productList";
 	}
 	
+	/**
+	 * 상품 전체/선택 리스트 출력<br>
+	 * JSON 타입으로 출력
+	 * 
+	 * @see views/manager/productList.jsp 
+	 * @see SelectListProductManagerCommand
+	 */
 	@ResponseBody
 	@GetMapping(value="selectListProduct.do",
 				produces="application/json; charset=UTF-8")
@@ -154,6 +194,11 @@ public class ManagerController {
 		return selectListProductManagerCommand.execute(sqlSession, model);
 	}
 
+	/**
+	 * 상품관리 페이지(상세)
+	 * 
+	 * @see SelectOneProductManagerCommand
+	 */
 	@GetMapping(value="productInfoPage.do")
 	public String productInfoPage(
 			Model model,
@@ -163,6 +208,11 @@ public class ManagerController {
 		return "manager/productInfo";
 	}
 	
+	/**
+	 * 상품의 거래 상태를 변경 (거래중 / 중지)
+	 * 
+	 * @see UpdateProdcutStateManagerCommand
+	 */
 	@GetMapping(value="updateProductState.do")
 	public String updateProductState(
 			Model model,
@@ -172,6 +222,12 @@ public class ManagerController {
 		return "redirect:productInfoPage.do?no=" + request.getParameter("no");
 	}
 	
+	/**
+	 * 상품을 삭제<br>
+	 * 미구현
+	 * 
+	 * @see DeleteProductManagerCommand
+	 */
 	@ResponseBody
 	@RequestMapping(value="deleteProduct.do",
 				 produces="application/json; charset=UTF-8")
@@ -184,12 +240,22 @@ public class ManagerController {
 	
 	
 	// PRDOCUT BUY
-	
+	/**
+	 * 상품 구매신청관리 페이지 
+	 * 
+	 * @see views/manager/productBuyList.jsp
+	 */
 	@GetMapping(value="productBuyListPage.do")
 	public String productBuyListPage() {
 		return "manager/productBuyList";
 	}
 	
+	/**
+	 * 상품 구매신청 전체/선택 리스트 출력<br>
+	 * JSON으로 결과 출력
+	 *
+	 * @see SelectListProductBuyManagerCommand
+	 */
 	@ResponseBody
 	@GetMapping(value="selectListProductBuy.do",
 				produces="application/json; charset=UTF-8")
@@ -200,6 +266,12 @@ public class ManagerController {
 		return selectListProductBuyManagerCommand.execute(sqlSession, model);
 	}
 	
+	/**
+	 * 회원 주소 선택 출력<br>
+	 * JSON으로 결과 출력
+	 * 
+	 * @see SelectOneMemberAddressManagerCommand
+	 */
 	@ResponseBody
 	@GetMapping(value="selectOneMemberAddress.do",
 				produces="application/json; charset=UTF-8")
@@ -210,7 +282,12 @@ public class ManagerController {
 		return selectOneMemberAddressManagerCommand.execute(sqlSession, model);
 	}
 	
-
+	/**
+	 * 상품 구매신청 State 변경<br>
+	 * JSON으로 결과 출력
+	 *
+	 * @see UpdateProductBuyStateManagerCommand
+	 */
 	@ResponseBody
 	@GetMapping(value="updateProductBuyState.do",
 				produces="application/json; charset=UTF-8")
@@ -223,12 +300,22 @@ public class ManagerController {
 	
 	
 	// PRODUCT SELL 
-	
+	/**
+	 * 상품 판매신청 관리 페이지
+	 *
+	 * @see views/manager/productSellList.jsp
+	 */
 	@GetMapping(value="productSellListPage.do")
 	public String productSellListPage() {
 		return "manager/productSellList";
 	}
 
+	/**
+	 * 상품 판매신청 전체/선택 리스트 출력<br>
+	 * JSON으로 출력
+	 * 
+	 * @see SelectListProductSellManagerCommand
+	 */
 	@ResponseBody
 	@GetMapping(value="selectListProductSell.do",
 				produces="application/json; charset=UTF-8")
@@ -239,6 +326,12 @@ public class ManagerController {
 		return selectListProductSellManagerCommand.execute(sqlSession, model);
 	}
 	
+	/**
+	 * 상품 판매신청 state 변경<br>
+	 * 결과를 JSON으로 출력
+	 *
+	 * @see UpdateProductSellStateManagerCommand
+	 */
 	@ResponseBody
 	@GetMapping(value="updateProductSellState.do",
 				produces="application/json; charset=UTF-8")
@@ -251,7 +344,11 @@ public class ManagerController {
 	
 	
 	// NOTICE
-	
+	/**
+	 * 공지사항 관리 페이지
+	 *
+	 * @see SelectListNoticeManagerCommand
+	 */
 	@GetMapping("noticeListPage.do")
 	public String noticeListPage(
 			Model model,
@@ -261,6 +358,11 @@ public class ManagerController {
 		return "manager/noticeList";
 	}
 
+	/**
+	 * 공지사항 관리 페이지 (상세)
+	 *
+	 * @see SelectOneNoticeManagerCommand
+	 */
 	@GetMapping("noticeInfoPage.do")
 	public String noticeInfoPage(
 			Model model,
@@ -270,6 +372,12 @@ public class ManagerController {
 		return "manager/noticeInfo";
 	}
 	
+	/**
+	 * 공지사항 추가/수정 처리<br>
+	 * 결과를 JSON으로 출력
+	 *
+	 * @see InsertOrUpdateNoticeManagerCommand
+	 */
 	@ResponseBody
 	@PostMapping(value="insertNotice.do",
 				 produces="application/json; charset=UTF-8")
@@ -280,6 +388,12 @@ public class ManagerController {
 		return insertOrUpdateNoticeManagerCommand.execute(sqlSession, model);
 	}
 
+	/**
+	 * 공지사항 삭제 처리<br>
+	 * 결과를 JSON으로 출력
+	 *
+	 * @see DeleteNoticeManagerCommand
+	 */
 	@ResponseBody
 	@PostMapping(value="deleteNotice.do",
 				 produces="application/json; charset=UTF-8")
@@ -292,7 +406,11 @@ public class ManagerController {
 	
 	
 	// FAQ
-	
+	/**
+	 * FAQ 게시판 관리 페이지
+	 *
+	 * @see SelectListFaqManagerCommand
+	 */
 	@GetMapping("faqListPage.do")
 	public String faqListPage(
 			Model model,
@@ -302,6 +420,11 @@ public class ManagerController {
 		return "manager/faqList";
 	}
 	
+	/**
+	 * 게시판 작성 및 수정 페이지
+	 *
+	 * @see SelectOneFaqManagerCommand
+	 */
 	@GetMapping("faqInfoPage.do")
 	public String faqInfoPage(
 			Model model,
@@ -311,6 +434,12 @@ public class ManagerController {
 		return "manager/faqInfo";
 	}
 
+	/**
+	 * FAQ 작성 및 수정<br>
+	 * JSON으로 결과 출력
+	 * 
+	 * @see InsertOrUpdateFaqManagerCommand
+	 */
 	@ResponseBody
 	@PostMapping(value="insertFaq.do",
 				 produces="application/json; charset=UTF-8")
@@ -321,6 +450,12 @@ public class ManagerController {
 		return insertOrUpdateFaqManagerCommand.execute(sqlSession, model);
 	}
 	
+	/**
+	 * FAQ 삭제<br>
+	 * JSON으로 결과 출력
+	 *
+	 * @see DeleteFaqManagerCommand
+	 */
 	@ResponseBody
 	@PostMapping(value="deleteFaq.do",
 				 produces="application/json; charset=UTF-8")
@@ -333,7 +468,11 @@ public class ManagerController {
 	
 	
 	// REVIEW
-	
+	/**
+	 * 후기관리 페이지
+	 *  
+	 * @author 정유한
+	 */
 	@GetMapping("reviewListPage.do")
 	public String reviewListPage(HttpServletRequest request,
 								 Model model) {
@@ -342,6 +481,13 @@ public class ManagerController {
 		return "manager/reviewList";
 	}
 	
+	/**
+	 * 후기를 삭제처리합니다.<br>
+	 * reviewListPage.do로 리다이렉트 합니다.
+	 * 
+	 * @author 정유한
+	 * @see DeleteReviewManagerCommand
+	 */
 	@GetMapping("deleteReview.do")
 	public String deleteReview(HttpServletRequest request,
 							   Model model) {
@@ -350,6 +496,13 @@ public class ManagerController {
 		return "redirect:reviewListPage.do";
 	}
 	
+	/**
+	 * 삭제처리한 후기를 복구합니다.<br>
+	 * reviewListPage.do로 리다이렉트 합니다.
+	 * 
+	 * @author 정유한
+	 * @see RestoreReviewManagerCommand
+	 */
 	@GetMapping("restoreReview.do")
 	public String restoreReview(HttpServletRequest request,
 								Model model) {
