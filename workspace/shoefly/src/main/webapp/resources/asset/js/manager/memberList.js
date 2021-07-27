@@ -64,9 +64,9 @@ function pageLoadEvent() {
 				$('<a>').html('<i class="fas fa-caret-left"></i>이전').attr('href','javascript:setPage(' + (data.page.page - 1) + ')').appendTo(member_paging);
 			}
 			if(data.page.page == data.page.totalPage){
-				$('<span>').html('이후<i class="fas fa-caret-right"></i>').appendTo(member_paging);
+				$('<span>').html('다음<i class="fas fa-caret-right"></i>').appendTo(member_paging);
 			} else {
-				$('<a>').html('이후<i class="fas fa-caret-right"></i>').attr('href','javascript:setPage(' + (data.page.page + 1) + ')').appendTo(member_paging);
+				$('<a>').html('다음<i class="fas fa-caret-right"></i>').attr('href','javascript:setPage(' + (data.page.page + 1) + ')').appendTo(member_paging);
 			}
 			total_page = data.page.totalPage;
 		}

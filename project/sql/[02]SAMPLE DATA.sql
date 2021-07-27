@@ -15,7 +15,7 @@ VALUES (MEMBER_SEQ.NEXTVAL, 'user3', '0ffe1abd1a08215353c233d6e009613e95eec42538
 INSERT INTO MEMBER (MEMBER_NO, MEMBER_ID, PW, NAME, EMAIL, REGDATE, MANAGER, STATE)
 VALUES (MEMBER_SEQ.NEXTVAL, 'user4', '0ffe1abd1a08215353c233d6e009613e95eec4253832a761af28ff37ac5a150c', '사용자4', 'user4@home.com', SYSDATE, 0, 0);
 
--- MEMBER 샘플 추가 21-07-23
+-- MEMBER 샘플 추가 21.07.23
 -- 작성자 : 박세환
 INSERT INTO MEMBER (MEMBER_NO, MEMBER_ID, PW, NAME, EMAIL, REGDATE, MANAGER, STATE)
 VALUES (MEMBER_SEQ.NEXTVAL, 'apple', '0ffe1abd1a08215353c233d6e009613e95eec4253832a761af28ff37ac5a150c', '사과', 'apple@home.com', SYSDATE, 0, 0);
@@ -109,6 +109,9 @@ VALUES (FAQ_SEQ.NEXTVAL, 'admin', '거래 진행 일정이 궁금해요', '거�
 INSERT INTO FAQ (FAQ_NO, MEMBER_ID, QUESTION, ANSWER, POSTDATE, STATE)
 VALUES (FAQ_SEQ.NEXTVAL, 'admin', '판매 또는 구매하고 싶은 상품이 없어요.', '원하는 상품을 정확히 찾기 위해서 모델번호로 검색을 해보시기 바랍니다. 그래도 결과가 없을 경우, 검색 결과의 &#39;상품 등록 요청하기&#39; 버튼을 누르시거나, 서비스 내 [1:1 문의 > 일반 > 상품등록요청]으로 등록 요청할 상품의 정확한 정보(모델번호, 브랜드, 상품명)를 보내주시기 바랍니다. <br><br>요청 시 해당 상품의 박스의 라벨 스티커를 촬영해서 첨부해주시면 상품 등록에 도움이 되고있습니다.<br><br>* 상품 등록 요청 시, 등록 여부는 별도로 회신 드리지 않습니다.', SYSDATE, 0);
 
+-- FAQ 샘플 추가 21.07.26
+-- 작성자 : 정유한
+
 INSERT INTO FAQ (FAQ_NO, MEMBER_ID, QUESTION, ANSWER, POSTDATE, STATE)
 VALUES (FAQ_SEQ.NEXTVAL, 'admin', '판매과정을 설명해주세요.', '서비스 가입 후 로그인 한 회원은 상품을 판매할 수 있습니다.<br>판매하실 상품을 검색하고, 사이즈를 선택한 후 판매 버튼을 누르면 즉시 판매 혹은 판매 입찰이 가능합니다.<br>즉시 판매하거나 입찰 후 거래가 체결되면 상품을 검수 센터로 발송하고, 검수를 합격하게 되면 판매 대금을 정산해 드립니다.', SYSDATE, 0);
 
@@ -120,6 +123,7 @@ VALUES (FAQ_SEQ.NEXTVAL, 'admin', '판매 수수료는 얼마 인가요?', '현�
 
 INSERT INTO FAQ (FAQ_NO, MEMBER_ID, QUESTION, ANSWER, POSTDATE, STATE)
 VALUES (FAQ_SEQ.NEXTVAL, 'admin', '페널티 보류는 무엇인가요?', '패널티는 판매시 등록하신 결제정보로 지불하게 됩니다.<br>등록하신 카드의 잔액 부족, 기한 만료, 한도 초과 등이 발생할 경우, 페널티 결제가 보류되고 결제정보 업데이트를 요청합니다.<br>페널티 보류로 인한 결제 정보 업데이트에 응하지 않을 경우, 판매자격 박탈 등의 불이익이 있으므로 유의하시기 바랍니다.', SYSDATE, 0);
+
 
 --NOTICE
 
