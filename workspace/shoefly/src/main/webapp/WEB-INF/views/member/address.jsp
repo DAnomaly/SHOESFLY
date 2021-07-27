@@ -23,7 +23,8 @@
 			fn_deleteAddress();
 			fn_return();
 		})
-			
+		
+		// 주소록 리스트 가져오기
 		function fn_selectAddressList(){
 			$.ajax({
 				url: 'selectAddressList.do',
@@ -51,6 +52,7 @@
 			});
 		} 
 		
+		// 주소 정보 변경
 		function fn_updateAddress(){
 			$('body').on('click', '#update_address_btn', function(){
 				var memberAddressNo = $(this).prev().val();
@@ -66,6 +68,7 @@
 				}
 			})
 		}
+		
 		// 돌아가기
 		function fn_return(){
 			$('#return_btn').click(function(){
