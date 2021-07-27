@@ -118,13 +118,33 @@
 		*{
 			box-sizing: border-box;
 		}
-		.product_container{
+		.container{
+			margin: auto;
 			width: 1080px;
+		}
+		.product_container{
+			width: 100%;
 			display: flex;
 			margin: auto;
 		}
+		.showList{
+			display: inline-block;
+			margin-top: 20px;
+			float: left;
+			text-align: center;
+			font-weight: border;
+			width: 100px;
+			height: 35px;
+			line-height: 35px;
+			text-decoration: none;
+			color: black;
+			border: none;
+			background-color: lightgrey;
+		}
 		.imgBox{
 			width: 50%;
+			margin-left: 10px;
+			margin-top: 10px;
 		}
 		.imgBox img{
 			width: 100%;
@@ -134,6 +154,7 @@
 			margin-top: 50px;
 		}
 		h3, p, .fastDeal{
+			width: 100%;
 			text-align: center;
 		}
 		strong, ul{
@@ -142,12 +163,47 @@
 		.applicationBtn{
 			display: inline;
 		}
+		.btn{
+			width: 150px;
+			height: 50px;
+			border: none;
+			border-radius: 5px;
+			padding: 10px;
+		}
+		.btn:hover {
+			cursor: pointer;
+		}
+		#buyNow{
+			background-color: #D5C2EE;
+		}
+		#sellNow{
+			background-color: #FFBEBE;
+		}
+		.fastBuySell{
+			margin: 10px 0;
+		}
+		#buyApplication{
+			border: 1px solid #D5C2EE;
+			background-clip: white;
+		}
+		#sellApplication{
+			border: 1px solid #FFBEBE;
+			background-clip: white;
+		}
+		.ulTitle{
+			margin-top: 30px;
+			text-align: center;
+		}
+		ul{
+			text-align: left;
+		}
 	</style>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
 	<section>
-	<a href="productListPage.do">목록보기</a>
+	<div class="container">
+		<a href="productListPage.do" class="showList">목록보기</a>
 		<form id="f" method="post">
 		<input type="hidden" id="loginMember" value="${loginMember}">
 		<input type="hidden" id="productNo" value="${productproductNo}">
@@ -155,11 +211,10 @@
 				<c:if test="${empty product}">제품이 없습니다.</c:if>
 				<c:if test="${not empty product}">
 					<div class="imgBox">
-						<img alt="${product.image}"
-							src="/shoefly/resources/archive/product/${product.image}" /><br>
+						<img alt="${product.image}"src="/shoefly/resources/archive/product/${product.image}" /><br>
 					</div>
 					<div class="textBox">
-						<h3>${product.productName}</h3>
+						<div><h3>${product.productName}</h3></div>
 						<input type="hidden" name ="productName" id="productName" value="${product.productName}">
 						<p>
 							사이즈: <select name="productSize" id="productSize">
@@ -179,23 +234,25 @@
 								즉시판매가<br>(사이즈를 선택하세요.)
 							</button><br><br>
 						</p>
-							<div id="fastDeal" class="fastDeal"style="display:none">
-								빠른거래하기<br>
-								<div class="fastBuySell">
-									<button id="buyApplication" class="btn">구매신청하기</button>
-									<button id="sellApplication" class="btn">판매신청하기</button>
-								</div>
+						<div id="fastDeal" class="fastDeal" style="display: none">
+							빠른거래하기<br>
+							<div class="fastBuySell">
+								<button id="buyApplication" class="btn">구매신청하기</button>
+								<button id="sellApplication" class="btn">판매신청하기</button>
 							</div>
-						<strong>상품정보</strong><br>
-						<ul>
-							<li>브랜드: ${product.brand}</li>
-							<li>모델: ${product.productNo}</li>
-							<li>정가: ${product.price}</li>
-						</ul>
+						</div>
+						<div class="ulTitle">상품정보<br>
+							<ul>
+								<li>브랜드: ${product.brand}</li>
+								<li>모델: ${product.productNo}</li>
+								<li>정가: ${product.price}</li>
+							</ul>
+						</div>
 					</div>
 				</c:if>
 			</div>
 		</form>
+		</div>
 	</section>
 	<jsp:include page="../common/footer.jsp"/>
 </body>

@@ -28,7 +28,7 @@ public class InsertSellApplicationCommand implements ProductCommand {
 			long memberAddressNo = Long.parseLong(request.getParameter("memberAddressNo"));
 			String addrName = request.getParameter("addrName");
 			String addr1 = request.getParameter("addr1");
-			String addr2 = request.getParameter("addr2");
+			String addr2 = request.getParameter("addr2") == "" ? "null" : request.getParameter("addr2");
 			
 			ProductDAO productDAO = sqlSession.getMapper(ProductDAO.class);
 		
@@ -36,12 +36,17 @@ public class InsertSellApplicationCommand implements ProductCommand {
 			if(memberAddressNo == 0) {
 				//기존에 등록되어있는 주소가 아닌 사용자가 새로 등록한 주소 -> MemberAddress 테이블에 삽입해주고 판매신청서등록도 진행
 				//새로운 주소 등록
-				productDAO.insertNewAddress(memberId, addrName, addr1, addr2);
+				//상세주소 유무로 구분하여 진행
+				if(addr2 != "null") {
+					productDAO.insertNewAddress(memberId, addrName, addr1, addr2);
+				}else {
+					productDAO.insertNewAddressNoAddr2(memberId, addrName, addr1);
+				}
 				
 				//새로등록된 주소의 memberAddressNo을 알기위해
 				//maxMemberAddressNo를 조회하기( = 새로 등록된 주소의 memberAddressNo)
 				long maxMemberAddressNo = productDAO.maxMemberAddressNo();
-				int result1 = productDAO.insertSellApplication(memberId, productName, productSize, price, maxMemberAddressNo);
+				int result1 = productDAO.insertSellApplication(memberId, productSize, productName, price, maxMemberAddressNo);
 				
 				//구매신청서 완료
 				if(result1 > 0) {
@@ -60,7 +65,7 @@ public class InsertSellApplicationCommand implements ProductCommand {
 				
 			}else {
 				//기존에 등록되어있는 주소임 주소등록필요X -> 판매신청서등록진행
-				int result2 = productDAO.insertSellApplication(memberId, productName, productSize, price, memberAddressNo);
+				int result2 = productDAO.insertSellApplication(memberId, productSize, productName, price, memberAddressNo);
 				
 				//판매신청서 완료
 				if(result2 > 0) {
