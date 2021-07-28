@@ -8,6 +8,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/header.css">
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/footer.css">
+	<link rel="stylesheet" href="/shoefly/resources/asset/css/review/updateReviewPage.css">
 	<title>리뷰 수정</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script>
@@ -103,82 +104,6 @@
 		
 	
 	</script>
-	
-	<style>
-		*{
-			box-sizing: border-box;
-		}
-		.update_container {
-			width: 1080px;
-			margin: 0 auto;
-		}
-		.title_line {
-			width: 100%;
-			margin-top: 50px;
-			margin-bottom: 10px;
-		}
-		.title {
-			width: 600px;
-			height: 40px;
-			font-size: 16px;
-		}
-		.productList {
-			width: 350px;
-			height: 40px;
-			margin-left: 15px;  
-		}
-		.file_label {
-			float: right;
-		}
-		.content {
-			width: 100%;
-			height: 500px;
-			resize: none;
-			font-size: 20px;
-		}
-		.button_box {
-			float: right;
-		} 
-		.button {
-			width: 80px;
-			height: 40px;
-		}
-		.img {
-			display: inline;
-			width: 400px;
-			height: 500px;
-		}
-		input[type="button"]:hover {
-			cursor: pointer;
-		}
-		.filebox {
-			display:inline;
-		}
-		
-		.filebox label {
-			display: inline-block;
-			padding: .6em .8em;
-			color: #fff;
-			font-size: inherit;
-			line-height: normal;
-			vertical-align: middle;
-			background-color: #337ab7;
-			cursor: pointer;
-			border: 1px solid #2e6da4;
-			border-radius: .25em;
-		}
-		
-		.filebox input[type="file"] {  /* 파일 필드 숨기기 */
-			position: absolute;
-			width: 1px;
-			height: 1px;
-			padding: 0;
-			margin: -1px;
-			overflow: hidden;
-			clip:rect(0,0,0,0);
-			border: 0;
-		}
-	</style>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
@@ -209,7 +134,7 @@
 				</div>
 				<div class="button_box">
 					<input class="button" type="button" value="등록" id="insert_btn">
-					<input class="button" type="button" value="취소" onclick="history.back()">
+					<input class="button" type="button" value="취소" id="cancel_btn" onclick="history.back()">
 				</div>
 			</form>
 		</div>

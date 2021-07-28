@@ -8,6 +8,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/header.css">
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/footer.css">
+	<link rel="stylesheet" href="/shoefly/resources/asset/css/review/insertReviewPage.css">
 	<title>리뷰 작성</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script>
@@ -96,54 +97,6 @@
         
 		
 	</script>
-	<style>
-		*{
-			box-sizing: border-box;
-		}
-		.insert_container {
-			width: 1080px;
-			margin: 0 auto;
-		}
-		.title {
-			width: 600px;
-			height: 40px;
-			font-size: 16px;
-		}
-		.productList {
-			width: 350px;
-			height: 40px;
-			margin-left: 15px;  
-		}
-		.title_line {
-			width: 100%;
-			margin-top: 50px;
-			margin-bottom: 10px;
-		}
-		.file_label {
-			float: right;
-		}
-		.content_box {
-			margin-bottom: 20px;
-		}
-		.content {
-			width: 100%;
-			height: 500px;
-			resize: none;
-			font-size: 20px;
-		}
-		.button_box {
-			float: right;
-		}
-		.button {
-			width: 80px;
-			height: 40px;
-		}
-		.img {
-			display: inline;
-		}
-		
-		
-	</style>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
@@ -167,7 +120,7 @@
 				</div>
 				<div class="button_box">
 					<input class="button" type="button" value="등록" id="insert_btn">
-					<input class="button" type="button" value="취소" onclick="location.href='listPage.do'">
+					<input class="button" type="button" value="취소" id="cancel_btn"onclick="location.href='listPage.do'">
 				</div>
 			</form>
 		</div>

@@ -244,7 +244,7 @@
 							<ul>
 								<li>브랜드: ${product.brand}</li>
 								<li>모델: ${product.productNo}</li>
-								<li>발매가: ${product.price}</li>
+								<li>발매가: ${product.price}원</li>
 							</ul>
 						</div>
 					</div>
