@@ -25,6 +25,8 @@ public class LoginCommand implements MemberCommand {
 		HttpServletResponse response = (HttpServletResponse)map.get("response");
 		response.setContentType("text/html; charset=utf-8");
 		
+		request.getSession().invalidate();
+		
 		String memberId = request.getParameter("memberId");
 		String pw = request.getParameter("pw");
 		
@@ -37,6 +39,12 @@ public class LoginCommand implements MemberCommand {
 		Member loginMember = memberDAO.login(member);
 		
 		String referer = request.getParameter("referer");
+		if(referer == null || referer.isEmpty() || referer.indexOf("shoefly") == -1) {
+			referer = "/shoefly/";
+		} else if(referer.indexOf("member/login") != -1) {
+			referer = "/shoefly/";
+		}
+			
 		try {
 			PrintWriter out = response.getWriter();
 			
@@ -51,7 +59,6 @@ public class LoginCommand implements MemberCommand {
 				out.println("location.href = 'loginPage.do'"); 		
 				out.println("</script>"); 		
 			}
-			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
