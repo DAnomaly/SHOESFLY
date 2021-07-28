@@ -11,8 +11,12 @@
 }
 * {
 	font-family: '푸른전남체M', sans-serif;
+	color: #adbac7;
+	font-size: 15px;
 }
 body {
+	position: relative;
+	background-color: #22272e;
 	padding: 0;
 	margin: 0;
 }
@@ -24,17 +28,18 @@ input[type="password"] {
 }
 
 /* header */
-body {
+header {
+	background-color: #2d333b;
+	position: relative;
 	margin: 0;
 	padding: 0;
 }
-
-header {
-	background-color: #303030;
-	position: relative;
+header img {
+	height: 40px;
 }
 header a {
-	color: #ffffff;
+	color: #cdd9e5;
+	text-decoration: none;
 }
 header a:first-of-type {
 	display: inline-block;
@@ -46,42 +51,60 @@ header a:last-of-type {
 	right: 10px;
 	bottom: 5px;
 }
+header a:last-of-type:hover {
+	color: #cdd9e5b3;
+}
 
+/* nav */
 nav {
-	float: left;
-	display: inline-block;
-	height: 100vh;
-	padding: 15px;
-	padding-left: 25px;
-	padding-top: 30px;
+	display: block;
+	position: fixed;
+	top: 80px;
+	left: 50px;
+	color: #c8d0d9; 
+	border: 1px solid #adbac790;
 }
-nav a {
-	font-family: '푸른전남체R', sans-serif;
-	color: black;
-	cursor: pointer;
-	text-decoration: none;
-	font-size: 16px;
+nav li, ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
 }
-nav a span{
-	font-size: 15px;
-	display: inline-block;
-	margin-left: 8px;
-}
-nav .nav-container {
-	border: 1px solid #bbb;
-	margin-left: 60px;
-	margin-right: 20px;
+nav li {
+	margin: 5px 0;
+	padding-left: 20px;
 }
 nav ul {
-	margin: 5px;
-	padding: 10px;
-	border-bottom: 1px solid #bbb;
+	margin: 10px 0;
+	border-bottom: 1px solid #adbac790;
 }
 nav ul:last-of-type {
-	border-bottom: 0;
+	border-bottom: none;
 }
-nav ul li {
-	margin: 0;
-	padding: 5px;
-	list-style: none;
+nav a {
+	display: inline-block;
+	padding: 10px 25px;
+	width: 150px;
+	box-sizing: border-box;
+	color: #c8d0d9;
+	border: 3px solid #00000000;
+}
+nav a span {
+	display: inline-block;
+	margin-left: 10px;
+}
+nav a i {
+	display: inline-block;
+	width: 20px;
+}
+nav a:hover {
+	border-right: 3px solid #adbac790;
+}
+nav a:hover span {
+	color: #c8d0d9a0;
+}
+
+/* section */
+section {
+	position: absolute;
+	left: 300px;
 }
