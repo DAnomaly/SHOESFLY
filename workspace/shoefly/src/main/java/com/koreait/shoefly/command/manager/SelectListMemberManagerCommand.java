@@ -15,6 +15,12 @@ import com.koreait.shoefly.dto.Member;
 import com.koreait.shoefly.dto.Page;
 import com.koreait.shoefly.util.PagingUtils;
 
+/**
+ * 회원 검색/전체 리스트 커맨드
+ * 
+ * @author 박세환
+ * @see ManagerController
+ */
 @Component
 public class SelectListMemberManagerCommand implements ManagerCommand {
 

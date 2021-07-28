@@ -18,6 +18,7 @@ import com.koreait.shoefly.dto.Member;
  * FAQ 작성 및 수정 커맨드
  * 
  * @author 박세환
+ * @see ManagerController
  */
 @Component
 public class InsertOrUpdateFaqManagerCommand implements ManagerCommand {

@@ -11,6 +11,12 @@ import org.springframework.ui.Model;
 
 import com.koreait.shoefly.dao.ManagerDAO;
 
+/**
+ * 상품 삭제 커맨드 (구현 X)
+ * 
+ * @author 박세환
+ * @see ManagerController
+ */
 @Component
 public class DeleteProductManagerCommand implements ManagerCommand {
 

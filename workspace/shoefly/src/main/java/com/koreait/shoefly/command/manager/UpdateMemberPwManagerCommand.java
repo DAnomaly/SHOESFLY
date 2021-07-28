@@ -18,6 +18,12 @@ import com.koreait.shoefly.dao.ManagerDAO;
 import com.koreait.shoefly.dto.Member;
 import com.koreait.shoefly.util.SecurityUtils;
 
+/**
+ * 회원 비밀번호 변경 커맨드
+ * 
+ * @author 박세환
+ * @see ManagerController
+ */
 @Component
 public class UpdateMemberPwManagerCommand implements ManagerCommand{
 
