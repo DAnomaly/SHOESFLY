@@ -1,97 +1,120 @@
 @charset "UTF-8";
+
+/* section */
 section {
-	margin-top: 10px;
-	margin-left: 10px;
-	float: left;
+	margin-top: 30px;
 }
-section h2 {
-	padding: 10px;
-	padding-left: 20px;
-	border-bottom: 1px solid #444;
-	margin: 40px 0;
-}
-section h2 a {
-	color: #000;
-	text-decoration: none;
-}
-section .search {
-	border: 1px solid #666;
-	border-radius: 3px;
-	display: inline-block;
-	padding: 5px;
-}
-section .search input, section .search select, section .search button {
+
+section input, select, button {
 	background: none;
 	border: none;
-	color: #444;
+	outline: none;
 }
-section .search input {
-	color: #000;
+
+/* title */
+section h2 {
+	border-bottom: 1px solid #adbac790;
+	padding: 10px 0;
+	padding-left: 30px;
 }
-section .write {
-	padding-right: 10px;
+section h2 a {
+	color: #539bf5;
+	font-size: 22px;
+	text-decoration: none;
+}
+
+/* search */
+section .search {
 	display: inline-block;
 }
-section .write input[type="button"] {
-	font-size: 14px;
-	width: 80px;
-	height: 31px;
-	background-color: #2E2EFE;
-	border: none;
-	border-radius: 3px;
-	color: #fff;
+section form {
+	display: inline-block;
+	border-bottom: 1px solid #adbac790;
+	padding: 5px;
+	box-sizing: border-box;
+	height: 30px;
 }
-section table.content {
-	margin-top: 5px;
+section form input[type="date"] {
+	font-size: 13px;
+	width: 128px;
+}
+
+/* div.write */
+section div.write {
+	display: inline-block;
+	border-bottom: 1px solid #adbac790;
+	margin-left: 30px;
+	padding: 5px;
+	box-sizing: border-box;
+	height: 30px;
+}
+section div.write:hover {
+	border-bottom: 3px solid #adbac790;
+}
+section div.write:hover input {
+	cursor: pointer;
+	color: #adbac790; 
+}
+
+/* table */
+section table {
+	margin: 10px;
+	border: 1px solid #adbac760;
+	border-radius: 5px;
 	border-collapse: collapse;
+	text-align: center;
 }
-section table.content th {
+section table th {
 	font-weight: normal;
+	color: #d6dce2;
 }
-section table.content thead tr {
-	background-color: #909090;
-	color: #fff;
+section table tr {
+	border-bottom: 1px solid #adbac760;
 }
-section table.content tr td, section table.content tr th {
-	padding: 6px;
+section table th, section table td {
+	padding: 10px;
+	margin: 0;
 }
-section table.content tbody tr td {
-	text-align: center;
-	border-bottom: 1px solid #ccc;
+section table tr:hover td {
+	background-color: #323943;
 }
-section table.content thead tr th:nth-of-type(1) { width: 80px;}
-section table.content thead tr th:nth-of-type(2) { width: 350px;}
-section table.content tbody tr td:nth-of-type(2) div {
-	width: 350px;
-	text-align: left; 
-	overflow:hidden; 
-	text-overflow:ellipsis; 
-	white-space:nowrap;
+section table tr td:nth-of-type(1) div {
+ 	min-width: 38px; 
+ 	max-width: 38px; 
 }
-section table.content thead tr th:nth-of-type(3) { width: 110px;}
-section table.content thead tr th:nth-of-type(4) { width: 60px;}
-section table.content tbody tr td:nth-of-type(4) input[type="button"] {
-	width: 54px;
-	height: 25px;
-	background-color: #5882FA;
-	border: none;
-	border-radius: 3px;
-	color: #fff;
+section table tr td:nth-of-type(2) div {
+ 	min-width: 480px; 
+ 	max-width: 590px; 
+	overflow: hidden; 
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	text-align: left;
 }
-section .paging {
-	border-top: 1px solid #909090;
-	padding: 3px;
-	text-align: center;
+section table tr td:nth-of-type(3) {
+ 	min-width: 90px; 
+ 	max-width: 90px; 
 }
-section .paging a{
-	font-size: 18px;
-	text-decoration: none;
-	color: black;
-}
-section .paging a.now-page {
+section table tr td input[type="button"] {
+	width: 50px;
+	cursor: pointer;
+	font-size: 13px;
 	font-weight: bold;
-	color: blue;
 }
-section .paging a[href]:hover {
-	text-decoration: underline;
+section table tr td input[type="button"]:hover {
+	color: #8296aa;
+}
+
+/* paging */
+section div.paging {
+	text-align: center;
+}
+section div.paging a {
+	text-decoration: none;
+	color: #adbac780;
+}
+section div.paging a.now-page {
+	color: #539bf5;
+}	
+section div.paging a[href] {
+	color: #adbac7;
 }

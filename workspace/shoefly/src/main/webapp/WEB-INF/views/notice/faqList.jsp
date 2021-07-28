@@ -18,7 +18,7 @@
 	<jsp:include page="../common/header.jsp"/>
 	<section>
 		<h2 class="title">
-			<a href="faqListPage.do">FAQ</a>
+			<a href="faqListPage.do">자주묻는 질문</a>
 		</h2>
 		<div class="search">
 			<form method="get" autocomplete="off">
@@ -43,13 +43,11 @@
 				<c:forEach items="${list}" var="notice" varStatus="status">
 				<tr>
 					<td>${page.beginRecord + status.index}</td>
-					<td onclick="fn_table_toggle(${status.index})"><a href="javascript:void(0);">${notice.question}</a></td>
-					<td>${notice.postdate}</td>
-				</tr>
-				<tr>
-					<td class="content-${status.index} table-content" colspan="3" style="display:none">
-						<div>${notice.answer}</div>
+					<td>
+						<a href="javascript:fn_table_toggle(${status.index});">${notice.question}</a>
+						<div class="content-${status.index} table-content"style="display:none">${notice.answer}</div>
 					</td>
+					<td>${notice.postdate}</td>
 				</tr>
 				</c:forEach>
 			</tbody>
