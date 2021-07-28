@@ -1,0 +1,78 @@
+@charset "UTF-8";
+
+section {
+	margin: 40px auto;
+	width: 360px;
+}
+
+/* logo */
+section .logo {
+	padding: 0 15px;
+	color: #9d73d7;
+}
+section .logo img {
+	width: 180px;
+}
+section .logo span {
+	display: inline;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+/* join_info */
+section .join_info {
+	margin: 10px auto;
+}
+section .join_title {
+	margin: 3px 5px;
+}
+section label {
+	color: #9d73d7;
+	font-size: 14px;
+}
+section input[type="text"], section input[type="password"] {
+	width: 360px;
+	padding: 10px 15px;
+	box-sizing: border-box;
+	border: 1px solid #909090;
+	border-radius: 3px;
+	outline: none;
+}
+section input[type="text"]:focus, section input[type="password"]:focus {
+	border: 1px solid #2964E0;
+}
+section input.redBorder {
+	border: 1px solid red;
+}
+section .withBtn {
+	width: 360px;
+}
+section #verify_btn, section #verify_code_btn {
+	width: 95px;
+	height: 40px;
+	float: right;
+	box-sizing: border-box;
+}
+section #email , section #verify_code {
+	width: 260px;
+}
+section #join_btn {
+	width: 100%;
+	height: 40px;
+	box-sizing: border-box;
+	background-color: #ff9d9d;
+}
+section input[type="button"] {
+	background-color: #bc9fe3;
+	color: white;
+	border: 0;
+	border-radius: 3px;
+}
+section span {
+	display: block;
+	padding: 5px;
+	font-size: 12px;	
+}
+section #join_btn[disabled] {
+	background-color: #b5b5b5;
+}
