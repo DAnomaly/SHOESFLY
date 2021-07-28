@@ -15,6 +15,12 @@ import com.koreait.shoefly.dto.Page;
 import com.koreait.shoefly.dto.ProductBuy;
 import com.koreait.shoefly.util.PagingUtils;
 
+/**
+ * 상품구매신청목록 전체/검색 커맨드
+ * 
+ * @author 박세환
+ * @see ManagerController
+ */
 @Component
 public class SelectListProductBuyManagerCommand implements ManagerCommand {
 

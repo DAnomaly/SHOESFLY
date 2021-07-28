@@ -13,6 +13,12 @@ import com.koreait.shoefly.dao.ManagerDAO;
 import com.koreait.shoefly.dto.Product;
 import com.koreait.shoefly.dto.ProductDetail;
 
+/**
+ * 상품 상세보기 커맨드
+ * 
+ * @author 박세환
+ * @see ManagerController
+ */
 @Component
 public class SelectOneProductManagerCommand implements ManagerCommand {
 

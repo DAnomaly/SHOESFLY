@@ -411,8 +411,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="updateFaq" parameterType="com.koreait.shoefly.dto.Faq">
 		UPDATE FAQ
-		   SET TITLE = #{question}
-		     , CONTENT = #{answer}
+		   SET QUESTION = #{question}
+		     , ANSWER = #{answer}
 		 WHERE FAQ_NO = #{faqNo}
 	</update>
 	

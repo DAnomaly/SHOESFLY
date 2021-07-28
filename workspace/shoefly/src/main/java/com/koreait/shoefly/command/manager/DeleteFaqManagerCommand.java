@@ -9,8 +9,15 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
+import com.koreait.shoefly.controller.ManagerController;
 import com.koreait.shoefly.dao.ManagerDAO;
 
+/**
+ * FAQ 개시글 삭제 커맨드
+ * 
+ * @author 박세환
+ * @see ManagerController
+ */
 @Component
 public class DeleteFaqManagerCommand implements ManagerCommand {
 

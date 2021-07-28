@@ -15,6 +15,12 @@ import com.koreait.shoefly.dto.Faq;
 import com.koreait.shoefly.dto.Page;
 import com.koreait.shoefly.util.PagingUtils;
 
+/**
+ * FAQ 리스트 커맨드
+ * 
+ * @author 박세환
+ * @see ManagerController
+ */
 @Component
 public class SelectListFaqManagerCommand implements ManagerCommand {
 
