@@ -175,7 +175,6 @@
 		}
 		.sellApplication_btn{
 			display: inline-block;
-			float: right;
 			margin-top: 20px;
 			border: none;
 			width: 150px;
@@ -254,7 +253,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td>정가</td>
+						<td>발매가</td>
 						<td>${product.price}&nbsp;원</td>
 					</tr>
 					<tr>

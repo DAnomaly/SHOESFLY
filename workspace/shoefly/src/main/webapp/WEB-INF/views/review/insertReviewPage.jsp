@@ -16,6 +16,16 @@
 			fn_insertReview();
 		});
 		
+		// placeholder 컬러 바꾸기 함수 (class, color)
+		function change_placeholder_color(target_class, color_choice) {
+		    $("body").append("<style>" + target_class + "::placeholder{color:" +  color_choice + "}</style>")
+		}
+		
+		// alert창 디자인
+		function fn_sweetAlert() {
+			Swal.fire('제목을 입력하세요.');
+		}
+		
 		// 상품리스트 가져오기
 		function fn_selectProduct() {
 			$.ajax({
@@ -42,17 +52,18 @@
 					alert('상품명을 선택하세요.');
 					return false;
 				}
+				else if ( $('#content'). val() == '' ) {
+					alert('내용을 입력하세요.');
+					$('#content').focus();
+					return false;
+				}
 				
-				if(confirm('작성하시겠습니까?')) {
+				if(confirm('작성 하시겠습니까?')) {
 					$('#f').submit();
 				}
 			});
 		}
-		file = $('#img').prop("files")[0];
-                                blobURL = window.URL.createObjectURL(file);
-                                $('#image_preview img').attr('src', blobURL);
-                                $('#image_preview').slideDown(); //업로드한 이미지 미리보기 
-                                $(this).slideUp(); //파일 양식 감춤
+		
 		// 파일 등록시 이미지 파일 확인
 		function fileCheck(obj) {
 			
@@ -94,19 +105,25 @@
 			margin: 0 auto;
 		}
 		.title {
-			width: 500px;
+			width: 600px;
 			height: 40px;
 			font-size: 16px;
 		}
 		.productList {
-			width: 150px;
+			width: 350px;
 			height: 40px;
+			margin-left: 15px;  
 		}
 		.title_line {
 			width: 100%;
-			margin-bottom: 30px;
+			margin-top: 50px;
+			margin-bottom: 10px;
+		}
+		.file_label {
+			float: right;
 		}
 		.content_box {
+			margin-bottom: 20px;
 		}
 		.content {
 			width: 100%;
@@ -132,15 +149,17 @@
 	<jsp:include page="../common/header.jsp"/>
 	<section>
 		<div class="insert_container">
-			<h1>Insert Review</h1>
 			<form  id="f" action="insert.do" method="post" enctype="multipart/form-data">
 				<div class="title_line">
 					<input type="hidden" name="loginId" value="${loginMember.memberId}">
 					<input type="text" class="title" id="title" name="title" placeholder="제목을 입력하세요.">
 					<select class="productList" name="productName" id="productList" >
-						<option value="">선택</option>
+						<option value="">상품명 선택</option>
 					</select>
-					<input class="file_btn" type="file" id="file" name="file" accept=".jpg, .png, .jpeg" onchange="fileCheck(this)">
+					<div class="filebox">
+						<label class="file_label" for="file">사진 첨부</label>
+						<input class="file" type="file" id="file" name="file" accept=".jpg, .png, .jpeg" onchange="fileCheck(this)"><br><br>
+					</div>
 				</div>
 				<div class="content_box">
 					<img class="img" src="">

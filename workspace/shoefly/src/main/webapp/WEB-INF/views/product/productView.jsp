@@ -130,7 +130,6 @@
 		.showList{
 			display: inline-block;
 			margin-top: 20px;
-			float: left;
 			text-align: center;
 			font-weight: border;
 			width: 100px;
@@ -245,7 +244,7 @@
 							<ul>
 								<li>브랜드: ${product.brand}</li>
 								<li>모델: ${product.productNo}</li>
-								<li>정가: ${product.price}</li>
+								<li>발매가: ${product.price}</li>
 							</ul>
 						</div>
 					</div>

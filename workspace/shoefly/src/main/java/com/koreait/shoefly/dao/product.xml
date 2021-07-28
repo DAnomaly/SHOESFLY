@@ -18,7 +18,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  		SELECT ROWNUM AS RN, C.PRODUCT_NO, C.PRODUCT_NAME, C.PRICE, C.BRAND, C.IMAGE
 			      FROM ( SELECT DISTINCT B.PRODUCT_NO, B.PRODUCT_NAME, B.PRICE, B.BRAND, B.IMAGE
 			   		       FROM PRODUCT_DETAIL A INNER JOIN PRODUCT B
-			                 ON A.PRODUCT_NAME = B.PRODUCT_NAME ) C ) D
+			                 ON A.PRODUCT_NAME = B.PRODUCT_NAME 
+			              ORDER BY B.PRICE) C ) D
 		 WHERE D.RN BETWEEN #{beginRecord} AND #{endRecord}
 		 ORDER BY D.PRICE
 	</select>

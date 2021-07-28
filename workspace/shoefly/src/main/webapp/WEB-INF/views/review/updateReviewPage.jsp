@@ -15,6 +15,7 @@
 			fn_selectProduct();
 			fn_insertReview();
 			fn_imgExsist();
+			
 		});
 		
 		// 상품 리스트 가져오기
@@ -28,6 +29,7 @@
 						$('<option value="' + product.productName + '">').text(product.productName)
 						.appendTo('#productList');
 					});
+					$('#productList').val('${review.productName}').attr('selected', 'selected');
 				}
 			});
 		}
@@ -42,10 +44,15 @@
 				}else if ( $('#productList').val() == '' ) {
 					alert('상품명을 선택하세요.');
 					return false;
+				}else if ( $('#content'). val() == '' ) {
+					alert('내용을 입력하세요.');
+					$('#content').focus();
+					return false;
 				}
 				
-				if(confirm('작성하시겠습니까?')) {
+				if(confirm('수정 하시겠습니까?')) {
 					$('#f').submit();
+					
 				}
 			});
 		}
@@ -92,6 +99,8 @@
 			}
 			
 		}
+		
+		
 	
 	</script>
 	
@@ -105,18 +114,21 @@
 		}
 		.title_line {
 			width: 100%;
+			margin-top: 50px;
 			margin-bottom: 10px;
 		}
 		.title {
-			width: 500px;
+			width: 600px;
 			height: 40px;
 			font-size: 16px;
 		}
 		.productList {
-			width: 150px;
-			height: 40px;  
+			width: 350px;
+			height: 40px;
+			margin-left: 15px;  
 		}
-		.content_box {
+		.file_label {
+			float: right;
 		}
 		.content {
 			width: 100%;
@@ -140,7 +152,7 @@
 			cursor: pointer;
 		}
 		.filebox {
-			display:inline; 
+			display:inline;
 		}
 		
 		.filebox label {
@@ -166,14 +178,12 @@
 			clip:rect(0,0,0,0);
 			border: 0;
 		}
-		
 	</style>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
 	<section>
 		<div class="update_container">
-			<h1>${review.productName }</h1>
 			<form  id="f" action="update.do" method="post" enctype="multipart/form-data">
 				<div class="title_line">
 					<input type="hidden" name="loginId" value="user1"> <!-- 로그인아이디 == 작성자아이디 -->
@@ -181,10 +191,10 @@
 					<input type="hidden" name="filename" value="${review.image}">
 					<input type="text" class="title" id="title" name="title" value="${review.title}">
 					<select class="productList" name="productName" id="productList" >
-						<option value="">선택</option>
+						<option value="">상품명 선택</option>
 					</select>
 					<div class="filebox">
-						<label for="file">사진 첨부</label>
+						<label class="file_label" for="file">사진 첨부</label>
 						<input class="file" type="file" id="file" name="file" accept=".jpg, .png, .jpeg" onchange="fileCheck(this)"><br><br>
 					</div>
 				</div>
