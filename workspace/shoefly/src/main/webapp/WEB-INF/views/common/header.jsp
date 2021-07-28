@@ -5,7 +5,7 @@
 <header>
 	<div class="logo_container">
 		<a href="/shoefly/">
-			<img alt="SHOEFLY" src="/shoesfly/resources/asset/image/logo.png">
+			<img alt="SHOEFLY" src="/shoefly/resources/asset/image/logo.png">
 		</a>
 	</div>
 	<div class="login_container">
