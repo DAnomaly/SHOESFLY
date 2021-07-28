@@ -12,6 +12,12 @@ import org.springframework.ui.Model;
 import com.koreait.shoefly.dao.ManagerDAO;
 import com.koreait.shoefly.dto.MemberAddress;
 
+/**
+ * 회원주소 상세보기 커맨드
+ * 
+ * @author 박세환
+ * @see ManagerController
+ */
 @Component
 public class SelectOneMemberAddressManagerCommand implements ManagerCommand{
 

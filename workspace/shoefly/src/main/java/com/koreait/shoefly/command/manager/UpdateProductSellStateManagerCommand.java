@@ -12,6 +12,12 @@ import org.springframework.ui.Model;
 import com.koreait.shoefly.dao.ManagerDAO;
 import com.koreait.shoefly.dto.ProductSell;
 
+/**
+ * 상품판매신청 STATE 변경 커맨드
+ * 
+ * @author 박세환
+ * @see ManagerController
+ */
 @Component
 public class UpdateProductSellStateManagerCommand implements ManagerCommand {
 

@@ -11,6 +11,12 @@ import org.springframework.ui.Model;
 import com.koreait.shoefly.dao.ManagerDAO;
 import com.koreait.shoefly.dto.Review;
 
+/**
+ * Review 복구 커맨드
+ * 
+ * @author 정유한
+ * @see ManagerController
+ */
 @Component
 public class RestoreReviewManagerCommand implements ManagerCommand {
 

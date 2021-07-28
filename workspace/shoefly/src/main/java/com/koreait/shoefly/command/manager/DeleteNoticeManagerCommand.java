@@ -11,6 +11,12 @@ import org.springframework.ui.Model;
 
 import com.koreait.shoefly.dao.ManagerDAO;
 
+/**
+ * 공지사항 삭제 커맨드
+ * 
+ * @author 박세환
+ * @see ManagerController
+ */
 @Component
 public class DeleteNoticeManagerCommand implements ManagerCommand {
 

@@ -11,6 +11,12 @@ import org.springframework.ui.Model;
 import com.koreait.shoefly.dao.ManagerDAO;
 import com.koreait.shoefly.dto.Notice;
 
+/**
+ * 공지사항 상세보기 커맨드
+ * 
+ * @author 박세환
+ * @see ManagerController
+ */
 @Component
 public class SelectOneNoticeManagerCommand implements ManagerCommand {
 
