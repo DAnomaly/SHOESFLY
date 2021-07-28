@@ -9,9 +9,16 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
+import com.koreait.shoefly.controller.MemberController;
 import com.koreait.shoefly.dao.MemberDAO;
 import com.koreait.shoefly.dto.Member;
 
+/**
+ * 마이페이지의 로그인한 아이디의 이름을 수정하는 기능을 구현한 command
+ * 
+ * @author 정유한
+ * @see MemberController
+ */
 @Component
 public class UpdateNameCommand implements MemberCommand {
 

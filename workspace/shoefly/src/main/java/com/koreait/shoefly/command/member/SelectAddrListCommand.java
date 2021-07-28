@@ -10,9 +10,16 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
+import com.koreait.shoefly.controller.MemberController;
 import com.koreait.shoefly.dao.MemberDAO;
 import com.koreait.shoefly.dto.MemberAddress;
 
+/**
+ * 마이페이지 주소록에 추가된 주소리스트를 출력하는 기능을 구현한 command
+ * 
+ * @author 정유한
+ * @see MemberController
+ */
 @Component
 public class SelectAddrListCommand implements MemberCommand {
 

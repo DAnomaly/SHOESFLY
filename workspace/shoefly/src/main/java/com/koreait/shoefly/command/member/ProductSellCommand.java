@@ -10,10 +10,18 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
+import com.koreait.shoefly.controller.MemberController;
 import com.koreait.shoefly.dao.MemberDAO;
 import com.koreait.shoefly.dto.Member;
 import com.koreait.shoefly.dto.ProductSell;
 
+/**
+ * 마이페이지의 판매내역 리스트를 출력하는 기능을 구현한 command<br>
+ * 판매내역 리스트(판매중, 판매대기, 판매확정, 거래완료)
+ * 
+ * @author 정유한
+ * @see MemberController
+ */
 @Component
 public class ProductSellCommand implements MemberCommand {
 

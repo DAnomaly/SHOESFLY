@@ -38,6 +38,11 @@ import com.koreait.shoefly.command.member.VerifyCodeCommand;
 
 import lombok.AllArgsConstructor;
 
+/**
+ * 회원관리 페이지 컨트롤러 
+ * 
+ * @author 정유한
+ */
 @Controller
 @RequestMapping("member")
 @AllArgsConstructor

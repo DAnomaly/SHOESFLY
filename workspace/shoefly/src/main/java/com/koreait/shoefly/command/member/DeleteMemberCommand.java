@@ -9,9 +9,17 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
+import com.koreait.shoefly.controller.MemberController;
 import com.koreait.shoefly.dao.MemberDAO;
 import com.koreait.shoefly.dto.Member;
 
+/**
+ * 회원 탈퇴 기능을 구현한 command<br>
+ * 실제 탈퇴는 delete가 아닌 state 값을 update하는 방식
+ * 
+ * @author 정유한
+ * @see MemberController
+ */
 @Component
 public class DeleteMemberCommand implements MemberCommand {
 
