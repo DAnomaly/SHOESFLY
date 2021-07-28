@@ -16,7 +16,7 @@ import com.koreait.shoefly.dto.MemberAddress;
 import com.koreait.shoefly.dto.Product;
 
 @Component
-public class BuyApplicationCommand implements ProductCommand {
+public class SelectSellApplicationCommand implements ProductCommand {
 
 	@Override
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {
@@ -32,8 +32,8 @@ public class BuyApplicationCommand implements ProductCommand {
 		
 		ProductDAO productDAO = sqlSession.getMapper(ProductDAO.class);
 		Product product = productDAO.buyApplication(productName, productSize);
-		Long highPrice = productDAO.hightPriceInBuy(productName, productSize);
-		Long lowPrice = productDAO.lowPriceInSell(productName, productSize);
+		Long highPrice = productDAO.selectSellPriceBySize(productSize, productName, memberId);
+		Long lowPrice = productDAO.selectBuyPriceBySize(productSize, productName, memberId);
 		List<MemberAddress> addressList= productDAO.selectMemberAddr(memberId);
 				
 		model.addAttribute("product", product);

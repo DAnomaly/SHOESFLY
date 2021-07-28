@@ -63,8 +63,8 @@ public interface ManagerDAO {
 	public int deleteFaq(long faqNo);
 	
 	// REVIEW
-	public int countReview();
-	public List<Review> selectListReview(Map<String, Object> pageMap);
+	public int countReview(Map<String, Object> map);
+	public List<Review> selectListReview(Map<String, Object> map);
 	public int deleteReview(Review review);
 	public int restoreReview(Review review);
 }

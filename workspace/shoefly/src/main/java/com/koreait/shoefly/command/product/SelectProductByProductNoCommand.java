@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 import com.koreait.shoefly.dao.ProductDAO;
 import com.koreait.shoefly.dto.Product;
 @Component
-public class SelectProductByProductNo implements ProductCommand {
+public class SelectProductByProductNoCommand implements ProductCommand {
 
 	@Override
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {

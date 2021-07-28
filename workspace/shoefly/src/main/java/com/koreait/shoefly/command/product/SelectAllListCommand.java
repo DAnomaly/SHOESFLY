@@ -34,7 +34,7 @@ public class SelectAllListCommand implements ProductCommand {
 		listMap.put("beginRecord", page.getBeginRecord());
 		listMap.put("endRecord", page.getEndRecord());
 		
-		String path = "listPage.do";
+		String path = "productListPage.do";
 		String paging = PagingUtils.getPaging(path, page);
 
 		model.addAttribute("list", productDAO.selectAllList(listMap));

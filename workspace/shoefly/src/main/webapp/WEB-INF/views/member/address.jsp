@@ -10,11 +10,18 @@
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/footer.css">
 	<title>주소록</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<c:if test="${empty loginMember}">
+	<script>
+		alert('로그인을 해주세요.');
+		location.href="loginPage.do";
+	</script>
+	</c:if>
 	<script>
 		$(document).ready(function(){
 			fn_selectAddressList();
 			fn_updateAddress();
 			fn_deleteAddress();
+			fn_return();
 		})
 			
 		function fn_selectAddressList(){
@@ -59,7 +66,12 @@
 				}
 			})
 		}
-		
+		// 돌아가기
+		function fn_return(){
+			$('#return_btn').click(function(){
+				history.back();
+			})
+		}
 	</script>	
 	<style>
 		body {
@@ -81,6 +93,8 @@
 		}
 		.pageTitle {
 			text-align: center;
+			margin-left: 100px;
+			margin-bottom: 40px; 
 		}	
 		table {
 			width: 600px;
@@ -122,6 +136,18 @@
 			width: 50px;
 			height: 30px;
 		}
+		tfoot {
+			text-align: center;
+		}
+		.returnPage_btn {
+			width: 85px;
+			margin-top: 20px;
+			padding: 15px 0 15px;
+			font-size: 15px;
+			text-align: center;
+			cursor: pointer;
+			box-sizing: border-box;
+		}
 	</style>
 </head>
 <body>
@@ -139,12 +165,17 @@
 					<td>주소</td>
 					<td>상세주소</td>
 					<td colspan="2">
-						<a href='insertAddress.do' class="insert_btn btn_primary">주소추가</a>
+						<a href='insertAddressPage.do' class="insert_btn btn_primary">주소추가</a>
 					</td>
 				</tr>
 			</thead>
 			<tbody id="address_list" class="body">				
 			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="6"><input type="button" value="돌아가기" id="return_btn" class="returnPage_btn btn_primary"></td>
+				</tr>
+			</tfoot>
 		</table>
 		</div>
 	</section>

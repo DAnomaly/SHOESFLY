@@ -23,24 +23,50 @@ public class SelectListReviewManagerCommand implements ManagerCommand {
 	
 	@Override
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {
-		
 		Map<String, Object> map = model.asMap();
+		ManagerDAO managerDAO = sqlSession.getMapper(ManagerDAO.class);
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		
-		ManagerDAO managerDAO = sqlSession.getMapper(ManagerDAO.class);
-		
+		// getParameter
 		String strNowPage = request.getParameter("page");
+		String column = request.getParameter("column");
+		String query = request.getParameter("query");
+		String startDate = request.getParameter("startDate");
+		String endDate = request.getParameter("endDate");
 		int nowPage = Integer.parseInt(strNowPage == null || strNowPage.equals("") ? "1" : strNowPage);
-		int totalRecord = managerDAO.countReview();
+
+		// totalRecord And SearchMap
+		Map<String, Object> searchMap = new HashMap<>();
+		searchMap.put("column", column);
+		searchMap.put("query", "%" + query + "%");
+		searchMap.put("startDate", startDate);
+		searchMap.put("endDate", endDate);
+		int totalRecord = managerDAO.countReview(searchMap);
+		
+		// SelectListReview
 		Page page = PagingUtils.getPage(nowPage, totalRecord, recordPerPage, pagePerBlock);
-		Map<String, Object> pageMap = new HashMap<>();
-		pageMap.put("beginRecord", page.getBeginRecord());
-		pageMap.put("endRecord", page.getEndRecord());
-		List<Review> review = managerDAO.selectListReview(pageMap);
-		String path = "reviewListPage.do";
+		searchMap.put("beginRecord", page.getBeginRecord());
+		searchMap.put("endRecord", page.getEndRecord());
+		List<Review> review = managerDAO.selectListReview(searchMap);
 		
-		String paging = PagingUtils.getPaging(path, page);
+		// Make PagingPath And Paging for HTML 
+		StringBuilder path = new StringBuilder();
+		path.append("reviewListPage.do");
+		if(column != null && !column.isEmpty()) {
+			path.append("?column=").append(column);
+			if(query != null && !query.isEmpty()) {
+				path.append("&query=").append(query);
+			}
+			if(startDate != null && !startDate.isEmpty()) {
+				path.append("&startDate=").append(startDate);
+			}
+			if(endDate != null && !endDate.isEmpty()) {
+				path.append("endDate=").append(endDate);
+			}
+		}
+		String paging = PagingUtils.getPaging(path.toString(), page);
 		
+		// AddAttribute
 		model.addAttribute("review", review);
 		model.addAttribute("page", page);
 		model.addAttribute("paging", paging);

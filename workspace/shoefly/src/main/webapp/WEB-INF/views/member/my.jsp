@@ -15,6 +15,12 @@
 		location.href="/shoefly/manager/";
 	</script>
 	</c:if>
+	<c:if test="${empty loginMember}">
+	<script>
+		alert('로그인을 해주세요.');
+		location.href="loginPage.do";
+	</script>
+	</c:if>
 	<script>
 		$(document).ready(function(){
 			fn_delete_member();
@@ -38,6 +44,7 @@
 		
 		function fn_updateName(){
 			$('#update_name_btn').click(function(){
+				alert('이름이 변경되었습니다.');
 				$('#f').attr('action', 'updateName.do');
 				$('#f').submit();
 			})
@@ -146,7 +153,7 @@
      			<input type="button" value="변경" id="update_pw_btn" class="btn_primary">
      		</div>
      		<div class="my_title">
-	     		<label for="pw">이름</label><br>
+	     		<label for="name">이름</label><br>
 			</div>
      		<div class="my_info">
 	     		<input type="text" id="name" name="name" value="${loginMember.name}">

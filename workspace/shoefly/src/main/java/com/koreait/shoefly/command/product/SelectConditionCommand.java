@@ -89,8 +89,6 @@ public class SelectConditionCommand implements ProductCommand {
 		model.addAttribute("page", page);
 		model.addAttribute("paging", paging);
 		
-		logger.info("조회되었다.");
-		
 		return null;
 	}
 

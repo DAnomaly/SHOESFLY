@@ -150,6 +150,8 @@
 				if(authCode == $('#verify_code').val()) {
 					alert('인증에 성공했습니다.');
 					authPass = true;
+					$('#email').prop('readonly', true);
+					$('#verify_code').prop('readonly', true);					
 				} else {
 					alert('인증에 실패했습니다.');
 					authPass = false;

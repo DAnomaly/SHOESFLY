@@ -2,7 +2,7 @@
  * @see WEB-INF/views/manager/memeberInfo.jsp
  */
 function show_address() {
-	location.href="memberAddressPage.do?memberNo=" + $('#memberNo').val();
+	location.href="memberAddressPage.do?memberNo=" + $('#memberNo').val()  + "&memberId=" + $('#memberId').val();
 }
 function del_btn() {
 	if(confirm('정말 해당 회원의 이용/탈퇴 정보를 변경하시겠습니까?')){

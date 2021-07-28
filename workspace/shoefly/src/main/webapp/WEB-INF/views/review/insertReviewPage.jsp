@@ -141,35 +141,6 @@
 		.img {
 			display: inline;
 		}
-		.filebox {
-			display:inline; 
-		}
-		input[type="button"]:hover {
-			cursor: pointer;
-		}
-		.filebox label {
-			display: inline-block;
-			padding: .6em .8em;
-			color: #fff;
-			font-size: inherit;
-			line-height: normal;
-			vertical-align: middle;
-			background-color: #337ab7;
-			cursor: pointer;
-			border: 1px solid #2e6da4;
-			border-radius: .25em;
-		}
-		
-		.filebox input[type="file"] {  /* 파일 필드 숨기기 */
-			position: absolute;
-			width: 1px;
-			height: 1px;
-			padding: 0;
-			margin: -1px;
-			overflow: hidden;
-			clip:rect(0,0,0,0);
-			border: 0;
-		}
 		
 		
 	</style>

@@ -106,7 +106,7 @@ public class MemberController {
 		return "member/address";
 	}
 	
-	@GetMapping("insertAddress.do")
+	@GetMapping("insertAddressPage.do")
 	public String insertAddress() {
 		return "member/insertAddr";
 	}
@@ -238,7 +238,7 @@ public class MemberController {
 							 Model model) {
 		model.addAttribute("request", request);
 		updateNameCommand.execute(sqlSession, model);
-		return "redirect:/";
+		return "redirect:myPage.do";
 	}
 	
 	// 주소 리스트 가져오기
@@ -261,7 +261,8 @@ public class MemberController {
 	}
 	
 	@RequestMapping("jusoPopup.do")
-	public String jsuoPopup() {
+	public String jusoPopup(HttpSession session) {
+		// System.out.println("Controller: " + session.getAttribute("loginMember"));
 		return "common/jusoPopup";
 	}
 	
@@ -271,7 +272,7 @@ public class MemberController {
 							    Model model) {
 		model.addAttribute("request", request);
 		updateAddressCommand.execute(sqlSession, model);
-		return "redirect:myPage.do";
+		return "redirect:addressPage.do";
 	}
 	
 	// 주소 삭제
@@ -280,16 +281,17 @@ public class MemberController {
 								Model model) {
 		model.addAttribute("request", request);
 		deleteAddressCommand.execute(sqlSession, model);
-		return "redirect:myPage.do";
+		return "redirect:addressPage.do";
 	}
 	
 	// 주소 추가
 	@PostMapping("insertAddress.do")
 	public String insertAddress(HttpServletRequest request,
+								HttpSession session,
 								Model model) {
 		model.addAttribute("request", request);
 		insertAddressCommand.execute(sqlSession, model);
-		return "redirect:myPage.do";
+		return "redirect:addressPage.do";
 	}
 	
 	// 구매대기 신청 삭제하기

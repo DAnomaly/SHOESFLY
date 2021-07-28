@@ -41,19 +41,28 @@ function refreshList(state, page) {
 					$('<td>').text(productSell.price).appendTo(tr);
 					$('<td>').append($('<button>').text('확인').attr('onclick','check_addr(' + productSell.memberAddressNo + ')')).appendTo(tr);
 					$('<td>').text(productSell.postdate).appendTo(tr);
-					$('<td>').text(productSell.buydate).appendTo(tr);
+					$('<td>').text(productSell.selldate).appendTo(tr);
 					if(productSell.state == 2){
 						$('<td>').append($('<button>').text('결산완료').attr('onclick','change_state(3,' + productSell.productSellNo + ');')).appendTo(tr);
 					} else if(productSell.state == 0) {
-						$('<td>').append($('<button>').text('취소').attr('onclick','change_state(-1,' + productSell.productSellNo + ');')).appendTo(tr);
+						$('<td>').append($('<button>').text('취소').attr('onclick','change_state(-1,' + productSell.productSellNo + ');'))
+						.append($('<button>').text('수령').attr('onclick','change_state(1,' + productSell.productSellNo + ');')).appendTo(tr)
 					} else {
 						$('<td>').appendTo(tr);
 					}
 				});
 
-				var td = $('<td>').appendTo($('<tr>').appendTo(tfoot));
-				$('<a href="javascript:changePage(' + state  + ',' + page + ',' + data.page.totalPage + ',false)">').html('&lt;').appendTo(td);
-				$('<a href="javascript:changePage(' + state  + ',' + page + ',' + data.page.totalPage + ',true)">').html('&gt;').appendTo(td);
+				var td = $('<td colspan="9">').appendTo($('<tr>').appendTo(tfoot));
+				if(data.page.page == 1){
+					$('<span>').html('<i class="fas fa-caret-left"></i>이전').appendTo(td);
+				} else {
+					$('<a>').html('<i class="fas fa-caret-left"></i>이전').attr('href','javascript:setPage(' + state + ',' + (data.page.page - 1) + ')').appendTo(td);
+				}
+				if(data.page.page == data.page.totalPage){
+					$('<span>').html('다음<i class="fas fa-caret-right"></i>').appendTo(td);
+				} else {
+					$('<a>').html('다음<i class="fas fa-caret-right"></i>').attr('href','javascript:setPage(' + state + ',' + (data.page.page + 1) + ')').appendTo(td);
+				}
 				
 			} else { 
 				$('<td colspan="9">').text('검색내역이 없습니다.').appendTo($('<tr>').appendTo(tbody));
@@ -62,14 +71,7 @@ function refreshList(state, page) {
 	})
 }
 
-function changePage(state, nowpage, totalPage, isNext) {
-	if(isNext){
-		if(totalPage != nowpage)
-			nowpage = nowpage + 1;
-	} else {
-		if(1 != nowpage)
-			nowpage = nowpage - 1;
-	}
+function setPage(state, nowpage) {
 	refreshList(state, nowpage);
 }
 
@@ -113,9 +115,11 @@ function change_state(state, no){
 	var message;
 	if(state == 3)
 		message = '해당 상품에 대한 입금을 완료했으면 확인을 눌러주세요.';
-	else
+	else if(state == -1)
 		message = '해당 판매신청을 취소하시겠습니까?';
-	
+	else 
+		message = '해당 상품을 수령하셨습니까?'; 
+			
 	if(confirm(message))
 		$.ajax({
 			url: 'updateProductSellState.do',

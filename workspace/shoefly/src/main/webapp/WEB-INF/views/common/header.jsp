@@ -20,7 +20,7 @@
 		</c:if>
 	</div>
 	<div class="nav_container">
-		<a href="/shoefly/product/listPage.do">PRODUCT</a>
+		<a href="/shoefly/product/productListPage.do">PRODUCT</a>
 		<a href="/shoefly/review/listPage.do">REVIEW</a>
 		<a href="/shoefly/notice/noticeListPage.do">NOTICE</a>
 		<a href="/shoefly/notice/faqListPage.do">FAQ</a>

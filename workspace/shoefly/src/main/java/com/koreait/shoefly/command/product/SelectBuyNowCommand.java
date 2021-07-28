@@ -16,14 +16,13 @@ import com.koreait.shoefly.dto.Member;
 import com.koreait.shoefly.dto.MemberAddress;
 import com.koreait.shoefly.dto.Product;
 @Component
-public class SellNowCommand implements ProductCommand {
+public class SelectBuyNowCommand implements ProductCommand {
 
 	@Override
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {
 		
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
-		HttpServletResponse response = (HttpServletResponse)map.get("response");
 		HttpSession session = (HttpSession)map.get("session");
 		
 		String productName = request.getParameter("productName");
@@ -33,11 +32,11 @@ public class SellNowCommand implements ProductCommand {
 		
 		ProductDAO productDAO = sqlSession.getMapper(ProductDAO.class);
 		Product product = productDAO.buyApplication(productName, productSize);
-		Long highPrice = productDAO.hightPriceInBuy(productName, productSize);
+		Long lowPrice = productDAO.selectBuyPriceBySize(productSize, productName, memberId);
 		List<MemberAddress> addressList= productDAO.selectMemberAddr(memberId);
 		
 		model.addAttribute("product", product);
-		model.addAttribute("highPrice", highPrice == null ? 0 : highPrice);
+		model.addAttribute("lowPrice", lowPrice == null ? 0 : lowPrice);
 		model.addAttribute("addressList", addressList);
 
 		return null;

@@ -36,14 +36,15 @@ public class LoginCommand implements MemberCommand {
 		
 		Member loginMember = memberDAO.login(member);
 		
+		String referer = request.getParameter("referer");
 		try {
 			PrintWriter out = response.getWriter();
 			
 			if(loginMember != null) {
 				request.getSession().setAttribute("loginMember", loginMember);
-				out.println("<script>"); 			 	
-				out.println("location.href = '/shoefly/'");
-				out.println("</script>"); 			
+				out.println("<script>");
+				out.println("location.href = '" + referer + "'");
+				out.println("</script>");
 			} else {
 				out.println("<script>"); 			
 				out.println("alert('아이디와 비밀번호를 확인해주세요.')"); 		
