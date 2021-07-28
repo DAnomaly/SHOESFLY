@@ -96,6 +96,7 @@
 		 	height: 40px;
 		 	font-size: 14px;
 		 	border-radius: 5px;
+		 	border: 1px solid #979797;
 		 }
 		 .input_price {
 		 	width: 120px;

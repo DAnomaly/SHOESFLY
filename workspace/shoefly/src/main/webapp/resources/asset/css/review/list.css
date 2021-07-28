@@ -3,8 +3,6 @@
 *{
 	box-sizing: border-box;
 }
-body {
-}
 .reviewList_container {
 	width: 1080px;
 	margin: 0 auto;
@@ -50,14 +48,15 @@ body {
 	border-collapse: collapse;
 }
 .thead {
-	background: linear-gradient(to right, #D5C2EE, #FFBEBE);
+	background: #D5C2EE90;
 	font-weight: bold;
 }
 th, td {
-	border-bottom: 1px solid gray;
+	border-bottom: 2px solid #FFFFFF;
 	height: 55px;
 }
 td {
+	background-color: #FFF0F5;
 }
 a {
 	text-decoration: none;
