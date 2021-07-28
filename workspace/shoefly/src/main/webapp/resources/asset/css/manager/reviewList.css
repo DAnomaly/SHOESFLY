@@ -36,7 +36,6 @@ section .search input {
 }
 
 section .write {
-	float: right;
 	padding-right: 10px;
 	display: inline-block;
 }

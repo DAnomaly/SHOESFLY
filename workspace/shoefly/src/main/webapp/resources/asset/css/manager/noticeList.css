@@ -29,7 +29,6 @@ section .search input {
 	color: #000;
 }
 section .write {
-	float: right;
 	padding-right: 10px;
 	display: inline-block;
 }
