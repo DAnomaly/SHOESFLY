@@ -22,14 +22,15 @@ public class UpdateReviewCommand implements ReviewCommand {
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest)map.get("multipartRequest");
 		
 		
-		
-		
 		int reviewNo = Integer.parseInt(multipartRequest.getParameter("reviewNo"));
 		String title = multipartRequest.getParameter("title");
 		String content = multipartRequest.getParameter("content");
 		String productName = multipartRequest.getParameter("productName");
+		String oldfilename = multipartRequest.getParameter("filename");
 		
 		MultipartFile file = multipartRequest.getFile("file");
+		
+		System.out.println(oldfilename);
 		
 		ReviewDAO reviewDAO = sqlSession.getMapper(ReviewDAO.class);
 		
@@ -74,15 +75,15 @@ public class UpdateReviewCommand implements ReviewCommand {
 			
 		}else {
 			
-			String deleteFilename = multipartRequest.getParameter("filename");
+			/*String deleteFilename = multipartRequest.getParameter("filename");
 			String realPath = multipartRequest.getServletContext().getRealPath("resources/archive/review");
 			File deletefile = new File(realPath, deleteFilename);
 			if (deletefile != null) {
 				if(deletefile.exists()) {
 					deletefile.delete();
 				}
-			}
-			reviewDAO.updateReview(title, content, productName, "", reviewNo);
+			}*/
+			reviewDAO.updateReview(title, content, productName, oldfilename, reviewNo);
 			
 		}
 		

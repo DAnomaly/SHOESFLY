@@ -60,16 +60,18 @@
 							location.reload();
 						}
 					}); 
+					fn_scroll();
 				}
 			});
 		} 
+
 		
-		function fn_enterkey() {
-			if (window.event.keyCode == 13) {
-				fn_insertComment();
-			}
-			
+		// 스크롤 이벤트
+		function fn_scroll() {
+			$('html, body').animate({scrollTop: $('.paging').offset().top},400);
 		}
+		
+		
 		
 		
 		// 댓글 리스트, 페이징
@@ -102,14 +104,14 @@
 		function fn_commentList(comment) {
 		    var form = $('<form>').appendTo('#commentList');
 		    if ('${loginMember.memberId}' == comment.memberId) {
-		    	var div1 = $('<div class="comment">').html( '<span class="comment_id">' + comment.memberId + '</span><br><input class="comment_content" type="text" value="' + comment.context + '"><input type="hidden" name="reviewCommentNo" value="' + comment.reviewCommentNo + '"> <input type="button" id="updateComment_btn" value="수정"> <input type="button" id="deleteComment_btn" value="삭제">' )
+		    	var div1 = $('<div class="comment">').html( '<span class="comment_id">' + comment.memberId + '</span><br><input class="comment_content" type="text" value="' + comment.context + '" readonly><input type="hidden" name="reviewCommentNo" value="' + comment.reviewCommentNo + '"> <input type="button" id="updateComment_btn" value="수정"> <input type="button" id="deleteComment_btn" value="삭제">' )
 		    	.appendTo(form);
 		    	
 		    	var div2 = $('<div id="update_comment" style="display:none">').html( '<span class="comment_id">' + comment.memberId + '</span><br> <input type="hidden" name="reviewCommentNo" value="' + comment.reviewCommentNo + '"> <input class="hidden_content" type="text" name="context" value="' + comment.context + '"> <input type="button" id="real_updateComment_btn" value="수정"> <input type="button" id="cancel_btn" value="취소">' )
 		    	.appendTo(form);
 		    
 			}else {
-				var span = $('<div class=comment">').html('<span class="comment_id">' + comment.memberId + '</span><br> <input class="comment_content" tyle="text" value="' + comment.context + '">').appendTo(form);
+				var span = $('<div class=comment">').html('<span class="comment_id">' + comment.memberId + '</span><br> <input class="comment_content" tyle="text" value="' + comment.context + '" readonly>').appendTo(form);
 			}
 		}
 		
@@ -124,7 +126,6 @@
 				
 			});
 		}
-
 		// 댓글 수정 취소 클릭 이벤트
 		function fn_cancel() {
 			$('section').on('click', '#cancel_btn', function(){
@@ -181,7 +182,8 @@
 				if ( ${loginMember.memberId == null} ) {
 					location.href='/shoefly/member/loginPage.do';
 				}else if ( $('#context').val() == ''){
-					alert('댓글을 입력하세요.');
+					alert('내용을 입력하세요.');
+					$('#context').focus();
 				}else {
 					 $.ajax({
 						url: 'insertComment.do',
@@ -229,12 +231,18 @@
 		.button {
 			width: 40px;
 		}
+		.content_box {
+			margin-bottom: 10px;
+		}
 		.content {
 			border: none;
 			width: 100%;
 			height: 500px;
 			resize: none;
 			font-size: 20px;
+		}
+		.content:focus, .comment_content:focus {
+			outline: none;
 		}
 		.comment_text {
 			width: 90%;
@@ -305,12 +313,12 @@
 			<hr>
 			<div class="content_box">
 				<img class="img" alt="${review.image}" src="/shoefly/resources/archive/review/${filename}">
-				<textarea class="content">${review.content}</textarea>
+				<textarea class="content" readonly>${review.content}</textarea>
 			</div>
 			<form id="f2">
 				<input type="hidden" name="memberId" value="${loginMember.memberId}"> <!-- 로그인아이디 ${loginMember.memberId} -->
 				<input type="hidden" name="reviewNo" value="${review.reviewNo}"> <!-- 게시글 번호 -->
-				<input class="comment_text" type="text"  id="context" name="context" placeholder="댓글 입력" onkeypress="fn_enter();">
+				<input class="comment_text" type="text"  id="context" name="context" placeholder="댓글 입력" onkeypress="fn_enter();">  <!-- name= content로 변경 (가능하면) -->
 				<input class="comment_btn" type="button" value="댓글 등록" id="insertComment_btn">
 			</form>
 			<hr>

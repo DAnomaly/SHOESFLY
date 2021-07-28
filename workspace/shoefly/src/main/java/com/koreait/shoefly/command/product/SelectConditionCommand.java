@@ -15,7 +15,7 @@ import com.koreait.shoefly.util.PagingUtils;
 @Component
 public class SelectConditionCommand implements ProductCommand {
 	
-	private int recordPerPage = 6;
+	private int recordPerPage = 12;
 	private int pagePerBlock = 5;
 	
 	@Override
