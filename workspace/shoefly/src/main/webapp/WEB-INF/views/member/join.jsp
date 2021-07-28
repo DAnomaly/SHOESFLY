@@ -142,13 +142,14 @@
 		// 이메일 인증코드발송
 		function fn_email_verifyCodeSend(){
 			$('#email').attr('readonly',true);
+			$('#verify_result').text('잠시만 기다려주세요.').css('color', 'red');
 			$.ajax({
 				url: 'verifyCode.do',
 				type: 'get',
 				data: 'email=' + $('#email').val(),
 				dataType: 'json',
 				success: function(result){
-					alert('인증코드가 발송되었습니다.');
+					$('#verify_result').text('이메일에 인증코드가 발송되었습니다.').css('color', 'blue');
 					fn_verify(result.authCode);
 				},
 				error: function(xhr, textStatus, errorThorwn) {
@@ -164,14 +165,14 @@
 			$('#verify_btn').click(function(){
 				if(authCode == $('#verify_code').val()) {
 					$('#verify_code').removeClass('redBorder');
-					alert('인증에 성공했습니다.');
+					$('#verify_result').text('인증에 성공했습니다.').css('color','blue');
 					authPass = true;
 					$('#email').prop('readonly', true);
 					$('#verify_code').prop('readonly', true);
 					$('#join_btn').attr('disabled',false);
 				} else {
 					$('#verify_code').addClass('redBorder');
-					alert('인증에 실패했습니다.');
+					$('#verify_result').text('인증코드가 올바르지 않습니다.').css('color','red');
 					authPass = false;
 				}
 			});
@@ -204,10 +205,8 @@
 		<div class="container">
 		<div class="join-form">
 			<div class="logo">
-				<a href="/shoefly/">
-		        	<img alt="SHOEFLY" src="/shoesfly/resources/asset/image/logo.png">
-		     	</a>
-		     	<h1>회원가입</h1>
+		        <img onclick="location.href='/shoefly/'" alt="SHOEFLY" src="/shoefly/resources/asset/image/logo.png">
+		     	<span>회원가입</span>
 	     	</div>
 	     	
 	     	<div class="join_box">
@@ -251,7 +250,9 @@
 		     			</div>
 		     			<div class="info_box">
 		     				<input type="text" id="name" name="name">	
-		     			</div>	     			
+		     			</div>	
+		     			<div class="result_box">
+			     		</div>	     			
 	     			</div>	     			
 	     			<div class="join_info">
 		     			<div class="join_title">	
@@ -272,7 +273,10 @@
 		     			<div class="info_box withBtn">
 		     				<input type="text" id="verify_code" name="verify_code">
 		     				<input type="button" value="확인" id="verify_btn" class="btn_verify btn_primary">	
-		     			</div>			
+		     			</div>
+						<div class="result_box">
+			     			<span id="verify_result"></span>
+			     		</div>			
 		     			<br>
 	     			</div>
 	     			<div class="btn_area">
