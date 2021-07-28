@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+body {
+	margin: 0;
+	padding: 0;
+}
+section {
+	width: 500px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	line-height: 30px;
+}
+.container {
+	width: 700px;
+	margin: 0 auto;
+}
+.pageTitle {
+	text-align: center;
+}
+.find {
+	width: 300px;
+	margin-left: 150px;
+	display: flex;
+}
+.find_title {
+	margin: 19px 0 8px 5px;
+	font-size: 15px;
+	font-weight: 700;
+}
+.findId_info {
+	width: 300px;
+	margin-bottom: 10px;
+}
+.findId_info input[type=text] {
+	width: 150px;
+	padding: 10px;			
+	border: none;
+	border-bottom: 1px solid gray;
+	outline: none;
+} 
+.findId_info input[type=button] {
+	width: 100px;
+	height: 30px;
+}
+.result_box {
+	width: 600px;
+	position: relative;
+}
+.btn-box {
+	width: 95px;
+}
+.btn_verify {
+	width: 100px;
+	height: 30px;
+}
+.btn_primary {
+	border: none;
+	box-shadow: 1px 1px 3px 1px #dadce0 inset;
+	border-radius: 5px;
+	background-color: lightgray; 
+	cursor: pointer;
+}
+.btn_primary:hover {
+	background-color: darkgray;
+}
+.find_btn {
+	width: 200px;
+	margin-top: 20px;
+	padding: 15px 0 15px;
+	font-size: 18px;
+	text-align: center;
+	cursor: pointer;
+	box-sizing: border-box;
+}

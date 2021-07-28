@@ -8,6 +8,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/header.css">
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/footer.css">
+	<link rel="stylesheet" href="/shoefly/resources/asset/css/member/address.css">
 	<title>주소록</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<c:if test="${empty loginMember}">
@@ -21,6 +22,7 @@
 			fn_selectAddressList();
 			fn_updateAddress();
 			fn_deleteAddress();
+			fn_insertAddr();
 			fn_return();
 		})
 			
@@ -38,8 +40,8 @@
 							.append( $('<td>').text(address.name) )
 							.append( $('<td>').text(address.addr1) )
 							.append( $('<td>').text(address.addr2) )
-							.append($('<td>').html('<input type="hidden" name="memberAddressNo" id="memberAddressNo" value="' + address.memberAddressNo + '"><input type="button" value="수정" id="update_address_btn" class="btn_primary">'))
-							.append( $('<td>').html('<input type="hidden" name="memberAddressNo" id="memberAddressNo" value="' + address.memberAddressNo + '"><input type="button" id="delete_address_btn" value="삭제" class="btn_primary">') )
+							.append($('<td>').html('<input type="hidden" name="memberAddressNo" id="memberAddressNo" value="' + address.memberAddressNo + '"><input type="button" value="수정" id="update_address_btn" class="btn_primary2">'))
+							.append( $('<td>').html('<input type="hidden" name="memberAddressNo" id="memberAddressNo" value="' + address.memberAddressNo + '"><input type="button" id="delete_address_btn" value="삭제" class="btn_primary2">') )
 							.appendTo('#address_list')
 						})
 					} else {
@@ -66,6 +68,12 @@
 				}
 			})
 		}
+		// 주소추가
+		function fn_insertAddr(){
+			$('#insert_btn').click(function(){
+				location.href = 'insertAddressPage.do';
+			})
+		}
 		// 돌아가기
 		function fn_return(){
 			$('#return_btn').click(function(){
@@ -73,99 +81,24 @@
 			})
 		}
 	</script>	
-	<style>
-		body {
-			margin: 0;
-			padding: 0;
-		}
-		section {
-			width: 700px;
-			margin: 0 auto;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			height: 100%;
-			line-height: 40px;
-		}
-		.container {
-			width: 500px;
-			margin: 0 auto;
-		}
-		.pageTitle {
-			text-align: center;
-			margin-left: 100px;
-			margin-bottom: 40px; 
-		}	
-		table {
-			width: 600px;
-			height: 200px;
-			border-collapse: collapse;
-		}
-		table thead {
-			text-align: center;
-		}
-		table tbody {
-			text-align: center;
-		}
-		tbody > tr > td{
-			border-top: 1px solid black;
-			border-bottom: 1px solid black;
-		}
-		.insert_btn {
-			color: black;
-			font-weight: 400;
-			display: inline-block;
-			padding: 3px 10px 3px 10px;
-			text-decoration: none;
-			border: 1px solid none;
-			background-color: lightgray;
-			border-radius: 5px;
-			box-shadow: 1px 1px 3px 1px #dadce0 inset;
-		}
-		.btn_primary {
-			border: none;
-			box-shadow: 1px 1px 3px 1px #dadce0 inset;
-			border-radius: 5px;
-			background-color: lightgray; 
-			cursor: pointer;
-		}
-		.btn_primary:hover {
-			background-color: darkgray;
-		}
-		.body input[type=button] {
-			width: 50px;
-			height: 30px;
-		}
-		tfoot {
-			text-align: center;
-		}
-		.returnPage_btn {
-			width: 85px;
-			margin-top: 20px;
-			padding: 15px 0 15px;
-			font-size: 15px;
-			text-align: center;
-			cursor: pointer;
-			box-sizing: border-box;
-		}
-	</style>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
 	<section>
 		<div class="container">
 		<input type="hidden" id="memberNo" value="${loginMember.memberNo}"/>
-		<div class="pageTitle">
-			<h1>주소록</h1>
+		<div class="logo">
+			<img onclick="location.href='/shoefly/'" alt="SHOEFLY" src="/shoefly/resources/asset/image/logo.png">
+			<span>주소록</span>
 		</div>	
 		<table>
-			<thead>
+			<thead class="headTitle">
 				<tr>
 					<td>배송지명</td>
 					<td>주소</td>
 					<td>상세주소</td>
 					<td colspan="2">
-						<a href='insertAddressPage.do' class="insert_btn btn_primary">주소추가</a>
+						
 					</td>
 				</tr>
 			</thead>
@@ -173,7 +106,7 @@
 			</tbody>
 			<tfoot>
 				<tr>
-					<td colspan="6"><input type="button" value="돌아가기" id="return_btn" class="returnPage_btn btn_primary"></td>
+					<td colspan="6"><input type="button" id="insert_btn" value="주소추가" class="insert_address_btn btn_primary"><input type="button" value="돌아가기" id="return_btn" class="returnPage_btn btn_primary"></td>
 				</tr>
 			</tfoot>
 		</table>
