@@ -50,11 +50,6 @@
 		*{
 			box-sizing: border-box;
 		}
-		.title{
-			width: 1080px;
-			margin: auto;
-			text-align: center;
-		}
 		.productList_container{
 			width: 1080px;
 			display: flex;
@@ -80,12 +75,15 @@
 			border-radius: 5px;
 			background-color: #D5C2EE;
 			color: white;
-			font-size: 18px;
+			font-size: 16px;
 			outline: none;
 			border:none;
+			font-weight: bolder;
+			text-shadow: 2px 2px 2px grey;
 		}
 		.search_btn:hover{
 			cursor: pointer;
+			text-shadow: 2px 2px 2px #FFBEBE;
 		}
 		.productName, .input_price{
 			width: 100%;
@@ -204,6 +202,27 @@
 			text-align: center;
 			display: block;
 			color: #FFBEBE;
+		}
+		section .paging {
+		margin: 10px auto;
+		margin-bottom: 60px;
+		text-align: center;
+		font-family: '푸른전남체R', sans-serif;
+		}
+		section .paging .now-page {
+			color: #FFBEBE;
+			font-weight: bold;	
+		}
+		section .paging a {
+			color: #909090;
+			text-decoration: none;
+		}
+		section .paging a[href] {
+			color: #000;
+			text-decoration: none;
+		}
+		section .paging a[href]:hover {
+			text-decoration: underline;
 		}
 	</style>
 </head>

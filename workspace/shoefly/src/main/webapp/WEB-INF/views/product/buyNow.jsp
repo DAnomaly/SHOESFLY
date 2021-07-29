@@ -105,7 +105,10 @@
 			height: 35px;
 			line-height: 35px;
 			text-align: center;
-			background-color: lightgrey;
+			color: white;
+			font-weight: border;
+			border-radius: 3px;
+			background-color: #D5C2EE;
 		}
 		#backBtn:hover{
 			cursor: pointer;
@@ -128,7 +131,7 @@
 		input[type="text"]{
 			width: 100%;
 			outline: none;
-			border: 1px solid lightgrey;
+			border: 1px solid #FFBEBE;
 			padding: 5px;
 		}
 		#addr1{
@@ -140,10 +143,40 @@
 			line-height: 28px;
 			outline: none;
 			border: none;
+			color: white;
+			background-color: #FFBEBE;
 		}
 		.addr_search_btn:hover{
 			cursor: pointer;
 		}
+		input[type="checkbox"] {
+			display: none;
+			color: #D5C2EE;
+		 }
+		input[type="checkbox"] + label {
+	 		cursor: pointer;
+	   	 }
+		 input[type="checkbox"] + label:before {
+			content:"";
+			display:inline-block;
+			width:16px;
+			height:16px;
+			line-height:16px;
+			border:1px solid #cbcbcb;
+			vertical-align:middle;
+			color: #D5C2EE;
+		 }
+		 input[type="checkbox"]:checked + label:before {
+			content:"\f00c";/*폰트어썸 유니코드*/
+		    font-family:"Font Awesome 5 free"; /*폰트어썸 아이콘 사용*/
+		    font-weight:900;/*폰트어썸 설정*/
+		    color:#fff;
+		    background-color:#D5C2EE;
+		    border-color:#D5C2EE;
+		    font-size:13px;
+		    text-align:center;
+		    color: white;
+		 }
 		.redText{
 			color: red;
 		}
@@ -152,10 +185,12 @@
 			float: right;
 			margin-top: 20px;
 			border: none;
-			width: 150px;
+			width: 200px;
 			padding: 10px;
-			background-color: lightgrey;
-			font-weight: bolder;
+			font-size: 16px;
+			color: white;
+			border-radius: 3px;
+			background-color: #FFBEBE;
 		}
 		.buyNow_btn:hover {
 			cursor: pointer;
@@ -232,14 +267,15 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<label for="check0"><input type="checkbox" class="check0"
-							id="check0"> 전체 동의</label><br> <label for="check1"><input
-							type="checkbox" class="check" id="check1"> 개인정보 이용약관에 동의 </label><label
-							for="check1" class="redText">(필수)</label><br> <label
-							for="check2"><input type="checkbox" class="check"
-							id="check2"> 위치정보 이용약관에 동의 </label><label for="check2"
-							class="redText">(필수)</label><br> <label for="check3"><input
-							type="checkbox" class="check" id="check3"> 마케팅 수신 동의(선택) </label>
+							<input type="checkbox" class="check0" id="check0"><label for="check0"> 전체 동의</label><br>
+							<input type="checkbox" class="check" id="check1">
+							<label for="check1"> 개인정보 이용약관에 동의</label>
+							<label for="check1" class="redText">(필수)</label><br>
+							<input type="checkbox" class="check" id="check2">
+							<label for="check2"> 위치정보 이용약관에 동의</label>
+							<label for="check2" class="redText">(필수)</label><br>
+							<input type="checkbox" class="check" id="check3">
+							<label for="check3"> 마케팅 수신 동의(선택)</label>
 						</td>
 					</tr>	
 				</tbody>
