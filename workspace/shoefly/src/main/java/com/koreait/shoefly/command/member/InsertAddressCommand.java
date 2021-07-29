@@ -31,7 +31,6 @@ public class InsertAddressCommand implements MemberCommand {
 		HttpSession session = request.getSession();
 		
 		Member loginMember = (Member)session.getAttribute("loginMember");
-		// System.out.println("InsertAddressCommand: " + loginMember);
 		
 		String name = request.getParameter("name");
 		String addr1 = request.getParameter("addr1");

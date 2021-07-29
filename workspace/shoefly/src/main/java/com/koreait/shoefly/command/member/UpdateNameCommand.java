@@ -38,7 +38,6 @@ public class UpdateNameCommand implements MemberCommand {
 		
 		MemberDAO memberDAO = sqlSession.getMapper(MemberDAO.class);
 		int count = memberDAO.updateName(member);
-		System.out.println(count);
 		if(count > 0) {
 			if(loginMember != null) {
 				loginMember.setName(name);			

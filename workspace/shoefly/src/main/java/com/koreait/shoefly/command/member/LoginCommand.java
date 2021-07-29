@@ -49,10 +49,10 @@ public class LoginCommand implements MemberCommand {
 		String referer = request.getParameter("referer");
 		if(referer == null || referer.isEmpty() || referer.indexOf("shoefly") == -1) {
 			referer = "/shoefly/";
-		} else if(referer.indexOf("member/login") != -1) {
+		} else if(referer.indexOf("/member/") != -1) {
 			referer = "/shoefly/";
 		}
-			
+
 		try {
 			PrintWriter out = response.getWriter();
 			

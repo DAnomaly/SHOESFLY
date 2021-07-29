@@ -267,7 +267,6 @@ public class MemberController {
 	
 	@RequestMapping("jusoPopup.do")
 	public String jusoPopup(HttpSession session) {
-		// System.out.println("Controller: " + session.getAttribute("loginMember"));
 		return "common/jusoPopup";
 	}
 	

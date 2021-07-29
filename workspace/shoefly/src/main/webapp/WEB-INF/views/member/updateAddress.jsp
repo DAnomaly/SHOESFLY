@@ -8,6 +8,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/header.css">
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/footer.css">
+	<link rel="stylesheet" href="/shoefly/resources/asset/css/member/updateAddress.css">
 	<title>주소 수정</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script>
@@ -47,107 +48,40 @@
 			})
 		}
 	</script>
-	<style>
-		body {
-			margin: 0;
-			padding: 0;
-		}
-		section {
-			width: 700px;
-			margin: 0 auto;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			height: 100%;
-			line-height: 30px;
-		}
-		.container {
-			width: 500px;
-			margin: 0 auto;
-		}
-		.pageTitle {
-			text-align: center;
-		}	
-		.update_addr {
-			width: 300px;
-			margin-left: 120px;
-			display: flex;
-		}
-		.addr_title {
-			margin: 19px 0 8px 5px;
-			font-size: 15px;
-			font-weight: 700;
-		}
-		.addr_info {
-			width: 350px;
-			margin-bottom: 5px;
-		}
-		.addr_info input[type=text] {
-			width: 250px;
-			padding: 10px;			
-			border: none;
-			border-bottom: 1px solid gray;
-			outline: none;
-		}
-		.addr_info input[type=button] {
-			width: 60px;
-			height: 30px;
-		}
-		.btn_primary {
-			border: none;
-			box-shadow: 1px 1px 3px 1px #dadce0 inset;
-			border-radius: 5px;
-			background-color: lightgray; 
-			cursor: pointer;
-		}
-		.btn_primary:hover {
-			background-color: darkgray;
-		} 
-		.update_btn {
-			width: 200px;
-			margin-top: 20px;
-			margin-left: 25px;
-			padding: 15px 0 15px;
-			font-size: 18px;
-			text-align: center;
-			cursor: pointer;
-			box-sizing: border-box;
-		}
-	</style>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
 	<section>
 		<div class="container">
-		<div class="pageTitle">
-			<h1>주소지 변경</h1>
-			<h1>${loginMember.memberNo}</h1>
-		</div>	
-		<div class="update_addr">
-		<form name="form" id="form" method="post">		
-			<div class="addr_title">
-		     	<label for="name">배송지</label>			
+			<div class="pageTitle">
+				<span>주소지 변경</span>
+			</div>	
+			
+			<div class="update_addr">
+				<form name="form" id="form" method="post">		
+					<div class="addr_title">
+				     	<label for="name">배송지</label>			
+					</div>
+					<input type="hidden" id="memberAddressNo" name="memberAddressNo" value="${memberAddress.memberAddressNo}">
+					<div class="addr_info">
+						<input type="text" id="name" name="name" value="${memberAddress.name}" placeholder="배송지명">
+					</div>
+					<div class="addr_title">
+				     	<label for="addr1">주소</label>	
+					</div>
+					<div class="addr_info">
+						<input type="text" id="addr1"  name="addr1" value="${memberAddress.addr1}" readonly/>
+						<input type="button" id="addr_search_btn" value="주소찾기" class="btn_primary">			
+					</div>
+					<div class="addr_title">
+				     	<label for="addr2">상세주소</label>		
+					</div>
+					<div class="addr_info">
+						<input type="text" id="addr2" name="addr2" value="${memberAddress.addr2}" readonly/>				
+					</div>
+					<input type="button" id="update_address_btn" value="수정" class="update_btn btn_primary">
+				</form>
 			</div>
-			<input type="hidden" id="memberAddressNo" name="memberAddressNo" value="${memberAddress.memberAddressNo}">
-			<div class="addr_info">
-				<input type="text" id="name" name="name" value="${memberAddress.name}" placeholder="배송지명">
-			</div>
-			<div class="addr_title">
-		     	<label for="addr1">주소</label>	
-			</div>
-			<div class="addr_info">
-				<input type="text" id="addr1"  name="addr1" value="${memberAddress.addr1}" readonly/>
-				<input type="button" id="addr_search_btn" value="주소찾기" class="btn_primary"><br><br>				
-			</div>
-			<div class="addr_title">
-		     	<label for="addr2">상세주소</label>		
-			</div>
-			<div class="addr_info">
-				<input type="text" id="addr2" name="addr2" value="${memberAddress.addr2}" readonly/>				
-			</div>
-			<input type="button" id="update_address_btn" value="수정" class="update_btn btn_primary">
-		</form>
-		</div>
 		</div>
 	</section>
 	<jsp:include page="../common/footer.jsp"/>
