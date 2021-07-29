@@ -211,6 +211,11 @@
 		section .paging a[href]:hover {
 			text-decoration: underline;
 		}
+		.empty_text{
+			text-align: center;
+			margin-top: 200px;
+			color: #FFBEBE;
+		}
 	</style>
 </head>
 <body>
