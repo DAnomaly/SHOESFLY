@@ -72,6 +72,8 @@
 		.search_btn{
 			width: 100%;
 			height: 40px;
+			border: 1px solid #D5C2EE;			
+			background-color: #D5C2EE;
 			border-radius: 5px;
 			background-color: #D5C2EE;
 			color: white;
@@ -90,10 +92,8 @@
 		 	height: 40px;
 		 	font-size: 14px;
 		 	border-radius: 5px;
-			outline: none;
-   			border: 1px solid #D5C2EE;
-   			padding: 10px;
-		}
+		 	border: 1px solid #979797;
+		 }
 		 .input_price {
 		 	width: 107px;
 		 }
@@ -133,12 +133,7 @@
 		 	line-height: auto;
 		 	
 		 }
-		.empty_text{
-			width: 100%;
-			margin-top: 200px;
-			text-align: center;
-			color: #FFBEBE;
-		}
+		
 		.productList_box {
 			width: 875px;
 		}
@@ -316,7 +311,7 @@
 						<c:if test="${not empty list}">
 							<div class="product_item">
 								<a class="item_inner" href="viewProductPage.do?productNo=${product.productNo}">
-									<div class="product" style="background-color: #FFBEBE;">
+									<div class="product" style="background-color: #FFD3B0;">
 										<img class="product_img" alt="${product.image}" src="/shoefly/resources/archive/product/${product.image}">
 									</div>
 									<div class="info_box">

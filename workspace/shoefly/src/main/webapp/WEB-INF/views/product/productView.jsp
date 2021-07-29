@@ -197,7 +197,6 @@
 		}
 		.productName{
 			font-size: 25px;
-			color: 
 			font-weight: bolder;
 		}
 		.productName, p, .fastDeal{

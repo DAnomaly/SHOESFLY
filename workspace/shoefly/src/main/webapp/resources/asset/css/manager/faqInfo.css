@@ -1,52 +1,87 @@
 @charset "UTF-8";
-
+/* form */
 form {
-	width: 680px;
-	margin: 0 auto;
-	margin-top: 5px;
-}
-form h3 {
-	padding: 20px 10px;
-	border-bottom: 1px solid #ccc;
-}
-form .title input {
-	font-size: 16px;
-	margin-left: 10px;
-	padding: 8px;
-	border: none;
-	border-bottom: 1px solid #666;
-	width: 460px;
-}
-form .content textarea {
-	margin: 10px 0;
-	padding: 8px;
-	width: 680px;
-	height: 300px;
-	resize: vertical;
-	border: 1px solid #666;
-	outline: none;
-	box-sizing: border-box;
-}
-form .preview {
-	margin: 10px 0;
-	border-bottom: 1px solid #666; 
-}
-form .button_area {
-	float: right;
-	margin: 10px 0;
-}
-form .button_area input {
-	background-color: #2E64FE;
-	width: 75px;
-	height: 25px;
-	border: none;
-	border-radius: 3px;
-	color: #fff;
-}
-form .button_area input[value="삭제하기"] {
-	background-color: #B40404;
-	color: #fff;
-}
-form #preview {
+	background-color: #fff;
 	margin: 10px;
 }
+form input, form button, form textarea {
+	border: none;
+	outline: none;
+	background: none;
+	color: #212345;
+}
+
+/* form h3 */
+form h3 {
+	margin: 0;
+	padding: 10px 20px;
+	border-bottom: 2px solid #22272e;
+	color: #FFBEBE;
+}
+
+/* .title #title */
+form .title {
+	margin: 0;
+	padding: 10px 20px;
+	border-bottom: 2px solid #22272e;
+}
+form #question {
+	width: 620px;
+}
+/* .content #content */
+form .content {
+	margin: 0;
+	padding: 10px 20px;
+	border-bottom: 2px solid #22272e;
+}
+form #answer {
+	width: 630px;
+	min-height: 380px;
+	padding: 10px;
+	border: 1px solid #22272e80;
+	resize: vertical; 
+}
+
+/* .preview #preview */
+form .preview {
+	margin: 0;
+	padding: 10px 20px;
+	border-bottom: 2px solid #22272e;
+}
+form #preview {
+	text-align: left;
+    width: 565px;
+    margin-left: 20px;
+    margin-top: 10px;
+    padding: 5px;
+    border: 2px solid #D5C2EE80;
+    background-color: #ffffff;
+    font-size: 14px;
+    line-height: 22px;
+    font-family: '푸른전남체R', sans-serif;
+	color: #212345;
+}
+form #preview * {
+	color: #212345;
+}
+
+/* .button_area */
+.button_area {
+	background-color: #22272e;
+	padding: 5px 10px;
+}
+.button_area input {
+	color: #539bf5;
+}
+.button_area input:hover {
+	color: #539bf590;
+}
+.button_area input[value="삭제하기"] {
+	color: #ff0000;
+}
+.button_area input[value="삭제하기"]:hover {
+	color: #ff000090;
+}
+
+
+

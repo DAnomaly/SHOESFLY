@@ -36,7 +36,7 @@ function updateList() {
 					$('<td>').text(product.price).appendTo(tr);
 					$('<td>').append($('<span>').attr('onclick','show_img(\'' + product.image + '\');').html('<i class="fas fa-image"></i>')).appendTo(tr);
 					if(product.state == 0)
-						$('<td style="color:blue;">').text('거래중').appendTo(tr);
+						$('<td style="color:#539bf5;">').text('거래중').appendTo(tr);
 					else
 						$('<td style="color:red;">').text('정지').appendTo(tr);
 				});
