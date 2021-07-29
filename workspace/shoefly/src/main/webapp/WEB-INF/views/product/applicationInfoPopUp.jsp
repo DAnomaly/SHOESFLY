@@ -88,7 +88,7 @@
 		<div class="container">
 			<div class="title">빠른구매를 위한 신청서 작성 TIP</div>
 			<div class="example">
-				<p>신청서 작성을 통해 즉시구매, 즉시 판매 가격에 나타나게 됩니다. 아래 예시를 찹고해주세요.</p>
+				<p>신청서 작성을 통해 즉시구매, 즉시 판매 가격에 나타나게 됩니다. 아래 예시를 참고해주세요.</p>
 				<ul class="mainUl">
 					<li><b>EX) 구매신청하기</b>
 						<ul class="subUl">

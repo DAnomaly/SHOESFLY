@@ -6,8 +6,6 @@ import java.util.Map;
 
 import com.koreait.shoefly.dto.MemberAddress;
 import com.koreait.shoefly.dto.Product;
-import com.koreait.shoefly.dto.ProductDetail;
-import com.koreait.shoefly.dto.ProductSell;
 
 public interface ProductDAO {
 	public List<Product> selectAllList(Map<String, Object> listMap);

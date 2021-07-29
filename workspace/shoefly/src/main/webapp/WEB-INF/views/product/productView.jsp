@@ -71,7 +71,7 @@
 	
 	//구매신청 판매신청 팝업
 	function applicationInfoPopUp(){
-		$('#faseDealInfo').click(function(){
+		$('.faseDealInfo').click(function(){
 			window.open('applicationInfoPopUp.do', '빠른거래하기 소개', 'width=800, height=520, left=500, top=200');
 		});	
 	}
@@ -234,11 +234,42 @@
 		.fastBuySell{
 			margin: 10px 0;
 		}
-		#faseDealInfo{
-			font-size: 18px;
+		.fastDealTitle{
+			display: inline-block;
+			width: 100px;
+			margin-top: 20px;
+			text-align: center;
+		}
+		@keyframes color_ani {
+            25% { color: rgb(241, 171, 185); font-size: 14px;}
+            50% { color: rgb(235, 146, 169); font-size: 16px;}
+            75% { color: rgb(226, 112, 146); font-size: 18px;}
+            100% { color: rgb(223, 93, 134); font-size: 16px;}
+        }
+        @keyframes color_ani1 {
+            25% { font-size: 14px;}
+            50% { font-size: 16px;}
+            75% { font-size: 18px;}
+            100% { font-size: 16px;}
+        }
+		.faseDealInfo{
+			width: 100%;
+			height: 20px;
+			font-size: 14px;
 			cursor: pointer;
 			color: #FFBEBE;
-			
+			animation-name: color_ani;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+		}
+		.faseDealInfo1{
+			width: 100%;
+			height: 20px;
+			font-size: 14px;
+			color: white;
+			animation-name: color_ani1;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
 		}
 		#buyApplication{
 			border: 1px solid #D5C2EE;
@@ -304,8 +335,9 @@
 							</button><br><br>
 						</p>
 						<div id="fastDeal" class="fastDeal" style="display: none">
-							빠른거래하기
-							&nbsp;<a id="faseDealInfo"><i class="far fa-question-circle"></i></a><br>
+							<a class="faseDealInfo1"><i class="far fa-question-circle"></i></a>
+							<div class="fastDealTitle">빠른거래하기</div>
+							<a class="faseDealInfo"><i class="far fa-question-circle"></i></a>
 							<div class="fastBuySell">
 								<button id="buyApplication" class="btn">구매신청하기</button>
 								<button id="sellApplication" class="btn">판매신청하기</button>
