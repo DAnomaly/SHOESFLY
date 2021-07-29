@@ -25,9 +25,9 @@
 	<c:forEach items="${list}" var="address">
 	<div id="addr_${address.memberAddressNo}" class="addr_div" style="display: none;">
 		<span>주소</span>
-		<input type="text" class="no_blank" id="addr1" name="addr1" value="${address.addr1}" readonly/><br>
+		<input type="text" value="${address.addr1}" readonly/><br>
 		<span>상세주소</span>
-		<input type="text" id="addr2" name="addr2" value="${address.addr2}" readonly/><br>
+		<input type="text" value="${address.addr2}" readonly/><br>
 	</div>
 	</c:forEach>
 	<div class="bottom_div">
