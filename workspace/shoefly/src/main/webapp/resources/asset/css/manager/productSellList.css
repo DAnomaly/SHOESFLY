@@ -1,98 +1,134 @@
 @charset "UTF-8";
 
-/* SECTION */
+/* section */
 section {
-	margin-top: 10px;
-	margin-left: 10px;
-	margin-bottom: 60px;
-	float: left;
+	margin-top: 30px;
 }
-button {
-	padding: 3px 5px;
-	margin: 0 2px;
+
+section input, select, button {
+	background: none;
 	border: none;
-	border-radius: 3px;
-	background: #001572;
-	color: #ffffff;
+	outline: none;
 }
 
-
-/* H2 */
+/* title : h2 */
 section h2 {
-	padding: 10px;
-	padding-left: 20px;
-	border-bottom: 1px solid #444;
-	margin: 40px 0;
+	border-bottom: 1px solid #adbac790;
+	padding: 10px 0;
+	padding-left: 30px;
 }
 section h2 a {
-	color: #000;
+	color: #539bf5;
+	font-size: 22px;
 	text-decoration: none;
 }
 
-/* search_container */
+/* h3 */
+section h3 {
+	margin: 20px 10px;
+	padding: 10px;
+	border-bottom: 1px solid #adbac790;
+	color: #539bf5bc;
+}
+
+
+/* search */
 section .search_container {
 	display: inline-block;
-	margin-left: 10px;
+	border-bottom: 1px solid #adbac790;
 	padding: 5px;
-	border: 1px solid #666;
-	border-radius: 3px;
+	box-sizing: border-box;
+	height: 30px;
 }
-section .search_container select, section .search_container div{
+section .search_container input[type="date"] {
+	font-size: 13px;
+	width: 128px;
+}
+
+/* div.write */
+section div.write {
 	display: inline-block;
-}  
-section .search_container select, section .search_container input, section .search_container input {
-	border: none;
+	border-bottom: 1px solid #adbac790;
+	margin-left: 30px;
+	padding: 5px;
+	box-sizing: border-box;
+	height: 30px;
+}
+section div.write:hover {
+	border-bottom: 3px solid #adbac790;
+}
+section div.write:hover input {
+	cursor: pointer;
+	color: #adbac790; 
 }
 
-
-/* MEMBER_TABLE */
-section .list_container {
-	margin-top: 20px;
-	padding: 10px;
-	border: 1px solid #444;
-}
-section .list_container table {
+/* table */
+section table {
+	margin: 10px;
+	border: 1px solid #adbac760;
+	border-radius: 5px;
 	border-collapse: collapse;
-	box-sizing: border-box;
-}
-section .list_container table th, section .list_container table td {
-	box-sizing: border-box;
-	padding: 10px;
 	text-align: center;
 }
-section .list_container table thead tr th {
-	background-color: rgb(66,146,195);
-	color: white;
+section table a {
+	text-decoration: none;
 }
-section .list_container table thead tr th:nth-of-type(1) { width: 80px; }
-section .list_container table thead tr th:nth-of-type(2) { width: 100px; }
-section .list_container table thead tr th:nth-of-type(3) { width: 380px; }
-section .list_container table thead tr th:nth-of-type(4) { width: 80px; }
-section .list_container table thead tr th:nth-of-type(5) { width: 80px; }
-section .list_container table thead tr th:nth-of-type(6) { width: 80px; }
-section .list_container table thead tr th:nth-of-type(7) { width: 168px; }
-section .list_container table thead tr th:nth-of-type(8) { width: 168px; }
-section .list_container table thead tr th:nth-of-type(9) { width: 120px; }
-section .list_container table tbody tr td {
-	border-bottom: 1px solid rgb(66,146,195);
+section table a:hover {
+	cursor: pointer;
+	color: #adbac790;
+}
+section table tr {
+	border-bottom: 1px solid #adbac760;
+}
+section table th, section table td {
+	box-sizing: border-box;
+	padding: 10px;
+	margin: 0;
+}
+section table th {
+	font-weight: normal;
+	color: #d6dce2;
+}
+section table td {
+	box-sizing: border-box;;
+}
+section table td:nth-of-type(1) { width: 80px; }
+section table td:nth-of-type(2) { width: 120px; }
+section table td:nth-of-type(3) { width: 450px; }
+section table td:nth-of-type(4) { width: 80px; }
+section table td:nth-of-type(5) { width: 90px; }
+section table td:nth-of-type(6) { width: 60px; }
+section table td:nth-of-type(7) { width: 155px; }
+section table td:nth-of-type(8) { width: 155px; }
+section table td:nth-of-type(9) { width: 110px; }
+section table tbody tr:hover td {
+	background-color: #323943;
+}
+section table input[type="button"], section table button {
+	cursor: pointer;
+	font-size: 13px;
+	font-weight: bold;
+}
+section table input[type="button"]:hover, section table button:hover {
+	color: #539bf5bc;
 }
 
 /* tfoot */
 section tfoot {
-	padding: 10px;
 	text-align: center;
 }
-section tfoot a, section tfoot span {
+section tfoot span i {
+	color: #adbac750;
+}
+section tfoot span {
 	display: inline-block;
+	color: #adbac750;
 	margin: 0 30px;
 }
 section tfoot a {
-	color: #000;
-	text-decoration: none;
+	display: inline-block;
+	margin: 0 30px;
 }
-section tfoot a:hover {
-	text-decoration: underline;
-}
-section tfoot span {
-	color: #999;
+section tfoot a:hover, section tfoot a:hover i {
+	color: #8296aa;
 }
