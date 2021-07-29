@@ -92,7 +92,9 @@
 		 	height: 40px;
 		 	font-size: 14px;
 		 	border-radius: 5px;
-		 	border: 1px solid #979797;
+		 	border: 1px solid #D5C2EE;
+		 	padding: 10px;
+		 	outline: none;
 		 }
 		 .input_price {
 		 	width: 107px;
@@ -133,7 +135,6 @@
 		 	line-height: auto;
 		 	
 		 }
-		
 		.productList_box {
 			width: 875px;
 		}
@@ -190,17 +191,8 @@
 			font-size: 12px;
    			color: #000;
 		}
-		.paging{
-			width: 100%;
-			margin: auto;
-			margin-top: 20px;
-			text-align: center;
-			display: block;
-			color: #FFBEBE;
-		}
 		section .paging {
-		margin: 10px auto;
-		margin-bottom: 60px;
+		margin: 30px auto 60px;
 		text-align: center;
 		font-family: '푸른전남체R', sans-serif;
 		}
