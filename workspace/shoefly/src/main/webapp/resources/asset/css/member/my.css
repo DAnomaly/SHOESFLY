@@ -49,9 +49,12 @@ section input[type="text"], section input[type="password"] {
 	width: 180px;
 	padding: 10px 15px;
 	box-sizing: border-box;
-	border: 1px solid #2964E0;
+	border: 1px solid #909090;
 	border-radius: 3px;
 	outline: none;
+}
+section input[type="text"]:focus, section input[type="password"]:focus {
+	border: 1px solid #2964E0;
 }
 .my_info input[type=button] {
 	width: 95px;

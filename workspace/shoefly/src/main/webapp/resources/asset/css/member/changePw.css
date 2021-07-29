@@ -19,62 +19,59 @@ section .pageTitle span {
 	font-weight: bold;
 	color: #D5C2EE;
 }
+.pageTitle {
+	text-align: center;
+}
 .container {
 	width: 700px;
 	margin: 0 auto;
 }
-.pageTitle {
-	text-align: center;
-}
-.find {
+.change {
 	width: 300px;
 	margin-top: 50px;
-	margin-left: 120px;
+	margin-left: 70px;
 	display: flex;
 }
-.find_title {
+.update_title {
 	margin: 19px 0 8px 5px;
 }
-section .findId_info {
-	margin: 10px auto;
-}
-section .find_title {
+section .update_title {
 	margin: 3px 5px;
 }
 section label {
 	color: #9d73d7;
 	font-size: 14px;
 }
-.findId_info input[type=text] {
-	width: 150px;
+section .updatePw_info {
+	margin: 10px auto;
+}
+section input[type=password] {
+	width: 360px;
 	padding: 10px 15px;
 	box-sizing: border-box;
 	border: 1px solid #909090;
 	border-radius: 3px;
 	outline: none;
 } 
-section input[type="text"]:focus {
+section input[type="password"]:focus {
 	border: 1px solid #2964E0;
 }
-section input.redBorder:focus {
+section input.redBorder {
 	border: 1px solid red;
 }
-.findId_info input[type=button] {
-	width: 100px;
-	height: 30px;
+.btn_primary {
+	border: none;
+	box-shadow: 1px 1px 3px 1px #dadce0 inset;
+	cursor: pointer;
 }
-.result_box {
-	display: block;
-    padding: 5px;
-    font-size: 12px;
+.btn_primary:hover {
+	background-color: darkgray;
 }
-section #verify_btn, section #verify_code_btn {
-	width: 95px;
-	height: 40px;
-	margin-left: 3px;
-	box-sizing: border-box;
+.btn-box {
+	text-align: center;
 }
 section input[type="button"] {
+	width:175px;
 	background-color: #D5C2EE;
 	color: white;
 	border: 0;
@@ -84,11 +81,20 @@ section input[type="button"] {
 section input[type="button"]:hover {
 	background-color: #FFBEBE;
 }
-.find_btn {
-	width: 252.812px;
+.changePw_btn {
+	width: 85px;
 	margin-top: 20px;
 	padding: 15px 0 15px;
-	font-size: 18px;
+	font-size: 15px;
+	text-align: center;
+	cursor: pointer;
+	box-sizing: border-box;
+}
+.returnPage_btn {
+	width: 85px;
+	margin-top: 20px;
+	padding: 15px 0 15px;
+	font-size: 15px;
 	text-align: center;
 	cursor: pointer;
 	box-sizing: border-box;

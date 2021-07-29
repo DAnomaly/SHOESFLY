@@ -19,12 +19,12 @@ section .pageTitle span {
 	font-weight: bold;
 	color: #D5C2EE;
 }
+.pageTitle {
+	text-align: center;
+}
 .container {
 	width: 700px;
 	margin: 0 auto;
-}
-.pageTitle {
-	text-align: center;
 }
 .find {
 	width: 300px;
@@ -34,9 +34,8 @@ section .pageTitle span {
 }
 .find_title {
 	margin: 19px 0 8px 5px;
-}
-section .findId_info {
-	margin: 10px auto;
+	font-size: 15px;
+	font-weight: 700;
 }
 section .find_title {
 	margin: 3px 5px;
@@ -45,7 +44,10 @@ section label {
 	color: #9d73d7;
 	font-size: 14px;
 }
-.findId_info input[type=text] {
+section .findPw_info {
+	margin: 10px auto;
+}
+.findPw_info input[type=text] {
 	width: 150px;
 	padding: 10px 15px;
 	box-sizing: border-box;
@@ -59,7 +61,7 @@ section input[type="text"]:focus {
 section input.redBorder:focus {
 	border: 1px solid red;
 }
-.findId_info input[type=button] {
+.findPw_info input[type=button] {
 	width: 100px;
 	height: 30px;
 }
@@ -68,7 +70,7 @@ section input.redBorder:focus {
     padding: 5px;
     font-size: 12px;
 }
-section #verify_btn, section #verify_code_btn {
+section #verify_btn, section #verify_code_btn, section #idCheck_btn {
 	width: 95px;
 	height: 40px;
 	margin-left: 3px;
@@ -84,7 +86,7 @@ section input[type="button"] {
 section input[type="button"]:hover {
 	background-color: #FFBEBE;
 }
-.find_btn {
+.findPw_btn {
 	width: 252.812px;
 	margin-top: 20px;
 	padding: 15px 0 15px;
@@ -93,3 +95,26 @@ section input[type="button"]:hover {
 	cursor: pointer;
 	box-sizing: border-box;
 }
+/* .btn_verify {
+	width: 100px;
+	height: 30px;
+}
+.btn_primary {
+	border: none;
+	box-shadow: 1px 1px 3px 1px #dadce0 inset;
+	border-radius: 5px;
+	background-color: lightgray; 
+	cursor: pointer;
+}
+.btn_primary:hover {
+	background-color: darkgray;
+}
+.findPw_btn {
+	width: 200px;
+	margin-top: 20px;
+	padding: 15px 0 15px;
+	font-size: 18px;
+	text-align: center;
+	cursor: pointer;
+	box-sizing: border-box;
+} */

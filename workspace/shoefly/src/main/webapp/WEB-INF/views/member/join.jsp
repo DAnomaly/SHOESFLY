@@ -58,7 +58,6 @@
 		function fn_pwCheck(){
 			$('#pw').keyup(function(){
 				 var regPW = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*]{5,15}$/;
-				/* var regPW = /^[a-z0-9]{5,15}$/; */
 			 	if(regPW.test($('#pw').val())){
 					$('#pw').removeClass('redBorder');
 					$('#pw_result').text('사용가능한 비밀번호입니다.').css('color', 'blue');	
@@ -213,7 +212,7 @@
 	     		<form id="f" method="post">		     			
 	     			<div class="join_info">
 	     				<div class="join_title">	
-		     			<label for="memberId">아이디(ID)</label>
+		     				<label for="memberId">아이디(ID)</label>
 		     			</div>
 		     			<div class="info_box">
 			     			<input type="text" id="memberId" name="memberId"><br>
@@ -260,7 +259,7 @@
 			     		</div>
 			     		<div class="info_box withBtn">
 		     				<input type="text" id="email" name="email">
-		     				<input type="button" value="인증번호전송" id="verify_code_btn" class="btn_verify btn_primary"><br>
+		     				<input type="button" value="인증코드전송" id="verify_code_btn" class="btn_verify btn_primary"><br>
 		     			</div>
 						<div class="result_box">
 			     			<span id="email_result"></span>
@@ -268,7 +267,7 @@
 	     			</div>	     			
 	     			<div class="join_info">
 	     				<div class="join_title">	
-		     			<label for="verify_code">인증번호(CODE)</label>
+		     				<label for="verify_code">인증코드(CODE)</label>
 		     			</div>
 		     			<div class="info_box withBtn">
 		     				<input type="text" id="verify_code" name="verify_code">

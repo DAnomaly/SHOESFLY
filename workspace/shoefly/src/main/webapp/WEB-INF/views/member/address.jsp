@@ -88,7 +88,6 @@
 		<div class="container">
 		<input type="hidden" id="memberNo" value="${loginMember.memberNo}"/>
 		<div class="logo">
-			<img onclick="location.href='/shoefly/'" alt="SHOEFLY" src="/shoefly/resources/asset/image/logo.png">
 			<span>주소록</span>
 		</div>	
 		<table>

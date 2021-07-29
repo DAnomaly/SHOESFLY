@@ -23,20 +23,23 @@
 			$('#verify_code_btn').click(function(){
 				var regEMAIL = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;
 				if($('#email').val() == '') {
+					$('#email').addClass('redBorder');
 					$('#email_result').text('이메일을 입력하세요.').css('color', 'red');
-					//alert('이메일을 입력하세요.');
 					$('#email').focus();
 					emailPass = false;
 				} 
 				if(!regEMAIL.test($('#email').val())) {
+					$('#email').addClass('redBorder');
 					$('#email_result').text('이메일을 형식에 맞춰 입력해주세요.').css('color', 'red');
-					//alert('이메일을 형식에 맞춰 입력해주세요.');
 					$('#email').focus();
 					emailPass =  false;
 				} else {
+					$('#email').removeClass('redBorder');
 					emailPass = true;
 				}
-				fn_email_orCheck();
+				if(emailPass == true){
+					fn_email_orCheck();
+				}
 			})			
 		}
 		
@@ -120,7 +123,7 @@
 			<div class="find">
 				<form id="f" method="post">
 					<div class="find_title">
-				     	<label for="email">이메일</label><br>			
+				     	<label for="email">이메일(E-MAIL)</label><br>			
 					</div>
 					<div class="findId_info">
 				     	<input type="text" id="email" name="email">
@@ -129,17 +132,13 @@
 			     	<div class="result_box">
 				    	<span id="email_result"></span>
 				    </div>	
-					<div class="btn-box">
-				     </div>	
 				     <div class="find_title">
-				    	<label for="memberId">인증코드</label><br>		     
+				    	<label for="memberId">인증코드(CODE)</label><br>		     
 				     </div>
 			     	<div class="findId_info">
 				     	<input type="text" id="verify_code" name="verify_code">
-				     	<input type="button" value="인증" id="verify_btn" class="btn_verify btn_primary"><br>
-			     	</div>
-					<div class="btn-box">
-				    </div>	
+				     	<input type="button" value="확인" id="verify_btn" class="btn_verify btn_primary"><br>
+			     	</div>	
 			     	<input type="button" value="아이디찾기" id="findId_btn" class="find_btn btn_primary">
 				</form>	
 			</div>

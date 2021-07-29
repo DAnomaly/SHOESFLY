@@ -5,7 +5,7 @@ body {
 	padding: 0;
 }
 section {
-	width: 700px;
+	width: 900px;
 	margin: 0 auto;
 	display: flex;
 	justify-content: center;
@@ -20,16 +20,13 @@ section .logo {
 	margin-bottom: 30px;
 	text-align: center;
 }
-section .logo img {
-	width: 180px;
-}
 section .logo span {
 	display: inline;
 	font-size: 20px;
 	font-weight: bold;
 }
 .container {
-	width: 500px;
+	width: 900px;
 	margin: 0 auto;
 }
 .pageTitle {
@@ -40,6 +37,7 @@ section .logo span {
 table {
 	width: 600px;
 	height: 200px;
+	margin: 0 auto;
 	border-collapse: collapse;
 }
 table thead {
@@ -80,7 +78,7 @@ tbody > tr > td{
 	cursor: pointer;
 	box-sizing: border-box;
 }
-.btn_primary2:hover {
+.btn_primary:hover {
 	background-color: #FFBEBE;
 }
 .btn_primary2 {
@@ -91,7 +89,7 @@ tbody > tr > td{
 	background-color: #D5C2EE;
 	cursor: pointer;
 }
-.btn_primary:hover {
+.btn_primary2:hover {
 	background-color: #FFBEBE;
 }
 .body input[type=button] {
