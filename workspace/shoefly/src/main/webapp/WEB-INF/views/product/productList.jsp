@@ -124,8 +124,8 @@
 		    font-family:"Font Awesome 5 free"; /*폰트어썸 아이콘 사용*/
 		    font-weight:900;/*폰트어썸 설정*/
 		    color:#fff;
-		    background-color:#000;
-		    border-color:#000;
+		    background-color:#D5C2EE;
+		    border-color:#D5C2EE;
 		    font-size:13px;
 		    text-align:center;
 		 }
@@ -189,7 +189,13 @@
 			text-align: center;
 			line-height: px;
 		}
-		
+		.paging > a {
+			text-decoration: none;
+			color: black;
+		}
+		.paging > a:hover {
+			text-decoration: underline;
+		}
 		
 		
 		
