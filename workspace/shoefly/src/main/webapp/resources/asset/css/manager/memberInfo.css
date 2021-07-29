@@ -1,55 +1,32 @@
 @charset "UTF-8";
-
-/* h3 */
 h3 {
-	margin: 10px 30px;
-	margin-top: 35px;
-	border-bottom: 2px solid #00006f;
-}
-h3 span{
-	display: inline-block;
-	color: #00006f;
-	border-bottom: 3px solid #00006f;
-}
-
-/* table */
-table {
 	margin: 0 auto;
+	padding: 10px 10px;
+	border-bottom: 1px solid #adbac790; 
+	color: #539bf5;
+}
+
+table {
+	border: 1px solid #adbac790;
 	border-collapse: collapse;
+	margin: 10px auto;
+}
+td, th {
+	padding: 8px 10px;
+	border-bottom: 1px solid #adbac790;
 }
 
-/* table tbody */
-table tbody {
-	border-bottom: 3px solid #00006f;
+tfoot input {
+	background: none;
+	border: none;
+	color: #539bf5;
 }
-table tbody td, table tbody th {
-	padding: 10px;
-	margin: 5px;
-	border-bottom: 1px solid #0938df;
+tfoot input:hover {
+	color: #539bf560;
 }
-table tbody td {
-	width: 200px;
-	font-size: 14px;
+tfoot input[value="이용/탈퇴 변경"] {
+	color: #ff0000;
 }
-table tbody th {
-	width: 100px;
-}
-
-/* table tfoot */
-table tfoot td {
-	text-align: right;
-	padding: 10px;
-}
-table tfoot td input {
-	border: 0;
-	border-radius: 3px;
-	padding: 5px 8px;
-	color: #ffffff;
-	background-color: #ca0000;
-}
-table tfoot td input[value="주소록 조회"] {
-	background-color: rgb(66,146,195);
-}
-table tfoot td input[value="닫기"] {
-	background-color: #090909;
+tfoot input[value="이용/탈퇴 변경"]:hover {
+	color: #ff000060;
 }
