@@ -8,6 +8,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/header.css">
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/footer.css">
+	<link rel="stylesheet" href="/shoefly/resources/asset/css/review/selectReview.css">
 	<title>리뷰 보기</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script>
@@ -60,19 +61,10 @@
 							location.reload();
 						}
 					}); 
-					fn_scroll();
 				}
 			});
 		} 
 
-		
-		// 스크롤 이벤트
-		function fn_scroll() {
-			$('html, body').animate({scrollTop: $('.paging').offset().top},400);
-		}
-		
-		
-		
 		
 		// 댓글 리스트, 페이징
 		function fn_selectCommentList() {
@@ -107,7 +99,7 @@
 		    	var div1 = $('<div class="comment">').html( '<span class="comment_id">' + comment.memberId + '</span><br><input class="comment_content" type="text" value="' + comment.context + '" readonly><input type="hidden" name="reviewCommentNo" value="' + comment.reviewCommentNo + '"> <input type="button" id="updateComment_btn" value="수정"> <input type="button" id="deleteComment_btn" value="삭제">' )
 		    	.appendTo(form);
 		    	
-		    	var div2 = $('<div id="update_comment" style="display:none">').html( '<span class="comment_id">' + comment.memberId + '</span><br> <input type="hidden" name="reviewCommentNo" value="' + comment.reviewCommentNo + '"> <input class="hidden_content" type="text" name="context" value="' + comment.context + '"> <input type="button" id="real_updateComment_btn" value="수정"> <input type="button" id="cancel_btn" value="취소">' )
+		    	var div2 = $('<div id="update_comment" style="display:none">').html( '<span class="comment_id">' + comment.memberId + '</span><br> <input type="hidden" name="reviewCommentNo" value="' + comment.reviewCommentNo + '"> <input class="hidden_content" type="text" name="context" value="' + comment.context + '"> <input type="button" id="real_updateComment_btn" value="확인"> <input type="button" id="cancel_btn" value="취소">' )
 		    	.appendTo(form);
 		    
 			}else {
@@ -201,95 +193,6 @@
 		
 		
 	</script>
-	
-	<style>
-		*{
-			box-sizing: border-box;
-		}
-		.review_container {
-			width: 1080px;
-			margin: 0 auto;
-		}
-		.title_box {
-			width: 100%;
-		}
-		.title_text {
-			font-weight: 400;
-    		font-size: 26px;
-		}
-		.memberId {
-			font-size: 16px;
-			font-weight: 700;
-		}
-		.date, .hit {
-			font-size: 14px;
-			color: #979797;			
-		}
-		.button_box {
-			float: right;
-		}
-		.button {
-			width: 40px;
-		}
-		.content_box {
-			margin-bottom: 10px;
-		}
-		.content {
-			border: none;
-			width: 100%;
-			height: 500px;
-			resize: none;
-			font-size: 20px;
-		}
-		.content:focus, .comment_content:focus {
-			outline: none;
-		}
-		.comment_text {
-			width: 90%;
-			height: 50px;
-			border-radius: 5px;
-			padding-left: 5px;
-			font-size: 16px;
-		}
-		.comment_btn {
-			width: 100px;
-			height: 50px;
-			border-radius: 5px;
-		}
-		.comment_content {
-			width: 90%;
-			height: 40px;
-			border-style: none;
-		}
-		.hidden_content {
-			width: 90%;
-			height: 40px;
-		}
-		.comment_id {
-			font-size: 16px;
-			font-weight: 700;
-		}
-		.comment_content {
-			margin-left: 10px;
-			font-size: 16px;
-		}
-		a {
-			text-decoration: none;  
-			color: black;
-		}
-		a:hover {
-			text-decoration: underline;
-		}
-		.paging {
-			margin: auto;
-			height: 50px;
-			line-height: 50px;
-			text-align: center;
-		}
-		input[type="button"]:hover {
-			cursor: pointer;
-		}
-	</style>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
@@ -306,7 +209,7 @@
 							<input class="button" type="button" value="수정" id="update_btn">
 							<input class="button" type="button" value="삭제" id="delete_btn">
 						</c:if>
-						<input type="button" value="목록" onclick="history.back()">
+						<input type="button" value="목록" id="list_btn" onclick="history.back()">
 					</form>
 				</div>
 			</div>

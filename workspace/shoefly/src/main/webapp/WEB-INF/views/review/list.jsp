@@ -8,6 +8,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/header.css">
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/footer.css">
+	<link rel="stylesheet" href="/shoefly/resources/asset/css/review/list.css">
 	<title>리뷰 리스트</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script>
@@ -59,74 +60,6 @@
 		
 		
 	</script>
-	<style>
-		*{
-			box-sizing: border-box;
-		}
-		.reviewList_container {
-			width: 1080px;
-			margin: 0 auto;
-		}
-		
-		.search_box {
-			float: left;
-			width: 100%;
-			height: 30px;
-			margin-top: 10px;
-			margin-bottom: 10px;
-		}
-		.selectBox {
-			width: 70px;
-			height: 30px;
-		}
-		.selectBox:: -ms-expand {
-			display: none;
-		}
-		.queryBox {
-			width: 200px;
-			height: 30px;
-		}
-		.button {
-			width: 70px;
-			height: 30px;
-			
-		}
-		#insertReview_btn {
-			float: right;
-			width: 100px;
-		}
-		.reviewList_table {
-			width: 100%;
-			margin: 0 auto;
-			text-align: center;
-			border-collapse: collapse;
-		}
-		.thead {
-			background-color: #909090;
-			font-weight: bold;
-		}
-		td {
-			border-bottom: 1px solid gray;
-			height: 55px;
-		}
-		a {
-			text-decoration: none;
-			color: black;
-		}
-		a:hover {
-			text-decoration: underline;
-		}
-		.button:hover {
-			cursor: pointer;
-		}
-		.paging {
-			margin: auto;
-			height: 50px;
-			line-height: 50px;
-			text-align: center;
-		}
-		
-	</style>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
@@ -147,12 +80,12 @@
 			<table class="reviewList_table">
 				<thead class="thead">
 					<tr>
-						<td>No</td>
-						<td>작성자</td>
-						<td>제목</td>
-						<td>제품명</td>
-						<td>조회수</td>
-						<td>작성일</td>
+						<th>No</th>
+						<th>작성자</th>
+						<th>제목</th>
+						<th>제품명</th>
+						<th>조회수</th>
+						<th>작성일</th>
 					</tr>
 				</thead>
 				<tbody>

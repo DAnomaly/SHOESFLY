@@ -101,7 +101,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		           		  FROM REVIEW_COMMENT
 		           		 WHERE REVIEW_NO = #{reviewNo}
 		           		 AND STATE = 0
-		                 ORDER BY REVIEW_COMMENT_NO DESC) A) B
+		                 ORDER BY REVIEW_COMMENT_NO) A) B
 		WHERE B.RN BETWEEN #{beginRecord} AND #{endRecord}
 	</select>
 	

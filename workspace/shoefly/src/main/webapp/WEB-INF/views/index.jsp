@@ -8,6 +8,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/header.css">
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/footer.css">
+	<link rel="stylesheet" href="/shoefly/resources/asset/css/index/index.css">
 	<title>제목</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script>
@@ -54,72 +55,6 @@
 		}
 		
 	</script>
-	
-	<style>
-		*{
-			box-sizing: border-box;
-		}
-		.index_container {
-			width: 1080px;
-			margin: 0 auto;
-		}
-		.product_title {
-			margin: 40px auto 0;
-    		padding: 0 40px;
-   			max-width: 1280px;
-		}
-		.title {
-			font-size: 20px;
-			font-weight: 700;
-		}
-		.sub_title {
-			font-size: 14px;
-			color: #22222280;
-		}
-		.most_list, .recommand_list {
-		    width: 100%;
-			overflow: hidden;
-		    position: relative;
-		    margin: 0 auto;
-		    padding: 0 28px;
-		}
-		.product_item {
-			position: relative;
-		    float: left;
-		    margin: 20px 0;
-		    padding: 0 12px;
-		    width: 25%;
-		    
-		}
-		.product_item, .item_inner {
-			display: block;
-    		background-color: #fff;
-    		border-radius: 12px;
-    		text-decoration: none;
-		}
-		.product {
-			overflow: hidden;
-		    position: relative;
-		    padding-top: 100%;
-		    border-radius: 12px;
-		}
-		.product_img {
-		    width: 81.5%;
-		    height: auto;
-		    top: 50%;
-		    left: 50%;
-			position: absolute;
-		    transform: translate(-50%,-50%);
-			border-radius: 12px;
-		}
-		.product_name {
-			padding-left: 5px;
-			font-size: 14px;
-			
-			color: #000;
-		}
-		
-	</style>
 </head>
 <body>
 	<jsp:include page="./common/header.jsp"/>
