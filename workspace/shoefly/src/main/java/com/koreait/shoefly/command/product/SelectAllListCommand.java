@@ -15,7 +15,7 @@ import com.koreait.shoefly.util.PagingUtils;
 @Component
 public class SelectAllListCommand implements ProductCommand {
 	
-	private int recordPerPage = 12;
+	private int recordPerPage = 8;
 	private int pagePerBlock = 5;
 	
 	@Override

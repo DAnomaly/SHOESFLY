@@ -14,6 +14,7 @@
 	<script>
 	$(document).ready(function(){
 		sizeSelect();
+		applicationInfoPopUp();
 		buyApplication();
 		sellApplication();
 		buyNow();
@@ -66,6 +67,13 @@
 				
 			}
 		});
+	}
+	
+	//구매신청 판매신청 팝업
+	function applicationInfoPopUp(){
+		$('#faseDealInfo').click(function(){
+			window.open('applicationInfoPopUp.do', '빠른거래하기 소개', 'width=800, height=520, left=500, top=200');
+		});	
 	}
 	
 	//구매신청하기 클릭
@@ -141,19 +149,14 @@
 			}
 		});
 	}
-	
+
 	</script>
 	<style>
 		*{
 			box-sizing: border-box;
 		}
-		.container{
-			margin: auto;
+		section{
 			width: 1080px;
-		}
-		.product_container{
-			width: 100%;
-			display: flex;
 			margin: auto;
 		}
 		.showList{
@@ -170,6 +173,16 @@
 			border-radius: 3px;
 			background-color: #D5C2EE;
 		}
+		.container{
+			margin: auto;
+			width: 900px;
+			min-height : 700px;
+		}
+		.product_container{
+			width: 100%;
+			display: flex;
+			margin: auto;
+		}
 		.imgBox{
 			width: 50%;
 			margin-left: 10px;
@@ -184,15 +197,11 @@
 		}
 		.productName{
 			font-size: 25px;
-			color: 
 			font-weight: bolder;
 		}
 		.productName, p, .fastDeal{
 			width: 100%;
 			text-align: center;
-		}
-		strong, ul{
-			margin-left: 100px;
 		}
 		.applicationBtn{
 			display: inline;
@@ -211,7 +220,7 @@
 			width: 150px;
 			height: 30px;
 			padding-left: 5px;
-			font-size: 15px;
+			font-size: 14px;
 			outline: none;
 			border: 1px solid #FFBEBE;
 			border-radius: 3px;
@@ -225,6 +234,12 @@
 		.fastBuySell{
 			margin: 10px 0;
 		}
+		#faseDealInfo{
+			font-size: 18px;
+			cursor: pointer;
+			color: #FFBEBE;
+			
+		}
 		#buyApplication{
 			border: 1px solid #D5C2EE;
 			background-clip: white;
@@ -233,20 +248,31 @@
 			border: 1px solid #FFBEBE;
 			background-clip: white;
 		}
-		.ulTitle{
+		.productInfo{
 			margin-top: 30px;
 			text-align: center;
 		}
-		ul{
+		table{
+			width: 300px;
+			margin-left: 75px;
 			text-align: left;
+			border-collapse: collapse;
+		}
+		td{
+			padding: 5px;
+			border-bottom: 1px solid #FFBEBE;
+		}
+		td:nth-of-type(1) {
+			text-align: center;
+			width: 50%;
 		}
 	</style>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
 	<section>
+	<a href="productListPage.do" class="showList"><i class="fas fa-bars"></i>&nbsp; 상품목록</a>
 	<div class="container">
-		<a href="productListPage.do" class="showList"><i class="fas fa-bars"></i>&nbsp; 상품목록</a>
 		<form id="f" method="post">
 		<input type="hidden" id="loginMember" value="${loginMember}">
 		<input type="hidden" id="productNo" value="${productproductNo}">
@@ -278,18 +304,29 @@
 							</button><br><br>
 						</p>
 						<div id="fastDeal" class="fastDeal" style="display: none">
-							빠른거래하기<br>
+							빠른거래하기
+							&nbsp;<a id="faseDealInfo"><i class="far fa-question-circle"></i></a><br>
 							<div class="fastBuySell">
 								<button id="buyApplication" class="btn">구매신청하기</button>
 								<button id="sellApplication" class="btn">판매신청하기</button>
 							</div>
 						</div>
-						<div class="ulTitle">상품정보<br>
-							<ul>
-								<li>브랜드: ${product.brand}</li>
-								<li>모델명: ${product.productNo}</li>
-								<li>발매가: ${product.price}원</li>
-							</ul>
+						<div class="productInfo">
+							<table>
+								<tr>
+									<td>브랜드</td>
+									<td>${product.brand}</td>
+								</tr>
+								<tr>
+									<td>일련번호</td>
+									<td>${product.productNo}</td>
+								</tr>
+								<tr>
+									<td>발매가</td>
+									<td>${product.price}</td>
+								</tr>
+							</table>
+							
 						</div>
 					</div>
 				</c:if>
