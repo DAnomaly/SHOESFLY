@@ -9,13 +9,30 @@
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/header.css">
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/footer.css">
 	<title>상품상세페이지</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" referrerpolicy="no-referrer" />
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script>
 	$(document).ready(function(){
-		
+		sizeSelect();
+		buyApplication();
+		sellApplication();
+		buyNow();
+		sellNow();
+	});
+	
+	function sizeSelect(){
 		$('#productSize').change(function(){
-			//사이즈가 선택되면
-			if(this.value != ""){
+			var option = $("#productSize").val();
+			//사이즈 선택 안했을 때
+			if(option == ""){
+				$('#fastDeal').css("display", "none");
+				$('#buyNow').html('즉시구매가<br>(사이즈를 선택하세요.)');
+				$('#sellNow').html('즉시판매가<br>(사이즈를 선택하세요.)');
+				$('#buyNow').attr('disabled', 'false');
+				$('#sellNow').attr('disabled', 'false');
+			}
+			//사이즈가 선택 했을 때
+			else if(option != ""){
 				var productSize = $(this).find(":selected").val();
 				var productName = $('#productName').val();
 				//제품명과 사이즈를 통해 즉시구매가, 즉시판매가 조회
@@ -49,7 +66,10 @@
 				
 			}
 		});
-		//구매신청하기 클릭
+	}
+	
+	//구매신청하기 클릭
+	function buyApplication(){
 		$('#buyApplication').click(function(){
 			if($('#loginMember').val() == ""){
 				if(confirm('로그인이 필요한 기능입니다. 로그인창으로 이동할까요?')){
@@ -63,7 +83,10 @@
 				$('#f').attr('action','buyApplication.do?');		
 			}
 		});
-		//판매신청하기 클릭
+	}
+		
+	//구매신청하기 클릭
+	function sellApplication(){
 		$('#sellApplication').click(function(){
 			if($('#loginMember').val() == ""){
 				if(confirm('로그인이 필요한 기능입니다. 로그인창으로 이동할까요?')){
@@ -77,7 +100,10 @@
 				$('#f').attr('action','sellApplication.do?');
 			}
 		});
-		//즉시구매가 클릭
+	}
+	
+ 	//즉시구매가 클릭
+	function buyNow(){
 		$('#buyNow').click(function(){
 			if($('#productSize').val() == ""){
 				alert('사이즈를 선택하세요.');
@@ -93,8 +119,11 @@
 				$('#f').serialize();
 				$('#f').attr('action', 'buyNow.do');
 			}
-		});
-		//즉시판매가 클릭
+		});	
+	}
+		
+	//즉시판매가 클릭
+	function sellNow(){
 		$('#sellNow').click(function(){
 			if($('#productSize').val() == ""){
 				alert('사이즈를 선택하세요.');
@@ -111,7 +140,7 @@
 				$('#f').attr('action', 'sellNow.do');
 			}
 		});
-	});
+	}
 	
 	</script>
 	<style>
@@ -136,9 +165,10 @@
 			height: 35px;
 			line-height: 35px;
 			text-decoration: none;
-			color: black;
-			border: none;
-			background-color: lightgrey;
+			color: white;
+			font-weight: border;
+			border-radius: 3px;
+			background-color: #D5C2EE;
 		}
 		.imgBox{
 			width: 50%;
@@ -152,7 +182,12 @@
 			width: 50%;
 			margin-top: 50px;
 		}
-		h3, p, .fastDeal{
+		.productName{
+			font-size: 25px;
+			color: 
+			font-weight: bolder;
+		}
+		.productName, p, .fastDeal{
 			width: 100%;
 			text-align: center;
 		}
@@ -171,6 +206,15 @@
 		}
 		.btn:hover {
 			cursor: pointer;
+		}
+		.productSizeList{
+			width: 150px;
+			height: 30px;
+			padding-left: 5px;
+			font-size: 15px;
+			outline: none;
+			border: 1px solid #FFBEBE;
+			border-radius: 3px;
 		}
 		#buyNow{
 			background-color: #D5C2EE;
@@ -202,7 +246,7 @@
 	<jsp:include page="../common/header.jsp"/>
 	<section>
 	<div class="container">
-		<a href="productListPage.do" class="showList">목록보기</a>
+		<a href="productListPage.do" class="showList"><i class="fas fa-bars"></i>&nbsp; 상품목록</a>
 		<form id="f" method="post">
 		<input type="hidden" id="loginMember" value="${loginMember}">
 		<input type="hidden" id="productNo" value="${productproductNo}">
@@ -213,11 +257,11 @@
 						<img alt="${product.image}"src="/shoefly/resources/archive/product/${product.image}" /><br>
 					</div>
 					<div class="textBox">
-						<div><h3>${product.productName}</h3></div>
+						<div class="productName">${product.productName}</div>
 						<input type="hidden" name ="productName" id="productName" value="${product.productName}">
 						<p>
-							사이즈: <select name="productSize" id="productSize">
-								<option value="">::::: 선택 :::::</option>
+							사이즈&nbsp;&nbsp;<select name="productSize" id="productSize" class="productSizeList">
+								<option value="">:::::::: SIZE ::::::::</option>
 								<option value="240">240mm</option>
 								<option value="250">250mm</option>
 								<option value="260">260mm</option>

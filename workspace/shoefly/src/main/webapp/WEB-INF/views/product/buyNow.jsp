@@ -9,12 +9,11 @@
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/header.css">
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/footer.css">
 	<title>상품상세페이지</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" referrerpolicy="no-referrer" />
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script>
 		$(document).ready(function(){
 			fn_findAddress();
-			fn_findAddress1();
-			fn_findAddress2();
 			goBackPage();
 			clickRadio();
 			checkbox();
@@ -28,18 +27,6 @@
 				goPopup();
 			})
 		}
-		function fn_findAddress1() {
-			$('#addr1').click(function(){
-				$('#memberAddressNo').val(0);
-				goPopup();
-			})
-		}
-		function fn_findAddress2() {
-			$('#addr2').click(function(){
-				$('#memberAddressNo').val(0);
-				goPopup();
-			})
-		} 
 		function goPopup(){
 			var pop = window.open("jusoPopup.do","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
 		}
@@ -180,7 +167,7 @@
 	<jsp:include page="../common/header.jsp"/>
 	<section>
 	<div class="container">
-		<a id = "backBtn">뒤로가기</a>
+		<a id = "backBtn"><i class="fas fa-angle-double-left"></i>&nbsp;뒤로가기</a>
 		<h3>구매폼 작성</h3>
 		<form id="f" method="post">
 			<table border="1">

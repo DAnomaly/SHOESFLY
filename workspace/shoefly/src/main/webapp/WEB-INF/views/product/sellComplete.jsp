@@ -56,6 +56,9 @@
 			margin-top: 20px;
 			border: none;
 			padding: 10px;
+			color: white;
+			border-radius: 3px;
+			background-color: #FFBEBE;
 		}
 		.listBtn:hover {
 			cursor: pointer;

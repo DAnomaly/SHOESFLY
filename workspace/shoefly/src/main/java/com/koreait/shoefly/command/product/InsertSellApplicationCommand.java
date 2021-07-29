@@ -48,14 +48,14 @@ public class InsertSellApplicationCommand implements ProductCommand {
 				long maxMemberAddressNo = productDAO.maxMemberAddressNo();
 				int result1 = productDAO.insertSellApplication(memberId, productSize, productName, price, maxMemberAddressNo);
 				
-				//구매신청서 완료
+				//판매신청서 완료
 				if(result1 > 0) {
 					response.getWriter().println("<script>");
 					response.getWriter().println("alert('판매신청이 완료되었습니다.')");
 					response.getWriter().println("location.href='productListPage.do'");
 					response.getWriter().println("</script>");		
 				}
-				//구매신청서 실패
+				//판매신청서 실패
 				else {
 					response.getWriter().println("<script>");
 					response.getWriter().println("alert('판매신청에 실패하였습니다.')");
@@ -70,14 +70,14 @@ public class InsertSellApplicationCommand implements ProductCommand {
 				//판매신청서 완료
 				if(result2 > 0) {
 					response.getWriter().println("<script>");
-					response.getWriter().println("alert('구매신청이 완료되었습니다.')");
+					response.getWriter().println("alert('판매신청이 완료되었습니다.')");
 					response.getWriter().println("location.href='productListPage.do'");
 					response.getWriter().println("</script>");
 				}
 				//판매신청서 실패
 				else {
 					response.getWriter().println("<script>");
-					response.getWriter().println("alert('구매신청에 실패하였습니다.')");
+					response.getWriter().println("alert('판매신청에 실패하였습니다.')");
 					response.getWriter().println("history.back()");
 					response.getWriter().println("</script>");
 				}

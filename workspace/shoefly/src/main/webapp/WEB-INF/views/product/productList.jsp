@@ -35,7 +35,7 @@
 	
 	//검색버튼으로 모든 선택사항 조회
 	function selectCondition(){
-		var reg = /[0-9]/;
+		var reg = /[0-9]+$/;
 		$('#search_btn').click(function(){
 			if (!reg.test($('.input_price').val()) && $('.input_price').val() != '') {
 				alert('가격은 숫자만 입력 가능합니다.');
@@ -43,7 +43,6 @@
 			}
 			$('#f').attr('action', 'selectCondition.do');
 			$('#f').submit();
-			
 		});
 	}
 	</script>
@@ -56,12 +55,6 @@
 			margin: auto;
 			text-align: center;
 		}
-		.paging {
-			width: 100%;
-			margin: auto;
-			text-align: center;
-			display: block;
-		}
 		.productList_container{
 			width: 1080px;
 			display: flex;
@@ -69,17 +62,17 @@
 		}
 		.selectCondition{
 			width: 300px;
+			height: 430px;
+			padding: 15px;
 			float: left;
 			margin-top: 15px;
+			border-radius: 10px;
+			border: 1px solid #D5C2EE;
 		}
-		table{
+		.conditionListBox{
 			width: 100%;
-		}
-		td{
+			margin-bottom: 15px;
 			padding: 5px;
-		}
-		tr {
-			height: 30px;
 		}
 		.search_btn{
 			width: 100%;
@@ -87,25 +80,31 @@
 			border: 1px solid #D5C2EE;			
 			background-color: #D5C2EE;
 			border-radius: 5px;
+			background-color: #D5C2EE;
+			color: white;
+			font-size: 18px;
+			outline: none;
+			border:none;
 		}
-		.search_btn:hover {
+		.search_btn:hover{
 			cursor: pointer;
 		}
-		 #productName{
-		 	width: 100%;
+		.productName, .input_price{
+			width: 100%;
 		 	height: 40px;
 		 	font-size: 14px;
 		 	border-radius: 5px;
 		 	border: 1px solid #979797;
 		 }
 		 .input_price {
-		 	width: 120px;
+		 	width: 107px;
 		 }
 		 .brand_box {
 		 	margin-bottom: 20px;
 		 }
 		 input[type="checkbox"] {
 			display: none;
+			color: #D5C2EE;
 		 }
 		 input[type="checkbox"] + label {
 	 		cursor: pointer;
@@ -113,11 +112,12 @@
 		 input[type="checkbox"] + label:before {
 			content:"";
 			display:inline-block;
-			width:17px;
-			height:17px;
-			line-height:17px;
+			width:16px;
+			height:16px;
+			line-height:16px;
 			border:1px solid #cbcbcb;
 			vertical-align:middle;
+			color: #D5C2EE;
 		 }
 		 input[type="checkbox"]:checked + label:before {
 			content:"\f00c";/*폰트어썸 유니코드*/
@@ -128,10 +128,12 @@
 		    border-color:#D5C2EE;
 		    font-size:13px;
 		    text-align:center;
+		    color: white;
 		 }
 		 .text {
 		 	font-weight: 700;
 		 	line-height: auto;
+		 	
 		 }
 		
 		.productList_box {
@@ -139,9 +141,16 @@
 		}
 		.productList {
 			width: 100%;
+			height: 610px;
+			padding: 15px;
 			overflow: hidden;
 		    position: relative;
 		    margin: 0 auto;
+		}
+		.conditionTitle{
+			font-weight: bolder;
+			color: #D5C2EE;
+			margin-bottom: 5px;
 		}
 		.product_item {
 			position: relative;
@@ -149,7 +158,6 @@
 		    margin: 20px 0;
 		    padding: 0 12px;
 		    width: 25%;
-		    
 		}
 		.product_item, .item_inner {
 			display: block;
@@ -174,20 +182,23 @@
 		}
 		.product_name {
 			padding-left: 5px;
-			font-size: 12px;
-			height: 20px;
+			font-size: 14px;
+			height: 45px;
 			color: #000;
 		}
 		.product_price {
    			padding-left: 5px;
 			height: 20px;
-			font-size: 13px;
-   			font-weight: 600;
+			font-size: 12px;
    			color: #000;
 		}
-		.empty_text {
+		.paging{
+			width: 100%;
+			margin: auto;
+			margin-top: 20px;
 			text-align: center;
-			line-height: px;
+			display: block;
+			color: #FFBEBE;
 		}
 		.paging > a {
 			text-decoration: none;
@@ -208,14 +219,16 @@
 		<div class="productList_container">
 			<div class="selectCondition">
 				<form id="f">
-				<table>
-					<tbody>
+				<div class="conditionTitle">상품명</div>	
+				<div class="conditionListBox">
+					<input type="text" name="productName" id="productName" class="productName" placeholder="상품명">
+				</div>
+				
+				<div class="conditionListBox">
+					<div class="conditionTitle">브랜드</div>
+					<table>
 						<tr>
-							<td colspan="3"><input type="text" name="productName" id="productName" placeholder="상품명 검색"></td>
-						</tr>
-						<tr>
-							<td rowspan="3" class="text">브랜드</td>
-							<td colspan="2">
+							<td>
 								<input type="checkbox" id="AllBrand" class="brand">
 								<label for="AllBrand"> 전체브랜드</label>
 							</td>
@@ -223,7 +236,7 @@
 						<tr>
 							<td>
 								<input type="checkbox" name="brand" id="jordan" value="Jordan" class="brand">
-								<label for="jordan"> 조던</label>
+								<label for="jordan"> 조던</label>&emsp;&emsp;
 							</td>
 							<td>
 								<input type="checkbox" name="brand" id="nike" value="Nike" class="brand">
@@ -237,54 +250,47 @@
 							</td>
 							<td>
 								<input type="checkbox" name="brand" id="newbalance" value="New Balance" class="brand">
-								<label for="newbalance"> 뉴발란스</label>
+					<label for="newbalance"> 뉴발란스</label>
 							</td>
 						</tr>
+					</table>
+					
+				</div>
+				
+				<div class="conditionListBox">		
+					<div class="conditionTitle">사이즈</div>
+					<table>
 						<tr>
-							<td rowspan="3" class="text">사이즈</td>
 							<td>
 								<input type="checkbox" name="size" id="240" value="240">
-								<label for="240"> 240</label>
-							</td>
-							<td>
+								<label for="240"> 240</label>					
 								<input type="checkbox" name="size" id="250" value="250">
-								<label for="250"> 250</label>
-							</td>
-						</tr>
-						<tr>
-							<td>
+								<label for="250"> 250</label>					
 								<input type="checkbox" name="size" id="260" value="260">
 								<label for="260"> 260</label>
 							</td>
-							<td>
-								<input type="checkbox" name="size" id="270" value="270">
-								<label for="270"> 270</label>
-							</td>
 						</tr>
 						<tr>
 							<td>
+								<input type="checkbox" name="size" id="270" value="270">
+								<label for="270"> 270</label>
 								<input type="checkbox" name="size" id="280" value="280">
 								<label for="280"> 280</label>
-							</td>
-							<td>
 								<input type="checkbox" name="size" id="290" value="290">
 								<label for="290"> 290</label>
 							</td>
 						</tr>
-						<tr>
-							<td colspan="3">
-								<input type="text" name="minPrice" id="minPrice" class="input_price" placeholder="최소">&nbsp;&#126;
-								<input type="text" name="maxPrice" id="maxPrice" class="input_price" placeholder="최대">
-							</td>
-						</tr>
-					</tbody>
-					<tfoot>
-						<tr>
-							<td colspan="3"><input type="button" value="검색" id="search_btn" class="search_btn"></td>
-						</tr>
-					</tfoot>
-				</table>
-
+					</table>
+				</div>
+				
+				<div class="conditionListBox">	
+					<div class="conditionTitle">가격범위</div>		
+					<input type="text" name="minPrice" id="minPrice" class="input_price" placeholder="최소">&nbsp;&#126;
+					<input type="text" name="maxPrice" id="maxPrice" class="input_price" placeholder="최대">
+				</div>
+							
+				<input type="button" value="LOOK UP" id="search_btn" class="search_btn">
+			
 				</form>
 			</div>
 			<br>
@@ -302,7 +308,7 @@
 									</div>
 									<div class="info_box">
 										<p class="product_name">${product.productName}</p>
-										<p class="product_price">발매가 ${product.price}원</p>
+										<p class="product_price">발매가${product.price}원</p>
 									</div>
 								</a>
 							</div>
