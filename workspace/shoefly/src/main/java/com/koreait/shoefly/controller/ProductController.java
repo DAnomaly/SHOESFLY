@@ -213,4 +213,10 @@ public class ProductController {
 		selectBuyCompleteCommand.execute(sqlSession, model);
 		return "product/buyComplete";
 	}
+	
+	//구매신청서, 판매신청서 PopUp
+	@GetMapping("applicationInfoPopUp.do")
+	public String applicationInfoPopUp() {
+		return "product/applicationInfoPopUp";
+	}
 }

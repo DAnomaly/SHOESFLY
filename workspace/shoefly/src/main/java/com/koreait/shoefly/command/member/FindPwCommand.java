@@ -8,9 +8,17 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
+import com.koreait.shoefly.controller.MemberController;
 import com.koreait.shoefly.dao.MemberDAO;
 import com.koreait.shoefly.dto.Member;
 
+/**
+ * 비밀번호 찾기 기능을 구현한 command<br>
+ * 아이디 존재 여부와 이메일 인증을 통해 사용
+ * 
+ * @author 정유한
+ * @see MemberController
+ */
 @Component
 public class FindPwCommand implements MemberCommand {
 

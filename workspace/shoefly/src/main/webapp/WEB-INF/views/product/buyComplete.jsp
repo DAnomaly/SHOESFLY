@@ -56,6 +56,10 @@
 			margin-top: 20px;
 			border: none;
 			padding: 10px;
+			color: white;
+			border-radius: 3px;
+			background-color: #FFBEBE;
+			
 		}
 		.listBtn:hover {
 			cursor: pointer;
@@ -92,11 +96,7 @@
 					</tr>
 					<tr>
 						<td>배송지</td>
-						<td>${memberAddress.name}&nbsp;/&nbsp;${memberAddress.addr1}&nbsp;
-						<c:if test="not empty ${memberAddres.addr2}">
-							${memberAddress.addr2}
-						</c:if>
-						</td>
+						<td>${memberAddress.name}&nbsp;/&nbsp;${memberAddress.addr1}&nbsp;${memberAddress.addr2}</td>
 					</tr>
 				</tbody>
 			</table>

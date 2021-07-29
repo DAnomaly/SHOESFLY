@@ -14,8 +14,15 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
+import com.koreait.shoefly.controller.MemberController;
 import com.koreait.shoefly.util.SecurityUtils;
 
+/**
+ * 이메일 인증을 위한 인증코드를 전송하는 기능을 구현한 command
+ * 
+ * @author 정유한
+ * @see MemberController
+ */
 @Component
 public class VerifyCodeCommand implements MemberCommand {
 

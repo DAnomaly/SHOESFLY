@@ -9,12 +9,11 @@
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/header.css">
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/footer.css">
 	<title>상품상세페이지</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" referrerpolicy="no-referrer" />
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script>
 		$(document).ready(function(){
 			fn_findAddress();
-			fn_findAddress1();
-			fn_findAddress2();
 			goBackPage();
 			clickRadio();
 			checkbox();
@@ -28,18 +27,6 @@
 				goPopup();
 			})
 		}
-		function fn_findAddress1() {
-			$('#addr1').click(function(){
-				$('#memberAddressNo').val(0);
-				goPopup();
-			})
-		}
-		function fn_findAddress2() {
-			$('#addr2').click(function(){
-				$('#memberAddressNo').val(0);
-				goPopup();
-			})
-		} 
 		function goPopup(){
 			var pop = window.open("jusoPopup.do","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
 		}
@@ -118,7 +105,10 @@
 			height: 35px;
 			line-height: 35px;
 			text-align: center;
-			background-color: lightgrey;
+			color: white;
+			font-weight: border;
+			border-radius: 3px;
+			background-color: #D5C2EE;
 		}
 		#backBtn:hover{
 			cursor: pointer;
@@ -141,7 +131,7 @@
 		input[type="text"]{
 			width: 100%;
 			outline: none;
-			border: 1px solid lightgrey;
+			border: 1px solid #FFBEBE;
 			padding: 5px;
 		}
 		#addr1{
@@ -153,10 +143,40 @@
 			line-height: 28px;
 			outline: none;
 			border: none;
+			color: white;
+			background-color: #FFBEBE;
 		}
 		.addr_search_btn:hover{
 			cursor: pointer;
 		}
+		input[type="checkbox"] {
+			display: none;
+			color: #D5C2EE;
+		 }
+		input[type="checkbox"] + label {
+	 		cursor: pointer;
+	   	 }
+		 input[type="checkbox"] + label:before {
+			content:"";
+			display:inline-block;
+			width:16px;
+			height:16px;
+			line-height:16px;
+			border:1px solid #cbcbcb;
+			vertical-align:middle;
+			color: #D5C2EE;
+		 }
+		 input[type="checkbox"]:checked + label:before {
+			content:"\f00c";/*폰트어썸 유니코드*/
+		    font-family:"Font Awesome 5 free"; /*폰트어썸 아이콘 사용*/
+		    font-weight:900;/*폰트어썸 설정*/
+		    color:#fff;
+		    background-color:#D5C2EE;
+		    border-color:#D5C2EE;
+		    font-size:13px;
+		    text-align:center;
+		    color: white;
+		 }
 		.redText{
 			color: red;
 		}
@@ -165,10 +185,12 @@
 			float: right;
 			margin-top: 20px;
 			border: none;
-			width: 150px;
+			width: 200px;
 			padding: 10px;
-			background-color: lightgrey;
-			font-weight: bolder;
+			font-size: 16px;
+			color: white;
+			border-radius: 3px;
+			background-color: #FFBEBE;
 		}
 		.buyNow_btn:hover {
 			cursor: pointer;
@@ -180,7 +202,7 @@
 	<jsp:include page="../common/header.jsp"/>
 	<section>
 	<div class="container">
-		<a id = "backBtn">뒤로가기</a>
+		<a id = "backBtn"><i class="fas fa-angle-double-left"></i>&nbsp;뒤로가기</a>
 		<h3>구매폼 작성</h3>
 		<form id="f" method="post">
 			<table border="1">
@@ -245,14 +267,15 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<label for="check0"><input type="checkbox" class="check0"
-							id="check0"> 전체 동의</label><br> <label for="check1"><input
-							type="checkbox" class="check" id="check1"> 개인정보 이용약관에 동의 </label><label
-							for="check1" class="redText">(필수)</label><br> <label
-							for="check2"><input type="checkbox" class="check"
-							id="check2"> 위치정보 이용약관에 동의 </label><label for="check2"
-							class="redText">(필수)</label><br> <label for="check3"><input
-							type="checkbox" class="check" id="check3"> 마케팅 수신 동의(선택) </label>
+							<input type="checkbox" class="check0" id="check0"><label for="check0"> 전체 동의</label><br>
+							<input type="checkbox" class="check" id="check1">
+							<label for="check1"> 개인정보 이용약관에 동의</label>
+							<label for="check1" class="redText">(필수)</label><br>
+							<input type="checkbox" class="check" id="check2">
+							<label for="check2"> 위치정보 이용약관에 동의</label>
+							<label for="check2" class="redText">(필수)</label><br>
+							<input type="checkbox" class="check" id="check3">
+							<label for="check3"> 마케팅 수신 동의(선택)</label>
 						</td>
 					</tr>	
 				</tbody>

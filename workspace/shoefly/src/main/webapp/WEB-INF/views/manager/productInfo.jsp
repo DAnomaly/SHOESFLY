@@ -47,7 +47,7 @@
 				<li>
 					<span>상태</span> 
 					<c:if test="${product.state == 0}">
-					<span style="color:blue;">거래중</span>
+					<span style="color:#539bf5;">거래중</span>
 					<input type="button" value="정지" onclick="setState(-1);"/>
 					</c:if>
 					<c:if test="${product.state == -1}">

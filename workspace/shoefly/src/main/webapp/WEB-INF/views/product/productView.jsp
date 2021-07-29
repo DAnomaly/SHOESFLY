@@ -9,13 +9,31 @@
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/header.css">
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/footer.css">
 	<title>상품상세페이지</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" referrerpolicy="no-referrer" />
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script>
 	$(document).ready(function(){
-		
+		sizeSelect();
+		applicationInfoPopUp();
+		buyApplication();
+		sellApplication();
+		buyNow();
+		sellNow();
+	});
+	
+	function sizeSelect(){
 		$('#productSize').change(function(){
-			//사이즈가 선택되면
-			if(this.value != ""){
+			var option = $("#productSize").val();
+			//사이즈 선택 안했을 때
+			if(option == ""){
+				$('#fastDeal').css("display", "none");
+				$('#buyNow').html('즉시구매가<br>(사이즈를 선택하세요.)');
+				$('#sellNow').html('즉시판매가<br>(사이즈를 선택하세요.)');
+				$('#buyNow').attr('disabled', 'false');
+				$('#sellNow').attr('disabled', 'false');
+			}
+			//사이즈가 선택 했을 때
+			else if(option != ""){
 				var productSize = $(this).find(":selected").val();
 				var productName = $('#productName').val();
 				//제품명과 사이즈를 통해 즉시구매가, 즉시판매가 조회
@@ -49,7 +67,17 @@
 				
 			}
 		});
-		//구매신청하기 클릭
+	}
+	
+	//구매신청 판매신청 팝업
+	function applicationInfoPopUp(){
+		$('#faseDealInfo').click(function(){
+			window.open('applicationInfoPopUp.do', '빠른거래하기 소개', 'width=800, height=520, left=500, top=200');
+		});	
+	}
+	
+	//구매신청하기 클릭
+	function buyApplication(){
 		$('#buyApplication').click(function(){
 			if($('#loginMember').val() == ""){
 				if(confirm('로그인이 필요한 기능입니다. 로그인창으로 이동할까요?')){
@@ -63,7 +91,10 @@
 				$('#f').attr('action','buyApplication.do?');		
 			}
 		});
-		//판매신청하기 클릭
+	}
+		
+	//구매신청하기 클릭
+	function sellApplication(){
 		$('#sellApplication').click(function(){
 			if($('#loginMember').val() == ""){
 				if(confirm('로그인이 필요한 기능입니다. 로그인창으로 이동할까요?')){
@@ -77,7 +108,10 @@
 				$('#f').attr('action','sellApplication.do?');
 			}
 		});
-		//즉시구매가 클릭
+	}
+	
+ 	//즉시구매가 클릭
+	function buyNow(){
 		$('#buyNow').click(function(){
 			if($('#productSize').val() == ""){
 				alert('사이즈를 선택하세요.');
@@ -93,8 +127,11 @@
 				$('#f').serialize();
 				$('#f').attr('action', 'buyNow.do');
 			}
-		});
-		//즉시판매가 클릭
+		});	
+	}
+		
+	//즉시판매가 클릭
+	function sellNow(){
 		$('#sellNow').click(function(){
 			if($('#productSize').val() == ""){
 				alert('사이즈를 선택하세요.');
@@ -111,20 +148,15 @@
 				$('#f').attr('action', 'sellNow.do');
 			}
 		});
-	});
-	
+	}
+
 	</script>
 	<style>
 		*{
 			box-sizing: border-box;
 		}
-		.container{
-			margin: auto;
+		section{
 			width: 1080px;
-		}
-		.product_container{
-			width: 100%;
-			display: flex;
 			margin: auto;
 		}
 		.showList{
@@ -136,9 +168,20 @@
 			height: 35px;
 			line-height: 35px;
 			text-decoration: none;
-			color: black;
-			border: none;
-			background-color: lightgrey;
+			color: white;
+			font-weight: border;
+			border-radius: 3px;
+			background-color: #D5C2EE;
+		}
+		.container{
+			margin: auto;
+			width: 900px;
+			min-height : 700px;
+		}
+		.product_container{
+			width: 100%;
+			display: flex;
+			margin: auto;
 		}
 		.imgBox{
 			width: 50%;
@@ -152,12 +195,13 @@
 			width: 50%;
 			margin-top: 50px;
 		}
-		h3, p, .fastDeal{
+		.productName{
+			font-size: 25px;
+			font-weight: bolder;
+		}
+		.productName, p, .fastDeal{
 			width: 100%;
 			text-align: center;
-		}
-		strong, ul{
-			margin-left: 100px;
 		}
 		.applicationBtn{
 			display: inline;
@@ -172,6 +216,15 @@
 		.btn:hover {
 			cursor: pointer;
 		}
+		.productSizeList{
+			width: 150px;
+			height: 30px;
+			padding-left: 5px;
+			font-size: 14px;
+			outline: none;
+			border: 1px solid #FFBEBE;
+			border-radius: 3px;
+		}
 		#buyNow{
 			background-color: #D5C2EE;
 		}
@@ -181,6 +234,12 @@
 		.fastBuySell{
 			margin: 10px 0;
 		}
+		#faseDealInfo{
+			font-size: 18px;
+			cursor: pointer;
+			color: #FFBEBE;
+			
+		}
 		#buyApplication{
 			border: 1px solid #D5C2EE;
 			background-clip: white;
@@ -189,20 +248,31 @@
 			border: 1px solid #FFBEBE;
 			background-clip: white;
 		}
-		.ulTitle{
+		.productInfo{
 			margin-top: 30px;
 			text-align: center;
 		}
-		ul{
+		table{
+			width: 300px;
+			margin-left: 75px;
 			text-align: left;
+			border-collapse: collapse;
+		}
+		td{
+			padding: 5px;
+			border-bottom: 1px solid #FFBEBE;
+		}
+		td:nth-of-type(1) {
+			text-align: center;
+			width: 50%;
 		}
 	</style>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
 	<section>
+	<a href="productListPage.do" class="showList"><i class="fas fa-bars"></i>&nbsp; 상품목록</a>
 	<div class="container">
-		<a href="productListPage.do" class="showList">목록보기</a>
 		<form id="f" method="post">
 		<input type="hidden" id="loginMember" value="${loginMember}">
 		<input type="hidden" id="productNo" value="${productproductNo}">
@@ -213,11 +283,11 @@
 						<img alt="${product.image}"src="/shoefly/resources/archive/product/${product.image}" /><br>
 					</div>
 					<div class="textBox">
-						<div><h3>${product.productName}</h3></div>
+						<div class="productName">${product.productName}</div>
 						<input type="hidden" name ="productName" id="productName" value="${product.productName}">
 						<p>
-							사이즈: <select name="productSize" id="productSize">
-								<option value="">::::: 선택 :::::</option>
+							사이즈&nbsp;&nbsp;<select name="productSize" id="productSize" class="productSizeList">
+								<option value="">:::::::: SIZE ::::::::</option>
 								<option value="240">240mm</option>
 								<option value="250">250mm</option>
 								<option value="260">260mm</option>
@@ -234,18 +304,29 @@
 							</button><br><br>
 						</p>
 						<div id="fastDeal" class="fastDeal" style="display: none">
-							빠른거래하기<br>
+							빠른거래하기
+							&nbsp;<a id="faseDealInfo"><i class="far fa-question-circle"></i></a><br>
 							<div class="fastBuySell">
 								<button id="buyApplication" class="btn">구매신청하기</button>
 								<button id="sellApplication" class="btn">판매신청하기</button>
 							</div>
 						</div>
-						<div class="ulTitle">상품정보<br>
-							<ul>
-								<li>브랜드: ${product.brand}</li>
-								<li>모델: ${product.productNo}</li>
-								<li>발매가: ${product.price}</li>
-							</ul>
+						<div class="productInfo">
+							<table>
+								<tr>
+									<td>브랜드</td>
+									<td>${product.brand}</td>
+								</tr>
+								<tr>
+									<td>일련번호</td>
+									<td>${product.productNo}</td>
+								</tr>
+								<tr>
+									<td>발매가</td>
+									<td>${product.price}</td>
+								</tr>
+							</table>
+							
 						</div>
 					</div>
 				</c:if>

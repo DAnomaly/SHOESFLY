@@ -16,9 +16,11 @@
 <body>
 	<jsp:include page="../common/manager_header.jsp"></jsp:include>
 	<section>
-		<h2>PRODUCT</h2>
-		<form id="f" class="search">
-			<div>
+		<h2>
+			<a href="productListPage.do">PRODUCT</a>
+		</h2>
+		<form id="f" class="search" >
+			<div class="search_container">
 				<input type="hidden" id="page" name="page" value="1"/>
 				<input type="hidden" id="order" name="order" value="PRODUCT_NO"/>
 				<input type="hidden" id="isDesc" name="isDesc" value="ASC"/>

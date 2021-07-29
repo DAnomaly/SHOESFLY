@@ -7,7 +7,7 @@
 </script>
 </c:if>
 <header>
-	<a href="/shoefly/manager/"><img alt="SHOEFLY" src="/shoefly/resources/asset/image/logo.png"></a>
+	<a href="/shoefly/manager/"><img alt="SHOEFLY" src="/shoefly/resources/asset/image/logo_white.png"></a>
 	<a href="/shoefly/">메인 페이지로 이동</a>
 </header>
 <nav>

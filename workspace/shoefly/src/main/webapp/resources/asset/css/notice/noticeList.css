@@ -2,29 +2,30 @@
 
 /* SECTION */
 section {
-	width: 980px;
+	width: 820px;
 	margin: 0 auto;
 }
 
 /* TITLE */
 section h2 {
-	padding-top: 35px;
-	text-align: center;
+	margin-top: 60px;
+	padding-left: 10px;
+	text-align: left;
 }
 section h2 a {
-	color: #084B8A;
+	color: #FFBEBE;
 	text-decoration: none; 
 }
 
 /* SEARCH */
 section .search {
-	width: 760px;
-	margin: 5px auto;
+	width: 820px;
+	margin: 10px auto;
 	text-align: right;
 }
 section .search form {
 	display: inline-block;
-	border: 1px solid #084B8A;
+	border: 2px solid #FFBEBE;
 	border-radius: 3px;
 	padding: 4px;
 }
@@ -32,58 +33,61 @@ section .search input, section .search button {
 	border: none;
 	background: none;
 }
-
+section .search button {
+ 	color: #FFBEBE; 
+}
 /* CONTENT */
 section .content {
 	border-collapse: collapse;
+	font-size: 15px;
 	text-align: center;
 	box-sizing: border-box;
 	margin: 0 auto;
-	border-bottom: 2px solid #084B8A;
+	background-color: #D5C2EE40;
 }
 section .content tbody tr td {
-	padding: 6px;
-	border-bottom: 1px solid #0174DF;
+	padding: 10px;
+	border-bottom: 2px solid #fff;
 }
-section .content thead tr th{
-	background-color: #084B8A;
+section .content thead tr {
+	background-color: #FFBEBE;
+	border-bottom: 2px solid #fff;
+}
+section .content thead tr th {
 	color: #fff;
-	padding: 6px;
+	padding: 10px;
 }
-section .content thead tr th:nth-of-type(1) {
-	width: 60px;
-}
-section .content thead tr th:nth-of-type(2) {
-	width: 580px;
-}
-section .content thead tr th:nth-of-type(3) {
-	width: 120px;
+section .content thead tr th:nth-of-type(1) { width: 60px; }
+section .content thead tr th:nth-of-type(2) { width: 580px; }
+section .content thead tr th:nth-of-type(3) { width: 120px; }
+section .content tbody tr td:nth-of-type(1) {
+	font-size: 14px;
 }
 section .content tbody tr td:nth-of-type(2) {
 	text-align: left;
-	cursor: pointer;
 }
 section .content tbody tr td:nth-of-type(2) a{
-	color: #000;
+	color: #000000bb;
 	text-decoration: none;
+	font-weight: bold;
 }
-section .content tbody tr td:nth-of-type(2):hover a{
+section .content tbody tr td:nth-of-type(2) a:hover{
+	cursor: pointer;
 	text-decoration: underline;
+}
+section .content tbody tr td:nth-of-type(3) {
+	font-size: 14px;
 }
 section .content .table-content {
 	text-align: left;
-	width: 760px;
-	border-bottom: 2px solid #084B8A;
-}
-section .content .table-content div{
-	width: 730px;
+	width: 565px;
+	margin-top: 10px;
 	padding: 5px;
-	margin: 3px;
-	border: 1px solid #084B8A;
-	border-top: none;
-	border-radius: 3px;
+	border: 2px solid #D5C2EE80;
+	background-color: #ffffff;
 	float: right;
-	font-size: 15px; 
+	font-size: 14px; 
+	line-height: 22px;
  	font-family: '푸른전남체R', sans-serif;
 }
 
@@ -95,11 +99,15 @@ section .paging {
 	font-family: '푸른전남체R', sans-serif;
 }
 section .paging .now-page {
-	text-decoration: underline;
+	color: #FFBEBE;
 	font-weight: bold;	
 }
+section .paging a {
+	color: #909090;
+	text-decoration: none;
+}
 section .paging a[href] {
-	color: #084B8A;
+	color: #000;
 	text-decoration: none;
 }
 section .paging a[href]:hover {

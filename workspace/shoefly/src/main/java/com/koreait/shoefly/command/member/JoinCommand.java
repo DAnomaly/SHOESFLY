@@ -8,10 +8,18 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
+import com.koreait.shoefly.controller.MemberController;
 import com.koreait.shoefly.dao.MemberDAO;
 import com.koreait.shoefly.dto.Member;
 import com.koreait.shoefly.util.SecurityUtils;
 
+/**
+ * 회원가입 기능을 구현한 command<br>
+ * 비밀번호 암호화, 이메일 인증 사용
+ * 
+ * @author 정유한
+ * @see MemberController
+ */
 @Component
 public class JoinCommand implements MemberCommand {
 

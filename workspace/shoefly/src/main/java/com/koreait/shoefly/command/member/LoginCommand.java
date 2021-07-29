@@ -10,10 +10,18 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
+import com.koreait.shoefly.controller.MemberController;
 import com.koreait.shoefly.dao.MemberDAO;
 import com.koreait.shoefly.dto.Member;
 import com.koreait.shoefly.util.SecurityUtils;
 
+/**
+ * 로그인 기능을 구현한 command<br>
+ * referer를 사용하여 로그인전 매핑값으로 이동한다.
+ * 
+ * @author 정유한
+ * @see MemberController
+ */
 @Component
 public class LoginCommand implements MemberCommand {
 
@@ -24,6 +32,8 @@ public class LoginCommand implements MemberCommand {
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		HttpServletResponse response = (HttpServletResponse)map.get("response");
 		response.setContentType("text/html; charset=utf-8");
+		
+		request.getSession().invalidate();
 		
 		String memberId = request.getParameter("memberId");
 		String pw = request.getParameter("pw");
@@ -42,6 +52,7 @@ public class LoginCommand implements MemberCommand {
 		} else if(referer.indexOf("/member/") != -1) {
 			referer = "/shoefly/";
 		}
+
 		try {
 			PrintWriter out = response.getWriter();
 			
@@ -56,7 +67,6 @@ public class LoginCommand implements MemberCommand {
 				out.println("location.href = 'loginPage.do'"); 		
 				out.println("</script>"); 		
 			}
-			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

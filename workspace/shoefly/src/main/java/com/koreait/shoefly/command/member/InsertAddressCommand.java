@@ -9,10 +9,17 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
+import com.koreait.shoefly.controller.MemberController;
 import com.koreait.shoefly.dao.MemberDAO;
 import com.koreait.shoefly.dto.Member;
 import com.koreait.shoefly.dto.MemberAddress;
 
+/**
+ * 마이페이지 주소록에 새로운 주소를 추가하는 기능을 구현한 command
+ * 
+ * @author 정유한
+ * @see MemberController
+ */
 @Component
 public class InsertAddressCommand implements MemberCommand {
 
@@ -24,7 +31,6 @@ public class InsertAddressCommand implements MemberCommand {
 		HttpSession session = request.getSession();
 		
 		Member loginMember = (Member)session.getAttribute("loginMember");
-		// System.out.println("InsertAddressCommand: " + loginMember);
 		
 		String name = request.getParameter("name");
 		String addr1 = request.getParameter("addr1");

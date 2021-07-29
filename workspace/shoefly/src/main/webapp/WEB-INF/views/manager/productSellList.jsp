@@ -17,7 +17,7 @@
 	<jsp:include page="../common/manager_header.jsp"></jsp:include>
 	<section>
 		<h2 class="title_container">
-			<a href="productSellListPage.do">구입신청</a>
+			<a href="productSellListPage.do">판매신청</a>
 		</h2>
 		<div class="search_container">
 			<select id="option" onchange="change_option();">

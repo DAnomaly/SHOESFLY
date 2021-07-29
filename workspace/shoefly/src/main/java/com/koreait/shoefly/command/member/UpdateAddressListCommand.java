@@ -8,9 +8,16 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
+import com.koreait.shoefly.controller.MemberController;
 import com.koreait.shoefly.dao.MemberDAO;
 import com.koreait.shoefly.dto.MemberAddress;
 
+/**
+ * 수정할 주소의 정보를 출력하는 기능을 구현한 command
+ * 
+ * @author 정유한
+ * @see MemberController
+ */
 @Component
 public class UpdateAddressListCommand implements MemberCommand {
 
