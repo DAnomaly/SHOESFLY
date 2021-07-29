@@ -1,82 +1,135 @@
 @charset "UTF-8";
 
-/* SECTION */
+/* section */
 section {
-	margin-top: 10px;
-	margin-left: 10px;
-	float: left;
+	margin-top: 30px;
 }
 
-/* H2 */
+section input, select, button {
+	background: none;
+	border: none;
+	outline: none;
+}
+
+/* title : h2 */
 section h2 {
-	padding: 10px;
-	padding-left: 20px;
-	border-bottom: 1px solid #444;
-	margin: 40px 0;
+	border-bottom: 1px solid #adbac790;
+	padding: 10px 0;
+	padding-left: 30px;
 }
 section h2 a {
-	color: #000;
+	color: #539bf5;
+	font-size: 22px;
 	text-decoration: none;
 }
 
-/* SEARCH */
+/* h3 */
+section h3 {
+	margin: 20px 10px;
+	padding: 10px;
+	border-bottom: 1px solid #adbac790;
+	color: #539bf5bc;
+}
+
+
+/* search */
 section .search {
 	display: inline-block;
-	margin-left: 10px;
+	border-bottom: 1px solid #adbac790;
 	padding: 5px;
-	border: 1px solid #666;
-	border-radius: 3px;
+	box-sizing: border-box;
+	height: 30px;
 }
-section .search select, section .search div{
+section .search div {
 	display: inline-block;
-}  
-section .search select, section .search input, section .search input {
-	border: none;
+}
+section .search input[type="date"] {
+	font-size: 13px;
+	width: 128px;
 }
 
-/* MEMBER_TABLE */
-section .member_table {
-	margin-top: 20px;
-	padding: 10px;
-	border: 1px solid #444;
+/* div.write */
+section div.write {
+	display: inline-block;
+	border-bottom: 1px solid #adbac790;
+	margin-left: 30px;
+	padding: 5px;
+	box-sizing: border-box;
+	height: 30px;
 }
-section .member_table table {
+section div.write:hover {
+	border-bottom: 3px solid #adbac790;
+}
+section div.write:hover input {
+	cursor: pointer;
+	color: #adbac790; 
+}
+
+/* table */
+section table {
+	margin: 10px;
+	border: 1px solid #adbac760;
+	border-radius: 5px;
 	border-collapse: collapse;
-}
-section .member_table table th, section .member_table table td {
-	padding: 10px;
 	text-align: center;
 }
-section .member_table table thead tr th {
-	background-color: rgb(66,146,195);
-	color: white;
+section table a {
+	text-decoration: none;
 }
-section .member_table table thead tr th:nth-of-type(1) { width: 80px; }
-section .member_table table thead tr th:nth-of-type(2) { width: 100px; }
-section .member_table table thead tr th:nth-of-type(3) { width: 100px; }
-section .member_table table thead tr th:nth-of-type(4) { width: 200px; }
-section .member_table table thead tr th:nth-of-type(5) { width: 100px; }
-section .member_table table thead tr th:nth-of-type(6) { width: 100px; }
-section .member_table table tbody tr td {
-	border-bottom: 1px solid rgb(66,146,195);
+section table a:hover {
+	cursor: pointer;
+	color: #adbac790;
+}
+section table tr {
+	border-bottom: 1px solid #adbac760;
+}
+section table th, section table td {
+	box-sizing: border-box;
+	padding: 10px;
+	margin: 0;
+}
+section table th {
+	font-weight: normal;
+	color: #d6dce2;
+}
+section table td {
+	box-sizing: border-box;;
+}
+section table td:nth-of-type(1) { width: 100px; }
+section table td:nth-of-type(2) { width: 280px; }
+section table td:nth-of-type(3) { width: 180px; }
+section table td:nth-of-type(4) { width: 250px; }
+section table td:nth-of-type(5) { width: 180px; }
+section table td:nth-of-type(6) { width: 100px; }
+section table tbody tr:hover td {
+	background-color: #323943;
+}
+section table input[type="button"], section table button {
+	cursor: pointer;
+	font-size: 13px;
+	font-weight: bold;
+}
+section table input[type="button"]:hover, section table button:hover {
+	color: #539bf5bc;
 }
 
-/* MEMBER_PAGING */
+/* tfoot */
 section #member_paging {
-	padding: 10px;
 	text-align: center;
 }
-section #member_paging a, section #member_paging span {
+section #member_paging span i {
+	color: #adbac750;
+}
+section #member_paging span {
 	display: inline-block;
+	color: #adbac750;
 	margin: 0 30px;
 }
 section #member_paging a {
-	color: #000;
+	display: inline-block;
+	margin: 0 30px;
 	text-decoration: none;
 }
-section #member_paging a:hover {
-	text-decoration: underline;
-}
-section #member_paging span {
-	color: #999;
+section #member_paging a:hover, section #member_paging a:hover i {
+	color: #8296aa;
 }

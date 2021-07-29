@@ -49,9 +49,9 @@ function pageLoadEvent() {
 					$('<td>').text(member.email).appendTo(tr);
 					$('<td>').text(member.regdate).appendTo(tr);
 					if(member.state == 0)
-						$('<td>').text('가입').appendTo(tr);
+						$('<td style="color:#539bf5;">').text('가입').appendTo(tr);
 					else
-						$('<td>').text('탈퇴').appendTo(tr);
+						$('<td> style="color:red;"').text('탈퇴').appendTo(tr);
 				})
 			} else {
 				$('<tr>').append('<td colspan="6">검색된 아이디가 없습니다.</td>').appendTo(member_tbody);
