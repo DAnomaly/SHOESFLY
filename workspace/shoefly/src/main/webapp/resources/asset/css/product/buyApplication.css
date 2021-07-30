@@ -1,0 +1,141 @@
+@charset "UTF-8";
+
+* {
+	box-sizing: border-box;
+}
+
+.container {
+	margin: auto;
+	width: 1080px;
+}
+
+#backBtn {
+	display: inline-block;
+	margin-top: 20px;
+	width: 100px;
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+	color: white;
+	font-weight: border;
+	border-radius: 3px;
+	background-color: #D5C2EE;
+}
+
+#backBtn:hover {
+	cursor: pointer;
+}
+
+h3 {
+	text-align: center;
+}
+
+table {
+	margin-top: 30px;
+	width: 100%;
+	border-collapse: collapse;
+	border: 1px solid lightgray;
+}
+
+td {
+	padding: 5px;
+}
+
+.firstTr>td:nth-child(1) {
+	width: 50%;
+	test-align: center;
+}
+
+.firstTr>td:nth-child(2) {
+	width: 15%;
+}
+
+.firstTr>td:nth-child(3) {
+	width: 35%;
+}
+
+tr>td:nth-last-child(2) {
+	text-align: center;
+}
+
+input[type="text"] {
+	width: 100%;
+	outline: none;
+	border: 1px solid #FFBEBE;
+	padding: 5px;
+}
+
+#addr1, #price {
+	width: 291px;
+}
+
+#price:focus {
+	outline: 1px solid #FFBEBE;
+}
+
+.addr_search_btn {
+	width: 70px;
+	height: 28px;
+	line-height: 28px;
+	outline: none;
+	border: none;
+	color: white;
+	background-color: #FFBEBE;
+}
+
+.addr_search_btn:hover {
+	cursor: pointer;
+}
+
+input[type="checkbox"] {
+	display: none;
+	color: #D5C2EE;
+}
+
+input[type="checkbox"]+label {
+	cursor: pointer;
+}
+
+input[type="checkbox"]+label:before {
+	content: "";
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	line-height: 16px;
+	border: 1px solid #cbcbcb;
+	vertical-align: middle;
+	color: #D5C2EE;
+}
+
+input[type="checkbox"]:checked+label:before {
+	content: "\f00c"; /*폰트어썸 유니코드*/
+	font-family: "Font Awesome 5 free"; /*폰트어썸 아이콘 사용*/
+	font-weight: 900; /*폰트어썸 설정*/
+	color: #fff;
+	background-color: #D5C2EE;
+	border-color: #D5C2EE;
+	font-size: 13px;
+	text-align: center;
+	color: white;
+}
+
+.redText {
+	color: red;
+}
+
+.buyApplication_btn {
+	display: inline-block;
+	float: right;
+	margin-top: 20px;
+	border: 1px solid #FFBEBE;
+	width: 150px;
+	padding: 10px;
+	font-size: 16px;
+	color: white;
+	border-radius: 3px;
+	background-color: #FFBEBE;
+}
+
+.buyApplication_btn:hover {
+	cursor: pointer;
+}

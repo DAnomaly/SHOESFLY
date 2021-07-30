@@ -6,66 +6,13 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/header.css">
 	<link rel="stylesheet" href="/shoefly/resources/asset/css/common/footer.css">
-	<title>판매완료</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="/shoefly/resources/asset/css/product/buyComplete.css">
+	<title>구매신청서완료</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-	<script>
-	$(document).ready(function(){
-		$('#listBtn').click(function(){
-			location.href='productListPage.do';
-		});
-	});
-	</script>
-	<style>
-		*{
-			box-sizing: border-box;
-		}
-		.container{
-			margin: auto;
-			width: 1080px;
-		}
-		.infoBox{
-			margin-top: 100px;
-			width: 100%;
-			height: 200px;
-			border: 1px solid lightgray;
-			text-align: center;
-		}
-		i{
-			margin-top: 50px;
-			margin-bottom: 30px;
-			font-size: 30px;
-		}
-		table{
-			margin-top: 30px;
-			width: 100%;
-			border-collapse: collapse;
-			border: 1px solid lightgray;
-		}
-		td{
-			padding: 5px;
-		}
-		.tableName > td:nth-child(1){width: 15%; text-align: center;}
-		.tableName > td:nth-child(2){width: 15%; text-align: center;}
-		.tableName > td:nth-child(3){width: 70%;}
-		tr >td:nth-last-child(2){text-align: center;}
-		.listBtn{
-			float: right;
-			margin-top: 20px;
-			border: none;
-			padding: 10px;
-			color: white;
-			border-radius: 3px;
-			background-color: #FFBEBE;
-			
-		}
-		.listBtn:hover {
-			cursor: pointer;
-			font-weight: border;
-		}
-	</style>
+	<script src="/shoefly/resources/asset/js/product/buyComplete.js" type="text/javascript" charset="UTF-8"></script>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>

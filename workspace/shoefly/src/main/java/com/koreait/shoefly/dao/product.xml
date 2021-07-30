@@ -61,6 +61,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 	   		   				 AND B.PRICE BETWEEN ${minPrice} AND ${maxPrice}
 	 	   		   		 </if>
 	 	   		   		 </where>
+	 	   		   		   ORDER BY B.PRICE
 	 	   		   			) C ) D
 			WHERE D.RN BETWEEN #{beginRecord} AND #{endRecord}
 			ORDER BY D.PRICE
