@@ -67,7 +67,7 @@
 			<div class="most_list">
 			</div>
 			<div class="product_title">
-				<div class="title">Recomanded Product</div>
+				<div class="title">Recommended Product</div>
 				<div class="sub_title">추천 상품</div>
 			</div>
 			<div class="recommand_list">

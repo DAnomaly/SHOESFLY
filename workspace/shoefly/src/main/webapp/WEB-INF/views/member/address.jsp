@@ -70,16 +70,14 @@
 				}
 			})
 		}
-<<<<<<< HEAD
+		
 		// 주소추가
 		function fn_insertAddr(){
 			$('#insert_btn').click(function(){
 				location.href = 'insertAddressPage.do';
 			})
 		}
-=======
 		
->>>>>>> 6b460b5854011829b2bdae50810a5ef830266df8
 		// 돌아가기
 		function fn_return(){
 			$('#return_btn').click(function(){

@@ -42,7 +42,7 @@
 		<div class="login-form">
 			<div class="logo">	
 				<a href="/shoefly/">
-			       	<img alt="SHOEFLY" src="/shoefly/resources/asset/image/logo.png">
+			       	<img alt="SHOEFLY" src="/shoefly/resources/asset/image/logo.png" width="200">
 			    </a>
 	      	</div>
 	    <form action="login.do" id="f" method="post">
