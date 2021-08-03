@@ -19,7 +19,7 @@
 	<section>
 	<div class="container">
 		<a id = "backBtn"><i class="fas fa-angle-double-left"></i>&nbsp;뒤로가기</a>
-		<h3>판매하기</h3>
+		<h3>판매폼 작성</h3>
 		<form id="f" method="post">
 			<table border="1">
 				<tbody>
