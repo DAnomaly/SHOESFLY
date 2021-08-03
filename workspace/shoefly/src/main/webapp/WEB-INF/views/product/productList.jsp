@@ -103,7 +103,7 @@
 					<c:forEach var="product" items="${list}">
 						<c:if test="${not empty list}">
 							<div class="product_item">
-								<a class="item_inner" href="viewProductPage.do?productNo=${product.productNo}">
+								<a class="item_inner" href="viewProductPage.do?productNo=${product.productNo}&&productName=${product.productName}">
 									<div class="product" style="background-color: #FFD3B0;">
 										<img class="product_img" alt="${product.image}" src="/shoefly/resources/archive/product/${product.image}">
 									</div>
