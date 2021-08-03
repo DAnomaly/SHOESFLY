@@ -27,7 +27,7 @@
 				success: function(resultMap) {
 					$.each(resultMap.mostProduct, function(i, product) {
 						$('<div class="product_item">')
-						.html('<a class="item_inner" href="product/viewProductPage.do?productNo=' + product.productNo + '"> <div class="product" style="background-color: #D5C2EE;"> <img class="product_img" alt="' + product.image +
+						.html('<a class="item_inner" href="product/viewProductPage.do?productNo=' + product.productNo + '&&productName=' +product.productName +'"> <div class="product" style="background-color: #D5C2EE;"> <img class="product_img" alt="' + product.image +
 						'" src="/shoefly/resources/archive/product/' + product.image + '"> </div><div class="info_box"> <p class="product_name">' + product.productName)
 						.appendTo('.most_list');
 					});
