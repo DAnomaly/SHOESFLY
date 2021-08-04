@@ -52,7 +52,7 @@ section .withBtn {
 }
 section #verify_btn, section #verify_code_btn {
 	width: 95px;
-	height: 40px;
+	height: 38px;
 	float: right;
 	box-sizing: border-box;
 }
@@ -61,9 +61,8 @@ section #email , section #verify_code {
 }
 section #join_btn {
 	width: 100%;
-	height: 40px;
+	height: 38px;
 	box-sizing: border-box;
-	background-color: #FFBEBE;
 }
 section input[type="button"] {
 	background-color: #D5C2EE;
@@ -80,9 +79,6 @@ section span {
 	padding: 5px;
 	font-size: 12px;	
 }
-section #join_btn[disabled] {
-	background-color: #D5C2EE;
-}
-section #join_btn:hover {
-	background-color: #FFBEBE;
+section .btn_area #join_btn[disabled] {
+	background-color: #b3b3b3;
 }
