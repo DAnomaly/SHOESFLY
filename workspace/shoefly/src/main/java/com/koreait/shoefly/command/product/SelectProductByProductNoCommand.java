@@ -21,7 +21,8 @@ public class SelectProductByProductNoCommand implements ProductCommand {
 		//제품번호 가져오기
 		String productNo = request.getParameter("productNo");
 		String productName = request.getParameter("productName");
-
+		logger.info(productNo);
+		logger.info(productName);
 		ProductDAO productDAO = sqlSession.getMapper(ProductDAO.class);
 		model.addAttribute("product", productDAO.selectProductByProductNo(productNo));
 		

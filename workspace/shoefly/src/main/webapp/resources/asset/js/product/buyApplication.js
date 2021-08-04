@@ -24,7 +24,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 //뒤로가기
 function goBackPage(){
 	$('#backBtn').click(function(){
-		location.href='viewProductPage.do?productNo=' + $('#productNo').val();
+		location.href='viewProductPage.do?productNo=' + $('#productNo').val() + '&&productName=' + $('#productName').val();
 	});
 }
 

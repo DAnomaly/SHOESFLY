@@ -35,7 +35,7 @@
 					<tr>
 						<td>구매 상품명</td>
 						<td>${product.productName}
-						<input type="hidden" name="productName" value="${product.productName}"></td>
+						<input type="hidden" id="productName" name="productName" value="${product.productName}"></td>
 					</tr>
 					<tr>
 						<td>사이즈</td>
@@ -73,12 +73,12 @@
 						<td>
 							배송지명<br>
 							<input type="hidden" id="memberAddressNo" name="memberAddressNo" value="0">
-							<input type="text" id="addrName" name="addrName" placeholder="ex&#41; 집, 회사"><br>
+							<input type="text" id="addrName" class="addrName" name="addrName" placeholder="ex&#41; 집, 회사"><br>
 							주소<br>
-							<input type="text" name="addr1" id="addr1" readonly>
+							<input type="text" name="addr1" id="addr1" class="addr1" readonly>
 							<input type="button" id="addr_search_btn" class="addr_search_btn" value="주소찾기"><br>
 							상세주소<br>
-							<input type="text" name="addr2" id="addr2" readonly>
+							<input type="text" name="addr2" id="addr2" class="addr2" readonly>
 						</td>
 					</tr>
 					<tr>
