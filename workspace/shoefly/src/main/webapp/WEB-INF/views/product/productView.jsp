@@ -45,14 +45,15 @@
 					<div class="imgBox">
 						<img alt="${product.image}"src="/shoefly/resources/archive/product/${product.image}" /><br>
 					</div>
+					<c:forEach var="size" items="${sizeList}">
+						<input type="hidden" id="${size}" value="${size}"><br>
+					</c:forEach>
 					<div class="textBox">
 						<div class="productName">${product.productName}</div>
 						<input type="hidden" name ="productName" id="productName" value="${product.productName}">
 						<p>
-							<c:forEach var= "size" items="${size}">
-								<input type="hidden" id="${size}" value="${size}"><br>
-							</c:forEach>
-							사이즈&nbsp;&nbsp;<select name="productSize" id="productSize" class="productSizeList">
+							사이즈&nbsp;&nbsp;
+							<select name="productSize" id="productSize" class="productSizeList">
 								<option value="">:::::::: SIZE ::::::::</option>
 								<option value="240" id="shoes240">240mm</option>							
 								<option value="250" id="shoes250">250mm</option>
@@ -60,8 +61,7 @@
 								<option value="270" id="shoes270">270mm</option>
 								<option value="280" id="shoes280">280mm</option>
 								<option value="290" id="shoes290">290mm</option>
-							</select><br>
-							<br>
+							</select><br><br>
 							<button id="buyNow" class="btn">
 								즉시구매가<br>(사이즈를 선택하세요.)
 							</button>

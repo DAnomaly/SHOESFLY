@@ -25,7 +25,7 @@ public class SelectProductByProductNoCommand implements ProductCommand {
 		ProductDAO productDAO = sqlSession.getMapper(ProductDAO.class);
 		model.addAttribute("product", productDAO.selectProductByProductNo(productNo));
 		
-		model.addAttribute("size", productDAO.selectSize(productName));
+		model.addAttribute("sizeList", productDAO.selectSize(productName));
 		
 		return null;
 	}
