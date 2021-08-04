@@ -31,6 +31,7 @@ h3 {
 }
 
 table {
+	margin-top: 30px;
 	width: 100%;
 	border: 1px solid lightgrey;
 	border-collapse: collapse;
@@ -57,15 +58,18 @@ tr>td:nth-last-child(2) {
 	text-align: center;
 }
 
-input[type="text"] {
-	width: 100%;
+.addr1 {
+	width: 291px;
 	outline: none;
 	border: 1px solid #FFBEBE;
 	padding: 5px;
 }
 
-#addr1 {
-	width: 340px;
+.addr2, .addrName {
+	width: 100%;
+	outline: none;
+	border: 1px solid #FFBEBE;
+	padding: 5px;
 }
 
 .addr_search_btn {

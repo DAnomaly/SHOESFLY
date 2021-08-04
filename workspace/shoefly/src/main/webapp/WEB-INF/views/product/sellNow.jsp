@@ -37,7 +37,7 @@
 					<tr>
 						<td>판매 상품명</td>
 						<td>${product.productName}
-						<input type="hidden" name="productName" value="${product.productName}"></td>
+						<input type="hidden" id="productName" name="productName" value="${product.productName}"></td>
 					</tr>
 					<tr>
 						<td>사이즈</td>

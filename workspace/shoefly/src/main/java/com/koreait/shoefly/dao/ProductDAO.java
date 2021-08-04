@@ -11,12 +11,7 @@ public interface ProductDAO {
 	public List<Product> selectAllList(Map<String, Object> listMap);
 	public List<Product> selectCondition(Map<String, Object> paramMap);
 	public Product selectProductByProductNo(String productNo);
-	public Integer selectSize240(String productName);
-	public Integer selectSize250(String productName);
-	public Integer selectSize260(String productName);
-	public Integer selectSize270(String productName);
-	public Integer selectSize280(String productName);
-	public Integer selectSize290(String productName);
+	public List<Integer> selectSize(String productName);
 	public Long selectBuyPriceBySizeNoId(int productSize, String productName);
 	public Long selectSellPriceBySizeNoId(int productSize, String productName);
 	public Long selectBuyPriceBySize(int productSize, String productName, String memberId);
