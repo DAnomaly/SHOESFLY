@@ -15,17 +15,17 @@
 	<script src="/shoefly/resources/asset/js/product/productView.js" type="text/javascript" charset="UTF-8"></script>
 	<script>
 		$(document).ready(function(){
-			if ($('#size240').val() == 0) {
+			if ($('#240').val() == null) {
 				$('#shoes240').prop('hidden', 'true');
-			} else if ($('#size250').val() == 0) {
+			} else if ($('#250').val() == null) {
 				$('#shoes250').prop('hidden', 'true');
-			} else if ($('#size260').val() == 0) {
+			} else if ($('#260').val() == null) {
 				$('#shoes260').prop('hidden', 'true');
-			} else if ($('#size270').val() == 0) {
+			} else if ($('#270').val() == null) {
 				$('#shoes270').prop('hidden', 'true');
-			} else if ($('#size280').val() == 0) {
+			} else if ($('#280').val() == null) {
 				$('#shoes280').prop('hidden', 'true');
-			} else if ($('#size290').val() == 0) {
+			} else if ($('#290').val() == null) {
 				$('#shoes290').prop('hidden', 'true');
 			}
 		});
@@ -49,12 +49,9 @@
 						<div class="productName">${product.productName}</div>
 						<input type="hidden" name ="productName" id="productName" value="${product.productName}">
 						<p>
-							<input type="hidden" id="size240" value="${size240}">
-							<input type="hidden" id="size250" value="${size250}">
-							<input type="hidden" id="size260" value="${size260}">
-							<input type="hidden" id="size270" value="${size270}">
-							<input type="hidden" id="size280" value="${size280}">
-							<input type="hidden" id="size290" value="${size290}">
+							<c:forEach var= "size" items="${size}">
+								<input type="hidden" id="${size}" value="${size}"><br>
+							</c:forEach>
 							사이즈&nbsp;&nbsp;<select name="productSize" id="productSize" class="productSizeList">
 								<option value="">:::::::: SIZE ::::::::</option>
 								<option value="240" id="shoes240">240mm</option>							

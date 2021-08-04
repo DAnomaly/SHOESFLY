@@ -75,49 +75,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE PRODUCT_NO = #{param1}
 	</select>
 	
-	<select id="selectSize240" resultType="Integer">
-		SELECT A.PRODUCT_SIZE
-  		  FROM PRODUCT_DETAIL A INNER JOIN PRODUCT B
-            ON A.PRODUCT_NAME = B.PRODUCT_NAME
-         WHERE A.PRODUCT_SIZE = 240
-           AND B.PRODUCT_NAME = #{param1}
+	<select id="selectSize" resultType="int">
+		SELECT PRODUCT_SIZE
+  		  FROM PRODUCT_DETAIL
+         WHERE PRODUCT_NAME = #{param1}
 	</select>
-	<select id="selectSize250" resultType="Integer">
-		SELECT A.PRODUCT_SIZE
-  		  FROM PRODUCT_DETAIL A INNER JOIN PRODUCT B
-            ON A.PRODUCT_NAME = B.PRODUCT_NAME
-         WHERE A.PRODUCT_SIZE = 250
-           AND B.PRODUCT_NAME = #{param1}
-	</select>
-	<select id="selectSize260" resultType="Integer">
-		SELECT A.PRODUCT_SIZE
-  		  FROM PRODUCT_DETAIL A INNER JOIN PRODUCT B
-            ON A.PRODUCT_NAME = B.PRODUCT_NAME
-         WHERE A.PRODUCT_SIZE = 260
-           AND B.PRODUCT_NAME = #{param1}
-	</select>
-	<select id="selectSize270" resultType="Integer">
-		SELECT A.PRODUCT_SIZE
-  		  FROM PRODUCT_DETAIL A INNER JOIN PRODUCT B
-            ON A.PRODUCT_NAME = B.PRODUCT_NAME
-         WHERE A.PRODUCT_SIZE = 270
-           AND B.PRODUCT_NAME = #{param1}
-	</select>
-	<select id="selectSize280" resultType="Integer">
-		SELECT A.PRODUCT_SIZE
-  		  FROM PRODUCT_DETAIL A INNER JOIN PRODUCT B
-            ON A.PRODUCT_NAME = B.PRODUCT_NAME
-         WHERE A.PRODUCT_SIZE = 280
-           AND B.PRODUCT_NAME = #{param1}
-	</select>
-	<select id="selectSize290" resultType="Integer">
-		SELECT A.PRODUCT_SIZE
-  		  FROM PRODUCT_DETAIL A INNER JOIN PRODUCT B
-            ON A.PRODUCT_NAME = B.PRODUCT_NAME
-         WHERE A.PRODUCT_SIZE = 290
-           AND B.PRODUCT_NAME = #{param1}
-	</select>
-	
 	
 <!-- =================================가격조회================================= -->	
 	<!-- 비로그인시/ size와 제품명으로 즉시구매가 조회 -->
