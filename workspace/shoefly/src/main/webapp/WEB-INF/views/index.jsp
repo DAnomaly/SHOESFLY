@@ -44,7 +44,7 @@
 				success: function(resultMap) {
 					$.each(resultMap.recommandProduct, function(i, product) {
 						$('<div class="product_item">')
-						.html('<a class="item_inner" href="product/viewProductPage.do?productNo=' + product.productNo + '"> <div class="product" style="background-color: #FFBEBE;"> <img class="product_img" alt="' + product.image +
+						.html('<a class="item_inner" href="product/viewProductPage.do?productNo=' + product.productNo + '&&productName=' +product.productName +'"> <div class="product" style="background-color: #FFBEBE;"> <img class="product_img" alt="' + product.image +
 						'" src="/shoefly/resources/archive/product/' + product.image + '"> </div><div class="info_box"> <p class="product_name">' + product.productName)
 						.appendTo('.recommand_list');
 						
